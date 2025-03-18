@@ -1,0 +1,25 @@
+{
+  "name": "cbx/petition",
+  "description": "cbx petition plugin",
+  "type": "library",
+  "license": "MIT",
+  "config": {
+    "vendor-dir": "lib"
+  },
+  "require": {
+    "soundasleep/html2text": "^2.1",
+    "pelago/emogrifier": "^7.0",
+    "intervention/image": "^2.7",
+    "enshrined/svg-sanitize": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "Cbx\\Petition\\": "includes/"
+    },
+    "files": [
+      "includes/Helpers/petition_functions.php",
+      "includes/Helpers/petition_tpl_loader.php",
+      "includes/Helpers/CBXPetitionEmailFunctions.php"
+    ]
+  }
+}
