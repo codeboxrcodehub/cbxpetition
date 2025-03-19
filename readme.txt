@@ -3,7 +3,7 @@ Contributors: codeboxr, manchumahara
 Tags: petition,activism,signature,change,campaign
 Requires at least: 5.3
 Tested up to: 6.7.2
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -181,6 +181,9 @@ Get the [pro addon](https://codeboxr.com/product/cbx-petition-for-wordpress/)
 
 
 == Changelog ==
+= 2.0.1 =
+* [fixed] Plugin activation error in linux platform
+
 = 2.0.0 =
 * [new] Totally refreshed dashboard
 * [new] New email notification system

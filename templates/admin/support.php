@@ -87,6 +87,14 @@ $doc_url    = PetitionHelper::url_utmy( 'https://codeboxr.com/doc/cbxpetition-do
                     <div class="content">
                         <div class="cbx-backend-settings-row">
                             <p>
+                                Version - 2.0.1
+                            </p>
+                            <ul>
+                                <li>[fixed] Plugin activation error in linux platform</li>
+                            </ul>
+                        </div>
+                        <div class="cbx-backend-settings-row">
+                            <p>
                                 Version - 2.0.0
                             </p>
                             <ul>

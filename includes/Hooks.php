@@ -4,7 +4,7 @@ namespace Cbx\Petition;
 
 use Cbx\Petition\CBXPetitionAdmin;
 use Cbx\Petition\CBXPetitionPublic;
-use Cbx\Petition\ShortCode\ShortCode;
+use Cbx\Petition\Shortcode\ShortCode;
 use Cbx\Petition\Helpers\PetitionHelper;
 
 
