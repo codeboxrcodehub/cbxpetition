@@ -192,7 +192,7 @@ class PetitionHelper {
 					'comment_status' => 'closed'
 				];
 
-				$page_id   = wp_insert_post( $page_data );
+				$page_id = wp_insert_post( $page_data );
 			}
 		}
 
@@ -458,7 +458,7 @@ class PetitionHelper {
 
 		$signature_table = $wpdb->prefix . 'cbxpetition_signs';
 		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-		$sql             = $wpdb->prepare( "SELECT * FROM $signature_table WHERE petition_id=%d AND add_by=%d", $petition_id, $user_id );
+		$sql = $wpdb->prepare( "SELECT * FROM $signature_table WHERE petition_id=%d AND add_by=%d", $petition_id, $user_id );
 
 		$log_info = $wpdb->get_row( $sql, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
 		if ( is_null( $log_info ) ) {
@@ -493,7 +493,7 @@ class PetitionHelper {
 
 		$signature_table = $wpdb->prefix . 'cbxpetition_signs';
 		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-		$sql = $wpdb->prepare( "SELECT * FROM $signature_table WHERE petition_id=%d AND email=%s", $petition_id, $email );
+		$sql      = $wpdb->prepare( "SELECT * FROM $signature_table WHERE petition_id=%d AND email=%s", $petition_id, $email );
 		$log_info = $wpdb->get_row( $sql, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
 
 		if ( is_null( $log_info ) ) {
@@ -726,6 +726,7 @@ class PetitionHelper {
 
 
 		$sortingOrder = " ORDER BY $order_by $order ";
+
 		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		return $wpdb->get_results( "$sql_select  WHERE  $where_sql $sortingOrder $limit_sql", 'ARRAY_A' );
 	}//end method getSignListingData
@@ -797,15 +798,15 @@ class PetitionHelper {
 	 * @since 1.0.0
 	 */
 	public static function petitionsToExpire( $per_page = 10 ) {
-
+		//phpcs:disable
 		$args = [
 			'post_type'      => 'cbxpetition',
 			'post_status'    => 'publish',
 			'posts_per_page' => $per_page,
-			'meta_key'       => '_cbxpetition_expire_date', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+			'meta_key'       => '_cbxpetition_expire_date',
 			'orderby'        => '_cbxpetition_expire_date',
 			'order'          => 'ASC',
-			'meta_query'     => [	// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+			'meta_query'     => [
 				[
 					'key'     => '_cbxpetition_expire_date',
 					//						'value'   => date( 'Y-m-d', strtotime( "+7 days" ) ),
@@ -814,11 +815,12 @@ class PetitionHelper {
 				],
 			],
 		];
+		//phpcs:enable
 
 		$petitions_to_expire = get_posts( $args );
 
 		return $petitions_to_expire;
-	}
+	}//end method petitionsToExpire
 
 	/**
 	 * petitions that are recently completed
@@ -829,15 +831,15 @@ class PetitionHelper {
 	 * @since 1.0.0
 	 */
 	public static function completedPetitions( $per_page = 10 ) {
-
+		//phpcs:disable
 		$args = [
 			'post_type'      => 'cbxpetition',
 			'post_status'    => 'publish',
 			'posts_per_page' => $per_page,
-			'meta_key'       => '_cbxpetition_expire_date',	// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+			'meta_key'       => '_cbxpetition_expire_date',
 			'orderby'        => '_cbxpetition_expire_date',
 			'order'          => 'ASC',
-			'meta_query'     => [	// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+			'meta_query'     => [
 				[
 					'key'     => '_cbxpetition_expire_date',
 					'value'   => gmdate( 'Y-m-d' ),
@@ -845,11 +847,12 @@ class PetitionHelper {
 				],
 			],
 		];
+		//phpcs:enable
 
 		$completed_petitions = get_posts( $args );
 
 		return $completed_petitions;
-	}
+	}//end method
 
 	/**
 	 * Petition Info
@@ -863,9 +866,9 @@ class PetitionHelper {
 		global $wpdb;
 		$signature_table = $wpdb->prefix . 'cbxpetition_signs';
 		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-		$sql             = $wpdb->prepare( "SELECT * FROM $signature_table WHERE id=%d ", intval( $sign_id ) );
+		$sql = $wpdb->prepare( "SELECT * FROM $signature_table WHERE id=%d ", intval( $sign_id ) );
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared
-		$log_info        = $wpdb->get_row( $sql, ARRAY_A );
+		$log_info = $wpdb->get_row( $sql, ARRAY_A );
 
 		return $log_info;
 	}//end method petitionSignInfo
@@ -1683,7 +1686,7 @@ class PetitionHelper {
 	public static function is_rest() {
 		$prefix = rest_get_url_prefix();
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended 
-		if ( defined( 'REST_REQUEST' ) && REST_REQUEST || isset( $_GET['rest_route'] )  && strpos( trim( sanitize_text_field(wp_unslash($_GET['rest_route'])), '\\/' ), $prefix, 0 ) === 0 ) { 
+		if ( defined( 'REST_REQUEST' ) && REST_REQUEST || isset( $_GET['rest_route'] ) && strpos( trim( sanitize_text_field( wp_unslash( $_GET['rest_route'] ) ), '\\/' ), $prefix, 0 ) === 0 ) {
 			return true;
 		}
 		// (#3)
@@ -1812,6 +1815,7 @@ class PetitionHelper {
 
 		$forms['wordpress'] = esc_html__( 'WordPress Core Login Form', 'cbxpetition' );
 		$forms['none']      = esc_html__( 'Don\'t show login form, show default login url', 'cbxpetition' );
+		$forms['off']       = esc_html__( 'Show nothing!', 'cbxpetition' );
 
 		return apply_filters( 'cbxpetition_guest_login_forms', $forms );
 	}//end guest_login_forms
@@ -1850,64 +1854,64 @@ class PetitionHelper {
 		//$table_names      = self::allTablesArr();
 		//$option_values = self::getAllOptionNames();
 		$external_svg = cbxpetition_esc_svg( cbxpetition_load_svg( 'icon_external' ) );
-		$archive_url = get_post_type_archive_link('cbxpetition');
+		$archive_url  = get_post_type_archive_link( 'cbxpetition' );
 
-		$gust_login_forms = self::guest_login_forms();
+		$gust_login_forms        = self::guest_login_forms();
 		$tools_delete_table_html = '<div id="setting_resetinfo">' . esc_html__( 'Loading ...', 'cbxpetition' ) . '</div>';
 
 
 		$settings_builtin_fields = [
-			'cbxpetition_basic'       => [
-				'basic_heading' => [
+			'cbxpetition_basic'     => [
+				'basic_heading'   => [
 					'name'    => 'basic_heading',
 					'label'   => esc_html__( 'Post Type, Taxonomy and Slug', 'cbxpetition' ),
 					'type'    => 'heading',
 					'default' => '',
 				],
-				'post_slug'     => [
+				'post_slug'       => [
 					'name'    => 'post_slug',
 					'label'   => esc_html__( 'Petition Slug', 'cbxpetition' ),
 					'desc'    => esc_html__( 'Petition post type slug. Default: cbxpetition', 'cbxpetition' ),
 					'type'    => 'slug',
 					'default' => 'cbxpetition'
 				],
-				'archive_slug'  => [
+				'archive_slug'    => [
 					'name'    => 'archive_slug',
 					'label'   => esc_html__( 'Archive Slug', 'cbxpetition' ),
-					'desc'    => esc_html__( 'Petition post type archive slug. Default: cbxpetition', 'cbxpetition' ). '<a target="_blank" class="button small outline icon icon-inline icon-right ml-10" href="' . esc_url( $archive_url ) . '"><i class="cbx-icon">' . $external_svg . '</i><span class="button-label">' . esc_attr__( 'View Archive',
+					'desc'    => esc_html__( 'Petition post type archive slug. Default: cbxpetition', 'cbxpetition' ) . '<a target="_blank" class="button small outline icon icon-inline icon-right ml-10" href="' . esc_url( $archive_url ) . '"><i class="cbx-icon">' . $external_svg . '</i><span class="button-label">' . esc_attr__( 'View Archive',
 							'cbxpetition' ) . '</span></a>',
 					'type'    => 'slug',
 					'default' => 'cbxpetitions'
 				],
-				'cat_enable'    => [
+				'cat_enable'      => [
 					'name'    => 'cat_enable',
 					'label'   => esc_html__( 'Enable Category', 'cbxpetition' ),
 					'desc'    => esc_html__( 'Enable/disable category taxonomy for petition. Category is hierarchical taxonomy.', 'cbxpetition' ),
 					'type'    => 'checkbox',
 					'default' => 'on'
 				],
-				'cat_slug'      => [
+				'cat_slug'        => [
 					'name'    => 'cat_slug',
 					'label'   => esc_html__( 'Category Slug', 'cbxpetition' ),
 					'desc'    => esc_html__( 'Petition category slug. Default: petition-cat', 'cbxpetition' ),
 					'type'    => 'slug',
 					'default' => esc_attr_x( 'petition-cat', 'Petition category slug', 'cbxpetition' )
 				],
-				'tag_enable'    => [
+				'tag_enable'      => [
 					'name'    => 'tag_enable',
 					'label'   => esc_html__( 'Enable Tag', 'cbxpetition' ),
 					'desc'    => esc_html__( 'Enable/disable category tag for petition. Category is non hierarchical taxonomy.', 'cbxpetition' ),
 					'type'    => 'checkbox',
 					'default' => 'on'
 				],
-				'tag_slug'      => [
+				'tag_slug'        => [
 					'name'    => 'tag_slug',
 					'label'   => esc_html__( 'Tag Slug', 'cbxpetition' ),
 					'desc'    => esc_html__( 'Petition tag slug. Default: petition-tag', 'cbxpetition' ),
 					'type'    => 'slug',
 					'default' => esc_attr_x( 'petition-tag', 'Petition tag slug', 'cbxpetition' )
 				],
-				'custom_template'      => [
+				'custom_template' => [
 					'name'    => 'custom_template',
 					'label'   => esc_html__( 'Use Custom Template', 'cbxpetition' ),
 					'desc'    => esc_html__( 'Use custom template for details petition, archive, taxonomy from plugin\'s template folder', 'cbxpetition' ),
@@ -1915,7 +1919,7 @@ class PetitionHelper {
 					'type'    => 'checkbox'
 				]
 			],
-			'cbxpetition_general'     => [
+			'cbxpetition_general'   => [
 				'general_heading'          => [
 					'name'    => 'basic_heading',
 					'label'   => esc_html__( 'Petition Basic', 'cbxpetition' ),
@@ -1939,7 +1943,7 @@ class PetitionHelper {
 					'default' => 'approved',
 					'options' => self::getPetitionSignStates(),
 				],
-				'allow_guest_sign'                      => [
+				'allow_guest_sign'         => [
 					'name'              => 'allow_guest_sign',
 					'label'             => esc_html__( 'Allow guest to sign', 'cbxpetition' ),
 					'desc'              => esc_html__( 'Allow guest to sign petition or not.',
@@ -1952,19 +1956,19 @@ class PetitionHelper {
 					],
 					'sanitize_callback' => 'sanitize_text_field'
 				],
-				'show_login_form'                      => [
+				/*'show_login_form'          => [
 					'name'              => 'show_login_form',
 					'label'             => esc_html__( 'Show login form for guest user', 'cbxpetition' ),
 					'desc'              => esc_html__( 'If select yes then show the login form for the guest users on the new job creating',
 						'cbxpetition' ),
 					'type'              => 'radio',
-					'default'           => 'no',
+					'default'           => 'yes',
 					'options'           => [
 						'yes' => esc_html__( 'Yes', 'cbxpetition' ),
 						'no'  => esc_html__( 'No', 'cbxpetition' ),
 					],
 					'sanitize_callback' => 'sanitize_text_field'
-				],
+				],*/
 				'guest_login_form'         => [
 					'name'    => 'guest_login_form',
 					'label'   => esc_html__( 'Guest User Login Form', 'cbxpetition' ),
@@ -1973,7 +1977,7 @@ class PetitionHelper {
 					'default' => 'wordpress',
 					'options' => $gust_login_forms
 				],
-				'guest_show_register'                  => [
+				'guest_show_register'      => [
 					'name'    => 'guest_show_register',
 					'label'   => esc_html__( 'Show Register link to guest', 'cbxpetition' ),
 					'desc'    => esc_html__( 'Show register link to guest, depends on if registration is enabled in wordpress core',
@@ -2182,7 +2186,7 @@ class PetitionHelper {
 				],
 
 			],
-			'cbxpetition_email_tpl'       => [
+			'cbxpetition_email_tpl' => [
 				'email_template_heading' => [
 					'name'    => 'email_template_heading',
 					'label'   => esc_html__( 'Petition Email Template', 'cbxpetition' ),
@@ -2199,7 +2203,7 @@ class PetitionHelper {
 				'footertext'             => [
 					'name'    => 'footertext',
 					'label'   => esc_html__( 'Footer Text', 'cbxpetition' ),
-					'desc'    => wp_kses(__( 'The text to appear at the email footer. Syntax available - <code>{site_title}</code>','cbxpetition' ), ['code' => []]),
+					'desc'    => wp_kses( __( 'The text to appear at the email footer. Syntax available - <code>{site_title}</code>', 'cbxpetition' ), [ 'code' => [] ] ),
 					'type'    => 'wysiwyg',
 					'default' => '{site_title}',
 				],
@@ -2231,7 +2235,7 @@ class PetitionHelper {
 					'type'    => 'color',
 					'default' => '#505050',
 				],
-				'footertextcolor'     => [
+				'footertextcolor'        => [
 					'name'    => 'footertextcolor',
 					'label'   => esc_html__( 'Footer Text Color', 'cbxpetition' ),
 					'desc'    => esc_html__( 'The footer text colour of the footer of email.', 'cbxpetition' ),
@@ -2239,7 +2243,7 @@ class PetitionHelper {
 					'default' => '#3c3c3c',
 				],
 			],
-			'cbxpetition_tools'       => [
+			'cbxpetition_tools'     => [
 				'tools_heading'        => [
 					'name'    => 'tools_heading',
 					'label'   => esc_html__( 'Tools Settings', 'cbxpetition' ),
@@ -2452,7 +2456,6 @@ class PetitionHelper {
 		$option_values = self::getAllOptionNames();
 
 
-
 		$table_html = '<p style="margin-bottom: 10px;" class="grouped gapless grouped_buttons" id="cbxpetition_setting_options_check_actions"><a href="#" class="button primary cbxpetition_setting_options_check_action_call">' . esc_html__( 'Check All',
 				'cbxpetition' ) . '</a><a href="#" class="button outline cbxpetition_setting_options_check_action_ucall">' . esc_html__( 'Uncheck All',
 				'cbxpetition' ) . '</a></p>';
@@ -2493,55 +2496,55 @@ class PetitionHelper {
 	 * get single petition signature count
 	 *
 	 */
-	public static function getMonthlySignatureCounts($year = null , $petition_id = 0 ) {
+	public static function getMonthlySignatureCounts( $year = null, $petition_id = 0 ) {
 		// Initialize array with month names and count set to 0
 		$monthly_counts = array_fill_keys(
-			['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'],
+			[ 'jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec' ],
 			0
 		);
-	
-		$year = intval($year) ?: intval(gmdate('Y')); // Default to current year if $year is null
-	
-		if ($year > 0) {
+
+		$year = intval( $year ) ?: intval( gmdate( 'Y' ) ); // Default to current year if $year is null
+
+		if ( $year > 0 ) {
 			global $wpdb;
 			$signature_table = $wpdb->prefix . 'cbxpetition_signs';
-	
+
 			// Base SQL query
 			$sql = "SELECT MONTH(add_date) as month, COUNT(*) as count 
 					FROM $signature_table 
 					WHERE state = %s AND YEAR(add_date) = %d";
-	
+
 			// Modify SQL query to include petition ID filter if it's greater than 0
-			if ($petition_id > 0) {
-				$sql .= " AND petition_id = %d";
-				$sql .= " GROUP BY MONTH(add_date)";
-				$query = $wpdb->prepare($sql, 'approved', $year, $petition_id); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+			if ( $petition_id > 0 ) {
+				$sql   .= " AND petition_id = %d";
+				$sql   .= " GROUP BY MONTH(add_date)";
+				$query = $wpdb->prepare( $sql, 'approved', $year, $petition_id ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 			} else {
-				$sql .= " GROUP BY MONTH(add_date)";
-				$query = $wpdb->prepare($sql, 'approved', $year); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+				$sql   .= " GROUP BY MONTH(add_date)";
+				$query = $wpdb->prepare( $sql, 'approved', $year ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 			}
-	
+
 			// Execute the query
-			$results = $wpdb->get_results($query); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery
-	
+			$results = $wpdb->get_results( $query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery
+
 			// Populate the monthly_counts array with the results
-			foreach ($results as $result) {
-				$month_number = intval($result->month);
-				$month_name = strtolower(gmdate('M', mktime(0, 0, 0, $month_number, 10)));
-				$monthly_counts[$month_name] = intval($result->count);
+			foreach ( $results as $result ) {
+				$month_number                  = intval( $result->month );
+				$month_name                    = strtolower( gmdate( 'M', mktime( 0, 0, 0, $month_number, 10 ) ) );
+				$monthly_counts[ $month_name ] = intval( $result->count );
 			}
 		}
-	
+
 		return $monthly_counts;
 	}//end function getMonthlySignatureCounts
 
 	/**
 	 * Get single petition signature count for each day of the current week
 	 */
-	public static function getWeeklySignatureCounts($petition_id = 0) {
+	public static function getWeeklySignatureCounts( $petition_id = 0 ) {
 		// Initialize array with day names and count set to 0
 		$weekly_counts = array_fill_keys(
-			['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'],
+			[ 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat' ],
 			0
 		);
 
@@ -2554,23 +2557,23 @@ class PetitionHelper {
 				WHERE state = %s AND YEARWEEK(add_date, 1) = YEARWEEK(CURDATE(), 1)";
 
 		// Modify SQL query to include petition ID filter if it's greater than 0
-		if ($petition_id > 0) {
-			$sql .= " AND petition_id = %d";
-			$sql .= " GROUP BY DAYOFWEEK(add_date)";
-			$query = $wpdb->prepare($sql, 'approved', $petition_id); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		if ( $petition_id > 0 ) {
+			$sql   .= " AND petition_id = %d";
+			$sql   .= " GROUP BY DAYOFWEEK(add_date)";
+			$query = $wpdb->prepare( $sql, 'approved', $petition_id ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 		} else {
-			$sql .= " GROUP BY DAYOFWEEK(add_date)";
-			$query = $wpdb->prepare($sql, 'approved'); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+			$sql   .= " GROUP BY DAYOFWEEK(add_date)";
+			$query = $wpdb->prepare( $sql, 'approved' ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 		}
 
 		// Execute the query
-		$results = $wpdb->get_results($query); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared
+		$results = $wpdb->get_results( $query ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared
 
 		// Populate the weekly_counts array with the results
-		foreach ($results as $result) {
-			$day_number = intval($result->day) - 1; // DAYOFWEEK returns 1 for Sunday, 2 for Monday, etc.
-			$day_name = strtolower(gmdate('D', strtotime("Sunday +{$day_number} days")));
-			$weekly_counts[$day_name] = intval($result->count);
+		foreach ( $results as $result ) {
+			$day_number                 = intval( $result->day ) - 1; // DAYOFWEEK returns 1 for Sunday, 2 for Monday, etc.
+			$day_name                   = strtolower( gmdate( 'D', strtotime( "Sunday +{$day_number} days" ) ) );
+			$weekly_counts[ $day_name ] = intval( $result->count );
 		}
 
 		return $weekly_counts;
@@ -2583,15 +2586,16 @@ class PetitionHelper {
 	 *
 	 * @return string
 	 */
-	public static function get_human_readable_post_status($post_id) {
-		$post_status = get_post_status($post_id);
+	public static function get_human_readable_post_status( $post_id ) {
+		$post_status = get_post_status( $post_id );
 
-		if (!$post_status) {
+		if ( ! $post_status ) {
 			return 'Unknown Status';
 		}
 
-		$status_object = get_post_status_object($post_status);
-		return $status_object ? $status_object->label : ucfirst($post_status);
+		$status_object = get_post_status_object( $post_status );
+
+		return $status_object ? $status_object->label : ucfirst( $post_status );
 	}//end method get_human_readable_post_status
 
 	/**
@@ -2657,7 +2661,7 @@ class PetitionHelper {
 				$url   = PetitionHelper::url_utmy( esc_url( $url ) );
 				$title = $block->get_title();
 
-				$news[] = ['url' => $url, 'title' => $title];
+				$news[] = [ 'url' => $url, 'title' => $title ];
 			}
 
 			set_transient( $cache_key, $news, HOUR_IN_SECONDS * 6 ); // Cache for 6 hours
@@ -2667,4 +2671,194 @@ class PetitionHelper {
 
 		return $news;
 	}//end method codeboxr_news_feed
+
+	/**
+	 * Load the plugin text domain for translation.
+	 *
+	 * @since    1.0.0
+	 */
+	public static function load_plugin_textdomain() {
+		load_plugin_textdomain( 'cbxpetition', false, CBXPETITION_ROOT_PATH . 'languages/' );
+	}//end method load_plugin_textdomain
+
+	/**
+	 * register migration command
+	 */
+	public static function load_mailer() {
+		cbxpetition_mailer();
+	}//end method load_mailer
+
+	/**
+	 * Petition default  categories
+	 *
+	 * @return mixed|null
+	 */
+	public static function default_categories() {
+		$default_categories = [
+			[
+				'title'         => 'Government & Politics',
+				'slug'          => 'government-politics',
+				'subcategories' => [
+					[ 'title' => 'Policy Reform', 'slug' => 'policy-reform' ],
+					[ 'title' => 'Electoral Transparency', 'slug' => 'electoral-transparency' ],
+					[ 'title' => 'Human Rights & Justice', 'slug' => 'human-rights-justice' ],
+					[ 'title' => 'Public Safety & Law Enforcement', 'slug' => 'public-safety-law-enforcement' ],
+					[ 'title' => 'Anti-Corruption', 'slug' => 'anti-corruption' ],
+				]
+			],
+			[
+				'title'         => 'Environment & Sustainability',
+				'slug'          => 'environment-sustainability',
+				'subcategories' => [
+					[ 'title' => 'Climate Action', 'slug' => 'climate-action' ],
+					[ 'title' => 'Wildlife Protection', 'slug' => 'wildlife-protection' ],
+					[ 'title' => 'Pollution & Waste Management', 'slug' => 'pollution-waste-management' ],
+					[ 'title' => 'Forests & Natural Resources', 'slug' => 'forests-natural-resources' ],
+					[ 'title' => 'Sustainable Development', 'slug' => 'sustainable-development' ],
+				]
+			],
+			[
+				'title'         => 'Society & Culture',
+				'slug'          => 'society-culture',
+				'subcategories' => [
+					[ 'title' => 'Education & Schools', 'slug' => 'education-schools' ],
+					[ 'title' => 'Health & Wellbeing', 'slug' => 'health-wellbeing' ],
+					[ 'title' => 'Gender Equality', 'slug' => 'gender-equality' ],
+					[ 'title' => 'Religious Freedom', 'slug' => 'religious-freedom' ],
+					[ 'title' => 'LGBTQ+ Rights', 'slug' => 'lgbtq-rights' ],
+				]
+			],
+			[
+				'title'         => 'Children & Youth',
+				'slug'          => 'children-youth',
+				'subcategories' => [
+					[ 'title' => 'Child Protection', 'slug' => 'child-protection' ],
+					[ 'title' => 'Youth Empowerment', 'slug' => 'youth-empowerment' ],
+					[ 'title' => 'Educational Access', 'slug' => 'educational-access' ],
+					[ 'title' => 'School Safety', 'slug' => 'school-safety' ],
+				]
+			],
+			[
+				'title'         => 'Animals',
+				'slug'          => 'animals',
+				'subcategories' => [
+					[ 'title' => 'Animal Welfare', 'slug' => 'animal-welfare' ],
+					[ 'title' => 'Endangered Species', 'slug' => 'endangered-species' ],
+					[ 'title' => 'Ban Animal Cruelty', 'slug' => 'ban-animal-cruelty' ],
+					[ 'title' => 'Animal Rights Legislation', 'slug' => 'animal-rights-legislation' ],
+				]
+			],
+			[
+				'title'         => 'Business & Consumer Rights',
+				'slug'          => 'business-consumer-rights',
+				'subcategories' => [
+					[ 'title' => 'Corporate Accountability', 'slug' => 'corporate-accountability' ],
+					[ 'title' => 'Fair Trade & Labor', 'slug' => 'fair-trade-labor' ],
+					[ 'title' => 'Digital Privacy', 'slug' => 'digital-privacy' ],
+					[ 'title' => 'Product Safety', 'slug' => 'product-safety' ],
+				]
+			],
+			[
+				'title'         => 'Local & Community Issues',
+				'slug'          => 'local-community-issues',
+				'subcategories' => [
+					[ 'title' => 'Neighborhood Safety', 'slug' => 'neighborhood-safety' ],
+					[ 'title' => 'Local Infrastructure', 'slug' => 'local-infrastructure' ],
+					[ 'title' => 'Community Events', 'slug' => 'community-events' ],
+					[ 'title' => 'Zoning & Urban Planning', 'slug' => 'zoning-urban-planning' ],
+				]
+			],
+			[
+				'title'         => 'Human Rights & Equality',
+				'slug'          => 'human-rights-equality',
+				'subcategories' => [
+					[ 'title' => 'Racial Justice', 'slug' => 'racial-justice' ],
+					[ 'title' => 'Refugee Support', 'slug' => 'refugee-support' ],
+					[ 'title' => 'Workers\' Rights', 'slug' => 'workers-rights' ],
+					[ 'title' => 'Disability Inclusion', 'slug' => 'disability-inclusion' ],
+				]
+			],
+			[
+				'title'         => 'Technology & Internet',
+				'slug'          => 'technology-internet',
+				'subcategories' => [
+					[ 'title' => 'Digital Freedoms', 'slug' => 'digital-freedoms' ],
+					[ 'title' => 'Data Privacy', 'slug' => 'data-privacy' ],
+					[ 'title' => 'AI & Automation Ethics', 'slug' => 'ai-automation-ethics' ],
+					[ 'title' => 'Cybersecurity Awareness', 'slug' => 'cybersecurity-awareness' ],
+				]
+			],
+			[
+				'title'         => 'Education & Academia',
+				'slug'          => 'education-academia',
+				'subcategories' => [
+					[ 'title' => 'Student Rights', 'slug' => 'student-rights' ],
+					[ 'title' => 'Curriculum Reform', 'slug' => 'curriculum-reform' ],
+					[ 'title' => 'Affordable Education', 'slug' => 'affordable-education' ],
+					[ 'title' => 'Teacher Support', 'slug' => 'teacher-support' ],
+				]
+			]
+		];
+
+		return apply_filters( 'cbxpetition_default_categories', $default_categories );
+	}//end method default_categories
+
+	/**
+	 * Create default categories
+	 *
+	 * @return void
+	 *
+	 * @since 2.0.3
+	 */
+	public static function create_default_categories() {
+		$saved_version = get_option( 'cbxpetition_version' );
+		$count         = cbxpetition_category_count();
+
+		if ( $saved_version === false || $count == 0 ) {
+			$categories = PetitionHelper::default_categories();
+
+			$taxonomy = 'cbxpetition_cat';
+
+			foreach ( $categories as $cat ) {
+				// Check if parent term exists by slug
+				$parent_term = get_term_by( 'slug', $cat['slug'], $taxonomy );
+
+				// If not, insert it
+				if ( ! $parent_term ) {
+					$parent_term_id = wp_insert_term(
+						$cat['title'],
+						$taxonomy,
+						[
+							'slug' => $cat['slug'],
+						]
+					);
+
+
+					if ( ! is_wp_error( $parent_term_id ) ) {
+						$parent_term = get_term( $parent_term_id['term_id'], $taxonomy );
+					}
+				}
+
+				$parent_id = $parent_term ? $parent_term->term_id : 0;
+
+				// Insert subcategories
+				if ( ! empty( $cat['subcategories'] ) && is_array( $cat['subcategories'] ) ) {
+					foreach ( $cat['subcategories'] as $subcat ) {
+						$sub_term = get_term_by( 'slug', $subcat['slug'], $taxonomy );
+
+						if ( ! $sub_term ) {
+							wp_insert_term(
+								$subcat['title'],
+								$taxonomy,
+								[
+									'slug'   => $subcat['slug'],
+									'parent' => $parent_id
+								]
+							);
+						}
+					}
+				}
+			}
+		}
+	}//end method create_default_categories
 }//end class PetitionHelper

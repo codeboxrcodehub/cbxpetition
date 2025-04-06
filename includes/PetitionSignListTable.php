@@ -150,7 +150,7 @@ class PetitionSignListTable extends \WP_List_Table {
 
 		//return $item['id'];
 
-		$comment = wp_unslash( sanitize_textarea_field( $item['comment'] ) );
+		$comment = sanitize_textarea_field( wp_unslash($item['comment']) );
 		if ( strlen( $comment ) > 25 ) {
 			$comment = substr( $comment, 0, 25 ) . '...';
 		}

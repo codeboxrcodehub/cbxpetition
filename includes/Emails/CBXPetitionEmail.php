@@ -472,7 +472,7 @@ class CBXPetitionEmail {
 		 *
 		 * @param  bool  $return  Whether the email was sent successfully.
 		 * @param  int  $id  Email ID.
-		 * @param  WC_Email  $this  WC_Email instance.
+		 * @param  CBXPetitionEmail  $this  CBXPetitionEmail instance.
 		 *
 		 * @since 5.6.0
 		 */
@@ -836,7 +836,7 @@ class CBXPetitionEmail {
 			 * Provides an opportunity to filter the CSS styles included in e-mails.
 			 *
 			 * @param  string  $css  CSS code.
-			 * @param  \WC_Email  $email  E-mail instance.
+			 * @param  \CBXPetitionEmail  $email  E-mail instance.
 			 *
 			 * @since 2.3.0
 			 *
@@ -883,7 +883,7 @@ class CBXPetitionEmail {
 		 *
 		 * @param  string  $additional_content  Additional content to be added to the email.
 		 * @param  object|bool  $object  The object (ie, product or order) this email relates to, if any.
-		 * @param  WC_Email  $email  WC_Email instance managing the email.
+		 * @param  CBXPetitionEmail  $email  CBXPetitionEmail instance managing the email.
 		 *
 		 * @since 3.7.0
 		 *

@@ -35,9 +35,9 @@ class CBXPetitionAdmin {
 		PetitionHelper::create_cbxpetition_post_type();
 
 		// Check the option we set on activation.
-		if ( get_option( 'cbxpetition_flush_rewrite_rules' ) == 'true' ) {
+		if ( get_transient( 'cbxpetition_flush_rewrite_rules' )) {
 			flush_rewrite_rules();
-			delete_option( 'cbxpetition_flush_rewrite_rules' );
+			delete_transient( 'cbxpetition_flush_rewrite_rules' );
 		}
 	}//end method post_type_init
 
@@ -1309,7 +1309,7 @@ class CBXPetitionAdmin {
 			// Get an instance of the WP_Filesystem
 			global $wp_filesystem;
 
-			$filename = $media_info['banner-image'];
+			$filename = isset($media_info['banner-image'])? $media_info['banner-image'] : '';
 			if ( $filename != '' ) {
 
 				//$deleted = @unlink( $dir_info['cbxpetition_base_dir'] .$review_id.'/'. $filename );
@@ -1543,9 +1543,15 @@ class CBXPetitionAdmin {
 
 			add_action( 'init', [ $this, 'plugin_upgrader_process_complete_partial' ] );
 
-			add_option( 'cbxpetition_flush_rewrite_rules', 'true' );
+			set_transient( 'cbxpetition_flush_rewrite_rules', 1 );
 			set_transient( 'cbxpetition_upgraded_notice', 1 );
 			update_option( 'cbxpetition_version', CBXPETITION_PLUGIN_VERSION );
+
+
+			//create default categories
+			//PetitionHelper::create_default_categories();
+			set_transient( 'cbxpetition_create_cats', 1 );
+
 
 			//pro addon compatibility
 			$this->check_pro_addon();
@@ -2336,7 +2342,7 @@ class CBXPetitionAdmin {
 		if(defined('CBXPETITIONPROADDON_PLUGIN_NAME')) return;
 
 		$pro_addon_version = PetitionHelper::get_any_plugin_version('cbxpetitionproaddon/cbxpetitionproaddon.php');
-		$pro_latest_version  = '2.0.0';
+		$pro_latest_version  = '2.0.1';
 
 		if($pro_addon_version != '' && version_compare( $pro_addon_version, $pro_latest_version, '<' ) ){
 			// Custom message to display
@@ -2358,4 +2364,17 @@ class CBXPetitionAdmin {
           </tr>';
 		}
 	}//end method custom_message_after_plugin_row_proaddon
+
+	/**
+	 * Create default category on plugin activation
+	 *
+	 * @return void
+	 */
+	public function create_default_category() {
+		if ( get_transient( 'cbxpetition_create_cats' ) ) {
+			PetitionHelper::create_default_categories(); //from V2.0.3
+
+			delete_transient('cbxpetition_create_cats');
+		}
+	}//end method create_default_category
 }//end class Admin

@@ -1,11 +1,11 @@
 <?php
 
-namespace Cbx\Petition\ShortCode;
+namespace Cbx\Petition;
 
 use Cbx\Petition\CBXSetting;
 use Cbx\Petition\Helpers\PetitionHelper;
 
-class ShortCode {
+class CBXPetitionShortCodes {
 
 	private $settings;
 
@@ -76,27 +76,12 @@ class ShortCode {
 			$sections = sanitize_text_field( $sections );
 			$sections = explode( ',', $sections );
 
-
 			if ( is_array( $sections ) && sizeof( $sections ) > 0 ) {
-				//$output .= apply_filters( 'cbxpetition_details_before', '', $petition_id, $atts );
-
-				//$output .= '<div class="cbxpetition_details_wrap">';
-
-				//$output .= apply_filters( 'cbxpetition_details_start', '', $petition_id, $atts );
-
 				foreach ( $sections as $section ) {
 					$section = trim( strtolower( $section ) );
 					$output  .= do_shortcode( '[' . $section . ' petition_id="' . $petition_id . '"]' );
 				}
-
-				//$output .= apply_filters( 'cbxpetition_details_end', '', $petition_id, $atts );
-
-				//$output .= '</div>';
-
-				//$output .= apply_filters( 'cbxpetition_details_after', '', $petition_id, $atts );
 			}
-
-			//return $output;
 		}
 
 		return cbxpetition_get_template_html( 'petition/details-shortcode.php', [
@@ -185,8 +170,8 @@ class ShortCode {
 
 
 				if ( in_array( 'stat', $sections ) ) {
-					$target          = intval( PetitionHelper::petitionSignatureTarget( $petition_id ) );
-					$signature_count = intval( PetitionHelper::petitionSignatureCount( $petition_id ) );
+					$target          = absint( PetitionHelper::petitionSignatureTarget( $petition_id ) );
+					$signature_count = absint( PetitionHelper::petitionSignatureCount( $petition_id ) );
 					$signature_ratio = floatval( PetitionHelper::petitionSignatureTargetRatio( $petition_id ) );
 
 
@@ -492,7 +477,7 @@ class ShortCode {
 
 		$petition_count = PetitionHelper::getSignListingDataCount( '', $petition_id, 0, 'approved', $per_page, $page );
 
-		$output = cbxpetition_get_template_html( 'petition/signatures.php', [
+		return cbxpetition_get_template_html( 'petition/signatures.php', [
 				'petition_id'    => $petition_id,
 				'petition_signs' => $petition_signs,
 				'settings'       => $settings,
@@ -501,8 +486,6 @@ class ShortCode {
 				'page'           => $page,
 			]
 		);
-
-		return $output;
 	}//end method cbxpetition_signature_display
 
 	/**

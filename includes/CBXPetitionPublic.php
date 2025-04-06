@@ -7,15 +7,17 @@ use Cbx\Petition\Helpers\PetitionHelper;
 
 
 //elementor widgets
-use Cbx\Petition\Widgets\Elementor\CBXPetitionDisplayElemWidget;
-use Cbx\Petition\Widgets\Elementor\CBXPetitionSummaryDisplayElemWidget;
-use Cbx\Petition\Widgets\Elementor\CBXPetitionSignformDisplayElemWidget;
-use Cbx\Petition\Widgets\Elementor\CBXPetitionVideoDisplayElemWidget;
-use Cbx\Petition\Widgets\Elementor\CBXPetitionPhotosDisplayElemWidget;
-use Cbx\Petition\Widgets\Elementor\CBXPetitionLetterDisplayElemWidget;
-use Cbx\Petition\Widgets\Elementor\CBXPetitionBannerDisplayElemWidget;
-use Cbx\Petition\Widgets\Elementor\CBXPetitionSignaturesDisplayElemWidget;
-use Cbx\Petition\Widgets\Elementor\CBXPetitionStatDisplayElemWidget;
+use Cbx\Petition\Widgets\Elementor\PetitionFullElementorWidget;
+use Cbx\Petition\Widgets\Elementor\PetitionSummaryElementorWidget;
+use Cbx\Petition\Widgets\Elementor\PetitionLatestElementorWidget;
+
+use Cbx\Petition\Widgets\Elementor\PetitionBannerElementorWidget;
+use Cbx\Petition\Widgets\Elementor\PetitionStatElementorWidget;
+use Cbx\Petition\Widgets\Elementor\PetitionPhotosElementorWidget;
+use Cbx\Petition\Widgets\Elementor\PetitionVideoElementorWidget;
+use Cbx\Petition\Widgets\Elementor\PetitionLetterElementorWidget;
+use Cbx\Petition\Widgets\Elementor\PetitionSignformElementorWidget;
+use Cbx\Petition\Widgets\Elementor\PetitionSignaturesElementorWidget;
 
 
 class CBXPetitionPublic {
@@ -532,52 +534,6 @@ class CBXPetitionPublic {
 	public function enqueue_scripts() {
 		PetitionHelper::cbxpetition_public_scripts();
 	}//end method enqueue_scripts
-
-	/**
-	 * Init elementor widget
-	 *
-	 * @throws Exception
-	 * @since 1.0.0
-	 */
-	public function init_elementor_widgets() {
-		\Elementor\Plugin::instance()->widgets_manager->register( new CBXPetitionDisplayElemWidget() );
-		\Elementor\Plugin::instance()->widgets_manager->register( new CBXPetitionSummaryDisplayElemWidget() );
-		\Elementor\Plugin::instance()->widgets_manager->register( new CBXPetitionSignformDisplayElemWidget() );
-		\Elementor\Plugin::instance()->widgets_manager->register( new CBXPetitionPhotosDisplayElemWidget() );
-		\Elementor\Plugin::instance()->widgets_manager->register( new CBXPetitionVideoDisplayElemWidget() );
-		\Elementor\Plugin::instance()->widgets_manager->register( new CBXPetitionLetterDisplayElemWidget() );
-		\Elementor\Plugin::instance()->widgets_manager->register( new CBXPetitionBannerDisplayElemWidget() );
-		\Elementor\Plugin::instance()->widgets_manager->register( new CBXPetitionSignaturesDisplayElemWidget() );
-		\Elementor\Plugin::instance()->widgets_manager->register( new CBXPetitionStatDisplayElemWidget() );
-	}//end method widgets_registered
-
-	/**
-	 * Add new category to elementor
-	 *
-	 * @param $elements_manager
-	 *
-	 * @since 1.0.0
-	 */
-	public function add_elementor_widget_categories( $elements_manager ) {
-		$elements_manager->add_category(
-			'cbxpetition',
-			[
-				'title' => esc_html__( 'CBX Petition Widgets', 'cbxpetition' ),
-				'icon'  => 'fa fa-plug',
-			]
-		);
-	}//end method add_elementor_widget_categories
-
-	/**
-	 * Load Elementor Custom Icon
-	 * @since 1.0.0
-	 */
-	public function elementor_icon_loader() {
-		$ver = $this->version;
-
-		wp_register_style( 'cbxpetition_elementor_icon', CBXPETITION_ROOT_URL . 'assets/css/cbxpetition-elementor.css', false, $ver );
-		wp_enqueue_style( 'cbxpetition_elementor_icon' );
-	}//end method elementor_icon_loader
 
 	/**
 	 * Include custom template file

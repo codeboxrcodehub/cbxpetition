@@ -1,7 +1,7 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2025-03-10 07:31+0000\n"
+"POT-Creation-Date: 2025-04-06 19:40+0000\n"
 "Language: \n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -22,12 +22,18 @@ msgid "%s does not exist."
 msgstr ""
 
 #. %s: number of items
-#: includes/PetitionSignListTable.php:503
+#: includes/PetitionSignListTable.php:497
 #, php-format
 msgid "%s item"
 msgid_plural "%s items"
 msgstr[0] ""
 msgstr[1] ""
+
+#. %s: HTML entity for arrow character.
+#: templates/archive-cbxpetition.php:41 templates/taxonomy-cbxpetition.php:45
+#, php-format
+msgid "%s Previous"
+msgstr ""
 
 #: templates/admin/admin-sign-edit.php:120
 msgid "(Guest user)"
@@ -43,6 +49,18 @@ msgstr ""
 msgid ""
 "<span class=\"cbxpetition_stat_count_target\">Target: %1$d</span> <span "
 "class=\"cbxpetition_stat_count_received\">Received: %2$d</span>"
+msgstr ""
+
+#. translators:translators: %s: plugin setting url for licence
+#: includes/CBXPetitionAdmin.php:2355
+#, php-format
+msgid ""
+"<strong>Note:</strong> CBX Petition Pro Addon is custom plugin. This plugin "
+"can not be auto update from dashboard/plugin manager. For manual update "
+"please check <a target=\"_blank\" href=\"%1$s\">documentation</a>. <strong "
+"style=\"color: red;\">It seems this plugin's current version is older than "
+"%2$s . To get the latest pro addon features, this plugin needs to upgrade to "
+"%2$s or later.</strong>"
 msgstr ""
 
 #: templates/emails/new_sign_admin_alert.php:18
@@ -95,7 +113,7 @@ msgstr ""
 msgid "All Categories"
 msgstr ""
 
-#: templates/archive-cbxpetition.php:11
+#: templates/archive-cbxpetition.php:19
 msgid "All Petitions"
 msgstr ""
 
@@ -107,11 +125,11 @@ msgstr ""
 msgid "All Tags"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1944
+#: includes/Helpers/PetitionHelper.php:1948
 msgid "Allow guest to sign"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1945
+#: includes/Helpers/PetitionHelper.php:1949
 msgid "Allow guest to sign petition or not."
 msgstr ""
 
@@ -119,33 +137,29 @@ msgstr ""
 msgid "Approved"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1876
+#: includes/Helpers/PetitionHelper.php:1880
 msgid "Archive Slug"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1455
-#: includes/Helpers/PetitionHelper.php:2335
+#: includes/Helpers/PetitionHelper.php:1458
+#: includes/Helpers/PetitionHelper.php:2339
 msgid "Are you sure?"
 msgstr ""
 
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:102
-#: widgets/elementor-elements/class-cbxpetition-signatures-display-elemwidget.php:114
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:48
-#: widgets/vc_widgets/class-cbxpetition-signatures-vcwidget.php:58
-#: widgets/classic_widgets/views/admin.php:45
+#: includes/Widgets/Classic/CBXPetitionLatestWidget.php:146
 msgid "Ascending"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1448
-#: includes/Helpers/PetitionHelper.php:2361
+#: includes/Helpers/PetitionHelper.php:1451
+#: includes/Helpers/PetitionHelper.php:2365
 msgid "Attention"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2057
+#: includes/Helpers/PetitionHelper.php:2061
 msgid "Auto Integration After Content"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2038
+#: includes/Helpers/PetitionHelper.php:2042
 msgid "Auto Integration Before Content"
 msgstr ""
 
@@ -170,77 +184,76 @@ msgstr ""
 msgid "Back to list"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2215
+#: includes/Helpers/PetitionHelper.php:2219
 msgid "Background Colour"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1759
-#: includes/Helpers/PetitionHelper.php:2044
-#: includes/Helpers/PetitionHelper.php:2069
-#: widgets/vc_widgets/class-cbxpetition-vcwidget.php:48
+#: includes/Helpers/PetitionHelper.php:1762
+#: includes/Helpers/PetitionHelper.php:2048
+#: includes/Helpers/PetitionHelper.php:2073
 msgid "Banner"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1420 includes/CBXPetitionAdmin.php:1426
+#: includes/CBXPetitionAdmin.php:1413 includes/CBXPetitionAdmin.php:1419
 msgid "Banner delete failed, invalid petition."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1401
+#: includes/CBXPetitionAdmin.php:1394
 msgid "Banner delete failed."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1468
+#: includes/CBXPetitionAdmin.php:1461
 msgid "Banner deleted successfully."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2162
+#: includes/Helpers/PetitionHelper.php:2166
 msgid ""
 "Banner extensions that are allowable to upload, if all unchecked then jpg, "
 "jpeg, gif, png are allowed."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1291
+#: includes/CBXPetitionAdmin.php:1285
 msgid "Banner upload failed, file size is more than allowed."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1285
+#: includes/CBXPetitionAdmin.php:1279
 msgid "Banner upload failed, file type not allowed."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1238 includes/CBXPetitionAdmin.php:1244
+#: includes/CBXPetitionAdmin.php:1232 includes/CBXPetitionAdmin.php:1238
 msgid "Banner upload failed, invalid petition."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1390
+#: includes/CBXPetitionAdmin.php:1383
 msgid "Banner upload failed, no file received or invalid file."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2079
+#: includes/CBXPetitionAdmin.php:2073
 msgid "Banner upload failed, wrong file extension."
 msgstr ""
 
 #. %d: photo maximum size in mb
-#: includes/CBXPetitionAdmin.php:2081
+#: includes/CBXPetitionAdmin.php:2075
 msgid "Banner upload failed, wrong file size(Max %d MB)."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1480
+#: includes/Helpers/PetitionHelper.php:1483
 msgid "Banner upload failed, wrong file size."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2078 includes/Helpers/PetitionHelper.php:1479
+#: includes/CBXPetitionAdmin.php:2072 includes/Helpers/PetitionHelper.php:1482
 msgid "Banner upload failed, wrong file type."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1381
+#: includes/CBXPetitionAdmin.php:1374
 msgid "Banner uploaded successfully."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2208
+#: includes/Helpers/PetitionHelper.php:2212
 msgid "Base Color"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1824
+#: includes/Helpers/PetitionHelper.php:1828
 msgid "Basic Settings"
 msgstr ""
 
@@ -251,29 +264,25 @@ msgstr ""
 msgid "BCC"
 msgstr ""
 
-#: widgets/classic_widgets/views/admin.php:117
-msgid "Below option only work if the display mode is Slider"
-msgstr ""
-
-#: includes/Helpers/PetitionHelper.php:1634
+#: includes/Helpers/PetitionHelper.php:1637
 msgid "Bmp"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2222
+#: includes/Helpers/PetitionHelper.php:2226
 msgid "Body Background Color"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2229
+#: includes/Helpers/PetitionHelper.php:2233
 msgid "Body Text Color"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1453
-#: includes/Helpers/PetitionHelper.php:2345
-#: includes/Helpers/PetitionHelper.php:2366
+#: includes/Helpers/PetitionHelper.php:1456
+#: includes/Helpers/PetitionHelper.php:2349
+#: includes/Helpers/PetitionHelper.php:2370
 msgid "Cancel"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2350
+#: includes/Helpers/PetitionHelper.php:2354
 msgid "cancel and close"
 msgstr ""
 
@@ -289,65 +298,43 @@ msgstr ""
 msgid "Categories list navigation"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1891
+#: includes/Helpers/PetitionHelper.php:1895
 msgid "Category Slug"
 msgstr ""
 
-#: widgets/classic_widgets/class-cbxpetition-latest-widget.php:37
-#: widgets/classic_widgets/class-cbxpetition-latest-widget.php:71
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:27
+#: includes/Widgets/Classic/CBXPetitionLatestWidget.php:36
 msgid "CBX Latest Petition"
 msgstr ""
 
-#: widgets/classic_widgets/class-cbxpetition-latest-widget.php:126
-msgid "Cbx latest Petition"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:80
-msgid "CBX latest Petition Display Widget Setting"
-msgstr ""
-
-#: widgets/classic_widgets/class-cbxpetition-latest-widget.php:40
+#: includes/Widgets/Classic/CBXPetitionLatestWidget.php:39
 msgid "CBX latest Petition Widget"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:38
-msgid "CBX Latest Petitions"
-msgstr ""
-
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:28
-msgid "CBX Latest Petitions Widgets With Slider, List & Grid Display Mode"
 msgstr ""
 
 #. Name of the plugin
 msgid "CBX Petition"
 msgstr ""
 
-#: widgets/elementor-elements/class-cbxpetition-banner-display-elemwidget.php:38
-#: widgets/vc_widgets/class-cbxpetition-banner-vcwidget.php:27
-msgid "CBX Petition Banner"
+#: templates/admin/support.php:146
+msgid "CBX Petition for WordPress"
 msgstr ""
 
-#: widgets/elementor-elements/class-cbxpetition-display-elemwidget.php:39
-#: widgets/vc_widgets/class-cbxpetition-vcwidget.php:27
-msgid "CBX Petition Full"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-letter-display-elemwidget.php:38
-#: widgets/vc_widgets/class-cbxpetition-letter-vcwidget.php:26
-msgid "CBX Petition Letter"
-msgstr ""
-
-#: includes/CBXPetitionAdmin.php:547
+#: includes/CBXPetitionAdmin.php:545
 msgid "CBX Petition Options"
 msgstr ""
 
-#: widgets/elementor-elements/class-cbxpetition-photos-display-elemwidget.php:38
-#: widgets/vc_widgets/class-cbxpetition-photos-vcwidget.php:27
-msgid "CBX Petition Photos"
+#. PHP version
+#: cbxpetition.php:102
+#, php-format
+msgid "CBX Petition plugin requires PHP %s or higher!"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1690
+#. WordPress version
+#: cbxpetition.php:95
+#, php-format
+msgid "CBX Petition plugin requires WordPress %s or higher!"
+msgstr ""
+
+#: includes/CBXPetitionAdmin.php:1688
 msgid ""
 "CBX Petition Pro Addon current version is not compatible with the latest "
 "Petition core plugin. Please update CBX Petition Pro Addon to version 2.0.0 "
@@ -355,116 +342,44 @@ msgid ""
 msgstr ""
 
 #. %s: Plugin Link
-#: includes/CBXPetitionAdmin.php:1694
+#: includes/CBXPetitionAdmin.php:1692
 #, php-format
 msgid ""
 "CBX Petition Pro Addon has frontend petition submission features and more "
 "extra features, <a target=\"_blank\" href=\"%s\">try it</a> - Codeboxr Team"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2231
+#: includes/CBXPetitionAdmin.php:2198
 msgid "CBX Petition reset setting html loaded successfully"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2256
+#: includes/CBXPetitionAdmin.php:2223
 msgid "CBX Petition setting options reset successfully"
 msgstr ""
 
-#: widgets/classic_widgets/class-cbxpetition-signform-widget.php:22
+#: includes/Widgets/Classic/CBXPetitionSignformWidget.php:22
 msgid "CBX Petition Sign Form"
 msgstr ""
 
-#: widgets/elementor-elements/class-cbxpetition-signatures-display-elemwidget.php:38
-#: widgets/vc_widgets/class-cbxpetition-signatures-vcwidget.php:28
-msgid "CBX Petition Signatures"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-signform-display-elemwidget.php:38
-#: widgets/vc_widgets/class-cbxpetition-signform-vcwidget.php:27
-msgid "CBX Petition SignForm"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-stat-display-elemwidget.php:38
-#: widgets/vc_widgets/class-cbxpetition-stat-vcwidget.php:28
-msgid "CBX Petition Stat"
-msgstr ""
-
-#: widgets/classic_widgets/class-cbxpetition-summary-widget.php:22
-#: widgets/elementor-elements/class-cbxpetition-summary-display-elemwidget.php:38
-#: widgets/vc_widgets/class-cbxpetition-summary-vcwidget.php:27
+#: includes/Widgets/Classic/CBXPetitionSummaryWidget.php:22
 msgid "CBX Petition Summary"
 msgstr ""
 
-#: widgets/elementor-elements/class-cbxpetition-video-display-elemwidget.php:38
-#: widgets/vc_widgets/class-cbxpetition-video-vcwidget.php:27
-msgid "CBX Petition Video"
-msgstr ""
-
-#: includes/CBXPetitionPublic.php:665
-#: widgets/vc_widgets/class-cbxpetition-banner-vcwidget.php:31
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:31
-#: widgets/vc_widgets/class-cbxpetition-letter-vcwidget.php:30
-#: widgets/vc_widgets/class-cbxpetition-photos-vcwidget.php:31
-#: widgets/vc_widgets/class-cbxpetition-signatures-vcwidget.php:32
-#: widgets/vc_widgets/class-cbxpetition-signform-vcwidget.php:31
-#: widgets/vc_widgets/class-cbxpetition-stat-vcwidget.php:32
-#: widgets/vc_widgets/class-cbxpetition-summary-vcwidget.php:31
-#: widgets/vc_widgets/class-cbxpetition-vcwidget.php:31
-#: widgets/vc_widgets/class-cbxpetition-video-vcwidget.php:31
-msgid "CBX Petition Widgets"
-msgstr ""
-
-#: includes/CBXPetitionAdmin.php:102 templates/admin/email_manager.php:29
+#: includes/CBXPetitionAdmin.php:100 templates/admin/email_manager.php:29
 msgid "CBX Petition: Email Manager"
 msgstr ""
 
-#: widgets/elementor-elements/class-cbxpetition-banner-display-elemwidget.php:80
-msgid "CBXPetition Banner Display Widget Setting"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-display-elemwidget.php:81
-msgid "CBXPetition Display Widget Setting"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-letter-display-elemwidget.php:80
-msgid "CBXPetition Letter Display Widget Setting"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-photos-display-elemwidget.php:80
-msgid "CBXPetition Photos Display Widget Setting"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-signform-display-elemwidget.php:80
-msgid "CBXPetition Sign Form Display Widget Setting"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-signatures-display-elemwidget.php:80
-msgid "CBXPetition Signatures Display Widget Setting"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-stat-display-elemwidget.php:80
-msgid "CBXPetition Stat Display Widget Setting"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-summary-display-elemwidget.php:80
-msgid "CBXPetition Summary Display Widget Setting"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-video-display-elemwidget.php:80
-msgid "CBXPetition Video Display Widget Setting"
-msgstr ""
-
-#: includes/Helpers/PetitionHelper.php:2333
+#: includes/Helpers/PetitionHelper.php:2337
 msgctxt "cbxpetition-dialog"
 msgid "Cancel"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2334
+#: includes/Helpers/PetitionHelper.php:2338
 msgctxt "cbxpetition-dialog"
 msgid "Delete"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2332
+#: includes/Helpers/PetitionHelper.php:2336
 msgctxt "cbxpetition-dialog"
 msgid "Ok"
 msgstr ""
@@ -476,20 +391,20 @@ msgstr ""
 msgid "CC"
 msgstr ""
 
-#: templates/admin/support.php:83
+#: templates/admin/support.php:84
 msgid "Changelog Core Plugin"
 msgstr ""
 
-#: templates/admin/support.php:120
+#: templates/admin/support.php:115
 msgid "Changelog Pro Addon"
 msgstr ""
 
-#: includes/CBXSetting.php:424 includes/Helpers/PetitionHelper.php:2456
+#: includes/CBXSetting.php:450 includes/Helpers/PetitionHelper.php:2459
 msgid "Check All"
 msgstr ""
 
 #. 1: Settings url 2. plugin url
-#: includes/CBXPetitionAdmin.php:1605 includes/CBXPetitionAdmin.php:1639
+#: includes/CBXPetitionAdmin.php:1603 includes/CBXPetitionAdmin.php:1637
 #, php-format
 msgid ""
 "Check Plugin <a href=\"%1$s\">Setting</a> and <a href=\"%2$s\" "
@@ -497,55 +412,25 @@ msgid ""
 "Documentation</a>"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2396
+#: includes/Helpers/PetitionHelper.php:2400
 msgid "Choose"
 msgstr ""
 
-#: includes/CBXSetting.php:710
+#: includes/CBXSetting.php:736
 msgid "Choose Color"
 msgstr ""
 
-#: includes/CBXSetting.php:680
+#: includes/CBXSetting.php:706
 msgid "Choose File"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2398
+#: includes/Helpers/PetitionHelper.php:2402
 msgid "Choose Files to Upload"
-msgstr ""
-
-#. %s: Petition Link
-#: widgets/elementor-elements/class-cbxpetition-banner-display-elemwidget.php:91
-#: widgets/elementor-elements/class-cbxpetition-display-elemwidget.php:93
-#: widgets/elementor-elements/class-cbxpetition-letter-display-elemwidget.php:91
-#: widgets/elementor-elements/class-cbxpetition-photos-display-elemwidget.php:91
-#: widgets/elementor-elements/class-cbxpetition-signatures-display-elemwidget.php:91
-#: widgets/elementor-elements/class-cbxpetition-signform-display-elemwidget.php:101
-#: widgets/elementor-elements/class-cbxpetition-stat-display-elemwidget.php:91
-#: widgets/elementor-elements/class-cbxpetition-summary-display-elemwidget.php:91
-#: widgets/elementor-elements/class-cbxpetition-video-display-elemwidget.php:91
-#: widgets/vc_widgets/class-cbxpetition-banner-vcwidget.php:38
-#: widgets/vc_widgets/class-cbxpetition-letter-vcwidget.php:37
-#: widgets/vc_widgets/class-cbxpetition-photos-vcwidget.php:38
-#: widgets/vc_widgets/class-cbxpetition-signatures-vcwidget.php:39
-#: widgets/vc_widgets/class-cbxpetition-signform-vcwidget.php:38
-#: widgets/vc_widgets/class-cbxpetition-stat-vcwidget.php:39
-#: widgets/vc_widgets/class-cbxpetition-summary-vcwidget.php:38
-#: widgets/vc_widgets/class-cbxpetition-vcwidget.php:38
-#: widgets/vc_widgets/class-cbxpetition-video-vcwidget.php:38
-msgid "Choose from already created Petition."
 msgstr ""
 
 #: includes/Helpers/PetitionHelper.php:282
 #: includes/Helpers/PetitionHelper.php:327
 msgid "Choose from the most used"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-display-elemwidget.php:106
-msgid "Choose petition sections. By default, all section are selected"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-summary-display-elemwidget.php:104
-msgid "Choose petition summary sections. By default, all section are selected"
 msgstr ""
 
 #: includes/Emails/CBXPetitionEmail.php:566
@@ -555,70 +440,50 @@ msgstr ""
 msgid "Choose which format of email to send."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2346
+#: includes/Helpers/PetitionHelper.php:2350
 msgid "Clear"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2351
+#: includes/Helpers/PetitionHelper.php:2355
 msgid "clear and close"
 msgstr ""
 
-#: includes/CBXSetting.php:807
+#: includes/CBXSetting.php:833
 msgid "Clear Permalinks"
 msgstr ""
 
 #. %s: Petition Link
-#: widgets/classic_widgets/class-cbxpetition-signform-widget.php:77
-#: widgets/classic_widgets/class-cbxpetition-summary-widget.php:79
-#: widgets/elementor-elements/class-cbxpetition-banner-display-elemwidget.php:91
-#: widgets/elementor-elements/class-cbxpetition-display-elemwidget.php:93
-#: widgets/elementor-elements/class-cbxpetition-letter-display-elemwidget.php:91
-#: widgets/elementor-elements/class-cbxpetition-photos-display-elemwidget.php:91
-#: widgets/elementor-elements/class-cbxpetition-signatures-display-elemwidget.php:91
-#: widgets/elementor-elements/class-cbxpetition-signform-display-elemwidget.php:101
-#: widgets/elementor-elements/class-cbxpetition-stat-display-elemwidget.php:91
-#: widgets/elementor-elements/class-cbxpetition-summary-display-elemwidget.php:91
-#: widgets/elementor-elements/class-cbxpetition-video-display-elemwidget.php:91
-#: widgets/vc_widgets/class-cbxpetition-banner-vcwidget.php:38
-#: widgets/vc_widgets/class-cbxpetition-letter-vcwidget.php:37
-#: widgets/vc_widgets/class-cbxpetition-photos-vcwidget.php:38
-#: widgets/vc_widgets/class-cbxpetition-signatures-vcwidget.php:39
-#: widgets/vc_widgets/class-cbxpetition-signform-vcwidget.php:38
-#: widgets/vc_widgets/class-cbxpetition-stat-vcwidget.php:39
-#: widgets/vc_widgets/class-cbxpetition-summary-vcwidget.php:38
-#: widgets/vc_widgets/class-cbxpetition-vcwidget.php:38
-#: widgets/vc_widgets/class-cbxpetition-video-vcwidget.php:38
+#: includes/Widgets/Classic/CBXPetitionSignformWidget.php:77
+#: includes/Widgets/Classic/CBXPetitionSummaryWidget.php:76
 #, php-format
 msgid ""
 "Click <a target=\"_blank\" href=\"%s\">here</a> to see all the petitions"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2186
-msgid "Click to clipboard"
-msgstr ""
-
-#: includes/CBXPetitionAdmin.php:2188 includes/Helpers/PetitionHelper.php:2328
+#: includes/CBXPetitionAdmin.php:2178 includes/CBXPetitionAdmin.php:2180
+#: includes/Helpers/PetitionHelper.php:2332
 msgid "Click to copy"
 msgstr ""
 
-#: includes/CBXPetitionPublic.php:157 includes/CBXPetitionPublic.php:169
-#: includes/CBXPetitionPublic.php:242
+#: includes/CBXPetitionPublic.php:167 includes/CBXPetitionPublic.php:179
+#: includes/CBXPetitionPublic.php:252
 msgid "Click to go home"
 msgstr ""
 
-#: includes/CBXPetitionPublic.php:221 includes/CBXPetitionPublic.php:228
+#: includes/CBXPetitionPublic.php:231 includes/CBXPetitionPublic.php:238
 msgid "Click to go petition page"
 msgstr ""
 
-#: includes/CBXSetting.php:241
+#: includes/CBXSetting.php:267
 msgid "Click to show hide"
 msgstr ""
 
-#: includes/CBXPetition.php:85 includes/CBXPetitionEmails.php:42
+#: includes/CBXPetition.php:108 includes/CBXPetitionEmails.php:42
+#: includes/CBXSetting.php:59
 msgid "Cloning is forbidden."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1442
+#: includes/Helpers/PetitionHelper.php:1445
 msgid "Close"
 msgstr ""
 
@@ -626,36 +491,32 @@ msgstr ""
 msgid "Codeboxr"
 msgstr ""
 
-#: templates/admin/support.php:323
+#: templates/admin/support.php:230
 msgid "Codeboxr News Updates"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2352
+#: includes/Helpers/PetitionHelper.php:2356
 msgid "color input field"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2340
+#: includes/Helpers/PetitionHelper.php:2344
 msgid "color picker dialog"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2353
+#: includes/Helpers/PetitionHelper.php:2357
 msgid "color selection area"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2342
+#: includes/Helpers/PetitionHelper.php:2346
 msgid "color swatch"
 msgstr ""
 
-#: templates/admin/support.php:171
-msgid "Comfort Email SMTP, Logger & Email Api Details"
-msgstr ""
-
-#: templates/admin/support.php:76
+#: templates/admin/support.php:77
 msgid "Coming Soon ..."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1729 includes/PetitionSignListTable.php:234
-#: templates/admin/admin-sign-edit.php:142 templates/petition/sign-form.php:215
+#: includes/CBXPetitionAdmin.php:1723 includes/PetitionSignListTable.php:234
+#: templates/admin/admin-sign-edit.php:142 templates/petition/sign-form.php:222
 msgid "Comment"
 msgstr ""
 
@@ -665,37 +526,28 @@ msgstr ""
 msgid "Comment: {signature_comment}"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1458
+#: includes/Helpers/PetitionHelper.php:1461
 msgid "Confirm Logout?"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1451
-#: includes/Helpers/PetitionHelper.php:2364
+#: includes/Helpers/PetitionHelper.php:1454
+#: includes/Helpers/PetitionHelper.php:2368
 msgid "Confirmation"
 msgstr ""
 
-#: templates/admin/support.php:279
-msgid "Contact Form(s)"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-summary-display-elemwidget.php:109
-#: widgets/vc_widgets/class-cbxpetition-summary-vcwidget.php:49
-msgid "Content"
-msgstr ""
-
-#: includes/Helpers/PetitionHelper.php:2327
+#: includes/Helpers/PetitionHelper.php:2331
 msgid "Copied"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2329
+#: includes/Helpers/PetitionHelper.php:2333
 msgid "Copied to clipboard"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2326
+#: includes/Helpers/PetitionHelper.php:2330
 msgid "Copy"
 msgstr ""
 
-#: templates/admin/support.php:199
+#: templates/admin/support.php:174
 msgid "Core Plugin Support"
 msgstr ""
 
@@ -704,12 +556,12 @@ msgstr ""
 msgid "Create Petition"
 msgstr ""
 
-#: includes/PetitionSignListTable.php:575
-#: includes/PetitionSignListTable.php:578
+#: includes/PetitionSignListTable.php:569
+#: includes/PetitionSignListTable.php:572
 msgid "Current Page"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1665
+#: includes/CBXPetitionAdmin.php:1663
 msgid ""
 "Current version of  CBX Petition Pro Addon is not compatible with core  CBX "
 "Petition plugin and  CBX Petition Pro Addon is forced deactivate."
@@ -727,27 +579,17 @@ msgstr ""
 msgid "Dear, {signature_first_name} {signature_last_name}"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1971
+#: includes/Helpers/PetitionHelper.php:1975
 msgid ""
 "Default guest user is shown wordpress core login form. Pro addon helps to "
 "integrate 3rd party plugins like woocommerce, restrict content pro etc."
 msgstr ""
 
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:89
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:37
-msgid "Default Latest Petition Display limit"
-msgstr ""
-
-#: includes/Helpers/PetitionHelper.php:1936
+#: includes/Helpers/PetitionHelper.php:1940
 msgid "Default Sign Status"
 msgstr ""
 
-#: widgets/elementor-elements/class-cbxpetition-signatures-display-elemwidget.php:101
-#: widgets/vc_widgets/class-cbxpetition-signatures-vcwidget.php:47
-msgid "Default signature listing limit"
-msgstr ""
-
-#: includes/CBXPetitionAdmin.php:2057 includes/PetitionSignListTable.php:126
+#: includes/CBXPetitionAdmin.php:2051 includes/PetitionSignListTable.php:126
 #: includes/PetitionSignListTable.php:276
 msgid "Delete"
 msgstr ""
@@ -756,7 +598,7 @@ msgstr ""
 msgid "Delete Banner"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2252
+#: includes/Helpers/PetitionHelper.php:2256
 msgid ""
 "Delete Global Config data(options/plugin settings), custom table(s), "
 "files/folders, all petition custom post type  created by this plugin on "
@@ -772,11 +614,7 @@ msgstr ""
 msgid "Delete Recipient"
 msgstr ""
 
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:103
-#: widgets/elementor-elements/class-cbxpetition-signatures-display-elemwidget.php:115
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:49
-#: widgets/vc_widgets/class-cbxpetition-signatures-vcwidget.php:59
-#: widgets/classic_widgets/views/admin.php:44
+#: includes/Widgets/Classic/CBXPetitionLatestWidget.php:145
 msgid "Descending"
 msgstr ""
 
@@ -788,102 +626,11 @@ msgstr ""
 msgid "Disabled"
 msgstr ""
 
-#: widgets/classic_widgets/class-cbxpetition-signform-widget.php:65
-#: widgets/elementor-elements/class-cbxpetition-signform-display-elemwidget.php:109
+#: includes/Widgets/Classic/CBXPetitionSignformWidget.php:65
 msgid "Display for Current Petition"
 msgstr ""
 
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:236
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:175
-#: widgets/classic_widgets/views/admin.php:166
-msgid "Display Horizontal/Vertical"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:164
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:105
-msgid "Display Latest Petitions By Slider, List & Grid"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:255
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:192
-msgid "Display Latest Petitions in Desktop"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:281
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:216
-msgid "Display Latest Petitions in Mobile"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:268
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:204
-msgid "Display Latest Petitions in Tablet"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:98
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:45
-msgid "Display Latest Petitions Order By ASC/DESC"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:112
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:57
-msgid "Display Latest Petitions OrderBy ID/Page"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:237
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:176
-msgid "Display Latest Petitions Slider Horizontal/Vertical"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:152
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:93
-msgid "Display Latest Petitions Stat"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:128
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:69
-msgid "Display Latest Petitions Thumbnail"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:140
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:81
-msgid "Display Latest Petitions Title"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:163
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:104
-msgid "Display Mode"
-msgstr ""
-
-#: widgets/classic_widgets/views/admin.php:178
-msgid "Display Number of Items in Desktop"
-msgstr ""
-
-#: widgets/classic_widgets/views/admin.php:200
-msgid "Display Number of Items in Mobile"
-msgstr ""
-
-#: widgets/classic_widgets/views/admin.php:189
-msgid "Display Number of Items in Tablet"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:224
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:164
-msgid "Display Number of Row in Latest Petitions Sliders"
-msgstr ""
-
-#: widgets/classic_widgets/views/admin.php:145
-msgid "Display Number of Rows"
-msgstr ""
-
-#: widgets/vc_widgets/class-cbxpetition-signatures-vcwidget.php:54
-msgid "Display order"
-msgstr ""
-
-#: widgets/classic_widgets/views/admin.php:103
-msgid "Display Petitions By List, Slider, & Grid"
-msgstr ""
-
-#: includes/Helpers/PetitionHelper.php:2007
+#: includes/Helpers/PetitionHelper.php:2011
 msgid "Display signature per page in pagination"
 msgstr ""
 
@@ -893,23 +640,19 @@ msgid ""
 "cbxpetition-guest-login-trigger\" href=\"#\">please login</a>"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1527
+#: includes/CBXPetitionAdmin.php:1519
 msgid "Documentation"
 msgstr ""
 
-#: templates/admin/support.php:181
+#: templates/admin/support.php:156
 msgid "Documentation & User Guide"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1814
+#: includes/Helpers/PetitionHelper.php:1817
 msgid "Don't show login form, show default login url"
 msgstr ""
 
-#: templates/admin/support.php:264
-msgid "Easy Digital Downloads"
-msgstr ""
-
-#: includes/CBXSetting.php:563 includes/PetitionSignListTable.php:121
+#: includes/CBXSetting.php:589 includes/PetitionSignListTable.php:121
 #: templates/admin/admin-signs-listing.php:72
 #: templates/admin/email_manager_list.php:84
 msgid "Edit"
@@ -936,7 +679,7 @@ msgstr ""
 msgid "Edit Tag"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1728 includes/PetitionSignListTable.php:238
+#: includes/CBXPetitionAdmin.php:1722 includes/PetitionSignListTable.php:238
 #: includes/Emails/CBXPetitionEmail.php:593
 #: includes/Emails/CBXPetitionEmail.php:601
 #: includes/Emails/CBXPetitionNewSignAdminAlertEmail.php:71
@@ -947,12 +690,12 @@ msgstr ""
 #: includes/Emails/CBXPetitionSignApproveUserEmail.php:120
 #: includes/Emails/CBXPetitionSignApproveUserEmail.php:128
 #: templates/admin/admin-metabox.php:258 templates/admin/admin-metabox.php:313
-#: templates/admin/admin-sign-edit.php:102 templates/petition/sign-form.php:187
-#: templates/petition/sign-form.php:192
+#: templates/admin/admin-sign-edit.php:102 templates/petition/sign-form.php:194
+#: templates/petition/sign-form.php:199
 msgid "Email"
 msgstr ""
 
-#: includes/CBXPetitionPublic.php:334
+#: includes/CBXPetitionPublic.php:344
 msgid ""
 "Email already exists to any registered user. Either login or try with "
 "different email address."
@@ -972,7 +715,7 @@ msgstr ""
 msgid "Email heading here"
 msgstr ""
 
-#: includes/CBXPetitionPublic.php:331
+#: includes/CBXPetitionPublic.php:341
 msgid "Email is required and needs valid email address"
 msgstr ""
 
@@ -1035,19 +778,19 @@ msgstr ""
 msgid "Email: {signature_email}"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:103
+#: includes/CBXPetitionAdmin.php:101
 msgid "Emails"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2031
+#: includes/Helpers/PetitionHelper.php:2035
 msgid "Enable Auto Integration"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1884
+#: includes/Helpers/PetitionHelper.php:1888
 msgid "Enable Category"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1898
+#: includes/Helpers/PetitionHelper.php:1902
 msgid "Enable Tag"
 msgstr ""
 
@@ -1065,20 +808,20 @@ msgstr ""
 msgid "Enable/Disable"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1991
+#: includes/Helpers/PetitionHelper.php:1995
 msgid ""
 "Enable/Disable (To make this feature work need to enable user email "
 "notification on and user email template should have the tag syntax <code>"
 "{activation_link}</code>)"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1899
+#: includes/Helpers/PetitionHelper.php:1903
 msgid ""
 "Enable/disable category tag for petition. Category is non hierarchical "
 "taxonomy."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1885
+#: includes/Helpers/PetitionHelper.php:1889
 msgid ""
 "Enable/disable category taxonomy for petition. Category is hierarchical "
 "taxonomy."
@@ -1092,17 +835,16 @@ msgstr ""
 msgid "Encourage more signatures by sharing your petition."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1449
-#: includes/Helpers/PetitionHelper.php:2362
+#: includes/Helpers/PetitionHelper.php:1452
+#: includes/Helpers/PetitionHelper.php:2366
 msgid "Error"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:661
+#: includes/CBXPetitionAdmin.php:659
 msgid "Expire"
 msgstr ""
 
-#: includes/Shortcode/ShortCode.php:223
-#: widgets/elementor-elements/class-cbxpetition-summary-display-elemwidget.php:111
+#: includes/CBXPetitionShortCodes.php:217
 msgid "Expire Date"
 msgstr ""
 
@@ -1110,22 +852,18 @@ msgstr ""
 msgid "Expire Date(*)"
 msgstr ""
 
-#: widgets/vc_widgets/class-cbxpetition-summary-vcwidget.php:51
-msgid "Expiry Date"
-msgstr ""
-
 #. %s: Petition expire date
-#: includes/CBXPetitionAdmin.php:2146
+#: includes/CBXPetitionAdmin.php:2138
 #, php-format
 msgid "Expiry Date: %s"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1056 includes/CBXPetitionAdmin.php:1312
-#: includes/CBXPetitionAdmin.php:1455
+#: includes/CBXPetitionAdmin.php:1053 includes/CBXPetitionAdmin.php:1305
+#: includes/CBXPetitionAdmin.php:1448
 msgid "Failed to initialize the filesystem."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1162
+#: includes/CBXPetitionAdmin.php:1157
 msgid "Failed to initialize the filesystem. Photos delete paused."
 msgstr ""
 
@@ -1137,21 +875,21 @@ msgstr ""
 msgid "Field"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1078 includes/CBXPetitionAdmin.php:1473
+#: includes/CBXPetitionAdmin.php:1074 includes/CBXPetitionAdmin.php:1465
 msgid "File/photo delete failed, seems doesn't exists, removed from database."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2399
+#: includes/Helpers/PetitionHelper.php:2403
 msgid "files selected"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1726 includes/PetitionSignListTable.php:236
-#: templates/admin/admin-sign-edit.php:91 templates/petition/sign-form.php:167
-#: templates/petition/sign-form.php:171
+#: includes/CBXPetitionAdmin.php:1720 includes/PetitionSignListTable.php:236
+#: templates/admin/admin-sign-edit.php:91 templates/petition/sign-form.php:174
+#: templates/petition/sign-form.php:178
 msgid "First Name"
 msgstr ""
 
-#: includes/CBXPetitionPublic.php:321
+#: includes/CBXPetitionPublic.php:331
 msgid "First name is required and needs at least 3 characters."
 msgstr ""
 
@@ -1161,19 +899,19 @@ msgstr ""
 msgid "First Name: {signature_first_name}"
 msgstr ""
 
-#: includes/PetitionSignListTable.php:556
+#: includes/PetitionSignListTable.php:550
 msgid "First page"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2201
+#: includes/Helpers/PetitionHelper.php:2205
 msgid "Footer Text"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2236
+#: includes/Helpers/PetitionHelper.php:2240
 msgid "Footer Text Color"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1525
+#: includes/CBXPetitionAdmin.php:1517
 msgid "Free Support"
 msgstr ""
 
@@ -1202,52 +940,39 @@ msgstr ""
 msgid "From name"
 msgstr ""
 
-#: widgets/vc_widgets/class-cbxpetition-vcwidget.php:28
-msgid "Full petition display with with selected sections"
-msgstr ""
-
 #: templates/admin/admin-metabox.php:32
 msgid "General"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1828
+#: includes/Helpers/PetitionHelper.php:1832
 msgid "General Settings"
 msgstr ""
 
-#: templates/admin/support.php:28
+#: templates/admin/support.php:30
 msgid "Get Free & Pro Addons"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1630
+#: includes/Helpers/PetitionHelper.php:1633
 msgid "Gif"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1832
+#: includes/Helpers/PetitionHelper.php:1836
 msgid "Global Email Template"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:111
-msgid "Global Setting"
-msgstr ""
-
-#: includes/CBXPetitionAdmin.php:1919 includes/CBXPetitionAdmin.php:1993
-#: includes/CBXPetitionAdmin.php:2086 templates/admin/admin-sign-edit.php:39
-#: templates/admin/admin-signs-listing.php:39 templates/admin/support.php:20
+#: includes/CBXPetitionAdmin.php:109 includes/CBXPetitionAdmin.php:1913
+#: includes/CBXPetitionAdmin.php:1987 includes/CBXPetitionAdmin.php:2078
+#: templates/admin/admin-sign-edit.php:39
+#: templates/admin/admin-signs-listing.php:39 templates/admin/support.php:22
 msgid "Global Settings"
 msgstr ""
 
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:170
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:110
-#: widgets/classic_widgets/views/admin.php:110
-msgid "Grid"
-msgstr ""
-
-#: includes/Helpers/PetitionHelper.php:1178
-#: includes/Helpers/PetitionHelper.php:1196
+#: includes/Helpers/PetitionHelper.php:1181
+#: includes/Helpers/PetitionHelper.php:1199
 msgid "Guest"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1990
+#: includes/Helpers/PetitionHelper.php:1994
 msgid "Guest Email Verify"
 msgstr ""
 
@@ -1255,19 +980,19 @@ msgstr ""
 msgid "Guest signature verification"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1970
+#: includes/Helpers/PetitionHelper.php:1974
 msgid "Guest User Login Form"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2194
+#: includes/Helpers/PetitionHelper.php:2198
 msgid "Header Image"
 msgstr ""
 
-#: templates/admin/support.php:160
+#: templates/admin/support.php:135
 msgid "Help & Supports"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:119 includes/CBXPetitionAdmin.php:120
+#: includes/CBXPetitionAdmin.php:117 includes/CBXPetitionAdmin.php:118
 msgid "Helps & Updates"
 msgstr ""
 
@@ -1276,12 +1001,6 @@ msgid ""
 "Here are the list of all the email notification send from this accounting "
 "system. Please note that, few notification may sent from background without "
 "any setting based on the type of not."
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:242
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:180
-#: widgets/classic_widgets/views/admin.php:172
-msgid "Horizontal"
 msgstr ""
 
 #: includes/Emails/CBXPetitionEmail.php:717
@@ -1296,61 +1015,52 @@ msgstr ""
 msgid "https://codeboxr.com/product/cbx-petition-for-wordpress/"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2354
+#: includes/Helpers/PetitionHelper.php:2358
 msgid "hue selection slider"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1724
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:116
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:60
-#: widgets/classic_widgets/views/admin.php:56
+#: includes/CBXPetitionAdmin.php:1718
+#: includes/Widgets/Classic/CBXPetitionLatestWidget.php:157
 msgid "ID"
-msgstr ""
-
-#: includes/Helpers/PetitionHelper.php:1958
-msgid ""
-"If select yes then show the login form for the guest users on the new job "
-"creating"
 msgstr ""
 
 #: templates/emails/new_sign_user_alert.php:28
 msgid "Important: Confirm Your Signature"
 msgstr ""
 
-#: widgets/classic_widgets/class-cbxpetition-signform-widget.php:74
-#: widgets/elementor-elements/class-cbxpetition-signform-display-elemwidget.php:112
+#: includes/Widgets/Classic/CBXPetitionSignformWidget.php:74
 msgid ""
 "In petition details page, ignore the petition id field and use the "
 "current/visiting petition."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1446
-#: includes/Helpers/PetitionHelper.php:2359
+#: includes/Helpers/PetitionHelper.php:1449
+#: includes/Helpers/PetitionHelper.php:2363
 msgid "Info"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:340 includes/CBXPetitionAdmin.php:418
-#: includes/CBXPetitionPublic.php:317
+#: includes/CBXPetitionAdmin.php:338 includes/CBXPetitionAdmin.php:416
+#: includes/CBXPetitionPublic.php:327
 msgid "Invalid petition, petition doesn't exists or expired."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:142
+#: includes/CBXPetitionAdmin.php:140
 msgid "Invalid signature"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:173
+#: includes/CBXPetitionAdmin.php:171
 msgid "Invalid signature or not found"
 msgstr ""
 
-#: templates/petition/sign-form.php:221
+#: templates/petition/sign-form.php:228
 msgid "I’m signing because… (optional)"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1629
+#: includes/Helpers/PetitionHelper.php:1632
 msgid "Jpeg"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1628
+#: includes/Helpers/PetitionHelper.php:1631
 msgid "Jpg"
 msgstr ""
 
@@ -1358,13 +1068,13 @@ msgstr ""
 msgid "Label"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1727 includes/PetitionSignListTable.php:237
-#: templates/admin/admin-sign-edit.php:96 templates/petition/sign-form.php:176
-#: templates/petition/sign-form.php:180
+#: includes/CBXPetitionAdmin.php:1721 includes/PetitionSignListTable.php:237
+#: templates/admin/admin-sign-edit.php:96 templates/petition/sign-form.php:183
+#: templates/petition/sign-form.php:187
 msgid "Last Name"
 msgstr ""
 
-#: includes/CBXPetitionPublic.php:325
+#: includes/CBXPetitionPublic.php:335
 msgid "Last name is required and needs at least 3 characters."
 msgstr ""
 
@@ -1374,17 +1084,21 @@ msgstr ""
 msgid "Last Name: {signature_last_name}"
 msgstr ""
 
-#: includes/PetitionSignListTable.php:606
+#: includes/PetitionSignListTable.php:600
 msgid "Last page"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2048
-#: includes/Helpers/PetitionHelper.php:2073
+#: includes/Widgets/Classic/CBXPetitionLatestWidget.php:70
+#: includes/Widgets/Classic/CBXPetitionLatestWidget.php:112
+msgid "Latest Petitions"
+msgstr ""
+
+#: includes/Helpers/PetitionHelper.php:2052
+#: includes/Helpers/PetitionHelper.php:2077
 msgid "Letter"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1763
-#: widgets/vc_widgets/class-cbxpetition-vcwidget.php:52
+#: includes/Helpers/PetitionHelper.php:1766
 msgid "letter"
 msgstr ""
 
@@ -1396,28 +1110,17 @@ msgstr ""
 msgid "Letter Recipients"
 msgstr ""
 
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:87
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:36
-msgid "Limit"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:169
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:109
-#: widgets/classic_widgets/views/admin.php:109
-msgid "List"
-msgstr ""
-
-#: includes/Helpers/PetitionHelper.php:1437
+#: includes/Helpers/PetitionHelper.php:1440
 #: templates/petition/signatures.php:48
 msgid "Load More"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1450
-#: includes/Helpers/PetitionHelper.php:2363
+#: includes/Helpers/PetitionHelper.php:1453
+#: includes/Helpers/PetitionHelper.php:2367
 msgid "Loading"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1856
+#: includes/Helpers/PetitionHelper.php:1860
 msgid "Loading ..."
 msgstr ""
 
@@ -1430,12 +1133,12 @@ msgstr ""
 msgid "Max photos: %d"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2091
+#: includes/Helpers/PetitionHelper.php:2095
 msgid "Maximum number of photos allowed in petition"
 msgstr ""
 
 #. %d: Maximum file number
-#: includes/CBXPetitionAdmin.php:894
+#: includes/CBXPetitionAdmin.php:892
 msgid ""
 "Maximum photo upload limit %d crossed, you can not upload more before delete "
 "one."
@@ -1476,8 +1179,7 @@ msgstr ""
 msgid "New Category Name"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1990 includes/CBXPetitionAdmin.php:2083
-#: templates/admin/admin-sign-edit.php:37
+#: includes/CBXPetitionAdmin.php:1984 templates/admin/admin-sign-edit.php:37
 msgid "New Petition"
 msgstr ""
 
@@ -1498,36 +1200,24 @@ msgstr ""
 msgid "New Tag Name"
 msgstr ""
 
-#: includes/PetitionSignListTable.php:594
+#. %s: HTML entity for arrow character.
+#: templates/archive-cbxpetition.php:45 templates/taxonomy-cbxpetition.php:49
+#, php-format
+msgid "Next %s"
+msgstr ""
+
+#: includes/PetitionSignListTable.php:588
 msgid "Next page"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1951
-#: includes/Helpers/PetitionHelper.php:1964
-#: includes/Helpers/PetitionHelper.php:1985
-#: includes/Helpers/PetitionHelper.php:2019
-#: includes/Helpers/PetitionHelper.php:2256
-#: widgets/classic_widgets/class-cbxpetition-signform-widget.php:69
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:130
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:142
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:154
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:183
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:198
-#: widgets/elementor-elements/class-cbxpetition-signform-display-elemwidget.php:114
-#: widgets/elementor-elements/class-cbxpetition-stat-display-elemwidget.php:104
-#: widgets/elementor-elements/class-cbxpetition-stat-display-elemwidget.php:118
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:73
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:85
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:97
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:123
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:139
-#: widgets/vc_widgets/class-cbxpetition-stat-vcwidget.php:50
-#: widgets/vc_widgets/class-cbxpetition-stat-vcwidget.php:61
-#: widgets/classic_widgets/views/admin.php:70
-#: widgets/classic_widgets/views/admin.php:83
-#: widgets/classic_widgets/views/admin.php:96
-#: widgets/classic_widgets/views/admin.php:127
-#: widgets/classic_widgets/views/admin.php:140
+#: includes/Helpers/PetitionHelper.php:1955
+#: includes/Helpers/PetitionHelper.php:1989
+#: includes/Helpers/PetitionHelper.php:2023
+#: includes/Helpers/PetitionHelper.php:2260
+#: includes/Widgets/Classic/CBXPetitionLatestWidget.php:171
+#: includes/Widgets/Classic/CBXPetitionLatestWidget.php:184
+#: includes/Widgets/Classic/CBXPetitionLatestWidget.php:197
+#: includes/Widgets/Classic/CBXPetitionSignformWidget.php:69
 msgid "No"
 msgstr ""
 
@@ -1541,7 +1231,7 @@ msgstr ""
 msgid "No Categories"
 msgstr ""
 
-#: includes/PetitionSignListTable.php:477
+#: includes/PetitionSignListTable.php:471
 msgid ""
 "No petition sign found. Please change your search criteria for better result."
 msgstr ""
@@ -1550,14 +1240,16 @@ msgstr ""
 msgid "No Tags"
 msgstr ""
 
-#: templates/petition/sign-form.php:102
+#: templates/petition/sign-form.php:109
 msgid "No valid petition found."
 msgstr ""
 
-#: includes/Shortcode/ShortCode.php:67 includes/Shortcode/ShortCode.php:300
-#: includes/Shortcode/ShortCode.php:342 includes/Shortcode/ShortCode.php:382
-#: includes/Shortcode/ShortCode.php:423 includes/Shortcode/ShortCode.php:471
-#: includes/Shortcode/ShortCode.php:533
+#: includes/CBXPetitionShortCodes.php:72 includes/CBXPetitionShortCodes.php:293
+#: includes/CBXPetitionShortCodes.php:335
+#: includes/CBXPetitionShortCodes.php:375
+#: includes/CBXPetitionShortCodes.php:416
+#: includes/CBXPetitionShortCodes.php:464
+#: includes/CBXPetitionShortCodes.php:524
 msgid "No valid petition id found."
 msgstr ""
 
@@ -1566,7 +1258,7 @@ msgstr ""
 msgid "Not Found"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:696
+#: includes/CBXPetitionAdmin.php:694
 msgid "Not Set Yet"
 msgstr ""
 
@@ -1580,41 +1272,16 @@ msgstr ""
 msgid "Notification Name: %s"
 msgstr ""
 
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:253
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:191
-msgid "Number of Items in Desktop"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:279
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:215
-msgid "Number of Items in Mobile"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:266
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:203
-msgid "Number of Items in Tablet"
-msgstr ""
-
-#: widgets/classic_widgets/views/admin.php:30
+#: includes/Widgets/Classic/CBXPetitionLatestWidget.php:130
 msgid "Number of Petition"
 msgstr ""
 
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:222
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:163
-msgid "Number of Row"
-msgstr ""
-
-#: includes/CBXPetitionAdmin.php:194
+#: includes/CBXPetitionAdmin.php:192
 msgid "Number of signs per page:"
 msgstr ""
 
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:211
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:151
-msgid "Number of Slides in Latest Petitions Slider"
-msgstr ""
-
-#: includes/Helpers/PetitionHelper.php:1452
-#: includes/Helpers/PetitionHelper.php:2365
+#: includes/Helpers/PetitionHelper.php:1455
+#: includes/Helpers/PetitionHelper.php:2369
 msgid "OK"
 msgstr ""
 
@@ -1622,7 +1289,7 @@ msgstr ""
 msgid "On signature approval email is sent to user."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2251
+#: includes/Helpers/PetitionHelper.php:2255
 msgid "On Uninstall delete plugin data"
 msgstr ""
 
@@ -1630,42 +1297,30 @@ msgstr ""
 msgid "Once verified, your signature will be counted."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1456
-#: includes/Helpers/PetitionHelper.php:2336
+#: includes/Helpers/PetitionHelper.php:1459
+#: includes/Helpers/PetitionHelper.php:2340
 msgid "Once you delete, it's gone forever. You can not revert it back."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1459
+#: includes/Helpers/PetitionHelper.php:1462
 msgid "Once you logout you can not undone this process."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2463
-#: includes/Helpers/PetitionHelper.php:2484
+#: includes/Helpers/PetitionHelper.php:2466
+#: includes/Helpers/PetitionHelper.php:2487
 msgid "Option ID"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2462
-#: includes/Helpers/PetitionHelper.php:2483
+#: includes/Helpers/PetitionHelper.php:2465
+#: includes/Helpers/PetitionHelper.php:2486
 msgid "Option Name"
 msgstr ""
 
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:97
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:44
-msgid "Order"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:111
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:56
-msgid "OrderBy"
-msgstr ""
-
-#: templates/admin/support.php:286
+#: templates/admin/support.php:193
 msgid "Other WordPress Plugins"
 msgstr ""
 
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:117
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:61
-#: widgets/classic_widgets/views/admin.php:57
+#: includes/Widgets/Classic/CBXPetitionLatestWidget.php:158
 msgid "Page"
 msgstr ""
 
@@ -1680,7 +1335,7 @@ msgid "Petition Dashboard"
 msgstr ""
 
 #. %1$s: current page , %2$s: total page number
-#: includes/PetitionSignListTable.php:585
+#: includes/PetitionSignListTable.php:579
 #, php-format
 msgctxt "paging"
 msgid "%1$s of %2$s"
@@ -1710,57 +1365,53 @@ msgstr ""
 msgid "Pending"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2296
+#: includes/CBXPetitionAdmin.php:2263
 msgid "Permalink cache cleared successfully"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1725 includes/PetitionSignListTable.php:239
-#: templates/taxonomy-cbxpetition.php:12
+#: includes/CBXPetitionAdmin.php:1719 includes/PetitionSignListTable.php:239
+#: templates/taxonomy-cbxpetition.php:20
 #: includes/Helpers/PetitionHelper.php:238
 #: includes/Helpers/PetitionHelper.php:239
 #: templates/admin/admin-sign-edit.php:52
 msgid "Petition"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2025
+#: includes/Helpers/PetitionHelper.php:2029
 msgid "Petition Auto Integration"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2147
+#: includes/Helpers/PetitionHelper.php:2151
 msgid "Petition Banner Configuration"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2161
+#: includes/Helpers/PetitionHelper.php:2165
 msgid "Petition Banner Extensions"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2153
+#: includes/Helpers/PetitionHelper.php:2157
 msgid "Petition Banner Max File Size(MB)"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2177
+#: includes/Helpers/PetitionHelper.php:2181
 msgid "Petition Banner max height"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2169
+#: includes/Helpers/PetitionHelper.php:2173
 msgid "Petition Banner max width"
 msgstr ""
 
-#: widgets/vc_widgets/class-cbxpetition-banner-vcwidget.php:28
-msgid "Petition Banner Section Display"
-msgstr ""
-
-#: includes/Helpers/PetitionHelper.php:1921
+#: includes/Helpers/PetitionHelper.php:1925
 msgid "Petition Basic"
 msgstr ""
 
 #: includes/Helpers/PetitionHelper.php:264
-#: includes/Helpers/PetitionHelper.php:1894
+#: includes/Helpers/PetitionHelper.php:1898
 msgctxt "Petition category slug"
 msgid "petition-cat"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1892
+#: includes/Helpers/PetitionHelper.php:1896
 msgid "Petition category slug. Default: petition-cat"
 msgstr ""
 
@@ -1770,68 +1421,52 @@ msgstr ""
 msgid "Petition Details:"
 msgstr ""
 
-#: widgets/classic_widgets/views/admin.php:39
+#: includes/Widgets/Classic/CBXPetitionLatestWidget.php:140
 msgid "Petition Display Order By ASC/DESC"
 msgstr ""
 
-#: widgets/classic_widgets/views/admin.php:51
+#: includes/Widgets/Classic/CBXPetitionLatestWidget.php:152
 msgid "Petition Display Order By ID/Page"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2188
+#: includes/Helpers/PetitionHelper.php:2192
 msgid "Petition Email Template"
 msgstr ""
 
-#: widgets/elementor-elements/class-cbxpetition-banner-display-elemwidget.php:87
-#: widgets/elementor-elements/class-cbxpetition-display-elemwidget.php:89
-#: widgets/elementor-elements/class-cbxpetition-letter-display-elemwidget.php:87
-#: widgets/elementor-elements/class-cbxpetition-photos-display-elemwidget.php:87
-#: widgets/elementor-elements/class-cbxpetition-signatures-display-elemwidget.php:87
-#: widgets/elementor-elements/class-cbxpetition-signform-display-elemwidget.php:97
-#: widgets/elementor-elements/class-cbxpetition-stat-display-elemwidget.php:87
-#: widgets/elementor-elements/class-cbxpetition-summary-display-elemwidget.php:87
-#: widgets/elementor-elements/class-cbxpetition-video-display-elemwidget.php:87
-msgid "Petition ID"
-msgstr ""
-
-#: widgets/classic_widgets/class-cbxpetition-signform-widget.php:50
-#: widgets/classic_widgets/class-cbxpetition-summary-widget.php:55
+#: includes/Widgets/Classic/CBXPetitionSignformWidget.php:50
+#: includes/Widgets/Classic/CBXPetitionSummaryWidget.php:55
 msgid "Petition ID:"
 msgstr ""
 
-#: widgets/vc_widgets/class-cbxpetition-letter-vcwidget.php:27
-msgid "Petition Letter Section Display"
-msgstr ""
-
-#: includes/Helpers/PetitionHelper.php:2106
+#: includes/Helpers/PetitionHelper.php:2110
 msgid "Petition Photo Extensions"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2090
+#: includes/Helpers/PetitionHelper.php:2094
 msgid "Petition Photo Limit"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2098
+#: includes/Helpers/PetitionHelper.php:2102
 msgid "Petition Photo Max File Size(MB)"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2138
+#: includes/Helpers/PetitionHelper.php:2142
 msgid "Petition Photo Thumbnail max height"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2130
+#: includes/Helpers/PetitionHelper.php:2134
 msgid "Petition Photo Thumbnail max width"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2084
+#: includes/Helpers/PetitionHelper.php:2088
 msgid "Petition Photo(s) Configuration"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2122
+#: includes/Helpers/PetitionHelper.php:2126
 msgid "Petition Photo(s) max height"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2114
+#: includes/Helpers/PetitionHelper.php:2118
 msgid "Petition Photo(s) max width"
 msgstr ""
 
@@ -1839,110 +1474,79 @@ msgstr ""
 msgid "Petition Photos"
 msgstr ""
 
-#: widgets/vc_widgets/class-cbxpetition-photos-vcwidget.php:28
-msgid "Petition Photos Section Display"
-msgstr ""
-
-#: includes/CBXPetitionAdmin.php:1193
+#: includes/CBXPetitionAdmin.php:1187
 msgid "Petition photos thumbnail folder delete failed."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1191
+#: includes/CBXPetitionAdmin.php:1185
 msgid "Petition photos thumbnail folder deleted."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1877
+#: includes/Helpers/PetitionHelper.php:1881
 msgid "Petition post type archive slug. Default: cbxpetition"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1870
+#: includes/Helpers/PetitionHelper.php:1874
 msgid "Petition post type slug. Default: cbxpetition"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:554
+#: includes/CBXPetitionAdmin.php:552
 msgid "Petition Result"
 msgstr ""
 
-#: widgets/elementor-elements/class-cbxpetition-display-elemwidget.php:104
-#: widgets/vc_widgets/class-cbxpetition-summary-vcwidget.php:45
-#: widgets/vc_widgets/class-cbxpetition-vcwidget.php:45
-msgid "Petition Sections"
-msgstr ""
-
-#: widgets/classic_widgets/class-cbxpetition-signform-widget.php:34
-#: widgets/classic_widgets/class-cbxpetition-signform-widget.php:92
+#: includes/Widgets/Classic/CBXPetitionSignformWidget.php:34
+#: includes/Widgets/Classic/CBXPetitionSignformWidget.php:92
 msgid "Petition Sign Form"
-msgstr ""
-
-#: widgets/vc_widgets/class-cbxpetition-signatures-vcwidget.php:29
-msgid "Petition Signatures Section Display"
 msgstr ""
 
 #: includes/Emails/CBXPetitionNewSignUserAlertEmail.php:210
 msgid "Petition Signed"
 msgstr ""
 
-#: widgets/vc_widgets/class-cbxpetition-signform-vcwidget.php:28
-msgid "Petition SignForm Section Display"
-msgstr ""
-
-#: includes/Helpers/PetitionHelper.php:1869
+#: includes/Helpers/PetitionHelper.php:1873
 msgid "Petition Slug"
 msgstr ""
 
-#: widgets/vc_widgets/class-cbxpetition-stat-vcwidget.php:29
-msgid "Petition Stat Section Display"
-msgstr ""
-
-#: widgets/classic_widgets/class-cbxpetition-summary-widget.php:34
-#: widgets/classic_widgets/class-cbxpetition-summary-widget.php:121
+#: includes/Widgets/Classic/CBXPetitionSummaryWidget.php:34
+#: includes/Widgets/Classic/CBXPetitionSummaryWidget.php:118
 msgid "Petition Summary"
 msgstr ""
 
-#: widgets/vc_widgets/class-cbxpetition-summary-vcwidget.php:28
-msgid "Petition Summary Section Display"
-msgstr ""
-
-#: widgets/classic_widgets/class-cbxpetition-summary-widget.php:87
-#: widgets/elementor-elements/class-cbxpetition-summary-display-elemwidget.php:102
+#: includes/Widgets/Classic/CBXPetitionSummaryWidget.php:84
 msgid "Petition Summary Sections"
 msgstr ""
 
 #: includes/Helpers/PetitionHelper.php:309
-#: includes/Helpers/PetitionHelper.php:1908
+#: includes/Helpers/PetitionHelper.php:1912
 msgctxt "Petition tag slug"
 msgid "petition-tag"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1906
+#: includes/Helpers/PetitionHelper.php:1910
 msgid "Petition tag slug. Default: petition-tag"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1928
+#: includes/Helpers/PetitionHelper.php:1932
 msgid "Petition terms and condition page."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1927
+#: includes/Helpers/PetitionHelper.php:1931
 msgid "Petition Terms Page"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2088
+#: includes/CBXPetitionAdmin.php:2080
 msgid "Petition Title"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2089
+#: includes/CBXPetitionAdmin.php:2081
 msgid "Petition title here"
 msgstr ""
 
-#: widgets/vc_widgets/class-cbxpetition-video-vcwidget.php:28
-msgid "Petition Video Section Display"
-msgstr ""
-
-#: includes/CBXPetitionAdmin.php:1997 includes/CBXPetitionAdmin.php:2087
+#: includes/CBXPetitionAdmin.php:1991 includes/CBXPetitionAdmin.php:2079
 msgid "Petition:"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1999
+#: includes/CBXPetitionAdmin.php:1993
 msgid "Petition: Category"
 msgstr ""
 
@@ -1958,11 +1562,11 @@ msgstr ""
 msgid "Petition: Signatures"
 msgstr ""
 
-#: templates/admin/support.php:16
+#: templates/admin/support.php:18
 msgid "Petition: Support & Docs"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1998
+#: includes/CBXPetitionAdmin.php:1992
 msgid "Petition: Tags"
 msgstr ""
 
@@ -1972,97 +1576,96 @@ msgid "Petitions"
 msgstr ""
 
 #. %s: Petition photo
-#: includes/CBXPetitionAdmin.php:1185
+#: includes/CBXPetitionAdmin.php:1179
 #, php-format
 msgid "Photo %s delete failed."
 msgstr ""
 
 #. %s: Petition photo
-#: includes/CBXPetitionAdmin.php:1181
+#: includes/CBXPetitionAdmin.php:1176
 #, php-format
 msgid "Photo %s deleted successfully."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1009 includes/CBXPetitionAdmin.php:1015
+#: includes/CBXPetitionAdmin.php:1007 includes/CBXPetitionAdmin.php:1013
 msgid "Photo delete failed, invalid petition."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1082
+#: includes/CBXPetitionAdmin.php:1078
 msgid "Photo delete failed, unknown file name."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1065
+#: includes/CBXPetitionAdmin.php:1062
 msgid "Photo deleted successfully."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2107
+#: includes/Helpers/PetitionHelper.php:2111
 msgid ""
 "Photo extensions that are allowable to upload, if all unchecked then jpg, "
 "jpeg, gif, png are allowed."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1071
+#: includes/CBXPetitionAdmin.php:1068
 msgid "Photo thumb deleted failed."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1069
+#: includes/CBXPetitionAdmin.php:1066
 msgid "Photo thumb deleted successfully."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:867
+#: includes/CBXPetitionAdmin.php:865
 msgid "Photo upload failed, file size is more than allowed."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:861
+#: includes/CBXPetitionAdmin.php:859
 msgid "Photo upload failed, file type not allowed."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:810 includes/CBXPetitionAdmin.php:816
+#: includes/CBXPetitionAdmin.php:808 includes/CBXPetitionAdmin.php:814
 msgid "Photo upload failed, invalid petition."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2066 includes/Helpers/PetitionHelper.php:1468
+#: includes/CBXPetitionAdmin.php:2060 includes/Helpers/PetitionHelper.php:1471
 msgid "Photo upload failed, maximum allowed reached."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:974
+#: includes/CBXPetitionAdmin.php:972
 msgid "Photo upload failed, no file received or invalid file."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2068
+#: includes/CBXPetitionAdmin.php:2062
 msgid "Photo upload failed, wrong file extension."
 msgstr ""
 
 #. %d: photo maximum size in mb
-#: includes/CBXPetitionAdmin.php:2070
+#: includes/CBXPetitionAdmin.php:2064
 msgid "Photo upload failed, wrong file size(Max %d MB)."
 msgstr ""
 
 #. %d: image maximum size in mb
-#: includes/Helpers/PetitionHelper.php:1471
+#: includes/Helpers/PetitionHelper.php:1474
 msgid "Photo upload failed, wrong file size. Maximum allowed size %d MB"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2067 includes/Helpers/PetitionHelper.php:1469
+#: includes/CBXPetitionAdmin.php:2061 includes/Helpers/PetitionHelper.php:1472
 msgid "Photo upload failed, wrong file type."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:964
+#: includes/CBXPetitionAdmin.php:962
 msgid "Photo uploaded successfully."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1762
-#: includes/Helpers/PetitionHelper.php:2047
-#: includes/Helpers/PetitionHelper.php:2072
-#: widgets/vc_widgets/class-cbxpetition-vcwidget.php:51
+#: includes/Helpers/PetitionHelper.php:1765
+#: includes/Helpers/PetitionHelper.php:2051
+#: includes/Helpers/PetitionHelper.php:2076
 msgid "Photos"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1123 includes/CBXPetitionAdmin.php:1130
+#: includes/CBXPetitionAdmin.php:1119 includes/CBXPetitionAdmin.php:1126
 msgid "Photos delete failed, invalid petition."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1315
+#: includes/Helpers/PetitionHelper.php:1318
 msgid "Plain Text"
 msgstr ""
 
@@ -2076,110 +1679,99 @@ msgstr ""
 msgid "Please <a href=\"%1$s\">login</a> to access."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1433
-#: includes/Helpers/PetitionHelper.php:2384
+#: includes/Helpers/PetitionHelper.php:1436
+#: includes/Helpers/PetitionHelper.php:2388
 msgid "Please check the captcha."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1423
-#: includes/Helpers/PetitionHelper.php:2374
+#: includes/Helpers/PetitionHelper.php:1426
+#: includes/Helpers/PetitionHelper.php:2378
 msgid "Please enter a valid date ( ISO )."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1422
-#: includes/Helpers/PetitionHelper.php:2373
+#: includes/Helpers/PetitionHelper.php:1425
+#: includes/Helpers/PetitionHelper.php:2377
 msgid "Please enter a valid date."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1420
-#: includes/Helpers/PetitionHelper.php:2371
+#: includes/Helpers/PetitionHelper.php:1423
+#: includes/Helpers/PetitionHelper.php:2375
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1424
-#: includes/Helpers/PetitionHelper.php:2375
+#: includes/Helpers/PetitionHelper.php:1427
+#: includes/Helpers/PetitionHelper.php:2379
 msgid "Please enter a valid number."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1421
-#: includes/Helpers/PetitionHelper.php:2372
+#: includes/Helpers/PetitionHelper.php:1424
+#: includes/Helpers/PetitionHelper.php:2376
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1429
-#: includes/Helpers/PetitionHelper.php:2380
+#: includes/Helpers/PetitionHelper.php:1432
+#: includes/Helpers/PetitionHelper.php:2384
 msgid "Please enter a value between {0} and {1} characters long."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1430
-#: includes/Helpers/PetitionHelper.php:2381
+#: includes/Helpers/PetitionHelper.php:1433
+#: includes/Helpers/PetitionHelper.php:2385
 msgid "Please enter a value between {0} and {1}."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1432
-#: includes/Helpers/PetitionHelper.php:2383
+#: includes/Helpers/PetitionHelper.php:1435
+#: includes/Helpers/PetitionHelper.php:2387
 msgid "Please enter a value greater than or equal to {0}."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1431
-#: includes/Helpers/PetitionHelper.php:2382
+#: includes/Helpers/PetitionHelper.php:1434
+#: includes/Helpers/PetitionHelper.php:2386
 msgid "Please enter a value less than or equal to {0}."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1428
-#: includes/Helpers/PetitionHelper.php:2379
+#: includes/Helpers/PetitionHelper.php:1431
+#: includes/Helpers/PetitionHelper.php:2383
 msgid "Please enter at least {0} characters."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1427
-#: includes/Helpers/PetitionHelper.php:2378
+#: includes/Helpers/PetitionHelper.php:1430
+#: includes/Helpers/PetitionHelper.php:2382
 msgid "Please enter no more than {0} characters."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1425
-#: includes/Helpers/PetitionHelper.php:2376
+#: includes/Helpers/PetitionHelper.php:1428
+#: includes/Helpers/PetitionHelper.php:2380
 msgid "Please enter only digits."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1426
-#: includes/Helpers/PetitionHelper.php:2377
+#: includes/Helpers/PetitionHelper.php:1429
+#: includes/Helpers/PetitionHelper.php:2381
 msgid "Please enter the same value again."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1419
-#: includes/Helpers/PetitionHelper.php:2370
+#: includes/Helpers/PetitionHelper.php:1422
+#: includes/Helpers/PetitionHelper.php:2374
 msgid "Please fix this field."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:422
+#: includes/CBXPetitionAdmin.php:420
 msgid "Please provide signature state."
 msgstr ""
 
-#: includes/CBXSetting.php:482 includes/CBXSetting.php:574
-#: includes/Helpers/PetitionHelper.php:2387
+#: includes/CBXSetting.php:508 includes/CBXSetting.php:600
+#: includes/Helpers/PetitionHelper.php:2391
 msgid "Please Select"
 msgstr ""
 
-#: widgets/elementor-elements/class-cbxpetition-banner-display-elemwidget.php:114
-#: widgets/elementor-elements/class-cbxpetition-display-elemwidget.php:141
-#: widgets/elementor-elements/class-cbxpetition-letter-display-elemwidget.php:114
-#: widgets/elementor-elements/class-cbxpetition-photos-display-elemwidget.php:114
-#: widgets/elementor-elements/class-cbxpetition-signatures-display-elemwidget.php:141
-#: widgets/elementor-elements/class-cbxpetition-stat-display-elemwidget.php:144
-#: widgets/elementor-elements/class-cbxpetition-summary-display-elemwidget.php:144
-#: widgets/elementor-elements/class-cbxpetition-video-display-elemwidget.php:114
-msgid "Please select a petition or petition doesn't exists"
-msgstr ""
-
-#: includes/Helpers/PetitionHelper.php:2401
+#: includes/Helpers/PetitionHelper.php:2405
 msgid "Please select recipients first"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1436
+#: includes/Helpers/PetitionHelper.php:1439
 msgid "Please wait, loading"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1631
+#: includes/Helpers/PetitionHelper.php:1634
 msgid "Png"
 msgstr ""
 
@@ -2201,19 +1793,19 @@ msgctxt "Post Type Singular Name"
 msgid "Petition"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1863
+#: includes/Helpers/PetitionHelper.php:1867
 msgid "Post Type, Taxonomy and Slug"
 msgstr ""
 
-#: includes/PetitionSignListTable.php:568
+#: includes/PetitionSignListTable.php:562
 msgid "Previous page"
 msgstr ""
 
-#: templates/admin/support.php:209
+#: templates/admin/support.php:184
 msgid "Pro Addon Support"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1441
+#: includes/Helpers/PetitionHelper.php:1444
 msgid "Read More"
 msgstr ""
 
@@ -2234,36 +1826,36 @@ msgstr ""
 msgid "Reply to email"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2313
+#: includes/Helpers/PetitionHelper.php:2317
 msgid "Request failed, please reload the page."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2273
+#: includes/Helpers/PetitionHelper.php:2277
 msgid "Reset all section"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2275
+#: includes/Helpers/PetitionHelper.php:2279
 msgid "Reset Sections"
 msgstr ""
 
-#: templates/admin/support.php:189
-msgid "Review & Rate Comfort Email SMTP, Logger & Email Api Plugin"
+#: templates/admin/support.php:164
+msgid "Review & Rate CBX Petition for WordPress"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1526
+#: includes/CBXPetitionAdmin.php:1518
 msgid "Reviews"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1313
+#: includes/Helpers/PetitionHelper.php:1316
 msgid "Rich Html Email"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2344
+#: includes/Helpers/PetitionHelper.php:2348
 #: templates/admin/email_manager_edit.php:41
 msgid "Save"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2349
+#: includes/Helpers/PetitionHelper.php:2353
 msgid "save and close"
 msgstr ""
 
@@ -2271,11 +1863,11 @@ msgstr ""
 msgid "Save Changes"
 msgstr ""
 
-#: includes/CBXSetting.php:1074 templates/admin/settings.php:37
+#: includes/CBXSetting.php:1100 templates/admin/settings.php:37
 msgid "Save Settings"
 msgstr ""
 
-#: templates/admin/admin-signs-listing.php:113
+#: templates/admin/admin-signs-listing.php:106
 msgid "Search"
 msgstr ""
 
@@ -2283,7 +1875,7 @@ msgstr ""
 msgid "Search Categories"
 msgstr ""
 
-#: includes/PetitionSignListTable.php:659
+#: includes/PetitionSignListTable.php:653
 msgid "Search keyword"
 msgstr ""
 
@@ -2295,45 +1887,33 @@ msgstr ""
 msgid "Search Tags"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2388
+#: includes/Helpers/PetitionHelper.php:2392
 msgid "Search..."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2321
+#: includes/CBXPetitionAdmin.php:2288
 msgid "Security check failed!"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:318 includes/CBXPetitionAdmin.php:381
-#: includes/CBXPetitionPublic.php:264
+#: includes/CBXPetitionAdmin.php:316 includes/CBXPetitionAdmin.php:379
+#: includes/CBXPetitionPublic.php:274
 msgid "Security token verify failed, please refresh or reload."
 msgstr ""
 
-#: widgets/classic_widgets/class-cbxpetition-signform-widget.php:60
-#: widgets/classic_widgets/class-cbxpetition-summary-widget.php:73
+#: includes/Widgets/Classic/CBXPetitionSignformWidget.php:60
+#: includes/Widgets/Classic/CBXPetitionSummaryWidget.php:70
 msgid "Seems <strong>Petition ID</strong> doesn't belong to any valid Petition"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2392
+#: includes/Helpers/PetitionHelper.php:2396
 msgid "Select Media"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1138
+#: includes/Helpers/PetitionHelper.php:1141
 msgid "Select page"
 msgstr ""
 
-#: widgets/vc_widgets/class-cbxpetition-banner-vcwidget.php:36
-#: widgets/vc_widgets/class-cbxpetition-letter-vcwidget.php:35
-#: widgets/vc_widgets/class-cbxpetition-photos-vcwidget.php:36
-#: widgets/vc_widgets/class-cbxpetition-signatures-vcwidget.php:37
-#: widgets/vc_widgets/class-cbxpetition-signform-vcwidget.php:36
-#: widgets/vc_widgets/class-cbxpetition-stat-vcwidget.php:37
-#: widgets/vc_widgets/class-cbxpetition-summary-vcwidget.php:36
-#: widgets/vc_widgets/class-cbxpetition-vcwidget.php:36
-#: widgets/vc_widgets/class-cbxpetition-video-vcwidget.php:36
-msgid "Select Petition"
-msgstr ""
-
-#: includes/Helpers/PetitionHelper.php:2355
+#: includes/Helpers/PetitionHelper.php:2359
 msgid "selection slider"
 msgstr ""
 
@@ -2353,97 +1933,46 @@ msgstr ""
 msgid "Separate Tags with commas"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:112
-msgid "Setting"
-msgstr ""
-
-#: includes/CBXPetitionAdmin.php:1499
+#: includes/CBXPetitionAdmin.php:110 includes/CBXPetitionAdmin.php:1491
 msgid "Settings"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:565
+#: includes/CBXPetitionAdmin.php:563
 msgid "Shortcode"
 msgstr ""
 
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:179
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:118
-msgid "Show Arrow"
+#: includes/Helpers/PetitionHelper.php:1818
+msgid "Show nothing!"
 msgstr ""
 
-#: widgets/elementor-elements/class-cbxpetition-stat-display-elemwidget.php:99
-#: widgets/vc_widgets/class-cbxpetition-stat-vcwidget.php:46
-msgid "Show Count"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:194
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:134
-msgid "Show Dots"
-msgstr ""
-
-#: includes/Helpers/PetitionHelper.php:1957
-msgid "Show login form for guest user"
-msgstr ""
-
-#: includes/Helpers/PetitionHelper.php:2032
+#: includes/Helpers/PetitionHelper.php:2036
 msgid "Show petition features before or after content"
 msgstr ""
 
-#: widgets/classic_widgets/views/admin.php:90
+#: includes/Widgets/Classic/CBXPetitionLatestWidget.php:191
 msgid "Show Petition Stat"
 msgstr ""
 
-#: widgets/classic_widgets/views/admin.php:64
+#: includes/Widgets/Classic/CBXPetitionLatestWidget.php:165
 msgid "Show Petition Thumbnail"
 msgstr ""
 
-#: widgets/classic_widgets/views/admin.php:77
+#: includes/Widgets/Classic/CBXPetitionLatestWidget.php:178
 msgid "Show Petition Title"
 msgstr ""
 
-#: widgets/elementor-elements/class-cbxpetition-stat-display-elemwidget.php:113
-#: widgets/vc_widgets/class-cbxpetition-stat-vcwidget.php:57
-msgid "Show Progress"
-msgstr ""
-
-#: includes/Helpers/PetitionHelper.php:1978
+#: includes/Helpers/PetitionHelper.php:1982
 msgid "Show Register link to guest"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1979
+#: includes/Helpers/PetitionHelper.php:1983
 msgid ""
 "Show register link to guest, depends on if registration is enabled in "
 "wordpress core"
 msgstr ""
 
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:181
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:119
-#: widgets/classic_widgets/views/admin.php:121
-msgid "Show Slider Arrow"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:196
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:135
-#: widgets/classic_widgets/views/admin.php:134
-msgid "Show Slider Dots"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:150
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:92
-msgid "Show Stat"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:126
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:68
-msgid "Show Thumbnail"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:138
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:80
-msgid "Show Title"
-msgstr ""
-
 #. %1$s: Petition link , %2$s: Petition title
-#: widgets/classic_widgets/class-cbxpetition-summary-widget.php:65
+#: includes/Widgets/Classic/CBXPetitionSummaryWidget.php:62
 #, php-format
 msgid ""
 "Showing petition for <a target=\"_blank\" href=\"%1$s\"><strong>%2$s</strong>"
@@ -2451,44 +1980,47 @@ msgid ""
 msgstr ""
 
 #. %1$s: Petition link , %2$s: Petition title
-#: widgets/classic_widgets/class-cbxpetition-signform-widget.php:58
+#: includes/Widgets/Classic/CBXPetitionSignformWidget.php:58
 #, php-format
 msgid ""
 "Showing petition sign form for <a target=\"_blank\" href=\"%1$s\"><strong>"
 "%2$s</strong></a>"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1998
+#: includes/Helpers/PetitionHelper.php:1767
+msgid "Sign form"
+msgstr ""
+
+#: includes/Helpers/PetitionHelper.php:2002
 msgid "Sign Status after Verify"
 msgstr ""
 
-#: templates/petition/sign-form.php:163
+#: templates/petition/sign-form.php:170
 msgid "Sign the petition as guest user"
 msgstr ""
 
-#: templates/petition/sign-form.php:253
+#: templates/petition/sign-form.php:261
 msgid "Sign This"
 msgstr ""
 
-#: includes/Shortcode/ShortCode.php:259
-#: widgets/elementor-elements/class-cbxpetition-signform-display-elemwidget.php:89
+#: includes/CBXPetitionShortCodes.php:252
 msgid "Sign this Petition"
 msgstr ""
 
 #: includes/Emails/CBXPetitionSignApproveUserEmail.php:24
-msgid "Signature aprpoval email alert for user"
+msgid "Signature approval email alert for user"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2014
+#: includes/Helpers/PetitionHelper.php:2018
 msgid "Signature Comment Required"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2015
+#: includes/Helpers/PetitionHelper.php:2019
 msgid ""
 "Signature comment text required or not, if required at least 50 chars long"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:364
+#: includes/CBXPetitionAdmin.php:362
 msgid "Signature deleted successfully."
 msgstr ""
 
@@ -2503,22 +2035,17 @@ msgstr ""
 msgid "Signature Edit: ID - %d"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2049
-#: includes/Helpers/PetitionHelper.php:2074
+#: includes/Helpers/PetitionHelper.php:2053
+#: includes/Helpers/PetitionHelper.php:2078
 msgid "Signature Form"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2050
-#: includes/Helpers/PetitionHelper.php:2075
+#: includes/Helpers/PetitionHelper.php:2054
+#: includes/Helpers/PetitionHelper.php:2079
 msgid "Signature Listing"
 msgstr ""
 
-#: widgets/elementor-elements/class-cbxpetition-signatures-display-elemwidget.php:99
-#: widgets/vc_widgets/class-cbxpetition-signatures-vcwidget.php:46
-msgid "Signature Listing Limit"
-msgstr ""
-
-#: includes/Helpers/PetitionHelper.php:2006
+#: includes/Helpers/PetitionHelper.php:2010
 msgid "Signature Listing Per Page"
 msgstr ""
 
@@ -2532,30 +2059,20 @@ msgstr ""
 msgid "Signature Target(*)"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:500
+#: includes/CBXPetitionAdmin.php:498
 msgid "Signature updated successfully."
 msgstr ""
 
-#: includes/CBXPetitionPublic.php:220
+#: includes/CBXPetitionPublic.php:230
 msgid ""
 "Signature validated successfully. No email will be sent to inform this. Site "
 "admin will check your request and signature confirmation will be set as per "
 "system setting."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:87 includes/CBXPetitionAdmin.php:662
-#: includes/CBXPetitionAdmin.php:727 includes/Helpers/PetitionHelper.php:1765
-#: widgets/vc_widgets/class-cbxpetition-vcwidget.php:54
+#: includes/CBXPetitionAdmin.php:85 includes/CBXPetitionAdmin.php:660
+#: includes/CBXPetitionAdmin.php:725 includes/Helpers/PetitionHelper.php:1768
 msgid "Signatures"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-signatures-display-elemwidget.php:109
-msgid "Signatures Display Order"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-signatures-display-elemwidget.php:110
-#: widgets/vc_widgets/class-cbxpetition-signatures-vcwidget.php:55
-msgid "Signatures Display Order By ASC/DESC"
 msgstr ""
 
 #. %s: Petition Title
@@ -2565,70 +2082,53 @@ msgid "Signatures from petition \"<strong>%s</strong>\""
 msgstr ""
 
 #. %1$d: signature count , %2$d: signature target, %3$s: signature target ratio
-#: includes/CBXPetitionAdmin.php:2141
+#: includes/CBXPetitionAdmin.php:2133
 #, php-format
 msgid "Signatures: %1$d of %2$d (%3$s)"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1764
-#: widgets/vc_widgets/class-cbxpetition-vcwidget.php:53
-msgid "Signform"
-msgstr ""
-
-#: includes/CBXPetitionAdmin.php:86
+#: includes/CBXPetitionAdmin.php:84
 msgid "Signs Listing"
 msgstr ""
 
-#: widgets/classic_widgets/class-cbxpetition-signform-widget.php:24
+#: includes/Widgets/Classic/CBXPetitionSignformWidget.php:24
 msgid "Single Petition Sign Form Widget for CBX Petition"
 msgstr ""
 
-#: widgets/classic_widgets/class-cbxpetition-summary-widget.php:24
+#: includes/Widgets/Classic/CBXPetitionSummaryWidget.php:24
 msgid "Single Petition Summary Widget for CBX Petition"
 msgstr ""
 
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:168
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:108
-#: widgets/classic_widgets/views/admin.php:108
-msgid "Slider"
-msgstr ""
-
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:209
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:150
-#: widgets/classic_widgets/views/admin.php:156
-msgid "Slides Per Row"
-msgstr ""
-
-#: includes/CBXPetitionPublic.php:273
+#: includes/CBXPetitionPublic.php:283
 msgid "Sorry guest user not allowed to vote"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:334 includes/CBXPetitionAdmin.php:412
+#: includes/CBXPetitionAdmin.php:332 includes/CBXPetitionAdmin.php:410
 msgid "Sorry! Invalid signature id"
 msgstr ""
 
-#: includes/CBXPetitionPublic.php:464
+#: includes/CBXPetitionPublic.php:445
 msgid ""
 "Sorry! Problem during signing request, please check again and try again."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:367
+#: includes/CBXPetitionAdmin.php:365
 msgid "Sorry! Signature delete failed."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:523
+#: includes/CBXPetitionAdmin.php:521
 msgid "Sorry! Some problem during updating, please try again."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:332
+#: includes/CBXPetitionAdmin.php:330
 msgid "Sorry! You are not authorized to delete signature."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:410
+#: includes/CBXPetitionAdmin.php:408
 msgid "Sorry! You are not authorized to edit signature."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2357
+#: includes/CBXPetitionAdmin.php:2324
 msgid "Sorry, invalid email id"
 msgstr ""
 
@@ -2636,94 +2136,96 @@ msgstr ""
 msgid "Sorry, invalid signature or signature not found."
 msgstr ""
 
-#: includes/CBXPetitionPublic.php:156
+#. %1$s: Login Link
+#: templates/global/login_off.php:8
+msgid "Sorry, log in feature is not available from this area."
+msgstr ""
+
+#: includes/CBXPetitionPublic.php:166
 msgid ""
 "Sorry, no activation code found. Please follow correct url from your email "
 "notification."
 msgstr ""
 
-#: templates/petition/sign-form.php:118
+#: templates/petition/sign-form.php:125
 msgid "Sorry, petition already expired"
 msgstr ""
 
 #. %s: petition expire date
-#: includes/Shortcode/ShortCode.php:218
+#: includes/CBXPetitionShortCodes.php:212
 #, php-format
 msgid "Sorry, petition already expired on %s"
 msgstr ""
 
-#: templates/petition/sign-form.php:110
+#: templates/petition/sign-form.php:117
 msgid "Sorry, petition did not start yet."
 msgstr ""
 
-#: includes/Shortcode/ShortCode.php:206
+#: includes/CBXPetitionShortCodes.php:200
 msgid "Sorry, Petition expire date is not set yet."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1438
+#: includes/Helpers/PetitionHelper.php:1441
 msgid "Sorry, request failed, please submit again"
 msgstr ""
 
-#: includes/Shortcode/ShortCode.php:133
+#: includes/CBXPetitionShortCodes.php:127
 msgid "Sorry, seems not a valid petition."
 msgstr ""
 
-#: includes/CBXPetitionPublic.php:168
+#: includes/CBXPetitionPublic.php:178
 msgid ""
 "Sorry, seems you are currently logged in as system user but this "
 "verification process is for guest user only."
 msgstr ""
 
-#: includes/CBXPetitionPublic.php:227
+#: includes/CBXPetitionPublic.php:237
 msgid "Sorry, signature found but validation failed."
 msgstr ""
 
-#: includes/CBXPetitionPublic.php:241
+#: includes/CBXPetitionPublic.php:251
 msgid "Sorry, signature not found or already validated."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2235 includes/CBXPetitionAdmin.php:2261
-#: includes/CBXPetitionAdmin.php:2300
+#: includes/CBXPetitionAdmin.php:2202 includes/CBXPetitionAdmin.php:2228
+#: includes/CBXPetitionAdmin.php:2267
 msgid "Sorry, you don't have enough permission"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1409
+#: includes/CBXPetitionAdmin.php:1402
 msgid "Sorry, you don't have enough permission to delete banner"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:995
+#: includes/CBXPetitionAdmin.php:993
 msgid "Sorry, you don't have enough permission to delete photo"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1109
+#: includes/CBXPetitionAdmin.php:1105
 msgid "Sorry, you don't have enough permission to delete photos"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1225
+#: includes/CBXPetitionAdmin.php:1219
 msgid "Sorry, you don't have enough permission to upload banner"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:796
+#: includes/CBXPetitionAdmin.php:794
 msgid "Sorry, you don't have enough permission to upload photo"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2058
+#: includes/CBXPetitionAdmin.php:2052
 msgid "Sort"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1760
-#: widgets/elementor-elements/class-cbxpetition-summary-display-elemwidget.php:110
-#: widgets/vc_widgets/class-cbxpetition-summary-vcwidget.php:50
-#: widgets/vc_widgets/class-cbxpetition-vcwidget.php:49
+#: includes/Helpers/PetitionHelper.php:1763
 msgid "Stat"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1730
+#: includes/CBXPetitionAdmin.php:1724
 msgid "State"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2045
-#: includes/Helpers/PetitionHelper.php:2070
+#: includes/Helpers/PetitionHelper.php:2049
+#: includes/Helpers/PetitionHelper.php:2074
 msgid "Statistics"
 msgstr ""
 
@@ -2732,7 +2234,7 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: templates/admin/admin-signs-listing.php:105
+#: templates/admin/admin-signs-listing.php:98
 msgid "Status(All)"
 msgstr ""
 
@@ -2743,8 +2245,8 @@ msgstr ""
 msgid "Subject"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1447
-#: includes/Helpers/PetitionHelper.php:2360
+#: includes/Helpers/PetitionHelper.php:1450
+#: includes/Helpers/PetitionHelper.php:2364
 msgid "Success"
 msgstr ""
 
@@ -2752,7 +2254,7 @@ msgstr ""
 msgid "Support & Docs"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1633
+#: includes/Helpers/PetitionHelper.php:1636
 msgid "Svg"
 msgstr ""
 
@@ -2760,7 +2262,7 @@ msgstr ""
 msgid "System User/Guest"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1905
+#: includes/Helpers/PetitionHelper.php:1909
 msgid "Tag Slug"
 msgstr ""
 
@@ -2776,11 +2278,11 @@ msgstr ""
 msgid "Tags list navigation"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2397
+#: includes/Helpers/PetitionHelper.php:2401
 msgid "Take your pick..."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:660
+#: includes/CBXPetitionAdmin.php:658
 msgid "Target"
 msgstr ""
 
@@ -2836,7 +2338,7 @@ msgid "Thank you."
 msgstr ""
 
 #. 1: plugin version 2. codeboxr website url
-#: includes/CBXPetitionAdmin.php:1599
+#: includes/CBXPetitionAdmin.php:1597
 #, php-format
 msgid ""
 "Thanks for installing/deactivating <strong>CBX Petition</strong> V%1$s - <a "
@@ -2844,30 +2346,30 @@ msgid ""
 msgstr ""
 
 #. 1: plugin version 2. team url
-#: includes/CBXPetitionAdmin.php:1630
+#: includes/CBXPetitionAdmin.php:1628
 #, php-format
 msgid ""
 "Thanks for upgrading <strong>CBX Petition</strong> V%1$s - <a href=\"%2$s\" "
 "target=\"_blank\">Codeboxr Team</a>"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2216
+#: includes/Helpers/PetitionHelper.php:2220
 msgid "The background color of the email."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2223
+#: includes/Helpers/PetitionHelper.php:2227
 msgid "The background colour of the main body of email."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2209
+#: includes/Helpers/PetitionHelper.php:2213
 msgid "The base color of the email."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2230
+#: includes/Helpers/PetitionHelper.php:2234
 msgid "The body text colour of the main body of email."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2237
+#: includes/Helpers/PetitionHelper.php:2241
 msgid "The footer text colour of the footer of email."
 msgstr ""
 
@@ -2879,58 +2381,53 @@ msgstr ""
 msgid "The letter"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2202
-msgid "The text to appear at the email footer."
+#: includes/Helpers/PetitionHelper.php:2206
+msgid ""
+"The text to appear at the email footer. Syntax available - <code>{site_title}"
+"</code>"
 msgstr ""
 
-#: templates/admin/support.php:59
+#: templates/admin/support.php:60
 msgid "Third Party plugin Integration"
 msgstr ""
 
-#: templates/admin/support.php:217
-msgid "Third Party plugin Integration(Pro)"
-msgstr ""
-
-#: includes/Helpers/PetitionHelper.php:1418
-#: includes/Helpers/PetitionHelper.php:2369
+#: includes/Helpers/PetitionHelper.php:1421
+#: includes/Helpers/PetitionHelper.php:2373
 msgid "This field is required."
 msgstr ""
 
 #. %s: content
-#: includes/CBXSetting.php:557
+#: includes/CBXSetting.php:583
 #, php-format
 msgid "This page doesn't have shortcode %s"
 msgstr ""
 
 #. %s: content
-#: includes/CBXSetting.php:553
+#: includes/CBXSetting.php:579
 #, php-format
 msgid "This page has shortcode %s"
 msgstr ""
 
-#: includes/CBXPetitionPublic.php:336
+#: includes/CBXPetitionPublic.php:346
 msgid "This petition has been signed using this email."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2274
+#: includes/Helpers/PetitionHelper.php:2278
 msgid "This will reset all option/section created by this plugin."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1445
-#: includes/Helpers/PetitionHelper.php:2358
+#: includes/Helpers/PetitionHelper.php:1448
+#: includes/Helpers/PetitionHelper.php:2362
 msgid "Tip"
 msgstr ""
 
 #: templates/admin/email_manager_list.php:24
-#: widgets/elementor-elements/class-cbxpetition-signform-display-elemwidget.php:87
-#: widgets/elementor-elements/class-cbxpetition-summary-display-elemwidget.php:108
-#: widgets/vc_widgets/class-cbxpetition-summary-vcwidget.php:48
 msgid "Title"
 msgstr ""
 
-#: widgets/classic_widgets/class-cbxpetition-signform-widget.php:44
-#: widgets/classic_widgets/class-cbxpetition-summary-widget.php:49
-#: widgets/classic_widgets/views/admin.php:22
+#: includes/Widgets/Classic/CBXPetitionLatestWidget.php:121
+#: includes/Widgets/Classic/CBXPetitionSignformWidget.php:44
+#: includes/Widgets/Classic/CBXPetitionSummaryWidget.php:49
 msgid "Title:"
 msgstr ""
 
@@ -2953,19 +2450,19 @@ msgstr ""
 msgid "To edit click this url."
 msgstr ""
 
-#: includes/CBXSetting.php:1048
+#: includes/CBXSetting.php:1074
 msgid "Toggle All Sections"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2341
+#: includes/Helpers/PetitionHelper.php:2345
 msgid "toggle color picker dialog"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1836
+#: includes/Helpers/PetitionHelper.php:1840
 msgid "Tools"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2245
+#: includes/Helpers/PetitionHelper.php:2249
 msgid "Tools Settings"
 msgstr ""
 
@@ -2980,7 +2477,7 @@ msgstr ""
 msgid "Total Signatures: {signature_count}"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1533
+#: includes/CBXPetitionAdmin.php:1525
 msgid "Try Pro Addon"
 msgstr ""
 
@@ -2992,11 +2489,11 @@ msgstr ""
 msgid "Unapproved"
 msgstr ""
 
-#: includes/CBXSetting.php:424 includes/Helpers/PetitionHelper.php:2457
+#: includes/CBXSetting.php:450 includes/Helpers/PetitionHelper.php:2460
 msgid "Uncheck All"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:426
+#: includes/CBXPetitionAdmin.php:424
 msgid "Unknown signature status"
 msgstr ""
 
@@ -3005,7 +2502,8 @@ msgstr ""
 msgid "Unnamed"
 msgstr ""
 
-#: includes/CBXPetition.php:94 includes/CBXPetitionEmails.php:51
+#: includes/CBXPetition.php:117 includes/CBXPetitionEmails.php:51
+#: includes/CBXSetting.php:68
 msgid "Unserializing instances of this class is forbidden."
 msgstr ""
 
@@ -3029,7 +2527,7 @@ msgstr ""
 msgid "Update Tag"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2391
+#: includes/Helpers/PetitionHelper.php:2395
 msgid "Upload"
 msgstr ""
 
@@ -3041,31 +2539,24 @@ msgstr ""
 msgid "Upload Photo(s)"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1912
+#: includes/Helpers/PetitionHelper.php:1916
 msgid "Use Custom Template"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1913
+#: includes/Helpers/PetitionHelper.php:1917
 msgid ""
 "Use custom template for details petition, archive, taxonomy from plugin's "
 "template folder"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2343
+#: includes/Helpers/PetitionHelper.php:2347
 msgid "use previous color"
 msgstr ""
 
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:241
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:179
-#: widgets/classic_widgets/views/admin.php:171
-msgid "Vertical"
-msgstr ""
-
-#: includes/Helpers/PetitionHelper.php:1761
-#: includes/Helpers/PetitionHelper.php:2046
-#: includes/Helpers/PetitionHelper.php:2071
+#: includes/Helpers/PetitionHelper.php:1764
+#: includes/Helpers/PetitionHelper.php:2050
+#: includes/Helpers/PetitionHelper.php:2075
 #: templates/admin/admin-metabox.php:38
-#: widgets/vc_widgets/class-cbxpetition-vcwidget.php:50
 msgid "Video"
 msgstr ""
 
@@ -3081,15 +2572,15 @@ msgstr ""
 msgid "Video Url(Youtube)"
 msgstr ""
 
-#: includes/CBXSetting.php:567 templates/admin/admin-signs-listing.php:72
+#: includes/CBXSetting.php:593 templates/admin/admin-signs-listing.php:72
 msgid "View"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:690
+#: includes/CBXPetitionAdmin.php:688
 msgid "View all signatures for this petition"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1877
+#: includes/Helpers/PetitionHelper.php:1881
 msgid "View Archive"
 msgstr ""
 
@@ -3101,7 +2592,7 @@ msgstr ""
 msgid "View Petition"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1499
+#: includes/CBXPetitionAdmin.php:1491
 msgid "View settings"
 msgstr ""
 
@@ -3120,7 +2611,7 @@ msgid ""
 "and network."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1632
+#: includes/Helpers/PetitionHelper.php:1635
 msgid "Webp"
 msgstr ""
 
@@ -3131,116 +2622,90 @@ msgid ""
 "supporting this cause."
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1999
+#: includes/Helpers/PetitionHelper.php:2003
 msgid "What will be status when a guest user verify sign from email"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:1937
+#: includes/Helpers/PetitionHelper.php:1941
 msgid "What will be status when a new sign is requested?"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2154
+#: includes/Helpers/PetitionHelper.php:2158
 msgid "What will be the maximum banner size in MB?"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2178
+#: includes/Helpers/PetitionHelper.php:2182
 msgid "What will be the maximum height of banner?"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2123
+#: includes/Helpers/PetitionHelper.php:2127
 msgid "What will be the maximum height of photo?"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2139
+#: includes/Helpers/PetitionHelper.php:2143
 msgid "What will be the maximum height of thumbnail photo?"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2099
+#: includes/Helpers/PetitionHelper.php:2103
 msgid "What will be the maximum photo size in MB?"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2170
+#: includes/Helpers/PetitionHelper.php:2174
 msgid "What will be the maximum width of banner?"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2115
+#: includes/Helpers/PetitionHelper.php:2119
 msgid "What will be the maximum width of photo?"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2131
+#: includes/Helpers/PetitionHelper.php:2135
 msgid "What will be the maximum width of thumbnail photo?"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2058
+#: includes/Helpers/PetitionHelper.php:2062
 msgid "Which shortcode/blocks will be added after content"
 msgstr ""
 
-#: includes/Helpers/PetitionHelper.php:2039
+#: includes/Helpers/PetitionHelper.php:2043
 msgid "Which shortcode/blocks will be added before content"
 msgstr ""
 
-#: templates/admin/support.php:249
-msgid "WooCommerce"
-msgstr ""
-
-#: includes/Helpers/PetitionHelper.php:1813
+#: includes/Helpers/PetitionHelper.php:1816
 msgid "WordPress Core Login Form"
 msgstr ""
 
-#: templates/admin/support.php:234
-msgid "WPForms"
-msgstr ""
-
-#: includes/Helpers/PetitionHelper.php:1950
-#: includes/Helpers/PetitionHelper.php:1963
-#: includes/Helpers/PetitionHelper.php:1984
-#: includes/Helpers/PetitionHelper.php:2018
-#: includes/Helpers/PetitionHelper.php:2255
-#: widgets/classic_widgets/class-cbxpetition-signform-widget.php:71
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:129
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:141
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:153
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:182
-#: widgets/elementor-elements/class-cbxpetition-latest-display-elemwidget.php:197
-#: widgets/elementor-elements/class-cbxpetition-signform-display-elemwidget.php:115
-#: widgets/elementor-elements/class-cbxpetition-stat-display-elemwidget.php:103
-#: widgets/elementor-elements/class-cbxpetition-stat-display-elemwidget.php:117
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:72
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:84
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:96
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:122
-#: widgets/vc_widgets/class-cbxpetition-latest-vcwidget.php:138
-#: widgets/vc_widgets/class-cbxpetition-stat-vcwidget.php:49
-#: widgets/vc_widgets/class-cbxpetition-stat-vcwidget.php:60
-#: widgets/classic_widgets/views/admin.php:69
-#: widgets/classic_widgets/views/admin.php:82
-#: widgets/classic_widgets/views/admin.php:95
-#: widgets/classic_widgets/views/admin.php:126
-#: widgets/classic_widgets/views/admin.php:139
+#: includes/Helpers/PetitionHelper.php:1954
+#: includes/Helpers/PetitionHelper.php:1988
+#: includes/Helpers/PetitionHelper.php:2022
+#: includes/Helpers/PetitionHelper.php:2259
+#: includes/Widgets/Classic/CBXPetitionLatestWidget.php:170
+#: includes/Widgets/Classic/CBXPetitionLatestWidget.php:183
+#: includes/Widgets/Classic/CBXPetitionLatestWidget.php:196
+#: includes/Widgets/Classic/CBXPetitionSignformWidget.php:71
 msgid "Yes"
 msgstr ""
 
 #. %1$s: policy page url, %2$s: terms page link
-#: templates/petition/sign-form.php:238
+#: templates/petition/sign-form.php:246
 #, php-format
 msgid ""
 "YES, I agree with <a href=\"%1$s\" target=\"_blank\">Privacy policy</a> and "
 "<a target=\"_blank\" href=\"%2$s\">Terms & Condition</a>"
 msgstr ""
 
-#: templates/petition/sign-form.php:127
+#: templates/petition/sign-form.php:134
 msgid "You already signed the petition, thank you."
 msgstr ""
 
 #. %1$s: user name , %2$s: logout link
-#: templates/petition/sign-form.php:130 templates/petition/sign-form.php:200
+#: templates/petition/sign-form.php:137 templates/petition/sign-form.php:207
 #, php-format
 msgid ""
 "You are logged in as <strong>%1$s</strong>, <a class=\"cbxpetition-sign-"
 "logout-confirm\" href=\"%2$s\">Logout?</a>"
 msgstr ""
 
-#: includes/CBXPetitionPublic.php:342
+#: includes/CBXPetitionPublic.php:352
 msgid "You must agree to privacy terms and conditions."
 msgstr ""
 
@@ -3256,6 +2721,6 @@ msgstr ""
 msgid "Your Signature Has Been Approved!"
 msgstr ""
 
-#: includes/CBXPetitionPublic.php:425
+#: includes/CBXPetitionPublic.php:435
 msgid "Your signature request stored successfully. Thank you!"
 msgstr ""

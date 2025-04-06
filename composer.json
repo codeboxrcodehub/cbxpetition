@@ -21,5 +21,9 @@
       "includes/Helpers/petition_tpl_loader.php",
       "includes/Helpers/CBXPetitionEmailFunctions.php"
     ]
+  },
+  "replace": {
+    "symfony/console": "*",
+    "symfony/translation": "*"
   }
 }

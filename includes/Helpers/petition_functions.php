@@ -100,7 +100,7 @@ if ( ! function_exists( 'cbxpetition_petitionSignInfo' ) ) {
 	}//end method cbxpetition_petitionSignInfo
 }
 
-if(!function_exists('cbxpetition_petitionExpireDate')){
+if ( ! function_exists( 'cbxpetition_petitionExpireDate' ) ) {
 	/**
 	 * get single petition expire date
 	 *
@@ -113,7 +113,7 @@ if(!function_exists('cbxpetition_petitionExpireDate')){
 	}//end function cbxpetition_petitionExpireDate
 }
 
-if(!function_exists('cbxpetition_petitionMediaInfo')){
+if ( ! function_exists( 'cbxpetition_petitionMediaInfo' ) ) {
 	/**
 	 * get single petition media info data arr
 	 *
@@ -126,7 +126,7 @@ if(!function_exists('cbxpetition_petitionMediaInfo')){
 	}//end function cbxpetition_petitionMediaInfo
 }
 
-if(!function_exists('cbxpetition_petitionBannerImage')){
+if ( ! function_exists( 'cbxpetition_petitionBannerImage' ) ) {
 	/**
 	 * get single petition banner image
 	 *
@@ -139,7 +139,7 @@ if(!function_exists('cbxpetition_petitionBannerImage')){
 	}//end function cbxpetition_petitionBannerImage
 }
 
-if(!function_exists('cbxpetition_petitionSignatureTarget')){
+if ( ! function_exists( 'cbxpetition_petitionSignatureTarget' ) ) {
 	/**
 	 * get single petition signature target
 	 *
@@ -152,7 +152,7 @@ if(!function_exists('cbxpetition_petitionSignatureTarget')){
 	}//end function cbxpetition_petitionSignatureTarget
 }
 
-if(!function_exists('cbxpetition_petitionVideoInfo')){
+if ( ! function_exists( 'cbxpetition_petitionVideoInfo' ) ) {
 	/**
 	 * get single petition video info
 	 *
@@ -165,7 +165,7 @@ if(!function_exists('cbxpetition_petitionVideoInfo')){
 	}//end function cbxpetition_petitionVideoInfo
 }
 
-if(!function_exists('cbxpetition_petitionPhotos')){
+if ( ! function_exists( 'cbxpetition_petitionPhotos' ) ) {
 	/**
 	 * get single petition photos
 	 *
@@ -178,7 +178,7 @@ if(!function_exists('cbxpetition_petitionPhotos')){
 	}//end function cbxpetition_petitionPhotos
 }
 
-if(!function_exists('cbxpetition_petitionLetterInfo')){
+if ( ! function_exists( 'cbxpetition_petitionLetterInfo' ) ) {
 	/**
 	 * get single petition letter info
 	 *
@@ -191,7 +191,7 @@ if(!function_exists('cbxpetition_petitionLetterInfo')){
 	}//end function cbxpetition_petitionLetterInfo
 }
 
-if(!function_exists('cbxpetition_petitionLetter')){
+if ( ! function_exists( 'cbxpetition_petitionLetter' ) ) {
 	/**
 	 * get single petition letter
 	 *
@@ -204,7 +204,7 @@ if(!function_exists('cbxpetition_petitionLetter')){
 	}//end function cbxpetition_petitionLetter
 }
 
-if(!function_exists('cbxpetition_petitionRecipients')){
+if ( ! function_exists( 'cbxpetition_petitionRecipients' ) ) {
 	/**
 	 * get single petition recipients
 	 *
@@ -216,7 +216,7 @@ if(!function_exists('cbxpetition_petitionRecipients')){
 		return PetitionHelper::petitionRecipients( $petition_id );
 	}//end function cbxpetition_petitionRecipients
 }
-if(!function_exists('cbxpetition_petitionSignatureCount')){
+if ( ! function_exists( 'cbxpetition_petitionSignatureCount' ) ) {
 	/**
 	 * get single petition signature count
 	 *
@@ -229,7 +229,7 @@ if(!function_exists('cbxpetition_petitionSignatureCount')){
 	}//end function cbxpetition_petitionSignatureCount
 }
 
-if(!function_exists('cbxpetition_petitionSignatureTargetRatio')){
+if ( ! function_exists( 'cbxpetition_petitionSignatureTargetRatio' ) ) {
 	/**
 	 * get single petition signature to target ratio
 	 *
@@ -241,7 +241,6 @@ if(!function_exists('cbxpetition_petitionSignatureTargetRatio')){
 		return PetitionHelper::petitionSignatureTargetRatio( $petition_id );
 	}//end method cbxpetition_petitionSignatureTargetRatio
 }
-
 
 
 if ( ! function_exists( 'cbxpetition_get_order_keys' ) ) {
@@ -532,7 +531,7 @@ if ( ! function_exists( 'cbxpetition_is_current_user_petition_owner' ) ) {
 	}//end function cbxpetition_is_current_user_petition_owner
 }
 
-if(!function_exists('cbxpetition_signature_count')){
+if ( ! function_exists( 'cbxpetition_signature_count' ) ) {
 	function cbxpetition_signature_count( $petition_id = 0 ) {
 		$count = 0;
 
@@ -541,6 +540,55 @@ if(!function_exists('cbxpetition_signature_count')){
 			return $count;
 		}
 
-		return PetitionHelper::petitionSignatureCount($petition_id);
+		return PetitionHelper::petitionSignatureCount( $petition_id );
 	}//end function cbxpetition_signature_count
+}
+
+if ( ! function_exists( 'cbxpetition_default_categories' ) ) {
+	/**
+	 * Get petition default categories
+	 *
+	 * @return mixed|null
+	 * @since 2.0.3
+	 */
+	function cbxpetition_default_categories() {
+		return PetitionHelper::default_categories();
+	}//end method cbxpetition_default_categories
+}
+
+if ( ! function_exists( 'cbxpetition_create_default_categories' ) ) {
+	/**
+	 * Create petition default categories
+	 *
+	 * @return void
+	 * @since 2.0.3
+	 */
+	function cbxpetition_create_default_categories() {
+		return PetitionHelper::create_default_categories();
+	}//end method cbxpetition_create_default_categories
+}
+
+
+if ( ! function_exists( 'cbxpetition_category_count' ) ) {
+
+	/**
+	 * Returns petition category count
+	 *
+	 *
+	 * @return int
+	 * @since 2.0.3
+	 */
+	function cbxpetition_category_count() {
+		$taxonomy      = 'cbxpetition_cat';
+		$count = wp_count_terms( [
+			'taxonomy'   => $taxonomy,
+			'hide_empty' => false,
+		] );
+
+		if ( is_wp_error( $count ) ) {
+			return 0;
+		}
+
+		return (int) $count;
+	}//end method cbxpetition_category_count
 }
