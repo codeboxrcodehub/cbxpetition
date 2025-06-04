@@ -1,7 +1,7 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2025-04-06 19:40+0000\n"
+"POT-Creation-Date: 2025-06-04 10:38+0000\n"
 "Language: \n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -323,13 +323,13 @@ msgid "CBX Petition Options"
 msgstr ""
 
 #. PHP version
-#: cbxpetition.php:102
+#: cbxpetition.php:114
 #, php-format
 msgid "CBX Petition plugin requires PHP %s or higher!"
 msgstr ""
 
 #. WordPress version
-#: cbxpetition.php:95
+#: cbxpetition.php:105
 #, php-format
 msgid "CBX Petition plugin requires WordPress %s or higher!"
 msgstr ""
@@ -347,6 +347,14 @@ msgstr ""
 msgid ""
 "CBX Petition Pro Addon has frontend petition submission features and more "
 "extra features, <a target=\"_blank\" href=\"%s\">try it</a> - Codeboxr Team"
+msgstr ""
+
+#. PHP Version
+#: includes/CBXPetition.php:286
+#, php-format
+msgid ""
+"CBX Petition requires at least PHP %s. Please upgrade PHP to run CBX "
+"Petition."
 msgstr ""
 
 #: includes/CBXPetitionAdmin.php:2198
@@ -478,7 +486,7 @@ msgstr ""
 msgid "Click to show hide"
 msgstr ""
 
-#: includes/CBXPetition.php:108 includes/CBXPetitionEmails.php:42
+#: includes/CBXPetition.php:112 includes/CBXPetitionEmails.php:42
 #: includes/CBXSetting.php:59
 msgid "Cloning is forbidden."
 msgstr ""
@@ -2502,7 +2510,7 @@ msgstr ""
 msgid "Unnamed"
 msgstr ""
 
-#: includes/CBXPetition.php:117 includes/CBXPetitionEmails.php:51
+#: includes/CBXPetition.php:121 includes/CBXPetitionEmails.php:51
 #: includes/CBXSetting.php:68
 msgid "Unserializing instances of this class is forbidden."
 msgstr ""

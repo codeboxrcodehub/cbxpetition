@@ -2342,7 +2342,7 @@ class CBXPetitionAdmin {
 		if(defined('CBXPETITIONPROADDON_PLUGIN_NAME')) return;
 
 		$pro_addon_version = PetitionHelper::get_any_plugin_version('cbxpetitionproaddon/cbxpetitionproaddon.php');
-		$pro_latest_version  = '2.0.1';
+		$pro_latest_version  = '2.0.2';
 
 		if($pro_addon_version != '' && version_compare( $pro_addon_version, $pro_latest_version, '<' ) ){
 			// Custom message to display

@@ -87,24 +87,33 @@ $doc_url    = PetitionHelper::url_utmy( 'https://codeboxr.com/doc/cbxpetition-do
                     <div class="content">
                         <div class="cbx-backend-settings-row">
                             <p>
-                                Version - 2.0.1
+                                Version - 2.0.4
                             </p>
                             <ul>
-                                <li>[fixed] Plugin activation error in linux platform</li>
+                                <li>[updated] PHP compatible version check updated</li>
+                                <li>[new] WordPress 6.8 compatible</li>
+                                <li>[new] Pro addon plugin V2.0.2 released and compatible</li>
                             </ul>
                         </div>
                         <div class="cbx-backend-settings-row">
                             <p>
-                                Version - 2.0.0
+                                Version - 2.0.3
                             </p>
                             <ul>
-                                <li>[fixed] Classic widget title fix</li>
-                                <li>[new] Elementor widgets added(compatible with all shortcodes)</li>
-                                <li>[new] WPBakery widgets added(compatible with all shortcodes)</li>
-                                <li>[new] All styles are generated using scss and minified to minimize load time and performance.</li>
-                                <li>[fixed] Backend signature listing works for search page pagination, pagination fixed</li>
-                                <li>[new] Totally refreshed dashboard</li>
-                                <li>[new] Pro addon V2.0.0 released</li>
+                                <li>[new] On activation or upgrade creates default categories if no category exists/created yet</li>
+                                <li>[fixed] Astra theme video embed style fixed/astra theme compatible</li>
+                                <li>[updated] Minor improvement</li>
+                                <li>[updated] Pro addon plugin V2.0.1 released and compatible</li>
+                            </ul>
+                        </div>
+
+                        <div class="cbx-backend-settings-row">
+                            <p>
+                                Version - 2.0.2
+                            </p>
+                            <ul>
+                                <li>[new] All shortcode and classic widget compatible block editor widgets added</li>
+                                <li>[updated] Hooks and shortcode loading classes are improved.</li>
                             </ul>
                         </div>
                     </div>
@@ -118,10 +127,31 @@ $doc_url    = PetitionHelper::url_utmy( 'https://codeboxr.com/doc/cbxpetition-do
                     <div class="content">
                         <div class="cbx-backend-settings-row">
                             <p>
+                                Version - 2.0.2
+                            </p>
+                            <ul>
+                                <li>[updated] PHP compatible version check updated</li>
+                                <li>[new] WordPress core V6.8 compatible</li>
+                                <li>[new] Core plugin V2.0.4 released</li>
+                            </ul>
+                        </div>
+                        <div class="cbx-backend-settings-row">
+                            <p>
+                                Version - 2.0.1
+                            </p>
+                            <ul>
+                                <li>[updated] Minor improvement</li>
+                                <li>[updated] Core plugin V2.0.3 released</li>
+                            </ul>
+                        </div>
+                        <div class="cbx-backend-settings-row">
+                            <p>
                                 Version - 2.0.0
                             </p>
                             <ul>
                                 <li>[new] Totally refreshed dashboard</li>
+                                <li>[new] Compatible with new email notification system</li>
+                                <li>[new] WordPress core V6.7.2 compatible</li>
                                 <li>[updated] Core plugin V2.0.0 released</li>
                             </ul>
                         </div>
@@ -200,7 +230,7 @@ $doc_url    = PetitionHelper::url_utmy( 'https://codeboxr.com/doc/cbxpetition-do
 				            'https://codeboxr.com/product/cbx-changelog-for-wordpress/'                           => 'CBX Changelog',
 				            'https://codeboxr.com/product/cbx-tour-user-walkthroughs-guided-tours-for-wordpress/' => 'CBX Tour – User Walkthroughs/Guided Tours',
 				            'https://codeboxr.com/product/cbx-currency-converter-for-wordpress/'                  => 'CBX Currency Converter',
-				            'https://codeboxr.com/product/cbx-email-logger-for-wordpress/'                        => 'CBX Email SMTP & Logger',
+				            'https://codeboxr.com/product/cbx-email-logger-for-wordpress/'                        => 'Comfort Email SMTP, Logger & Email Api',
 				            //'https://codeboxr.com/product/cbx-petition-for-wordpress/'                            => 'CBX Petition',
 				            //'https://codeboxr.com/product/cbx-accounting/'                                        => 'CBX Accounting',
 				            'https://codeboxr.com/product/cbx-poll-for-wordpress/'                                => 'CBX Poll',

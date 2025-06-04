@@ -56,17 +56,21 @@ final class CBXPetition {
 	}//end method instance
 
 	public function __construct() {
-		$this->include_files();
 
-		$this->admin      = new CBXPetitionAdmin();
-		$this->public     = new CBXPetitionPublic();
-		$this->short_code = new CBXPetitionShortCodes();
+		if ( cbxpetition_compatible_php_version() ) {
+			$this->include_files();
 
+			$this->admin      = new CBXPetitionAdmin();
+			$this->public     = new CBXPetitionPublic();
+			$this->short_code = new CBXPetitionShortCodes();
 
-		$this->common_hooks();
-		$this->admin_hooks();
-		$this->public_hooks();
-		$this->init_shortcodes();
+			$this->common_hooks();
+			$this->admin_hooks();
+			$this->public_hooks();
+			$this->init_shortcodes();
+		} else {
+			add_action( 'admin_notices', [ $this, 'php_version_notice' ] );
+		}
 	}//end method constructor
 
 	/**
@@ -124,7 +128,7 @@ final class CBXPetition {
 	 * @return void
 	 */
 	private function include_files() {
-		require_once __DIR__ . '/../lib/autoload.php';
+		require_once __DIR__ . '/../vendor/autoload.php';
 		include_once __DIR__ . '/CBXPetitionEmails.php';
 	}//end method include_files
 
@@ -270,4 +274,16 @@ final class CBXPetition {
 
 		add_action( 'init', [ $shortcode, 'init_shortcodes' ] );
 	}//end method init_shortcodes
+
+	/**
+	 * Show php version notice in dashboard
+	 *
+	 * @return void
+	 */
+	public function php_version_notice() {
+		echo '<div class="error"><p>';
+		/* Translators:  PHP Version */
+		echo sprintf(esc_html__( 'CBX Petition requires at least PHP %s. Please upgrade PHP to run CBX Petition.', 'cbxpetition' ), esc_attr(CBXPETITION_PHP_MIN_VERSION));
+		echo '</p></div>';
+	}//end method php_version_notice
 }//end class CBXPetition

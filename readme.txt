@@ -2,8 +2,8 @@
 Contributors: codeboxr, manchumahara
 Tags: petition,activism,signature,change,campaign
 Requires at least: 5.3
-Tested up to: 6.7.2
-Stable tag: 2.0.3
+Tested up to: 6.8
+Stable tag: 2.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -196,6 +196,11 @@ Get the [pro addon](https://codeboxr.com/product/cbx-petition-for-wordpress/)
 
 
 == Changelog ==
+= 2.0.4 =
+* [updated] PHP compatible version check updated
+* [new] WordPress 6.8 compatible
+* [new] Pro addon plugin V2.0.2 released and compatible
+
 = 2.0.3 =
 * [new] On activation or upgrade creates default categories if no category exists/created yet
 * [fixed] Astra theme video embed style fixed/astra theme compatible
