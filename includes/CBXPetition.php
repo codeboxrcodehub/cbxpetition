@@ -58,6 +58,8 @@ final class CBXPetition {
 	public function __construct() {
 
 		if ( cbxpetition_compatible_php_version() ) {
+			$GLOBALS['cbxpetition_loaded'] = true;
+
 			$this->include_files();
 
 			$this->admin      = new CBXPetitionAdmin();

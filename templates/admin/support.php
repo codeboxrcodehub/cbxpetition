@@ -87,6 +87,15 @@ $doc_url    = PetitionHelper::url_utmy( 'https://codeboxr.com/doc/cbxpetition-do
                     <div class="content">
                         <div class="cbx-backend-settings-row">
                             <p>
+                                Version - 2.0.5
+                            </p>
+                            <ul>
+                                <li>[updated] Plugin loading optimized based on core plugin</li>
+                                <li>[new] Pro addon plugin V2.0.3 released and compatible</li>
+                            </ul>
+                        </div>
+                        <div class="cbx-backend-settings-row">
+                            <p>
                                 Version - 2.0.4
                             </p>
                             <ul>
@@ -125,6 +134,15 @@ $doc_url    = PetitionHelper::url_utmy( 'https://codeboxr.com/doc/cbxpetition-do
                         </div>
                     </div>
                     <div class="content">
+                        <div class="cbx-backend-settings-row">
+                            <p>
+                                Version - 2.0.3
+                            </p>
+                            <ul>
+                                <li>[updated] Plugin loading optimized based on core plugin</li>
+                                <li>[new] Core plugin V2.0.5 released</li>
+                            </ul>
+                        </div>
                         <div class="cbx-backend-settings-row">
                             <p>
                                 Version - 2.0.2
