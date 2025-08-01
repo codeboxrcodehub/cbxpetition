@@ -1,7 +1,7 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2025-06-04 10:38+0000\n"
+"POT-Creation-Date: 2025-08-01 18:24+0000\n"
 "Language: \n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -52,7 +52,7 @@ msgid ""
 msgstr ""
 
 #. translators:translators: %s: plugin setting url for licence
-#: includes/CBXPetitionAdmin.php:2355
+#: includes/CBXPetitionAdmin.php:2354
 #, php-format
 msgid ""
 "<strong>Note:</strong> CBX Petition Pro Addon is custom plugin. This plugin "
@@ -228,12 +228,12 @@ msgstr ""
 msgid "Banner upload failed, no file received or invalid file."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2073
+#: includes/CBXPetitionAdmin.php:2072
 msgid "Banner upload failed, wrong file extension."
 msgstr ""
 
 #. %d: photo maximum size in mb
-#: includes/CBXPetitionAdmin.php:2075
+#: includes/CBXPetitionAdmin.php:2074
 msgid "Banner upload failed, wrong file size(Max %d MB)."
 msgstr ""
 
@@ -241,7 +241,7 @@ msgstr ""
 msgid "Banner upload failed, wrong file size."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2072 includes/Helpers/PetitionHelper.php:1482
+#: includes/CBXPetitionAdmin.php:2071 includes/Helpers/PetitionHelper.php:1482
 msgid "Banner upload failed, wrong file type."
 msgstr ""
 
@@ -314,7 +314,7 @@ msgstr ""
 msgid "CBX Petition"
 msgstr ""
 
-#: templates/admin/support.php:146
+#: templates/admin/support.php:197
 msgid "CBX Petition for WordPress"
 msgstr ""
 
@@ -350,18 +350,18 @@ msgid ""
 msgstr ""
 
 #. PHP Version
-#: includes/CBXPetition.php:286
+#: includes/CBXPetition.php:288
 #, php-format
 msgid ""
 "CBX Petition requires at least PHP %s. Please upgrade PHP to run CBX "
 "Petition."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2198
+#: includes/CBXPetitionAdmin.php:2197
 msgid "CBX Petition reset setting html loaded successfully"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2223
+#: includes/CBXPetitionAdmin.php:2222
 msgid "CBX Petition setting options reset successfully"
 msgstr ""
 
@@ -403,7 +403,7 @@ msgstr ""
 msgid "Changelog Core Plugin"
 msgstr ""
 
-#: templates/admin/support.php:115
+#: templates/admin/support.php:121
 msgid "Changelog Pro Addon"
 msgstr ""
 
@@ -424,11 +424,11 @@ msgstr ""
 msgid "Choose"
 msgstr ""
 
-#: includes/CBXSetting.php:736
+#: includes/CBXSetting.php:771
 msgid "Choose Color"
 msgstr ""
 
-#: includes/CBXSetting.php:706
+#: includes/CBXSetting.php:706 includes/CBXSetting.php:726
 msgid "Choose File"
 msgstr ""
 
@@ -456,7 +456,7 @@ msgstr ""
 msgid "clear and close"
 msgstr ""
 
-#: includes/CBXSetting.php:833
+#: includes/CBXSetting.php:868
 msgid "Clear Permalinks"
 msgstr ""
 
@@ -468,7 +468,7 @@ msgid ""
 "Click <a target=\"_blank\" href=\"%s\">here</a> to see all the petitions"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2178 includes/CBXPetitionAdmin.php:2180
+#: includes/CBXPetitionAdmin.php:2177 includes/CBXPetitionAdmin.php:2179
 #: includes/Helpers/PetitionHelper.php:2332
 msgid "Click to copy"
 msgstr ""
@@ -486,7 +486,7 @@ msgstr ""
 msgid "Click to show hide"
 msgstr ""
 
-#: includes/CBXPetition.php:112 includes/CBXPetitionEmails.php:42
+#: includes/CBXPetition.php:114 includes/CBXPetitionEmails.php:42
 #: includes/CBXSetting.php:59
 msgid "Cloning is forbidden."
 msgstr ""
@@ -499,7 +499,7 @@ msgstr ""
 msgid "Codeboxr"
 msgstr ""
 
-#: templates/admin/support.php:230
+#: templates/admin/support.php:281
 msgid "Codeboxr News Updates"
 msgstr ""
 
@@ -555,7 +555,7 @@ msgstr ""
 msgid "Copy"
 msgstr ""
 
-#: templates/admin/support.php:174
+#: templates/admin/support.php:225
 msgid "Core Plugin Support"
 msgstr ""
 
@@ -597,7 +597,7 @@ msgstr ""
 msgid "Default Sign Status"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2051 includes/PetitionSignListTable.php:126
+#: includes/CBXPetitionAdmin.php:2050 includes/PetitionSignListTable.php:126
 #: includes/PetitionSignListTable.php:276
 msgid "Delete"
 msgstr ""
@@ -652,7 +652,7 @@ msgstr ""
 msgid "Documentation"
 msgstr ""
 
-#: templates/admin/support.php:156
+#: templates/admin/support.php:207
 msgid "Documentation & User Guide"
 msgstr ""
 
@@ -861,7 +861,7 @@ msgid "Expire Date(*)"
 msgstr ""
 
 #. %s: Petition expire date
-#: includes/CBXPetitionAdmin.php:2138
+#: includes/CBXPetitionAdmin.php:2137
 #, php-format
 msgid "Expiry Date: %s"
 msgstr ""
@@ -969,7 +969,7 @@ msgid "Global Email Template"
 msgstr ""
 
 #: includes/CBXPetitionAdmin.php:109 includes/CBXPetitionAdmin.php:1913
-#: includes/CBXPetitionAdmin.php:1987 includes/CBXPetitionAdmin.php:2078
+#: includes/CBXPetitionAdmin.php:1987 includes/CBXPetitionAdmin.php:2077
 #: templates/admin/admin-sign-edit.php:39
 #: templates/admin/admin-signs-listing.php:39 templates/admin/support.php:22
 msgid "Global Settings"
@@ -996,7 +996,7 @@ msgstr ""
 msgid "Header Image"
 msgstr ""
 
-#: templates/admin/support.php:135
+#: templates/admin/support.php:186
 msgid "Help & Supports"
 msgstr ""
 
@@ -1196,6 +1196,10 @@ msgstr ""
 msgid "New Petition Signature"
 msgstr ""
 
+#: templates/admin/support.php:159
+msgid "New Plugins: HRM & ERP "
+msgstr ""
+
 #: includes/Emails/CBXPetitionNewSignAdminAlertEmail.php:24
 msgid "New sign admin email alert"
 msgstr ""
@@ -1324,7 +1328,7 @@ msgstr ""
 msgid "Option Name"
 msgstr ""
 
-#: templates/admin/support.php:193
+#: templates/admin/support.php:244
 msgid "Other WordPress Plugins"
 msgstr ""
 
@@ -1373,7 +1377,7 @@ msgstr ""
 msgid "Pending"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2263
+#: includes/CBXPetitionAdmin.php:2262
 msgid "Permalink cache cleared successfully"
 msgstr ""
 
@@ -1542,15 +1546,15 @@ msgstr ""
 msgid "Petition Terms Page"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2080
+#: includes/CBXPetitionAdmin.php:2079
 msgid "Petition Title"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2081
+#: includes/CBXPetitionAdmin.php:2080
 msgid "Petition title here"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:1991 includes/CBXPetitionAdmin.php:2079
+#: includes/CBXPetitionAdmin.php:1991 includes/CBXPetitionAdmin.php:2078
 msgid "Petition:"
 msgstr ""
 
@@ -1633,7 +1637,7 @@ msgstr ""
 msgid "Photo upload failed, invalid petition."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2060 includes/Helpers/PetitionHelper.php:1471
+#: includes/CBXPetitionAdmin.php:2059 includes/Helpers/PetitionHelper.php:1471
 msgid "Photo upload failed, maximum allowed reached."
 msgstr ""
 
@@ -1641,12 +1645,12 @@ msgstr ""
 msgid "Photo upload failed, no file received or invalid file."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2062
+#: includes/CBXPetitionAdmin.php:2061
 msgid "Photo upload failed, wrong file extension."
 msgstr ""
 
 #. %d: photo maximum size in mb
-#: includes/CBXPetitionAdmin.php:2064
+#: includes/CBXPetitionAdmin.php:2063
 msgid "Photo upload failed, wrong file size(Max %d MB)."
 msgstr ""
 
@@ -1655,7 +1659,7 @@ msgstr ""
 msgid "Photo upload failed, wrong file size. Maximum allowed size %d MB"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2061 includes/Helpers/PetitionHelper.php:1472
+#: includes/CBXPetitionAdmin.php:2060 includes/Helpers/PetitionHelper.php:1472
 msgid "Photo upload failed, wrong file type."
 msgstr ""
 
@@ -1809,7 +1813,7 @@ msgstr ""
 msgid "Previous page"
 msgstr ""
 
-#: templates/admin/support.php:184
+#: templates/admin/support.php:235
 msgid "Pro Addon Support"
 msgstr ""
 
@@ -1846,7 +1850,7 @@ msgstr ""
 msgid "Reset Sections"
 msgstr ""
 
-#: templates/admin/support.php:164
+#: templates/admin/support.php:215
 msgid "Review & Rate CBX Petition for WordPress"
 msgstr ""
 
@@ -1871,7 +1875,7 @@ msgstr ""
 msgid "Save Changes"
 msgstr ""
 
-#: includes/CBXSetting.php:1100 templates/admin/settings.php:37
+#: includes/CBXSetting.php:1135 templates/admin/settings.php:37
 msgid "Save Settings"
 msgstr ""
 
@@ -1899,7 +1903,7 @@ msgstr ""
 msgid "Search..."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2288
+#: includes/CBXPetitionAdmin.php:2287
 msgid "Security check failed!"
 msgstr ""
 
@@ -2090,7 +2094,7 @@ msgid "Signatures from petition \"<strong>%s</strong>\""
 msgstr ""
 
 #. %1$d: signature count , %2$d: signature target, %3$s: signature target ratio
-#: includes/CBXPetitionAdmin.php:2133
+#: includes/CBXPetitionAdmin.php:2132
 #, php-format
 msgid "Signatures: %1$d of %2$d (%3$s)"
 msgstr ""
@@ -2136,7 +2140,7 @@ msgstr ""
 msgid "Sorry! You are not authorized to edit signature."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2324
+#: includes/CBXPetitionAdmin.php:2323
 msgid "Sorry, invalid email id"
 msgstr ""
 
@@ -2195,8 +2199,8 @@ msgstr ""
 msgid "Sorry, signature not found or already validated."
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2202 includes/CBXPetitionAdmin.php:2228
-#: includes/CBXPetitionAdmin.php:2267
+#: includes/CBXPetitionAdmin.php:2201 includes/CBXPetitionAdmin.php:2227
+#: includes/CBXPetitionAdmin.php:2266
 msgid "Sorry, you don't have enough permission"
 msgstr ""
 
@@ -2220,7 +2224,7 @@ msgstr ""
 msgid "Sorry, you don't have enough permission to upload photo"
 msgstr ""
 
-#: includes/CBXPetitionAdmin.php:2052
+#: includes/CBXPetitionAdmin.php:2051
 msgid "Sort"
 msgstr ""
 
@@ -2458,7 +2462,7 @@ msgstr ""
 msgid "To edit click this url."
 msgstr ""
 
-#: includes/CBXSetting.php:1074
+#: includes/CBXSetting.php:1109
 msgid "Toggle All Sections"
 msgstr ""
 
@@ -2510,7 +2514,7 @@ msgstr ""
 msgid "Unnamed"
 msgstr ""
 
-#: includes/CBXPetition.php:121 includes/CBXPetitionEmails.php:51
+#: includes/CBXPetition.php:123 includes/CBXPetitionEmails.php:51
 #: includes/CBXSetting.php:68
 msgid "Unserializing instances of this class is forbidden."
 msgstr ""

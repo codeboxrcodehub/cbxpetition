@@ -1771,8 +1771,8 @@ class CBXPetitionAdmin {
 
 
 		if ( $page == 'cbxpetition-settings' ) {
-			wp_register_style( 'select2', $css_url_part_vendors . 'select2/css/select2.min.css', [], $ver );
-			wp_register_style( 'pickr', $css_url_part_vendors . 'pickr/themes/classic.min.css', [], $ver );
+			wp_register_style( 'select2', $css_url_part_vendors . 'select2/select2.min.css', [], $ver );
+			wp_register_style( 'pickr', $css_url_part_vendors . 'pickr/classic.min.css', [], $ver );
 
 
 			wp_register_style( 'cbxpetition-setting', $css_url_part . 'cbxpetition-setting.css', [
@@ -1887,7 +1887,7 @@ class CBXPetitionAdmin {
 
 		//register vendors
 		wp_register_script( 'awesome-notifications', $js_url_part_vendors . 'awesome-notifications/script.js', [], $ver, true );
-		wp_register_script( 'select2', $js_url_part_vendors . 'select2/js/select2.full.min.js', [ 'jquery' ], $ver, true );
+		wp_register_script( 'select2', $js_url_part_vendors . 'select2/select2.min.js', [ 'jquery' ], $ver, true );
 		wp_register_script( 'flatpickr', $js_url_part_vendors . 'flatpickr/flatpickr.min.js', [ 'jquery' ], $ver, true );
 		wp_register_script( 'pickr', $js_url_part_vendors . 'pickr/pickr.min.js', [], $ver, true );
 		wp_register_script( 'jquery-validate', $js_url_part_vendors . 'jquery-validation/jquery.validate.min.js', [ 'jquery' ], $ver, true );
@@ -2031,7 +2031,6 @@ class CBXPetitionAdmin {
 
 				//scripts
 				wp_register_script( 'mustache', $js_url_part_vendors . 'mustache/mustache.min.js', [ 'jquery' ], $ver, true );
-
 				wp_register_script( 'cbxpetition-file-upload', $js_url_part_vendors . 'dm-uploader/js/jquery.dm-uploader.min.js', [ 'jquery' ], $ver, true );
 
 				$petition_media_js_deps = [
@@ -2342,7 +2341,7 @@ class CBXPetitionAdmin {
 		if(defined('CBXPETITIONPROADDON_PLUGIN_NAME')) return;
 
 		$pro_addon_version = PetitionHelper::get_any_plugin_version('cbxpetitionproaddon/cbxpetitionproaddon.php');
-		$pro_latest_version  = '2.0.2';
+		$pro_latest_version  = '2.0.4';
 
 		if($pro_addon_version != '' && version_compare( $pro_addon_version, $pro_latest_version, '<' ) ){
 			// Custom message to display
@@ -2377,4 +2376,4 @@ class CBXPetitionAdmin {
 			delete_transient('cbxpetition_create_cats');
 		}
 	}//end method create_default_category
-}//end class Admin
+}//end class CBXPetitionAdmin

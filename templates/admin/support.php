@@ -87,6 +87,15 @@ $doc_url    = PetitionHelper::url_utmy( 'https://codeboxr.com/doc/cbxpetition-do
                     <div class="content">
                         <div class="cbx-backend-settings-row">
                             <p>
+                                Version - 2.0.6
+                            </p>
+                            <ul>
+                                <li>[updated] Js vendors library updated</li>
+                                <li>[new] Pro addon plugin V2.0.4 released and compatible</li>
+                            </ul>
+                        </div>
+                        <div class="cbx-backend-settings-row">
+                            <p>
                                 Version - 2.0.5
                             </p>
                             <ul>
@@ -104,27 +113,6 @@ $doc_url    = PetitionHelper::url_utmy( 'https://codeboxr.com/doc/cbxpetition-do
                                 <li>[new] Pro addon plugin V2.0.2 released and compatible</li>
                             </ul>
                         </div>
-                        <div class="cbx-backend-settings-row">
-                            <p>
-                                Version - 2.0.3
-                            </p>
-                            <ul>
-                                <li>[new] On activation or upgrade creates default categories if no category exists/created yet</li>
-                                <li>[fixed] Astra theme video embed style fixed/astra theme compatible</li>
-                                <li>[updated] Minor improvement</li>
-                                <li>[updated] Pro addon plugin V2.0.1 released and compatible</li>
-                            </ul>
-                        </div>
-
-                        <div class="cbx-backend-settings-row">
-                            <p>
-                                Version - 2.0.2
-                            </p>
-                            <ul>
-                                <li>[new] All shortcode and classic widget compatible block editor widgets added</li>
-                                <li>[updated] Hooks and shortcode loading classes are improved.</li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
                 <div class="cbx-backend-card dashboard-changelog">
@@ -134,6 +122,16 @@ $doc_url    = PetitionHelper::url_utmy( 'https://codeboxr.com/doc/cbxpetition-do
                         </div>
                     </div>
                     <div class="content">
+                        <div class="cbx-backend-settings-row">
+                            <p>
+                                Version - 2.0.4
+                            </p>
+                            <ul>
+                                <li>[updated] Dashboard Shortcode display fixed</li>
+                                <li>[updated] Js vendor library updated</li>
+                                <li>[new] Core plugin V2.0.6 released</li>
+                            </ul>
+                        </div>
                         <div class="cbx-backend-settings-row">
                             <p>
                                 Version - 2.0.3
@@ -153,24 +151,29 @@ $doc_url    = PetitionHelper::url_utmy( 'https://codeboxr.com/doc/cbxpetition-do
                                 <li>[new] Core plugin V2.0.4 released</li>
                             </ul>
                         </div>
-                        <div class="cbx-backend-settings-row">
-                            <p>
-                                Version - 2.0.1
-                            </p>
-                            <ul>
-                                <li>[updated] Minor improvement</li>
-                                <li>[updated] Core plugin V2.0.3 released</li>
-                            </ul>
+                    </div>
+                </div>
+                <div class="cbx-backend-card dashboard-hrm-erp">
+                    <div class="header">
+                        <div class="text">
+                            <h2><?php esc_html_e( 'New Plugins: HRM & ERP ', 'cbxpetition' ); ?></h2>
                         </div>
+                    </div>
+                    <div class="content">
                         <div class="cbx-backend-settings-row">
-                            <p>
-                                Version - 2.0.0
-                            </p>
                             <ul>
-                                <li>[new] Totally refreshed dashboard</li>
-                                <li>[new] Compatible with new email notification system</li>
-                                <li>[new] WordPress core V6.7.2 compatible</li>
-                                <li>[updated] Core plugin V2.0.0 released</li>
+                                <li>
+                                    <a rel="external" target="_blank" href="https://comforterp.com/product/comfort-accounting-accounting-solution-for-wordpress">Comfort
+                                        Accounting</a></li>
+                                <li>
+                                    <a rel="external" target="_blank" href="https://comforterp.com/product/comfort-inventory-and-invoice-complete-invoice-plugin-for-wordpress">Comfort
+                                        Inventory & Invoice</a></li>
+                                <li><a rel="external" target="_blank" href="https://comforthrm.com/product/comfort-resume-wordpress-resume-builder-plugin">Comfort
+                                        Resume</a></li>
+                                <li><a rel="external" target="_blank" href="https://comforthrm.com/product/comfort-job-wordpress-job-board-plugin">Comfort
+                                        Job Board</a></li>
+                                <li><a rel="external" target="_blank" href="https://comforthrm.com/product/comfort-job-application-plugin-for-wordpress">Comfort
+                                        Job Application</a></li>
                             </ul>
                         </div>
                     </div>

@@ -3,7 +3,7 @@ Contributors: codeboxr, manchumahara
 Tags: petition,activism,signature,change,campaign
 Requires at least: 5.3
 Tested up to: 6.8
-Stable tag: 2.0.5
+Stable tag: 2.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -11,8 +11,7 @@ A plugin to create, manage petition and collect signatures for petition
 
 == Description ==
 
-A plugin to create, manage petition and collect signatures for petition. Plugin is created with extensive settings and hooks/filters as necessary.
-Frontend and backend views are loaded as templates which can be override from theme.
+CBX Petition for WordPress makes it easy to create, manage, and showcase online petitions—right from your WordPress dashboard. Whether you're driving change locally or globally, this plugin gives you the tools to build momentum, collect signatures, and inspire action.
 
 
 ### CBX Petition by [Codeboxr](https://codeboxr.com/product/cbx-petition-for-wordpress/)
@@ -196,6 +195,10 @@ Get the [pro addon](https://codeboxr.com/product/cbx-petition-for-wordpress/)
 
 
 == Changelog ==
+= 2.0.6 =
+* [updated] Js vendors library updated
+* [new] Pro addon plugin V2.0.4 released and compatible
+
 = 2.0.5 =
 * [updated] Plugin loading optimized based on core plugin
 * [new] Pro addon plugin V2.0.3 released and compatible

@@ -1,6 +1,10 @@
 ;(function ($) {
   'use strict';
 
+  function cbxpetition_isEmptyOrUndefined(val) {
+    return val === undefined || val === null || val === '';
+  }//end method cbxpetition_isEmptyOrUndefined
+
   $(document).ready(function () {
     //Initiate Color Picker
     //$('.wp-color-picker-field').wpColorPicker();
@@ -20,8 +24,6 @@
     };
 
     $('.setting-color-picker-wrapper').each(function (index, element) {
-      //console.log(element);
-
       var $color_field_wrap = $(element);
       //console.log($color_field);
       var $color_field      = $color_field_wrap.find('.setting-color-picker');
@@ -119,19 +121,35 @@
     //select2
     $('.selecttwo-select-wrapper').each(function (index, element) {
       var $element = $(element);
-      var $allow_clear = parseInt($element.data('allow-clear', 0));
 
-      $element.find('.selecttwo-select').select2({
-        placeholder: cbxpetition_setting_js_var.placeholder.select,
-        allowClear : $allow_clear ? true : false,
-        theme      : 'default select2-container--cbx'
-        //dropdownParent: $(element)
-      });
+      var $placeholder = $element.data('placeholder');
+      var $allow_clear = $element.data('allow-clear');
+
+      if(cbxpetition_isEmptyOrUndefined($placeholder)) $placeholder = cbxpetition_setting_js_var.please_select;
+
+      $element
+          .find('.selecttwo-select')
+          .select2({
+            placeholder: $placeholder,
+            allowClear: $allow_clear ? true : false,
+            theme: 'default',
+            dropdownParent: $element
+          })
+          .on('select2:open', function () {
+            $('.select2-search__field').attr(
+                'placeholder',
+                cbxpetition_setting_js_var.placeholder.search
+            );
+          })
+          .on('select2:close', function () {
+            $('.select2-search__field').attr('placeholder', $placeholder);
+          });
+
+      $element
+          .find('.select2-selection__rendered')
+          .find('.select2-search--inline .select2-search__field')
+          .attr('placeholder', $placeholder);
     });
-
-
-
-
 
     var $setting_page = $('#cbxpetition-setting');
     var $setting_nav = $setting_page.find('.setting-tabs-nav');
@@ -160,9 +178,7 @@
       $setting_nav.find('a').removeClass('active');
       $('#' + $tab_id + '-tab').addClass('active');
 
-
       var clicked_group = '#' + $tab_id;
-
 
       $('.global_setting_group').hide();
       $(clicked_group).fadeIn();
@@ -196,11 +212,8 @@
       var $this = $(this);
       var $tab_id = $this.data('tabid');
 
-
       $('.setting-select-nav').val($tab_id);
       $('.setting-select-nav').trigger('change');
-
-
     });
 
     $('.setting-select-nav').on('change', function (e) {
@@ -217,9 +230,7 @@
       $('.setting-select-nav').trigger('change');
     }
 
-    $("#setting_resetinfo").on(
-      'click',
-      ".cbxpetition_setting_options_check_action_call",
+    $("#setting_resetinfo").on('click',      ".cbxpetition_setting_options_check_action_call",
       function (e) {
         e.preventDefault();
 
@@ -239,37 +250,6 @@
       }
     );
 
-    /*if (activetab !== '' && $(activetab).length && $(activetab).hasClass('global_setting_group')) {
-      $('.global_setting_group').hide();
-      $(activetab).fadeIn();
-    }
-
-
-
-    if (activetab !== '' && $(activetab + '-tab').length) {
-      $setting_nav.find('a').removeClass('active');
-      $(activetab + '-tab').addClass('active');
-    }
-
-    $setting_nav.on('click', 'a',function(e) {
-      e.preventDefault();
-
-      var $this = $(this);
-
-      $setting_nav.find('a').removeClass('active');
-      $this.addClass('active');
-
-
-
-      var clicked_group = $(this).attr('href');
-
-      if (typeof(localStorage) !== 'undefined') {
-        localStorage.setItem('cbxpetitionactivetab', $(this).attr('href'));
-      }
-      $('.global_setting_group').hide();
-      $(clicked_group).fadeIn();
-    });*/
-
 
     $('.wpsa-browse').on('click', function (event) {
       event.preventDefault();
@@ -288,11 +268,27 @@
       file_frame.on('select', function () {
         var attachment = file_frame.state().get('selection').first().toJSON();
 
-        self.prev('.wpsa-url').val(attachment.url);
+        var picker_wrapper = self.closest('.cbxchota-setting_input_file_wrap');
+
+        picker_wrapper.find('.wpsa-url').val(attachment.url);
+        picker_wrapper.find('.cbxchota-setting_marker_preview').css({
+          'background-image': 'url("' + attachment.url + '")'
+        }).removeClass('cbxchota-setting_marker_hide');
+        picker_wrapper.find('.cbxchota-setting_trash').removeClass('cbxchota-setting_trash_hide');
+        picker_wrapper.find('.cbxchota-setting_filepicker_btn').addClass('cbxchota-setting_filepicked').removeClass('cbxchota-setting_left_space');
       });
 
       // Finally, open the modal
       file_frame.open();
+    });
+
+    // for icon delete functionality
+    $(document).on('click', '.cbxchota-setting_input_file_wrap .dashicons', function () {
+      var picker_wrapper = $(this).closest('.cbxchota-setting_input_file_wrap');
+      picker_wrapper.find('.wpsa-url').val('');
+      picker_wrapper.find('.cbxchota-setting_marker_preview').addClass('cbxchota-setting_marker_hide');
+      picker_wrapper.find('.cbxchota-setting_filepicker_btn').removeClass('cbxchota-setting_filepicked').addClass('cbxchota-setting_left_space');
+      $(this).addClass('cbxchota-setting_trash_hide');
     });
 
 

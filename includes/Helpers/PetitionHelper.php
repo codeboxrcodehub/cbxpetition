@@ -1330,7 +1330,7 @@ class PetitionHelper {
 		$css_url_part_vendors = CBXPETITION_ROOT_URL . 'assets/vendors/';
 
 		wp_register_style( 'awesome-notifications', $css_url_part_vendors . 'awesome-notifications/style.css', [], $version );
-		wp_register_style( 'venobox', $css_url_part_vendors . 'venobox/venobox.css', [], $version );
+		wp_register_style( 'venobox', $css_url_part_vendors . 'venobox/venobox.min.css', [], $version );
 
 		//wp_register_style( 'slick-css', $css_url_part_vendors . 'slick/slick.css', [], $version );
 		//wp_register_style( 'slick-theme', $css_url_part_vendors . 'slick/slick-theme.css', [], $version );
@@ -2677,9 +2677,9 @@ class PetitionHelper {
 	 *
 	 * @since    1.0.0
 	 */
-	public static function load_plugin_textdomain() {
+	/*public static function load_plugin_textdomain() {
 		load_plugin_textdomain( 'cbxpetition', false, CBXPETITION_ROOT_PATH . 'languages/' );
-	}//end method load_plugin_textdomain
+	}//end method load_plugin_textdomain*/
 
 	/**
 	 * register migration command

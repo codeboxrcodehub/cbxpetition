@@ -691,7 +691,7 @@ class CBXSetting {
 	 *
 	 * @param array $args settings field args
 	 */
-	function callback_file( $args ) {
+	function callback_file_old( $args ) {
 
 		$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['default'] ) );
 		$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
@@ -712,7 +712,42 @@ class CBXSetting {
 		$html .= $this->get_field_description( $args );
 
 		echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	}//end method callback_file
+	}//end method callback_file_old
+
+    /**
+     * Displays a file upload field for a settings field
+     *
+     * @param array $args settings field args
+     */
+    function callback_file( $args ) {
+        $value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['default'] ) );
+        $size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
+        $id    = $args['section'] . '[' . $args['id'] . ']';
+        $label = isset( $args['options']['button_label'] ) ? $args['options']['button_label'] : esc_html__( 'Choose File', 'cbxpetition' );
+
+        $html = '<div class="cbxchota-setting_input_file_wrap">';
+        $html .= sprintf( '<input type="text" class="%1$s-text wpsa-url" id="%2$s[%3$s]" name="%2$s[%3$s]" value="%4$s"/>', $size, $args['section'], $args['id'], $value );
+
+        $icon_extra_class  = '';
+        $marker_icon       = '';
+        $trash_extra_class = '';
+        if ( $value === '' ) {
+            $icon_extra_class  = 'cbxchota-setting_marker_hide';
+            $file_picked_class = 'cbxchota-setting_left_space';
+            $trash_extra_class = 'cbxchota-setting_trash_hide';
+        } else {
+            $marker_icon       = ' background-image: url(\'' . esc_url($value) . '\') ;';
+            $file_picked_class = 'cbxchota-setting_filepicked';
+        }
+        $html .= '<span style="' . esc_attr($marker_icon) . '" class="cbxchota-setting_marker_preview ' . esc_attr( $icon_extra_class ) . '"></span>';
+
+        $html .= '<input type="button" class="button cbxchota-setting_filepicker_btn wpsa-browse ' . esc_attr($file_picked_class) . '" value="' . esc_attr($label) . '" />';
+        $html .= '<span class="cbxchota-setting_trash dashicons dashicons-no-alt ' . esc_attr( $trash_extra_class ) . '"></span>';
+        $html .= '</div>';
+        $html .= $this->get_field_description( $args );
+
+        echo $html;// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    }//end method callback_file
 
 	/**
 	 * Displays a color picker field for a settings field
