@@ -3,7 +3,7 @@
         'name' => 'cbx/petition',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '20e3505deade0fa7246e5bee0ba44652c79c4f80',
+        'reference' => '875026f0da035c7b22f173181eeaeda5a0f62c22',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'cbx/petition' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '20e3505deade0fa7246e5bee0ba44652c79c4f80',
+            'reference' => '875026f0da035c7b22f173181eeaeda5a0f62c22',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -22,7 +22,7 @@
         'enshrined/svg-sanitize' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '5e477468fac5c5ce933dce53af3e8e4e58dcccc9',
+            'reference' => 'c1ad90f6a3819ec40fb98fff0193f14fdeab35c8',
             'type' => 'library',
             'install_path' => __DIR__ . '/../enshrined/svg-sanitize',
             'aliases' => array(
@@ -31,9 +31,9 @@
             'dev_requirement' => false,
         ),
         'guzzlehttp/psr7' => array(
-            'pretty_version' => '2.7.1',
-            'version' => '2.7.1.0',
-            'reference' => 'c2270caaabe631b3b44c85f99e5a04bbb8060d16',
+            'pretty_version' => '2.8.0',
+            'version' => '2.8.0.0',
+            'reference' => '21dc724a0583619cd1652f673303492272778051',
             'type' => 'library',
             'install_path' => __DIR__ . '/../guzzlehttp/psr7',
             'aliases' => array(),

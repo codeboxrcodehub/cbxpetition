@@ -1,10 +1,12 @@
 <?php
+namespace Cbx\Petition\Widgets\Classic;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+use WP_Widget;
 use Cbx\Petition\Helpers\PetitionHelper;
 
 
@@ -47,13 +49,13 @@ class CBXPetitionSummaryWidget extends WP_Widget {
 
         <p>
             <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ) ?>"><?php echo esc_html__( 'Title:', 'cbxpetition' ) ?></label>
-            <input type="text" class="" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>"
+            <input type="text"  name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>"
                    id="<?php echo esc_attr( $this->get_field_id( 'title' ) ) ?>"
                    value="<?php echo esc_attr( $title ); ?>">
         </p>
         <p>
             <label for="<?php echo esc_attr( $this->get_field_id( 'petition_id' ) ) ?>"><?php echo esc_html__( 'Petition ID:', 'cbxpetition' ) ?></label>
-            <input type="text" class="" name="<?php echo esc_attr( $this->get_field_name( 'petition_id' ) ) ?>"
+            <input type="text"  name="<?php echo esc_attr( $this->get_field_name( 'petition_id' ) ) ?>"
                    id="<?php echo esc_attr( $this->get_field_id( 'petition_id' ) ); ?>"
                    value="<?php echo intval( $petition_id ); ?>"/><br/>
 			<?php
@@ -91,7 +93,7 @@ class CBXPetitionSummaryWidget extends WP_Widget {
 				$checked = in_array( $default_section, $sections ) ? ' checked ' : '';
 				?>
 
-                <input <?php echo esc_attr( $checked ); ?> type="checkbox" class=""
+                <input <?php echo esc_attr( $checked ); ?> type="checkbox" 
                                                            name="<?php echo esc_attr( $this->get_field_name( 'sections' ) ) ?>[<?php echo esc_attr( $default_section ); ?>]"
                                                            id="<?php echo esc_attr( $this->get_field_id( 'sections' ) ); ?>-<?php echo esc_attr( $default_section ); ?>"
                                                            value="<?php echo esc_attr( $default_section ); ?>">

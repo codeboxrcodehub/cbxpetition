@@ -87,7 +87,7 @@ class Uninstall {
 
 				foreach ( $table_names as $table_name ) {
 					//phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.SchemaChange, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-					$query_result = $wpdb->query( "DROP TABLE IF EXISTS {$table_name}" );
+					$wpdb->query( "DROP TABLE IF EXISTS {$table_name}" );
 				}
 
 				do_action( 'cbxpetition_plugin_tables_deleted_after', $table_names );

@@ -5,21 +5,14 @@ namespace Cbx\Petition;
 use Cbx\Petition\CBXSetting;
 use Cbx\Petition\Helpers\PetitionHelper;
 
+//classic widgets
+use Cbx\Petition\Widgets\Classic\CBXPetitionLatestWidget;
+use Cbx\Petition\Widgets\Classic\CBXPetitionSignformWidget;
+use Cbx\Petition\Widgets\Classic\CBXPetitionSummaryWidget;
 
-//elementor widgets
-use Cbx\Petition\Widgets\Elementor\PetitionFullElementorWidget;
-use Cbx\Petition\Widgets\Elementor\PetitionSummaryElementorWidget;
-use Cbx\Petition\Widgets\Elementor\PetitionLatestElementorWidget;
-
-use Cbx\Petition\Widgets\Elementor\PetitionBannerElementorWidget;
-use Cbx\Petition\Widgets\Elementor\PetitionStatElementorWidget;
-use Cbx\Petition\Widgets\Elementor\PetitionPhotosElementorWidget;
-use Cbx\Petition\Widgets\Elementor\PetitionVideoElementorWidget;
-use Cbx\Petition\Widgets\Elementor\PetitionLetterElementorWidget;
-use Cbx\Petition\Widgets\Elementor\PetitionSignformElementorWidget;
-use Cbx\Petition\Widgets\Elementor\PetitionSignaturesElementorWidget;
-
-
+/**
+ * Public Class
+ */
 class CBXPetitionPublic {
 
 	private $settings;
@@ -110,13 +103,9 @@ class CBXPetitionPublic {
 	 * @since 1.0.0
 	 */
 	public function init_widgets() {
-		require_once CBXPETITION_ROOT_PATH . 'includes/Widgets/Classic/CBXPetitionLatestWidget.php';
-		require_once CBXPETITION_ROOT_PATH . 'includes/Widgets/Classic/CBXPetitionSignformWidget.php';
-		require_once CBXPETITION_ROOT_PATH . 'includes/Widgets/Classic/CBXPetitionSummaryWidget.php';
-
-		register_widget( 'CBXPetitionSummaryWidget' );  //petition summary widget
-		register_widget( 'CBXPetitionSignformWidget' ); //petition signform widget
-		register_widget( 'CBXPetitionLatestWidget' );   //petition slider widget
+		register_widget( \Cbx\Petition\Widgets\Classic\CBXPetitionSummaryWidget::class );  //petition summary widget
+		register_widget( \Cbx\Petition\Widgets\Classic\CBXPetitionSignformWidget::class ); //petition sign form widget
+		register_widget( \Cbx\Petition\Widgets\Classic\CBXPetitionLatestWidget::class );   //petition slider widget
 	}//end method init_widgets
 
 	/**

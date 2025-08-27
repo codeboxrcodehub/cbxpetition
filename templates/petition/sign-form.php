@@ -59,9 +59,9 @@ if ( ! is_user_logged_in() ):
 	    }
     }
     else{
-	    $login_html .= cbxpetition_get_template_html( 'global/login_off.php', [
+	    /*$login_html .= cbxpetition_get_template_html( 'global/login_off.php', [
 		    'settings' => $settings,
-	    ] );
+	    ] );*/
     }
 
 	//echo $login_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

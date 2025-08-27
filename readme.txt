@@ -3,7 +3,7 @@ Contributors: codeboxr, manchumahara
 Tags: petition,activism,signature,change,campaign
 Requires at least: 5.3
 Tested up to: 6.8
-Stable tag: 2.0.6
+Stable tag: 2.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,7 +16,7 @@ CBX Petition for WordPress makes it easy to create, manage, and showcase online 
 
 ### CBX Petition by [Codeboxr](https://codeboxr.com/product/cbx-petition-for-wordpress/)
 
->📋 [Documentation](https://codeboxr.com/doc/cbxpetition-doc/) | 🌟 [Upgrade to PRO](https://codeboxr.com/product/cbx-petition-for-wordpress/) |  👨‍💻 [Free Support](https://wordpress.org/support/plugin/cbxpetition/) | 🤴 [Pro Support](https://codeboxr.com/contact-us) | 📱 [Contact](https://codeboxr.com/contact-us/)
+>📋 [Documentation](https://codeboxr.com/doc/cbxpetition-doc/) | 🌟 [Upgrade to PRO](https://codeboxr.com/product/cbx-petition-for-wordpress/) |  👨‍💻 [Free Support](https://wordpress.org/support/plugin/cbxpetition/) | 📱 [Free Support](https://wordpress.org/support/plugin/cbxpetition/) | 🤴 [Pro Support](https://codeboxr.com/contact-us)
 
 
 **If you think any necessary feature is missing contact with us, we will add in new release. Best way to check the feature is install the free core version in any dev site and explore**
@@ -72,7 +72,7 @@ CBX Petition for WordPress makes it easy to create, manage, and showcase online 
 2. Petition Sign Form Classic Widget [New in V1.0.2]
 3. Latest Petitions Classic Widget [New in V1.0.2]
 
-**Elementor Widgets**
+**Elementor Widgets(Pro)**
 
 1. Petition banner widget compatible with shortcode [cbxpetition_banner]
 2. Petition statistics widget compatible with shortcode [cbxpetition_stat]
@@ -86,7 +86,7 @@ CBX Petition for WordPress makes it easy to create, manage, and showcase online 
 10. Petition Latest Listing widget compatible with shortcode [cbxpetition_latest]
 11. Any elemnetor widget missing? let us know
 
-**Block Widgets**
+**Block Widgets(Pro)**
 
 1. Petition banner widget compatible with shortcode [cbxpetition_banner]
 2. Petition statistics widget compatible with shortcode [cbxpetition_stat]
@@ -195,6 +195,13 @@ Get the [pro addon](https://codeboxr.com/product/cbx-petition-for-wordpress/)
 
 
 == Changelog ==
+= 2.0.7 =
+* [fixed] Elementor widget improved and bug fixed
+* [fixed] Block widget improved and bug fixed
+* [fixed] Setting inputs loading error or bug fixed
+* [updated] Other misc changes
+* [new] Pro addon plugin V2.0.5 released and compatible with core
+
 = 2.0.6 =
 * [updated] Js vendors library updated
 * [new] Pro addon plugin V2.0.4 released and compatible

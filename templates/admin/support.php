@@ -87,6 +87,18 @@ $doc_url    = PetitionHelper::url_utmy( 'https://codeboxr.com/doc/cbxpetition-do
                     <div class="content">
                         <div class="cbx-backend-settings-row">
                             <p>
+                                Version - 2.0.7
+                            </p>
+                            <ul>
+                                <li>[fixed] Elementor widget improved and bug fixed</li>
+                                <li>[fixed] Block widget improved and bug fixed</li>
+                                <li>[fixed] Setting inputs loading error or bug fixed</li>
+                                <li>[updated] Other misc changes</li>
+                                <li>[new] Pro addon plugin V2.0.5 released and compatible with core</li>
+                            </ul>
+                        </div>
+                        <div class="cbx-backend-settings-row">
+                            <p>
                                 Version - 2.0.6
                             </p>
                             <ul>
@@ -103,16 +115,6 @@ $doc_url    = PetitionHelper::url_utmy( 'https://codeboxr.com/doc/cbxpetition-do
                                 <li>[new] Pro addon plugin V2.0.3 released and compatible</li>
                             </ul>
                         </div>
-                        <div class="cbx-backend-settings-row">
-                            <p>
-                                Version - 2.0.4
-                            </p>
-                            <ul>
-                                <li>[updated] PHP compatible version check updated</li>
-                                <li>[new] WordPress 6.8 compatible</li>
-                                <li>[new] Pro addon plugin V2.0.2 released and compatible</li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
                 <div class="cbx-backend-card dashboard-changelog">
@@ -122,6 +124,18 @@ $doc_url    = PetitionHelper::url_utmy( 'https://codeboxr.com/doc/cbxpetition-do
                         </div>
                     </div>
                     <div class="content">
+                        <div class="cbx-backend-settings-row">
+                            <p>
+                                Version - 2.0.5
+                            </p>
+                            <ul>
+                                <li>[fixed] Elementor widget improved and bug fixed</li>
+                                <li>[fixed] Block widget improved and bug fixed</li>
+                                <li>[fixed] Setting inputs loading error or bug fixed</li>
+                                <li>[new] Core plugin V2.0.7 released</li>
+                                <li>[updated] Other misc changes</li>
+                            </ul>
+                        </div>
                         <div class="cbx-backend-settings-row">
                             <p>
                                 Version - 2.0.4
@@ -139,16 +153,6 @@ $doc_url    = PetitionHelper::url_utmy( 'https://codeboxr.com/doc/cbxpetition-do
                             <ul>
                                 <li>[updated] Plugin loading optimized based on core plugin</li>
                                 <li>[new] Core plugin V2.0.5 released</li>
-                            </ul>
-                        </div>
-                        <div class="cbx-backend-settings-row">
-                            <p>
-                                Version - 2.0.2
-                            </p>
-                            <ul>
-                                <li>[updated] PHP compatible version check updated</li>
-                                <li>[new] WordPress core V6.8 compatible</li>
-                                <li>[new] Core plugin V2.0.4 released</li>
                             </ul>
                         </div>
                     </div>
@@ -246,20 +250,17 @@ $doc_url    = PetitionHelper::url_utmy( 'https://codeboxr.com/doc/cbxpetition-do
                     </div>
                     <div class="content">
 			            <?php
-			            $top_plugins = [
-				            'https://codeboxr.com/product/cbx-wordpress-bookmark/' => 'CBX Bookmark & Favorite',
-				            'https://codeboxr.com/product/cbx-changelog-for-wordpress/'                           => 'CBX Changelog',
-				            'https://codeboxr.com/product/cbx-tour-user-walkthroughs-guided-tours-for-wordpress/' => 'CBX Tour – User Walkthroughs/Guided Tours',
-				            'https://codeboxr.com/product/cbx-currency-converter-for-wordpress/'                  => 'CBX Currency Converter',
-				            'https://codeboxr.com/product/cbx-email-logger-for-wordpress/'                        => 'Comfort Email SMTP, Logger & Email Api',
-				            //'https://codeboxr.com/product/cbx-petition-for-wordpress/'                            => 'CBX Petition',
-				            //'https://codeboxr.com/product/cbx-accounting/'                                        => 'CBX Accounting',
-				            'https://codeboxr.com/product/cbx-poll-for-wordpress/'                                => 'CBX Poll',
-				            'https://codeboxr.com/product/show-next-previous-article-for-wordpress'               => 'CBX Next Previous Article ',
-				            'https://codeboxr.com/product/cbx-multi-criteria-rating-review-for-wordpress/'        => 'CBX Multi Criteria Rating & Review',
-				            'https://codeboxr.com/product/cbx-user-online-for-wordpress/'                         => 'CBX User Online & Last Login',
-				            'https://codeboxr.com/product/woocommerce-product-dropdown-field-for-contact-form7/'  => 'Woocommerce Product Dropdown field for Contact Form7',
-			            ];
+                        $top_plugins = [
+                            'https://codeboxr.com/product/cbx-wordpress-bookmark/'                                => 'CBX Bookmark & Favorite',
+                            'https://codeboxr.com/product/cbx-changelog-for-wordpress/'                           => 'CBX Changelog',
+                            'https://codeboxr.com/product/cbx-tour-user-walkthroughs-guided-tours-for-wordpress/' => 'CBX Tour – User Walkthroughs/Guided Tours',
+                            'https://codeboxr.com/product/cbx-email-logger-for-wordpress/'                        => 'Comfort Email SMTP, Logger & Email Api',
+                            'https://codeboxr.com/product/cbx-poll-for-wordpress/'                                => 'CBX Poll',
+                            'https://codeboxr.com/product/cbx-multi-criteria-rating-review-for-wordpress/'        => 'CBX Multi Criteria Rating & Review',
+                            'https://codeboxr.com/product/cbx-user-online-for-wordpress/'                         => 'CBX User Online & Last Login',
+                            'https://wordpress.org/plugins/cbxgooglemap/'                                         => 'CBX Map for Google Map & OpenStreetMap',
+                            'https://wordpress.org/plugins/cbxwpemaillogger/'                                     => 'Comfort Email SMTP, Logger & Email Api'
+                        ];
 
 			            foreach ( $top_plugins as $link => $title ) {
 				            echo '<div class="cbx-backend-settings-row">

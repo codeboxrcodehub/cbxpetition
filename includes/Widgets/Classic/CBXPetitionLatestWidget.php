@@ -1,9 +1,12 @@
 <?php
+namespace Cbx\Petition\Widgets\Classic;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
+
+use WP_Widget;
 
 /**
  * Class CBXPetition Summary Widget
@@ -11,8 +14,6 @@ if ( ! defined( 'WPINC' ) ) {
  * @since 1.0.2
  */
 class CBXPetitionLatestWidget extends WP_Widget {
-
-
 	/**
 	 * Unique identifier for your widget.
 	 *
@@ -42,16 +43,14 @@ class CBXPetitionLatestWidget extends WP_Widget {
 	}//end of constructor method
 
 
-	/**
-	 * Return the widget slug.
-	 *
-	 * @return    Plugin slug variable.
-	 * @since    1.0.0
-	 *
-	 */
+    /**
+     * Return the widget slug.
+     *
+     * @return string
+     */
 	public function get_widget_slug() {
 		return $this->widget_slug;
-	}
+	}//end method get_widget_slug
 
 	/**
 	 * Update widget
@@ -119,7 +118,7 @@ class CBXPetitionLatestWidget extends WP_Widget {
 		?>
         <p>
             <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ) ?>"><?php echo esc_html__( 'Title:', 'cbxpetition' ) ?></label>
-            <input class="widefat" type="text" class=""
+            <input class="widefat" type="text" 
                    name="<?php echo esc_attr( $this->get_field_name( 'title' ) ) ?>"
                    id="<?php echo esc_attr( $this->get_field_id( 'title' ) ) ?>"
                    value="<?php echo esc_attr( $title ); ?>">

@@ -10,7 +10,7 @@
 defined( 'ABSPATH' ) || exit;
 ?>
 <?php
-$list_url = admin_url( 'admin.php?page=cbxpetition-emails' );
+$list_url = admin_url( 'edit.php?post_type=cbxpetition&page=cbxpetition-emails' );
 ?>
 <div class="section_header row">
     <div class="col-12 section_header_l">
@@ -82,19 +82,19 @@ $list_url = admin_url( 'admin.php?page=cbxpetition-emails' );
 						} elseif ( $type == 'text' ) {
 							echo '<div class="cbxpetition_email_edit_field text_field form-group">';
 							//echo '<label for="cbxpetition_email_edit_' . esc_attr( $field_key ) . '">' . esc_html( $title ) . '</label>';
-							echo '<input placeholder="' . esc_attr( $placeholder ) . '" name="' . esc_attr( $field_key ) . '" class="" id="cbxpetition_email_edit_' . esc_attr( $field_key ) . '" type="text"  value="' . esc_attr( $value ) . '" />';
+							echo '<input placeholder="' . esc_attr( $placeholder ) . '" name="' . esc_attr( $field_key ) . '"  id="cbxpetition_email_edit_' . esc_attr( $field_key ) . '" type="text"  value="' . esc_attr( $value ) . '" />';
 							echo '<p class="description" >' . $description . '</p>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							echo '</div>';
 						} elseif ( $type == 'textarea' ) {
 							echo '<div class="cbxpetition_email_edit_field textarea_field form-group">';
 							//echo '<label for="cbxpetition_email_edit_' . esc_attr( $field_key ) . '">' . esc_html( $title ) . '</label>';
-							echo '<textarea placeholder="' . esc_attr( $placeholder ) . '" name="' . esc_attr( $field_key ) . '" class="" id="cbxpetition_email_edit_' . esc_attr( $field_key ) . '" >' . esc_html( $value ) . '</textarea>';
+							echo '<textarea placeholder="' . esc_attr( $placeholder ) . '" name="' . esc_attr( $field_key ) . '"  id="cbxpetition_email_edit_' . esc_attr( $field_key ) . '" >' . esc_html( $value ) . '</textarea>';
 							echo '<p class="description">' . $description . '</p>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							echo '</div>';
 						} elseif ( $type == 'select' ) {
 							echo '<div class="cbxpetition_email_edit_field select_field form-group">';
 							//echo '<label for="cbxpetition_email_edit_' . esc_attr( $field_key ) . '">' . esc_html( $title ) . '</label>';
-							echo '<select placeholder="' . esc_attr( $placeholder ) . '" name="' . esc_attr( $field_key ) . '" class="" id="cbxpetition_email_edit_' . esc_attr( $field_key ) . '">';
+							echo '<select placeholder="' . esc_attr( $placeholder ) . '" name="' . esc_attr( $field_key ) . '"  id="cbxpetition_email_edit_' . esc_attr( $field_key ) . '">';
 							foreach ( $options as $option_key => $option_value ) {
 								echo '<option ' . selected( $option_key, $value, false ) . ' value="' . esc_attr( $option_key ) . '">' . esc_html( $option_value ) . '</option>';
 							}

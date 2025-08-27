@@ -1992,8 +1992,8 @@ class PetitionHelper {
 				'guest_activation'         => [
 					'name'    => 'guest_activation',
 					'label'   => esc_html__( 'Guest Email Verify', 'cbxpetition' ),
-					'desc'    => __( 'Enable/Disable (To make this feature work need to enable user email notification on and user email template should have the tag syntax <code>{activation_link}</code>)',
-						'cbxpetition' ),
+					'desc'    => wp_kses(__( 'Enable/Disable (To make this feature work need to enable user email notification on and user email template should have the tag syntax <code>{activation_link}</code>)',
+						'cbxpetition' ), ['code' => []]),
 					'type'    => 'checkbox',
 					'default' => 'on',
 				],
@@ -2682,7 +2682,9 @@ class PetitionHelper {
 	}//end method load_plugin_textdomain*/
 
 	/**
-	 * register migration command
+	 * Load mailer
+     *
+     * @since 2.0.0
 	 */
 	public static function load_mailer() {
 		cbxpetition_mailer();

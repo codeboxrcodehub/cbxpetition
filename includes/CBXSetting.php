@@ -1038,7 +1038,7 @@ class CBXSetting {
 
 		$options = get_option( $section );
 
-		if ( isset( $options[ $option ] ) && $options[ $option ] ) {
+		if ( isset( $options[ $option ] )) {
 			return $options[ $option ];
 		}
 

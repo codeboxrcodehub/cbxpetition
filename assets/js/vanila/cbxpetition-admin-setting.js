@@ -25,7 +25,7 @@
 
     $('.setting-color-picker-wrapper').each(function (index, element) {
       var $color_field_wrap = $(element);
-      //console.log($color_field);
+
       var $color_field      = $color_field_wrap.find('.setting-color-picker');
       var $color_field_fire = $color_field_wrap.find('.setting-color-picker-fire');
 

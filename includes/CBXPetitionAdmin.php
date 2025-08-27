@@ -8,7 +8,6 @@ use Intervention\Image\ImageManager;
 
 /**
  * Class Admin
- * @package Cbx\Petition\Admin
  */
 class CBXPetitionAdmin {
 	/**
@@ -1488,7 +1487,7 @@ class CBXPetitionAdmin {
 	 */
 	public function plugin_action_links( $links ) {
 		$action_links = [
-			'settings' => '<a style="color: #f44336 !important; font-weight: bold;" href="' . admin_url( 'edit.php?post_type=cbxpetition&page=cbxpetition-settings' ) . '" aria-label="' . esc_attr__( 'View settings', 'cbxpetition' ) . '">' . esc_html__( 'Settings', 'cbxpetition' ) . '</a>',
+			'settings' => '<a style="color: #f44336 !important; font-weight: bold;" href="' . esc_url(admin_url( 'edit.php?post_type=cbxpetition&page=cbxpetition-settings' )) . '" aria-label="' . esc_attr__( 'View settings', 'cbxpetition' ) . '">' . esc_html__( 'Settings', 'cbxpetition' ) . '</a>',
 		];
 
 		return array_merge( $action_links, $links );
@@ -1508,7 +1507,7 @@ class CBXPetitionAdmin {
 	 * @return  array       $links_array
 	 * @since 1.0.0
 	 */
-	public function plugin_row_meta( $links_array, $plugin_file_name, $plugin_data, $status ) {
+	public function custom_plugin_row_meta( $links_array, $plugin_file_name, $plugin_data, $status ) {
 		if ( strpos( $plugin_file_name, CBXPETITION_BASE_NAME ) !== false ) {
 			if ( ! function_exists( 'is_plugin_active' ) ) {
 				include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -1527,7 +1526,7 @@ class CBXPetitionAdmin {
 		}
 
 		return $links_array;
-	}//end plugin_row_meta
+	}//end custom_plugin_row_meta
 
 	/**
 	 * If we need to do something in upgrader process is completed

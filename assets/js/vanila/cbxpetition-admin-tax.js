@@ -77,8 +77,6 @@
             console.log($addtag_form_validation);
 
             $addtag_form.on('submit', function (e) {
-                console.log('hi there');
-
                 /!*if (!$addtag_form_validation.valid()) {
                     e.preventDefault();
                 }*!/

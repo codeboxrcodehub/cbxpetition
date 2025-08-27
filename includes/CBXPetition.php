@@ -2,7 +2,6 @@
 use Cbx\Petition\Helpers\PetitionHelper;
 use Cbx\Petition\CBXPetitionAdmin;
 use Cbx\Petition\CBXPetitionPublic;
-use Cbx\Petition\CBXPetitionBlocks;
 use Cbx\Petition\CBXPetitionShortCodes;
 
 /**
@@ -212,11 +211,8 @@ final class CBXPetition {
 		//plugin upgrade and notice
 		add_action( 'plugins_loaded', [ $admin, 'plugin_upgrader_process_complete' ] );
 		add_action( 'admin_notices', [ $admin, 'plugin_activate_upgrade_notices' ] );
-		add_filter( 'plugin_action_links_' . CBXPETITION_BASE_NAME, [
-			$admin,
-			'plugin_action_links'
-		] ); //plugin listing links: left side
-		add_filter( 'plugin_row_meta', [ $admin, 'plugin_row_meta' ], 10, 4 ); //plugin listing links : right side
+		add_filter( 'plugin_action_links_' . CBXPETITION_BASE_NAME, [	$admin, 'plugin_action_links'] );
+		add_filter( 'plugin_row_meta', [ $admin, 'custom_plugin_row_meta' ], 10, 4 );
 		add_action( 'activated_plugin', [ $admin, 'check_pro_addon' ] );
 		add_action( 'init', [ $admin, 'check_pro_addon' ] );
 		add_action( 'after_plugin_row_cbxpetitionproaddon/cbxpetitionproaddon.php', [
