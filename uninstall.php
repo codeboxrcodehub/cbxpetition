@@ -1,9 +1,5 @@
 <?php
 
-use Cbx\Petition\Helpers;
-
-use Cbx\Petition\CBXSetting;
-
 /**
  * Fired when the plugin is uninstalled.
  *
@@ -19,13 +15,15 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
+require_once plugin_dir_path( __FILE__ ) . "vendor/autoload.php";
+
 /**
  * The code that runs during plugin uninstall.
  */
 function uninstall_cbxpetition() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/Uninstall.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/CBXPetitionUninstall.php';
 
-	Uninstall::uninstall();
+    CBXPetitionUninstall::uninstall();
 }//end function uninstall_cbxpetition
 
 if ( ! defined( 'CBXPETITION_PLUGIN_NAME' ) ) {

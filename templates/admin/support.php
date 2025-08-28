@@ -87,6 +87,14 @@ $doc_url    = PetitionHelper::url_utmy( 'https://codeboxr.com/doc/cbxpetition-do
                     <div class="content">
                         <div class="cbx-backend-settings-row">
                             <p>
+                                Version - 2.0.8
+                            </p>
+                            <ul>
+                                <li>[fixed] Uninstall error fixed</li>
+                            </ul>
+                        </div>
+                        <div class="cbx-backend-settings-row">
+                            <p>
                                 Version - 2.0.7
                             </p>
                             <ul>

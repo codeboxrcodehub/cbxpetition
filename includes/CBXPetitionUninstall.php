@@ -13,7 +13,7 @@ use Cbx\Petition\Helpers\PetitionHelper;
  * @subpackage cbxpetition/includes
  * @author     CBX Team  <info@codeboxr.com>
  */
-class Uninstall {
+class CBXPetitionUninstall {
 	/**
 	 * Uninstall plugin functionality
 	 *
@@ -48,9 +48,9 @@ class Uninstall {
 	 * @return void
 	 */
 	public static function uninstall_tasks() {
-		if ( ! current_user_can( 'activate_plugins' ) ) {
+		/*if ( ! current_user_can( 'activate_plugins' ) ) {
 			return;
-		}
+		}*/
 
 
 		$settings             = new CBXSetting();
@@ -101,4 +101,4 @@ class Uninstall {
 			do_action( 'cbxpetition_plugin_uninstall_after' );
 		}
 	}//end method uninstall
-}//end class Uninstall
+}//end class CBXPetitionUninstall

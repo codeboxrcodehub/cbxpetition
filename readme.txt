@@ -3,11 +3,11 @@ Contributors: codeboxr, manchumahara
 Tags: petition,activism,signature,change,campaign
 Requires at least: 5.3
 Tested up to: 6.8
-Stable tag: 2.0.7
+Stable tag: 2.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A plugin to create, manage petition and collect signatures for petition
+A plugin to create, manage petition and collect signatures for petition inside WordPress environment.
 
 == Description ==
 
@@ -16,7 +16,7 @@ CBX Petition for WordPress makes it easy to create, manage, and showcase online 
 
 ### CBX Petition by [Codeboxr](https://codeboxr.com/product/cbx-petition-for-wordpress/)
 
->📋 [Documentation](https://codeboxr.com/doc/cbxpetition-doc/) | 🌟 [Upgrade to PRO](https://codeboxr.com/product/cbx-petition-for-wordpress/) |  👨‍💻 [Free Support](https://wordpress.org/support/plugin/cbxpetition/) | 📱 [Free Support](https://wordpress.org/support/plugin/cbxpetition/) | 🤴 [Pro Support](https://codeboxr.com/contact-us)
+>🤴 [Demo](https://codeboxr.net/wordpress/petition/save-the-green-park-stop-unplanned-commercial-construction/) | 📋 [Documentation](https://codeboxr.com/doc/cbxpetition-doc/) | 🌟 [Upgrade to PRO](https://codeboxr.com/product/cbx-petition-for-wordpress/) |  👨‍💻 [Free Support](https://wordpress.org/support/plugin/cbxpetition/) | 📱 [Free Support](https://wordpress.org/support/plugin/cbxpetition/) | 🤴 [Pro Support](https://codeboxr.com/contact-us)
 
 
 **If you think any necessary feature is missing contact with us, we will add in new release. Best way to check the feature is install the free core version in any dev site and explore**
@@ -84,7 +84,7 @@ CBX Petition for WordPress makes it easy to create, manage, and showcase online 
 8. Petition Details widget compatible with shortcode [cbxpetition]
 9. Petition Summary widget compatible with shortcode [cbxpetition_summary]
 10. Petition Latest Listing widget compatible with shortcode [cbxpetition_latest]
-11. Any elemnetor widget missing? let us know
+11. Any elementor widget missing? let us know
 
 **Block Widgets(Pro)**
 
@@ -195,6 +195,9 @@ Get the [pro addon](https://codeboxr.com/product/cbx-petition-for-wordpress/)
 
 
 == Changelog ==
+= 2.0.8 =
+* [fixed] Uninstall error fixed
+
 = 2.0.7 =
 * [fixed] Elementor widget improved and bug fixed
 * [fixed] Block widget improved and bug fixed

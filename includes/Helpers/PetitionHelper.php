@@ -2261,17 +2261,6 @@ class PetitionHelper {
 					],
 					'default' => 'no',
 				],
-				/*'delete_global_config' => [
-					'name'    => 'delete_global_config',
-					'label'   => esc_html__( 'On Uninstall delete plugin data', 'cbxpetition' ),
-					'desc'    => '<p>' . esc_html__( 'Delete Global Config data(options/plugin settings), custom table(s), files/folders, all petition custom post type  created by this plugin on uninstall. Please note that this process can not be undone and it is recommended to keep full database and files backup before doing this.', 'cbxpetition' ) . '</p>',
-					'type'    => 'radio',
-					'options' => [
-						'yes' => esc_html__( 'Yes', 'cbxpetition' ),
-						'no'  => esc_html__( 'No', 'cbxpetition' ),
-					],
-					'default' => 'no',
-				],*/
 				'reset_data'           => [
 					'name'    => 'reset_data',
 					'label'   => esc_html__( 'Reset all section', 'cbxpetition' ),
