@@ -20,12 +20,12 @@ require_once plugin_dir_path( __FILE__ ) . "vendor/autoload.php";
 /**
  * The code that runs during plugin uninstall.
  */
-function uninstall_cbxpetition() {
+function cbxpetition_uninstall() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/CBXPetitionUninstall.php';
 
     CBXPetitionUninstall::uninstall();
-}//end function uninstall_cbxpetition
+}//end function cbxpetition_uninstall
 
 if ( ! defined( 'CBXPETITION_PLUGIN_NAME' ) ) {
-    uninstall_cbxpetition();
+    cbxpetition_uninstall();
 }

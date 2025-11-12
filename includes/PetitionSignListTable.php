@@ -289,7 +289,7 @@ class PetitionSignListTable extends \WP_List_Table {
 		}
 
 		if ( ! empty( $_REQUEST['cbxpetitionsign'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended 
-			$signature_table = $wpdb->prefix . 'cbxpetition_signs';
+			$signature_table = esc_sql($wpdb->prefix . 'cbxpetition_signs');
 			$state_arr       = array_keys( PetitionHelper::getPetitionSignStates() );
 
 			$current_user = wp_get_current_user();
@@ -311,7 +311,7 @@ class PetitionSignListTable extends \WP_List_Table {
 					if ( $signature !== null && sizeof( $signature ) > 0 ) {
 						//now delete
 						// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared 
-						$sql = $wpdb->prepare( "DELETE FROM $signature_table WHERE id=%d", $signature_id );
+						$sql = $wpdb->prepare( "DELETE FROM {$signature_table} WHERE id=%d", $signature_id );
 						// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 						$delete_status = $wpdb->query( $sql );
 

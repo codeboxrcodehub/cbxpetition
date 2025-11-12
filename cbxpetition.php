@@ -16,7 +16,7 @@
  * Plugin Name:       CBX Petition
  * Plugin URI:        https://codeboxr.com/product/cbx-petition-for-wordpress/
  * Description:       A plugin to create, manage petition and collect signatures for petition
- * Version:           2.0.8
+ * Version:           2.0.9
  * Author:            Codeboxr
  * Author URI:        http://codeboxr.com
  * License:           GPL-2.0+
@@ -33,13 +33,14 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 defined( 'CBXPETITION_PLUGIN_NAME' ) or define( 'CBXPETITION_PLUGIN_NAME', 'cbxpetition' );
-defined( 'CBXPETITION_PLUGIN_VERSION' ) or define( 'CBXPETITION_PLUGIN_VERSION', '2.0.8' );
+defined( 'CBXPETITION_PLUGIN_VERSION' ) or define( 'CBXPETITION_PLUGIN_VERSION', '2.0.9' );
 defined( 'CBXPETITION_BASE_NAME' ) or define( 'CBXPETITION_BASE_NAME', plugin_basename( __FILE__ ) );
 defined( 'CBXPETITION_ROOT_PATH' ) or define( 'CBXPETITION_ROOT_PATH', plugin_dir_path( __FILE__ ) );
 defined( 'CBXPETITION_ROOT_URL' ) or define( 'CBXPETITION_ROOT_URL', plugin_dir_url( __FILE__ ) );
 
 defined( 'CBXPETITION_WP_MIN_VERSION' ) or define( 'CBXPETITION_WP_MIN_VERSION', '5.3' );
 defined( 'CBXPETITION_PHP_MIN_VERSION' ) or define( 'CBXPETITION_PHP_MIN_VERSION', '7.4' );
+defined( 'CBXPETITION_PRO_VERSION' ) or define( 'CBXPETITION_PRO_VERSION', '2.0.6' );
 
 // Include the main class
 if ( ! class_exists( 'CBXPetition', false ) ) {
@@ -83,14 +84,14 @@ function cbxpetition_compatible_php_version( $version = '' ) {
 }//end method cbxpetition_compatible_php_version
 
 
-register_activation_hook( __FILE__, 'activate_cbxpetition' );
-register_deactivation_hook( __FILE__, 'deactivate_cbxpetition' );
+register_activation_hook( __FILE__, 'cbxpetition_activate' );
+register_deactivation_hook( __FILE__, 'cbxpetition_deactivate' );
 
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-cbxpetition-activator.php
  */
-function activate_cbxpetition() {
+function cbxpetition_activate() {
 	$wp_version  = CBXPETITION_WP_MIN_VERSION;
 	$php_version = CBXPETITION_PHP_MIN_VERSION;
 
@@ -128,17 +129,15 @@ function activate_cbxpetition() {
 
 		//deactivate pro addon if version than 2.0.0
 		cbxpetition_check_and_deactivate_plugin( 'cbxpetitionproaddon/cbxpetitionproaddon.php', '2.0.0', 'cbxpetition_proaddon_deactivated' );
-		/*if($action){
-			set_transient('cbxpetition_proaddon_deactivated', 1);
-		}*/
+		
 	}//end $activate_ok
-}//end method activate_cbxpetition
+}//end method cbxpetition_activate
 
 /**
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-cbxpetition-deactivator.php
  */
-function deactivate_cbxpetition() {
+function cbxpetition_deactivate() {
 	/*require_once plugin_dir_path( __FILE__ ) . 'includes/class-cbxpetition-deactivator.php';
 	CBXPetition_Deactivator::deactivate();*/
 }
@@ -152,7 +151,7 @@ function cbxpetition_core() { // phpcs:ignore WordPress.NamingConventions.ValidF
 	global $cbxpetition_core;
 
 	if ( ! isset( $cbxpetition_core ) ) {
-		$cbxpetition_core = run_cbxpetition();
+		$cbxpetition_core = cbxpetition_run();
 	}
 
 	return $cbxpetition_core;
@@ -164,10 +163,10 @@ function cbxpetition_core() { // phpcs:ignore WordPress.NamingConventions.ValidF
  *
  * @since    2.0.0
  */
-function run_cbxpetition() {
+function cbxpetition_run() {
 	return CBXPetition::instance();
-}//end function run_cbxpetition
+}//end function cbxpetition_run
 
 
 //load the plugin
-$GLOBALS['cbxpetition_core'] = run_cbxpetition();
+$GLOBALS['cbxpetition_core'] = cbxpetition_run();

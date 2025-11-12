@@ -6,7 +6,10 @@ if ( ! defined( 'WPINC' ) ) {
 use Cbx\Petition\Helpers\PetitionHelper;
 ?>
 
+
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+
 $sign_statuses = PetitionHelper::getPetitionSignStates();
 $plus_svg  = cbxpetition_esc_svg(cbxpetition_load_svg( 'icon_plus' ));
 
@@ -117,3 +120,5 @@ $petition_id = isset( $_GET['petition_id'] ) ? absint( $_GET['petition_id'] ) : 
         </div>
     </div>
 </div>
+<?php
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound

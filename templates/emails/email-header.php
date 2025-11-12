@@ -18,7 +18,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
-
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -71,3 +71,5 @@ if ( ! defined( 'ABSPATH' ) ) {
                                                         <tr>
                                                             <td valign="top">
                                                                 <div id="body_content_inner">
+<?php
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound

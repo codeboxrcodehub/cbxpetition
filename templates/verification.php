@@ -5,6 +5,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+
 /*if(wp_is_block_theme()){
 	//$header_content = '<!-- wp:template-part {"slug":"header"} /-->';
 	//echo do_blocks( $header_content );
@@ -43,3 +45,5 @@ else{*/
 else{*/
 	get_footer( 'cbxpetition' );
 //}
+
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound

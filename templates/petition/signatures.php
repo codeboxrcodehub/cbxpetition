@@ -19,6 +19,8 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+
 if ( is_array( $petition_signs ) && sizeof( $petition_signs ) > 0 ) {
 	do_action( 'cbxpetition_signature_before', $petition_id );
 
@@ -54,3 +56,6 @@ if ( is_array( $petition_signs ) && sizeof( $petition_signs ) > 0 ) {
 
 	do_action( 'cbxpetition_signature_after', $petition_id );
 }
+
+
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound

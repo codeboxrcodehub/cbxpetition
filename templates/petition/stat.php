@@ -30,6 +30,8 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+
 echo '<div class="cbxpetition_stat_wrapper">';
 if ( $show_count ) {
 	/* translators: %1$d: Petition Target, %2$d: signature count  */
@@ -47,3 +49,5 @@ if ( $show_progress ) {
 }
 
 echo '</div>';
+
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound

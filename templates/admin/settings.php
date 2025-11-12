@@ -7,6 +7,8 @@ if ( ! defined( 'WPINC' ) ) {
 ?>
 
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+
 $plugin_url = \Cbx\Petition\Helpers\PetitionHelper::url_utmy( '#' );
 $doc_url    = \Cbx\Petition\Helpers\PetitionHelper::url_utmy( '#' );
 
@@ -68,3 +70,5 @@ $save_svg  = cbxpetition_esc_svg(cbxpetition_load_svg( 'icon_save' ));
         </div>
     </div>
 </div>
+<?php
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound

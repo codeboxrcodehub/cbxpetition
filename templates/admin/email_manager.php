@@ -12,6 +12,8 @@ use Cbx\Petition\Helpers\PetitionHelper;
 
 defined( 'ABSPATH' ) || exit;
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+
 $more_v_svg = cbxpetition_esc_svg( cbxpetition_load_svg( 'icon_more_v' ) );
 ?>
 <div class="wrap cbx-chota cbxpetition-page-wrapper cbxpetition-email-manager-wrapper"
@@ -66,3 +68,5 @@ $more_v_svg = cbxpetition_esc_svg( cbxpetition_load_svg( 'icon_more_v' ) );
         </div>
     </div>
 </div>
+<?php
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound

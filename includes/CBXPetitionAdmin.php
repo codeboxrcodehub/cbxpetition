@@ -142,7 +142,7 @@ class CBXPetitionAdmin {
 			$sign_info = null;
 			if ( $log_id > 0 ) {
 				global $wpdb;
-				$petition_signature_table = $wpdb->prefix . 'cbxpetition_signs';
+				$petition_signature_table = esc_sql($wpdb->prefix . 'cbxpetition_signs');
 
 				//$sign_info = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $petition_signature_table WHERE id = %d", $log_id ), ARRAY_A );
 				$sign_info = PetitionHelper::petitionSignInfo( $log_id );
@@ -268,7 +268,7 @@ class CBXPetitionAdmin {
 		$signatures = PetitionHelper::getSignListingData( '', $post_id, 0, 'all', 'DESC', 'id', - 1 );
 
 		if ( is_array( $signatures ) && count( $signatures ) > 0 ) {
-			$signature_table = $wpdb->prefix . 'cbxpetition_signs';
+			$signature_table = esc_sql($wpdb->prefix . 'cbxpetition_signs');
 
 
 			foreach ( $signatures as $signature ) {
@@ -348,7 +348,7 @@ class CBXPetitionAdmin {
 		//now delete the signature
 
 		global $wpdb;
-		$signature_table = $wpdb->prefix . 'cbxpetition_signs';
+		$signature_table = esc_sql($wpdb->prefix . 'cbxpetition_signs');
 
 		do_action( 'cbxpetition_sign_delete_before', $signature, $signature_id, $petition_id );
 		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
@@ -386,7 +386,7 @@ class CBXPetitionAdmin {
 		$current_user    = wp_get_current_user();
 		$current_user_id = absint( $current_user->ID );
 
-		$signature_table = $wpdb->prefix . 'cbxpetition_signs';
+		$signature_table = esc_sql($wpdb->prefix . 'cbxpetition_signs');
 		$state_arr       = array_keys( PetitionHelper::getPetitionSignStates() );
 		$post_data       = wp_unslash( $_POST ); //all needed fields of $_POST is sanitized below
 
@@ -740,7 +740,7 @@ class CBXPetitionAdmin {
 		do_action( 'cbxpetition_sign_delete_on_user_delete_before', $user_id );
 
 		global $wpdb;
-		$signature_table = $wpdb->prefix . 'cbxpetition_signs';
+		$signature_table = esc_sql($wpdb->prefix . 'cbxpetition_signs');
 
 		//get all signature by this user
 		$signatures = PetitionHelper::getSignListingData( '', 0, $user_id, 'all', 'DESC', 'id', - 1 );
@@ -1517,7 +1517,7 @@ class CBXPetitionAdmin {
 			$links_array[] = '<a target="_blank" style="color:#f44336 !important; font-weight: bold;" href="https://wordpress.org/plugins/cbxpetition/#reviews" aria-label="' . esc_attr__( 'Reviews', 'cbxpetition' ) . '">' . esc_html__( 'Reviews', 'cbxpetition' ) . '</a>';
 			$links_array[] = '<a target="_blank" style="color:#f44336 !important; font-weight: bold;" href="https://codeboxr.com/doc/cbxpetition-doc/" aria-label="' . esc_attr__( 'Documentation', 'cbxpetition' ) . '">' . esc_html__( 'Documentation', 'cbxpetition' ) . '</a>';
 
-
+			//phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 			if ( in_array( 'cbxpetitionproaddon/cbxpetitionproaddon.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) || defined( 'CBXPETITIONPROADDON_PLUGIN_NAME' ) ) {
 				//nothing here
 			} else {
@@ -1651,7 +1651,7 @@ class CBXPetitionAdmin {
 		}
 
 		if ( get_transient( 'cbxpetition_proaddon_deactivated' ) ) {
-			echo '<div class="notice notice-success is-dismissible" style="border-color: #6648fe !important;">';
+			echo '<div class="notice notice-info is-dismissible" style="border-color: #6648fe !important;">';
 
 			echo '<p>';
 
@@ -1676,10 +1676,11 @@ class CBXPetitionAdmin {
 		}
 
 		//if the pro addon is active or installed
+		//phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 		if ( in_array( 'cbxpetitionproaddon/cbxpetitionproaddon.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) || defined( 'CBXPETITIONPROADDON_PLUGIN_NAME' ) ) {
 			//plugin is activated
 
-			$plugin_version  = CBXPETITIONPROADDON_PLUGIN_NAME;
+			$plugin_version  = CBXPETITIONPROADDON_PLUGIN_VERSION;
 			$pro_min_version = '2.0.0';
 
 
@@ -1701,7 +1702,7 @@ class CBXPetitionAdmin {
 	 * @since 2.0.0
 	 */
 	public function check_pro_addon() {
-		cbxpetition_check_and_deactivate_plugin( 'cbxpetitionproaddon/cbxpetitionproaddon.php', '2.0.0', 'cbxpetition_proaddon_deactivated' );
+		cbxpetition_check_and_deactivate_plugin( 'cbxpetitionproaddon/cbxpetitionproaddon.php', '2.0.6', 'cbxpetition_proaddon_deactivated' );
 	}//end method check_pro_addon
 
 	/**
@@ -2340,7 +2341,7 @@ class CBXPetitionAdmin {
 		if(defined('CBXPETITIONPROADDON_PLUGIN_NAME')) return;
 
 		$pro_addon_version = PetitionHelper::get_any_plugin_version('cbxpetitionproaddon/cbxpetitionproaddon.php');
-		$pro_latest_version  = '2.0.4';
+		$pro_latest_version  = CBXPETITION_PRO_VERSION;
 
 		if($pro_addon_version != '' && version_compare( $pro_addon_version, $pro_latest_version, '<' ) ){
 			// Custom message to display

@@ -7,14 +7,18 @@ if ( ! defined( 'WPINC' ) ) {
 use \Cbx\Petition\Helpers\PetitionHelper;
 use enshrined\svgSanitize\Sanitizer;
 
-/**
- * Is_woocommerce - Returns true if on a page which uses WooCommerce templates (cart and checkout are standard pages with shortcodes and thus are not included).
- *
- * @return bool
- */
-function is_cbxpetition() {
-	return apply_filters( 'is_cbxpetition', is_petition_dashboard() || is_petitions() || is_petition_taxonomy() || is_petition() );
+//phpcs:disabled
+if(!function_exists('is_cbxpetition')){
+	/**
+	 * is_petition internal pages
+	 *
+	 * @return bool
+	 */
+	function is_cbxpetition() {
+		return apply_filters( 'is_cbxpetition', is_petition_dashboard() || is_petitions() || is_petition_taxonomy() || is_petition() );//phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+	}
 }
+
 
 if ( ! function_exists( 'is_petition_dashboard' ) ) {
 
@@ -94,6 +98,9 @@ if ( ! function_exists( 'is_petition' ) ) {
 		return is_singular( [ 'cbxpetition' ] );
 	}//end method is_petition
 }
+
+//phpcs:enabled
+
 if ( ! function_exists( 'cbxpetition_petitionSignInfo' ) ) {
 	function cbxpetition_petitionSignInfo( $petition_id = 0 ) {
 		return PetitionHelper::petitionSignInfo( $petition_id );
@@ -368,7 +375,7 @@ if ( ! function_exists( 'cbxpetition_deprecated_function' ) ) {
 	 */
 	function cbxpetition_deprecated_function( $function, $version, $replacement = null ) {
 		if ( defined( 'DOING_AJAX' ) ) {
-			do_action( 'deprecated_function_run', $function, $replacement, $version );
+			do_action( 'deprecated_function_run', $function, $replacement, $version );//phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 			$log_string = "The {$function} function is deprecated since version {$version}."; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			$log_string .= $replacement ? " Replace with {$replacement}." : '';               // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
@@ -591,4 +598,20 @@ if ( ! function_exists( 'cbxpetition_category_count' ) ) {
 
 		return (int) $count;
 	}//end method cbxpetition_category_count
+}
+
+if(!function_exists('cbxpetition_decode_entities_array')){
+	/**
+	 * Html entitity decode for array
+	 *
+	 * @param $arr
+	 *
+	 * @return array|string[]
+	 * @since 2.0.9
+	 */
+	function cbxpetition_decode_entities_array($arr = []){
+		return array_map(function ($v) {
+			return is_string($v) ? html_entity_decode($v, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') : $v;
+		}, $arr);
+	}
 }

@@ -16,6 +16,7 @@
  */
 
 defined( 'ABSPATH' ) || exit;
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 ?>
 </div>
 </td>
@@ -77,3 +78,5 @@ defined( 'ABSPATH' ) || exit;
 </table>
 </body>
 </html>
+<?php
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound

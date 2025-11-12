@@ -4,6 +4,8 @@ if ( ! defined( 'WPINC' ) ) {
 }
 ?>
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+
 get_header( 'cbxpetition' );
 ?>
 <?php
@@ -64,3 +66,4 @@ do_action( 'cbxpetition_sidebar_taxonomy', 'taxonomy-cbxpetition' );
 
 <?php
 get_footer( 'cbxpetition' );
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound

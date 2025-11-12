@@ -32,6 +32,10 @@ use Cbx\Petition\Helpers\PetitionHelper;
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
+
+
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+
 $terms_page     = absint( $settings->get_field( 'terms_page', 'cbxpetition_general', 0 ) );
 $terms_page_url = ( $terms_page > 0 ) ? get_permalink( $terms_page ) : '#';
 
@@ -45,8 +49,6 @@ $sign_comment_req_html   = ( $sign_comment_req ) ? '  required data-rule-minleng
 $login_html              = '';
 
 if ( ! is_user_logged_in() ):
-
-
     if($guest_login_form != 'off'){
 	    if ( $guest_login_form != 'none' ) {
 		    $login_html .= cbxpetition_get_template_html( 'global/login_form.php', [
@@ -283,3 +285,5 @@ endif;
 </div>
 <!--
 </div>-->
+<?php
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound

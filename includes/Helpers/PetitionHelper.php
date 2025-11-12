@@ -104,10 +104,10 @@ class PetitionHelper {
 	/**
 	 * Create a page and store the ID in an option.
 	 *
-	 * @param string $key
-	 * @param string $slug
-	 * @param string $page_title
-	 * @param string $page_content
+	 * @param  string  $key
+	 * @param  string  $slug
+	 * @param  string  $page_title
+	 * @param  string  $page_content
 	 *
 	 * @return int|string|WP_Error|null
 	 */
@@ -165,10 +165,11 @@ class PetitionHelper {
 			}
 
 		} else {
-			//search by slug for nontrashed and then trashed, then if not found create one
+			//search by slug for non trashed and then trashed, then if not found create one
 
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-			if ( ( $page_id = intval( $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_type = 'page' AND post_status != 'trash' AND post_name = %s LIMIT 1;", $slug ) ) ) ) > 0 ) {
+			if ( ( $page_id = intval( $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_type = 'page' AND post_status != 'trash' AND post_name = %s LIMIT 1;",
+					$slug ) ) ) ) > 0 ) {
 
 				//non trashed post found by slug
 				//page found but not publish, so publish it
@@ -178,7 +179,8 @@ class PetitionHelper {
 					'post_status' => 'publish',
 				];
 				wp_update_post( $page_data );
-			} elseif ( ( $page_id = intval( $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_type = 'page' AND post_status = 'trash' AND post_name = %s LIMIT 1;", $slug . '__trashed' ) ) ) ) > 0 ) { // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			} elseif ( ( $page_id = intval( $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_type = 'page' AND post_status = 'trash' AND post_name = %s LIMIT 1;", // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+					$slug . '__trashed' ) ) ) ) > 0 ) {
 
 				//trash post found and unstrash/publish it
 				wp_untrash_post( $page_id );
@@ -391,7 +393,7 @@ class PetitionHelper {
 	/**
 	 * Get user display name
 	 *
-	 * @param null $user_id
+	 * @param  null  $user_id
 	 *
 	 * @return string
 	 * @since 1.0.0
@@ -440,8 +442,8 @@ class PetitionHelper {
 	}//end method userDisplayNameAlt
 
 	/**
-	 * @param int $petition_id
-	 * @param int $user_id
+	 * @param  int  $petition_id
+	 * @param  int  $user_id
 	 *
 	 * @return bool
 	 * @since 1.0.0
@@ -460,7 +462,9 @@ class PetitionHelper {
 		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$sql = $wpdb->prepare( "SELECT * FROM $signature_table WHERE petition_id=%d AND add_by=%d", $petition_id, $user_id );
 
-		$log_info = $wpdb->get_row( $sql, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
+		//phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
+		$log_info = $wpdb->get_row( $sql,
+			ARRAY_A );
 		if ( is_null( $log_info ) ) {
 			return false;
 		}
@@ -471,8 +475,8 @@ class PetitionHelper {
 	/**
 	 * Is petition signe by guest user by email
 	 *
-	 * @param int $petition_id
-	 * @param string $email
+	 * @param  int  $petition_id
+	 * @param  string  $email
 	 *
 	 * @return bool
 	 * @since 1.0.0
@@ -492,9 +496,12 @@ class PetitionHelper {
 		global $wpdb;
 
 		$signature_table = $wpdb->prefix . 'cbxpetition_signs';
-		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		//phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$sql      = $wpdb->prepare( "SELECT * FROM $signature_table WHERE petition_id=%d AND email=%s", $petition_id, $email );
-		$log_info = $wpdb->get_row( $sql, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
+
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
+		$log_info = $wpdb->get_row( $sql,
+			ARRAY_A );
 
 		if ( is_null( $log_info ) ) {
 			return false;
@@ -601,7 +608,7 @@ class PetitionHelper {
 	/**
 	 * Return petition sign state value corresponding key
 	 *
-	 * @param string $state_key
+	 * @param  string  $state_key
 	 *
 	 * @return mixed|string
 	 * @since 1.0.0
@@ -654,14 +661,14 @@ class PetitionHelper {
 	/**
 	 * Get petition sign Data
 	 *
-	 * @param string $search
-	 * @param int $petition_id
-	 * @param int $user_id
-	 * @param string $state
-	 * @param string $order
-	 * @param string $order_by
-	 * @param int $per_page
-	 * @param int $page
+	 * @param  string  $search
+	 * @param  int  $petition_id
+	 * @param  int  $user_id
+	 * @param  string  $state
+	 * @param  string  $order
+	 * @param  string  $order_by
+	 * @param  int  $per_page
+	 * @param  int  $page
 	 *
 	 * @return array|null|object
 	 * @since 1.0.0
@@ -727,19 +734,19 @@ class PetitionHelper {
 
 		$sortingOrder = " ORDER BY $order_by $order ";
 
-		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter
 		return $wpdb->get_results( "$sql_select  WHERE  $where_sql $sortingOrder $limit_sql", 'ARRAY_A' );
 	}//end method getSignListingData
 
 	/**
 	 * Get total petition sign data count
 	 *
-	 * @param string $search
-	 * @param int $petition_id
-	 * @param int $user_id
-	 * @param string $state
-	 * @param int $per_page
-	 * @param int $page
+	 * @param  string  $search
+	 * @param  int  $petition_id
+	 * @param  int  $user_id
+	 * @param  string  $state
+	 * @param  int  $per_page
+	 * @param  int  $page
 	 *
 	 * @return null|string
 	 * @since 1.0.0
@@ -783,16 +790,14 @@ class PetitionHelper {
 		}
 
 		//$sortingOrder = " ORDER BY $order_by $order ";
-		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-		$count = $wpdb->get_var( "$sql_select $join  WHERE  $where_sql" );
-
-		return $count;
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter
+		return $wpdb->get_var( "$sql_select $join  WHERE  $where_sql" );
 	}//end method getSignListingDataCount
 
 	/**
 	 * petitions to expire for widget
 	 *
-	 * @param int $per_page
+	 * @param  int  $per_page
 	 *
 	 * @return int[]|\WP_Post[]
 	 * @since 1.0.0
@@ -817,15 +822,13 @@ class PetitionHelper {
 		];
 		//phpcs:enable
 
-		$petitions_to_expire = get_posts( $args );
-
-		return $petitions_to_expire;
+		return get_posts( $args );
 	}//end method petitionsToExpire
 
 	/**
 	 * petitions that are recently completed
 	 *
-	 * @param int $per_page
+	 * @param  int  $per_page
 	 *
 	 * @return int[]|\WP_Post[]
 	 * @since 1.0.0
@@ -849,9 +852,7 @@ class PetitionHelper {
 		];
 		//phpcs:enable
 
-		$completed_petitions = get_posts( $args );
-
-		return $completed_petitions;
+		return get_posts( $args );
 	}//end method
 
 	/**
@@ -867,16 +868,14 @@ class PetitionHelper {
 		$signature_table = $wpdb->prefix . 'cbxpetition_signs';
 		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 		$sql = $wpdb->prepare( "SELECT * FROM $signature_table WHERE id=%d ", intval( $sign_id ) );
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared
-		$log_info = $wpdb->get_row( $sql, ARRAY_A );
-
-		return $log_info;
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
+		return $wpdb->get_row( $sql, ARRAY_A );
 	}//end method petitionSignInfo
 
 	/**
 	 * get single petition expire date
 	 *
-	 * @param int $petition_id
+	 * @param  int  $petition_id
 	 *
 	 * @return string
 	 * @since 1.0.0
@@ -891,12 +890,12 @@ class PetitionHelper {
 		}
 
 		return $expire_date;
-	}
+	}//end method petitionExpireDate
 
 	/**
 	 * get single petition media info data arr
 	 *
-	 * @param int $petition_id
+	 * @param  int  $petition_id
 	 *
 	 * @return array|mixed
 	 * @since 1.0.0
@@ -915,7 +914,7 @@ class PetitionHelper {
 	/**
 	 * get single petition banner image
 	 *
-	 * @param int $petition_id
+	 * @param  int  $petition_id
 	 *
 	 * @return mixed|string
 	 * @since 1.0.0
@@ -939,7 +938,7 @@ class PetitionHelper {
 	/**
 	 * get single petition signature target
 	 *
-	 * @param int $petition_id
+	 * @param  int  $petition_id
 	 *
 	 * @return int|mixed|string
 	 * @since 1.0.0
@@ -959,7 +958,7 @@ class PetitionHelper {
 	/**
 	 * get single petition video info
 	 *
-	 * @param int $petition_id
+	 * @param  int  $petition_id
 	 *
 	 * @return array
 	 * @since 1.0.0
@@ -985,7 +984,7 @@ class PetitionHelper {
 	/**
 	 * get single petition photos
 	 *
-	 * @param int $petition_id
+	 * @param  int  $petition_id
 	 *
 	 * @return array
 	 * @since 1.0.0
@@ -1012,7 +1011,7 @@ class PetitionHelper {
 	/**
 	 * get single petition letter info
 	 *
-	 * @param int $petition_id
+	 * @param  int  $petition_id
 	 *
 	 * @return array|mixed
 	 * @since 1.0.0
@@ -1031,7 +1030,7 @@ class PetitionHelper {
 	/**
 	 * get single petition letter
 	 *
-	 * @param int $petition_id
+	 * @param  int  $petition_id
 	 *
 	 * @return mixed|string
 	 * @since 1.0.0
@@ -1056,7 +1055,7 @@ class PetitionHelper {
 	/**
 	 * get single petition recipients
 	 *
-	 * @param int $petition_id
+	 * @param  int  $petition_id
 	 *
 	 * @return array
 	 * @since 1.0.0
@@ -1077,7 +1076,7 @@ class PetitionHelper {
 	/**
 	 * get single petition signature count
 	 *
-	 * @param int $petition_id
+	 * @param  int  $petition_id
 	 *
 	 * @return int
 	 * @since 1.0.0
@@ -1094,7 +1093,7 @@ class PetitionHelper {
 			$sql_select = "SELECT COUNT(*) FROM $signature_table as signs";
 
 			$where_sql = $wpdb->prepare( "petition_id=%d AND state=%s", $petition_id, 'approved' );
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 			$signature_count = $wpdb->get_var( " $sql_select WHERE  $where_sql" );
 		}
 
@@ -1104,7 +1103,7 @@ class PetitionHelper {
 	/**
 	 * get single petition signature count ratio
 	 *
-	 * @param int $petition_id
+	 * @param  int  $petition_id
 	 *
 	 * @return int
 	 * @since 1.0.0
@@ -1154,9 +1153,9 @@ class PetitionHelper {
 	/**
 	 * Get the user roles for voting purpose
 	 *
-	 * @param bool $plain
-	 * @param bool $include_guest
-	 * @param array $ignore
+	 * @param  bool  $plain
+	 * @param  bool  $include_guest
+	 * @param  array  $ignore
 	 *
 	 * @return array
 	 * @since 1.0.0
@@ -1207,7 +1206,7 @@ class PetitionHelper {
 	/**
 	 * count user petition post
 	 *
-	 * @param int $user_id
+	 * @param  int  $user_id
 	 *
 	 * @return int
 	 * @since 1.0.0
@@ -1224,7 +1223,7 @@ class PetitionHelper {
 
 		$where = " WHERE ( ( post_type = 'cbxpetition' AND ( post_status = 'publish' OR post_status = 'pending' OR post_status = 'draft' ) ) ) AND post_author = %d ";
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare, PluginCheck.Security.DirectDB.UnescapedDBParameter
 		$count = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $wpdb->posts $where", $user_id ) );
 
 
@@ -1236,7 +1235,7 @@ class PetitionHelper {
 	 * JPS 20170330
 	 * Wraps paginate_links data in Twitter bootstrap pagination component
 	 *
-	 * @param array $args {
+	 * @param  array  $args  {
 	 *                         Optional. {@see 'paginate_links'} for native argument list.
 	 *
 	 * @type string $nav_class classes for <nav> element. Default empty.
@@ -1512,7 +1511,7 @@ class PetitionHelper {
 	/**
 	 * delete uploaded photos of the petition
 	 *
-	 * @param int $petition_id
+	 * @param  int  $petition_id
 	 *
 	 * @since 1.0.0
 	 */
@@ -1705,12 +1704,11 @@ class PetitionHelper {
 	/**
 	 * Setup a post object and store the original loop item so we can reset it later
 	 *
-	 * @param obj $post_to_setup The post that we want to use from our custom loop
+	 * @param  obj  $post_to_setup  The post that we want to use from our custom loop
 	 *
 	 * @since 1.0.0
 	 */
 	public static function setup_admin_postdata( $post_to_setup ) {
-
 		//only on the admin side
 		if ( is_admin() ) {
 
@@ -1719,7 +1717,7 @@ class PetitionHelper {
 
 			//only cache $post the first time through the loop
 			if ( ! isset( $GLOBALS['post_cache'] ) ) {
-				$GLOBALS['post_cache'] = $post;
+				$GLOBALS['post_cache'] = $post; //phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 			}
 
 			//setup the post data as usual
@@ -1735,7 +1733,6 @@ class PetitionHelper {
 	 * @since 1.0.0
 	 */
 	public static function wp_reset_admin_postdata() {
-
 		//only on the admin and if post_cache is set
 		if ( is_admin() && ! empty( $GLOBALS['post_cache'] ) ) {
 
@@ -1785,7 +1782,7 @@ class PetitionHelper {
 	/**
 	 * Add utm params to any url
 	 *
-	 * @param string $url
+	 * @param  string  $url
 	 *
 	 * @return string
 	 * @since 1.0.0
@@ -1878,7 +1875,8 @@ class PetitionHelper {
 				'archive_slug'    => [
 					'name'    => 'archive_slug',
 					'label'   => esc_html__( 'Archive Slug', 'cbxpetition' ),
-					'desc'    => esc_html__( 'Petition post type archive slug. Default: cbxpetition', 'cbxpetition' ) . '<a target="_blank" class="button small outline icon icon-inline icon-right ml-10" href="' . esc_url( $archive_url ) . '"><i class="cbx-icon">' . $external_svg . '</i><span class="button-label">' . esc_attr__( 'View Archive',
+					'desc'    => esc_html__( 'Petition post type archive slug. Default: cbxpetition',
+							'cbxpetition' ) . '<a target="_blank" class="button small outline icon icon-inline icon-right ml-10" href="' . esc_url( $archive_url ) . '"><i class="cbx-icon">' . $external_svg . '</i><span class="button-label">' . esc_attr__( 'View Archive',
 							'cbxpetition' ) . '</span></a>',
 					'type'    => 'slug',
 					'default' => 'cbxpetitions'
@@ -1972,7 +1970,8 @@ class PetitionHelper {
 				'guest_login_form'         => [
 					'name'    => 'guest_login_form',
 					'label'   => esc_html__( 'Guest User Login Form', 'cbxpetition' ),
-					'desc'    => esc_html__( 'Default guest user is shown wordpress core login form. Pro addon helps to integrate 3rd party plugins like woocommerce, restrict content pro etc.', 'cbxpetition' ),
+					'desc'    => esc_html__( 'Default guest user is shown wordpress core login form. Pro addon helps to integrate 3rd party plugins like woocommerce, restrict content pro etc.',
+						'cbxpetition' ),
 					'type'    => 'select',
 					'default' => 'wordpress',
 					'options' => $gust_login_forms
@@ -1992,8 +1991,8 @@ class PetitionHelper {
 				'guest_activation'         => [
 					'name'    => 'guest_activation',
 					'label'   => esc_html__( 'Guest Email Verify', 'cbxpetition' ),
-					'desc'    => wp_kses(__( 'Enable/Disable (To make this feature work need to enable user email notification on and user email template should have the tag syntax <code>{activation_link}</code>)',
-						'cbxpetition' ), ['code' => []]),
+					'desc'    => wp_kses( __( 'Enable/Disable (To make this feature work need to enable user email notification on and user email template should have the tag syntax <code>{activation_link}</code>)',
+						'cbxpetition' ), [ 'code' => [] ] ),
 					'type'    => 'checkbox',
 					'default' => 'on',
 				],
@@ -2253,7 +2252,8 @@ class PetitionHelper {
 				'delete_global_config' => [
 					'name'    => 'delete_global_config',
 					'label'   => esc_html__( 'On Uninstall delete plugin data', 'cbxpetition' ),
-					'desc'    => '<p>' . esc_html__( 'Delete Global Config data(options/plugin settings), custom table(s), files/folders, all petition custom post type  created by this plugin on uninstall. Please note that this process can not be undone and it is recommended to keep full database and files backup before doing this.', 'cbxpetition' ) . '</p>',
+					'desc'    => '<p>' . esc_html__( 'Delete Global Config data(options/plugin settings), custom table(s), files/folders, all petition custom post type  created by this plugin on uninstall. Please note that this process can not be undone and it is recommended to keep full database and files backup before doing this.',
+							'cbxpetition' ) . '</p>',
 					'type'    => 'radio',
 					'options' => [
 						'yes' => esc_html__( 'Yes', 'cbxpetition' ),
@@ -2405,7 +2405,7 @@ class PetitionHelper {
 	 * example for how to use the function within a theme. If this were
 	 * to be within a class, then the prefix would not be necessary.
 	 *
-	 * @param int $id The ID of the post to check
+	 * @param  int  $id  The ID of the post to check
 	 *
 	 * @return   bool          True if the post exists; otherwise, false.
 	 * @since    1.0.0
@@ -2514,7 +2514,7 @@ class PetitionHelper {
 			}
 
 			// Execute the query
-			$results = $wpdb->get_results( $query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery
+			$results = $wpdb->get_results( $query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery, PluginCheck.Security.DirectDB.UnescapedDBParameter
 
 			// Populate the monthly_counts array with the results
 			foreach ( $results as $result ) {
@@ -2556,7 +2556,7 @@ class PetitionHelper {
 		}
 
 		// Execute the query
-		$results = $wpdb->get_results( $query ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared
+		$results = $wpdb->get_results( $query ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 
 		// Populate the weekly_counts array with the results
 		foreach ( $results as $result ) {
@@ -2662,18 +2662,9 @@ class PetitionHelper {
 	}//end method codeboxr_news_feed
 
 	/**
-	 * Load the plugin text domain for translation.
-	 *
-	 * @since    1.0.0
-	 */
-	/*public static function load_plugin_textdomain() {
-		load_plugin_textdomain( 'cbxpetition', false, CBXPETITION_ROOT_PATH . 'languages/' );
-	}//end method load_plugin_textdomain*/
-
-	/**
 	 * Load mailer
-     *
-     * @since 2.0.0
+	 *
+	 * @since 2.0.0
 	 */
 	public static function load_mailer() {
 		cbxpetition_mailer();

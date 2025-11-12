@@ -10,6 +10,8 @@
 defined( 'ABSPATH' ) || exit;
 ?>
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+
 $list_url = admin_url( 'edit.php?post_type=cbxpetition&page=cbxpetition-emails' );
 ?>
 <div class="section_header row">
@@ -122,3 +124,5 @@ $list_url = admin_url( 'edit.php?post_type=cbxpetition&page=cbxpetition-emails' 
         });
     });
 </script>
+<?php
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound

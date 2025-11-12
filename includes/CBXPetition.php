@@ -150,7 +150,6 @@ final class CBXPetition {
 	private function common_hooks() {
 		$helper = new PetitionHelper();
 
-		//add_action( 'init', [ $helper, 'load_plugin_textdomain' ] );
 		add_action( 'init', [ $helper, 'load_mailer' ] );
 	}//end method common_hooks
 

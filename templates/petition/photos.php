@@ -32,6 +32,8 @@ if ( ! defined( 'WPINC' ) ) {
 
 use Cbx\Petition\Helpers\PetitionHelper;
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+
 if ( is_array( $petition_photos ) && sizeof( $petition_photos ) > 0 ):
 
 	do_action( 'cbxpetition_photos_before', $petition_id );
@@ -56,3 +58,5 @@ if ( is_array( $petition_photos ) && sizeof( $petition_photos ) > 0 ):
 
 	do_action( 'cbxpetition_photos_after', $petition_id );
 endif;
+
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound

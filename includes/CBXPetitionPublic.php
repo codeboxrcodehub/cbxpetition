@@ -145,7 +145,7 @@ class CBXPetitionPublic {
 
 			$settings = $this->settings;
 			global $wpdb;
-			$signature_table = $wpdb->prefix . 'cbxpetition_signs';
+			$signature_table = esc_sql($wpdb->prefix . 'cbxpetition_signs');
 
 			$activation_code = sanitize_text_field( wp_unslash( get_query_var( 'cbxpetitionsign_verification' ) ) );
 
@@ -276,7 +276,7 @@ class CBXPetitionPublic {
 
 			global $wpdb;
 
-			$signature_table = $wpdb->prefix . 'cbxpetition_signs';
+			$signature_table = esc_sql($wpdb->prefix . 'cbxpetition_signs');
 			$post_data       = wp_unslash( $_POST ); //data is sanitized later below using $post_data
 
 			$user_id = 0;

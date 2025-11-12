@@ -2,8 +2,9 @@
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
-?>
-<?php
+
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+
 do_action('cbxpetition_archive_loop_item_before');
 ?>
 <div class="cbxpetition_loop_item col-4">
@@ -54,3 +55,6 @@ do_action('cbxpetition_archive_loop_item_before');
 </div>
 <?php
 do_action('cbxpetition_archive_loop_item_after');
+
+
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound

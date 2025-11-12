@@ -21,6 +21,8 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+
 echo '<div class="cbxpetition_signature_item">';
 do_action( 'cbxpetition_signature_item_start', $petition_id, $petition_sign );
 
@@ -48,3 +50,6 @@ echo '<div class="signature-card">
 	           <div class="clear clearfix"></div></div>';
 do_action( 'cbxpetition_signature_item_end', $petition_id, $petition_sign );
 echo '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
+
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound

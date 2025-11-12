@@ -18,6 +18,8 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+
 $plus_svg  = cbxpetition_esc_svg(cbxpetition_load_svg( 'icon_plus' ));
 $back_svg  = cbxpetition_esc_svg(cbxpetition_load_svg( 'icon_back' ));
 ?>
@@ -204,3 +206,5 @@ $back_svg  = cbxpetition_esc_svg(cbxpetition_load_svg( 'icon_back' ));
         </div>
     </div>
 </div>
+<?php
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound

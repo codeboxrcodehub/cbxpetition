@@ -1,4 +1,5 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 do_action( 'cbxpetition_before_main_content', 'shortcode' );
 do_action( 'cbxpetition_single_before_main_content', 'shortcode' );
 ?>
@@ -30,3 +31,5 @@ do_action( 'cbxpetition_single_before_main_content', 'shortcode' );
 <?php
 do_action( 'cbxpetition_single_after_main_content', 'shortcode'  );
 do_action( 'cbxpetition_after_main_content', 'shortcode'  );
+
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound

@@ -3,6 +3,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+
 $data = $email->object;
 
 do_action( 'cbxpetition_email_header', $email_heading, $email ); ?>
@@ -31,3 +33,5 @@ if ( $additional_content ) {
 
 <?php
 do_action( 'cbxpetition_email_footer', $email );
+
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound

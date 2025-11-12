@@ -8,6 +8,8 @@
  * @subpackage cbxpetition/templates/admin
  */
 defined( 'ABSPATH' ) || exit;
+
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 ?>
 <div class="section_header row">
     <div class="col-12 section_header_l">
@@ -89,3 +91,5 @@ defined( 'ABSPATH' ) || exit;
         </tbody>
     </table>
 </div>
+<?php
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound

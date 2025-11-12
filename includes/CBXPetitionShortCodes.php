@@ -61,7 +61,11 @@ class CBXPetitionShortCodes {
 			'sections'    => implode( ',', $default_sections )
 		], $atts, 'cbxpetition' );
 
+		$atts = cbxpetition_decode_entities_array($atts);
+
 		extract( $atts );
+
+
 
 		$user_id     = absint( get_current_user_id() );
 		$petition_id = absint( $petition_id );
@@ -113,7 +117,10 @@ class CBXPetitionShortCodes {
 			'sections'    => apply_filters( 'cbxpetition_summary_shortcode_default_sections', 'title,content,stat,expire_date' )
 		], $atts, 'cbxpetition_summary' );
 
+		$atts = cbxpetition_decode_entities_array($atts);
+
 		extract( $atts );
+
 
 		//$user_id = intval( get_current_user_id() );
 
@@ -153,7 +160,8 @@ class CBXPetitionShortCodes {
 				if ( in_array( 'content', $sections ) ) {
 					$post_content = $petition->post_content;
 
-					$post_content = apply_filters( 'the_content', $post_content );
+
+					$post_content = apply_filters( 'the_content', $post_content ); //phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 					$post_content = str_replace( ']]>', ']]&gt;', $post_content );
 
 					//https://wordpress.stackexchange.com/questions/245046/format-content-value-from-db-outside-of-wordpress-filters/245057#245057
@@ -211,7 +219,7 @@ class CBXPetitionShortCodes {
 							/* translators: %s: petition expire date  */
 							$expire_info = sprintf( esc_html__( 'Sorry, petition already expired on %s', 'cbxpetition' ), $expire_date->format( 'Y-m-d H:i:s' ) );
 						} else {
-							$expire_info = $expire_date->format( apply_filters( '', $date_time_format, $date_format, $time_format ) );
+							$expire_info = $expire_date->format( apply_filters( 'cbxpetition_expire_date_formatted', $date_time_format, $date_format, $time_format ) );
 						}
 					}
 					$output .= '<p class="cbxpetition_expire_wrapper">' . esc_html__( 'Expire Date', 'cbxpetition' ) . ' : ' . $expire_info . '</p>';
@@ -252,6 +260,8 @@ class CBXPetitionShortCodes {
 			'title'       => esc_html__( 'Sign this Petition', 'cbxpetition' )
 		], $atts, 'cbxpetition_signform' );
 
+		$atts = cbxpetition_decode_entities_array($atts);
+
 		$petition_id = isset( $atts['petition_id'] ) ? absint( $atts['petition_id'] ) : 0;
 		$title       = isset( $atts['title'] ) ? sanitize_text_field( $atts['title'] ) : '';
 
@@ -283,9 +293,9 @@ class CBXPetitionShortCodes {
 		$atts = shortcode_atts( [
 			'petition_id' => $petition_id,
 		],
-			$atts,
-			'cbxpetition_video' );
+			$atts,'cbxpetition_video' );
 
+		$atts = cbxpetition_decode_entities_array($atts);
 
 		extract( $atts );
 
@@ -325,9 +335,9 @@ class CBXPetitionShortCodes {
 		$atts = shortcode_atts( [
 			'petition_id' => $petition_id,
 		],
-			$atts,
-			'cbxpetition_photos' );
+			$atts,'cbxpetition_photos' );
 
+		$atts = cbxpetition_decode_entities_array($atts);
 
 		extract( $atts );
 
@@ -365,9 +375,9 @@ class CBXPetitionShortCodes {
 		$atts = shortcode_atts( [
 			'petition_id' => $petition_id,
 		],
-			$atts,
-			'cbxpetition_letter' );
+			$atts,	'cbxpetition_letter' );
 
+		$atts = cbxpetition_decode_entities_array($atts);
 
 		extract( $atts );
 
@@ -405,10 +415,9 @@ class CBXPetitionShortCodes {
 
 		$atts = shortcode_atts( [
 			'petition_id' => $petition_id,
-		],
-			$atts,
-			'cbxpetition_banner' );
+		],	$atts,	'cbxpetition_banner' );
 
+		$atts = cbxpetition_decode_entities_array($atts);
 
 		extract( $atts );
 
@@ -456,6 +465,8 @@ class CBXPetitionShortCodes {
 		],
 			$atts,
 			'cbxpetition_signatures' );
+
+		$atts = cbxpetition_decode_entities_array($atts);
 
 
 		extract( $atts );
@@ -518,6 +529,8 @@ class CBXPetitionShortCodes {
 			$atts,
 			'cbxpetition_stat' );
 
+		$atts = cbxpetition_decode_entities_array($atts);
+
 		extract( $atts );
 
 		if ( $petition_id == 0 ) {
@@ -559,6 +572,7 @@ class CBXPetitionShortCodes {
 			'show_title' => 1,
 			'show_stat'  => 1
 		], $atts, 'cbxpetition_latest' );
+		$atts = cbxpetition_decode_entities_array($atts);
 
 		extract( $atts );
 

@@ -2,9 +2,9 @@
 if ( ! defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
-?>
 
-<?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+
 if ( ! is_user_logged_in()):
     if (is_singular()) {
         $login_url    = wp_login_url(get_permalink());
@@ -61,3 +61,5 @@ endif;
         }
     });
 </script>
+<?php
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound

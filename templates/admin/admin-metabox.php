@@ -3,6 +3,8 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+
 /**
  * Provide a admin area view for the plugin
  *
@@ -329,3 +331,5 @@ $hide_here     = ( $petition_id == 0 ) ? '' : '';
 		<?php do_action( 'cbxpetition_meta_contents_after', $petition_id, $disabled_here, $hide_here ); ?>
     </div>
 </div>
+<?php
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound

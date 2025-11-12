@@ -31,6 +31,8 @@ use Cbx\Petition\Helpers\PetitionHelper;
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+
 ?>
 <?php if ( isset( $videos['video-url'] ) && $videos['video-url'] != '' ): ?>
 <!--    <div class="cbx-chota">-->
@@ -65,3 +67,5 @@ if ( ! defined( 'WPINC' ) ) {
         </div>
 <!--    </div>-->
 <?php endif;
+
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
