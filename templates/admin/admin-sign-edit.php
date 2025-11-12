@@ -4,7 +4,7 @@
  *
  * This file is used to markup the admin-facing signature edit
  *
- * @link       http://codeboxr.com
+ * @link       https://codeboxr.com
  * @since      1.0.7
  *
  * @package    cbxpetition

@@ -4,7 +4,7 @@
  * Fired when the plugin is uninstalled.
  *
  *
- * @link       http://codeboxr.com
+ * @link       https://codeboxr.com
  * @since      1.0.0
  *
  * @package    cbxpetition

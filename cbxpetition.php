@@ -8,7 +8,7 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              http://codeboxr.com
+ * @link              https://codeboxr.com
  * @since             1.0.0
  * @package           CBXPetition
  *
@@ -16,9 +16,9 @@
  * Plugin Name:       CBX Petition
  * Plugin URI:        https://codeboxr.com/product/cbx-petition-for-wordpress/
  * Description:       A plugin to create, manage petition and collect signatures for petition
- * Version:           2.0.9
+ * Version:           2.0.10
  * Author:            Codeboxr
- * Author URI:        http://codeboxr.com
+ * Author URI:        https://codeboxr.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       cbxpetition
@@ -33,7 +33,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 defined( 'CBXPETITION_PLUGIN_NAME' ) or define( 'CBXPETITION_PLUGIN_NAME', 'cbxpetition' );
-defined( 'CBXPETITION_PLUGIN_VERSION' ) or define( 'CBXPETITION_PLUGIN_VERSION', '2.0.9' );
+defined( 'CBXPETITION_PLUGIN_VERSION' ) or define( 'CBXPETITION_PLUGIN_VERSION', '2.0.10' );
 defined( 'CBXPETITION_BASE_NAME' ) or define( 'CBXPETITION_BASE_NAME', plugin_basename( __FILE__ ) );
 defined( 'CBXPETITION_ROOT_PATH' ) or define( 'CBXPETITION_ROOT_PATH', plugin_dir_path( __FILE__ ) );
 defined( 'CBXPETITION_ROOT_URL' ) or define( 'CBXPETITION_ROOT_URL', plugin_dir_url( __FILE__ ) );

@@ -6,7 +6,7 @@ use Cbx\Petition\Helpers\PetitionHelper;
  *
  * This file is used to markup the public-facing petition letter
  *
- * @link       http://codeboxr.com
+ * @link       https://codeboxr.com
  * @since      1.0.0
  *
  * @package    CBXPetition

@@ -1518,9 +1518,7 @@ class CBXPetitionAdmin {
 			$links_array[] = '<a target="_blank" style="color:#f44336 !important; font-weight: bold;" href="https://codeboxr.com/doc/cbxpetition-doc/" aria-label="' . esc_attr__( 'Documentation', 'cbxpetition' ) . '">' . esc_html__( 'Documentation', 'cbxpetition' ) . '</a>';
 
 			//phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
-			if ( in_array( 'cbxpetitionproaddon/cbxpetitionproaddon.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) || defined( 'CBXPETITIONPROADDON_PLUGIN_NAME' ) ) {
-				//nothing here
-			} else {
+			if (!defined( 'CBXPETITIONPROADDON_PLUGIN_NAME' )) {
 				$links_array[] = '<a target="_blank" style="color:#f44336 !important; font-weight: bold;" href="https://codeboxr.com/product/cbx-petition-for-wordpress/#downloadarea" aria-label="' . esc_attr__( 'Try Pro Addon', 'cbxpetition' ) . '">' . esc_html__( 'Try Pro Addon', 'cbxpetition' ) . '</a>';
 			}
 		}
@@ -1616,7 +1614,7 @@ class CBXPetitionAdmin {
 		// Check the transient to see if we've just activated the plugin
 		if ( get_transient( 'cbxpetition_upgraded_notice' ) ) {
 			if ( ! $activation_notice_shown ) {
-				echo '<div class="notice notice-success is-dismissible" style="border-color: #6648fe !important;">';
+				echo '<div class="notice notice-info is-dismissible" style="border-color: #6648fe !important;">';
 
 				echo '<p>';
 
@@ -1651,7 +1649,7 @@ class CBXPetitionAdmin {
 		}
 
 		if ( get_transient( 'cbxpetition_proaddon_deactivated' ) ) {
-			echo '<div class="notice notice-info is-dismissible" style="border-color: #6648fe !important;">';
+			echo '<div class="notice notice-warning is-dismissible" style="border-color: #6648fe !important;">';
 
 			echo '<p>';
 
@@ -1676,21 +1674,10 @@ class CBXPetitionAdmin {
 		}
 
 		//if the pro addon is active or installed
-		//phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
-		if ( in_array( 'cbxpetitionproaddon/cbxpetitionproaddon.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) || defined( 'CBXPETITIONPROADDON_PLUGIN_NAME' ) ) {
-			//plugin is activated
-
-			$plugin_version  = CBXPETITIONPROADDON_PLUGIN_VERSION;
-			$pro_min_version = '2.0.0';
-
-
-			if ( version_compare( $plugin_version, $pro_min_version, '<' ) ) {
-				echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'CBX Petition Pro Addon current version is not compatible with the latest Petition core plugin. Please update CBX Petition Pro Addon to version 2.0.0 or later  - Codeboxr Team', 'cbxpetition' ) . '</p></div>';
-			}
-		} else {
+		if (!defined( 'CBXPETITIONPROADDON_PLUGIN_NAME' ) ) {
 			/* translators: %s: Plugin Link */
 			$message = sprintf( __( 'CBX Petition Pro Addon has frontend petition submission features and more extra features, <a target="_blank" href="%s">try it</a> - Codeboxr Team', 'cbxpetition' ), esc_url( 'https://codeboxr.com/product/cbx-petition-for-wordpress/' ) );
-			echo '<div class="notice notice-success is-dismissible"><p>' . wp_kses_post( $message ) . '</p></div>';
+			echo '<div class="notice notice-warning is-dismissible"><p>' . wp_kses_post( $message ) . '</p></div>';
 		}
 
 	}//end method pro_addon_compatibility_campaign

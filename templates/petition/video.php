@@ -7,7 +7,7 @@ use Cbx\Petition\Helpers\PetitionHelper;
  *
  * This file is used to markup the public-facing petition video
  *
- * @link       http://codeboxr.com
+ * @link       https://codeboxr.com
  * @since      1.0.0
  *
  * @package    CBXPetition
@@ -21,7 +21,7 @@ use Cbx\Petition\Helpers\PetitionHelper;
  *
  * This file is used to markup the public facing form
  *
- * @link       http://codeboxr.com
+ * @link       https://codeboxr.com
  * @since      1.0.0
  *
  * @package    cbxpetition

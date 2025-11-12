@@ -5,7 +5,7 @@
  *
  * This file is used to markup the public-facing petition signature listing
  *
- * @link       http://codeboxr.com
+ * @link       https://codeboxr.com
  * @since      1.0.0
  *
  * @package    CBXPetition

@@ -10,7 +10,7 @@ if ( ! defined( 'WPINC' ) ) {
  *
  * This file is used to markup the admin-facing aspects of the plugin.
  *
- * @link       http://codeboxr.com
+ * @link       https://codeboxr.com
  * @since      1.0.0
  *
  * @package    CBXPetition

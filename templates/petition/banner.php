@@ -5,7 +5,7 @@
  *
  * This file is used to markup the public-facing petition banner
  *
- * @link       http://codeboxr.com
+ * @link       https://codeboxr.com
  * @since      1.0.0
  *
  * @package    CBXPetition
