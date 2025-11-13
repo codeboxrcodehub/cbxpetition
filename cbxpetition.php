@@ -16,7 +16,7 @@
  * Plugin Name:       CBX Petition
  * Plugin URI:        https://codeboxr.com/product/cbx-petition-for-wordpress/
  * Description:       A plugin to create, manage petition and collect signatures for petition
- * Version:           2.0.10
+ * Version:           2.0.11
  * Author:            Codeboxr
  * Author URI:        https://codeboxr.com
  * License:           GPL-2.0+
@@ -33,14 +33,14 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 defined( 'CBXPETITION_PLUGIN_NAME' ) or define( 'CBXPETITION_PLUGIN_NAME', 'cbxpetition' );
-defined( 'CBXPETITION_PLUGIN_VERSION' ) or define( 'CBXPETITION_PLUGIN_VERSION', '2.0.10' );
+defined( 'CBXPETITION_PLUGIN_VERSION' ) or define( 'CBXPETITION_PLUGIN_VERSION', '2.0.11' );
 defined( 'CBXPETITION_BASE_NAME' ) or define( 'CBXPETITION_BASE_NAME', plugin_basename( __FILE__ ) );
 defined( 'CBXPETITION_ROOT_PATH' ) or define( 'CBXPETITION_ROOT_PATH', plugin_dir_path( __FILE__ ) );
 defined( 'CBXPETITION_ROOT_URL' ) or define( 'CBXPETITION_ROOT_URL', plugin_dir_url( __FILE__ ) );
 
 defined( 'CBXPETITION_WP_MIN_VERSION' ) or define( 'CBXPETITION_WP_MIN_VERSION', '5.3' );
 defined( 'CBXPETITION_PHP_MIN_VERSION' ) or define( 'CBXPETITION_PHP_MIN_VERSION', '7.4' );
-defined( 'CBXPETITION_PRO_VERSION' ) or define( 'CBXPETITION_PRO_VERSION', '2.0.6' );
+defined( 'CBXPETITION_PRO_VERSION' ) or define( 'CBXPETITION_PRO_VERSION', '2.0.7' );
 
 // Include the main class
 if ( ! class_exists( 'CBXPetition', false ) ) {
