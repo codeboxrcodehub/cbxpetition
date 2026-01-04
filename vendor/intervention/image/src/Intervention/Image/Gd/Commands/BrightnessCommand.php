@@ -1,9 +1,8 @@
 <?php
 
-namespace Intervention\Image\Gd\Commands;
+namespace CbxPetitionScoped\Intervention\Image\Gd\Commands;
 
-use Intervention\Image\Commands\AbstractCommand;
-
+use CbxPetitionScoped\Intervention\Image\Commands\AbstractCommand;
 class BrightnessCommand extends AbstractCommand
 {
     /**
@@ -15,7 +14,6 @@ class BrightnessCommand extends AbstractCommand
     public function execute($image)
     {
         $level = $this->argument(0)->between(-100, 100)->required()->value();
-
-        return imagefilter($image->getCore(), IMG_FILTER_BRIGHTNESS, ($level * 2.55));
+        return \imagefilter($image->getCore(), \IMG_FILTER_BRIGHTNESS, $level * 2.55);
     }
 }

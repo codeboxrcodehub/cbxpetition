@@ -20,17 +20,28 @@ do_action( 'cbxpetition_email_header', $email_heading, $email ); ?>
     <h2><?php esc_html_e('Petition Details:', 'cbxpetition');?></h2>
     <p style="margin-bottom:0;"><?php echo esc_html__( 'Title: {petition}', 'cbxpetition' ); ?></p>
     <p><?php echo esc_html__( 'Total Signatures: {signature_count}', 'cbxpetition' ); ?></p>
+    <p style="margin-bottom:20px;"><?php echo esc_html__( 'The Letter: ', 'cbxpetition' ); ?></p>
+    <div style="font-family: 'Comic Sans MS', 'Comic Sans', cursive; color: #333333; padding: 20px; border-left: 4px solid #cc0000; background-color: #f9f9f9; margin-bottom: 20px;">
+        <?php echo '{petition_letter}'; ?>
+    </div>
     <h2><?php esc_html_e('Signature Details:', 'cbxpetition');?></h2>
     <p style="margin-bottom:0;"><?php echo esc_html__( 'First Name: {signature_first_name}', 'cbxpetition' ); ?></p>
     <p style="margin-bottom:0;"><?php echo esc_html__( 'Last Name: {signature_last_name}', 'cbxpetition' ); ?></p>
     <p style="margin-bottom:0;"><?php echo esc_html__( 'Your Email: {signature_email}', 'cbxpetition' ); ?></p>
     <p style="margin-bottom:0;"><?php echo esc_html__( 'Comment: {signature_comment}', 'cbxpetition' ); ?></p>
     <p><?php echo esc_html__( 'Signature Status: {signature_status}', 'cbxpetition' ); ?></p>
+    <?php if(isset($data['id']) && $data['id'] > 0): ?>
+    <p><?php echo '{signature_link}'; ?></p>
+    <?php endif; ?>
     <?php if($show_activation): ?>
     <h2><?php esc_html_e('Important: Confirm Your Signature', 'cbxpetition'); ?></h2>
     <p style="margin-bottom:0;"><?php esc_html_e('Once verified, your signature will be counted.', 'cbxpetition'); ?></p>
     <p><?php echo '{signature_activation_link}'; ?></p>
     <h2><?php echo esc_html__( 'Thank you.', 'cbxpetition' ); ?></h2>
+    <?php endif; ?>
+    <?php if(isset($data['delete_token']) && $data['delete_token'] != ''): ?>
+    <h2><?php esc_html_e('Manage Your Signature', 'cbxpetition'); ?></h2>
+    <p><?php echo '{signature_delete_link}'; ?></p>
     <?php endif; ?>
     <p style="margin-bottom:0;"><?php echo esc_html__( 'Want to make an even bigger impact? Share this petition with your friends and network.', 'cbxpetition' ); ?></p>
     <p><?php echo esc_html__( 'Thank you for your support! Stay tuned for updates.', 'cbxpetition' ); ?></p>

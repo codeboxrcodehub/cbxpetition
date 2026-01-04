@@ -1,9 +1,8 @@
 <?php
 
-namespace Intervention\Image\Facades;
+namespace CbxPetitionScoped\Intervention\Image\Facades;
 
-use Illuminate\Support\Facades\Facade;
-
+use CbxPetitionScoped\Illuminate\Support\Facades\Facade;
 /**
  * @method static \Intervention\Image\Image make(mixed $data)
  * @method static self configure(array $config)

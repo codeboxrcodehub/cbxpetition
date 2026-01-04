@@ -1,12 +1,11 @@
 <?php
 
-namespace Intervention\Image\Imagick\Commands;
+namespace CbxPetitionScoped\Intervention\Image\Imagick\Commands;
 
-use Intervention\Image\Commands\AbstractCommand;
-use Intervention\Image\Exception\InvalidArgumentException;
-use Intervention\Image\Point;
-use Intervention\Image\Size;
-
+use CbxPetitionScoped\Intervention\Image\Commands\AbstractCommand;
+use CbxPetitionScoped\Intervention\Image\Exception\InvalidArgumentException;
+use CbxPetitionScoped\Intervention\Image\Point;
+use CbxPetitionScoped\Intervention\Image\Size;
 class CropCommand extends AbstractCommand
 {
     /**
@@ -21,25 +20,18 @@ class CropCommand extends AbstractCommand
         $height = $this->argument(1)->type('digit')->required()->value();
         $x = $this->argument(2)->type('digit')->value();
         $y = $this->argument(3)->type('digit')->value();
-
-        if (is_null($width) || is_null($height)) {
-            throw new InvalidArgumentException(
-                "Width and height of cutout needs to be defined."
-            );
+        if (\is_null($width) || \is_null($height)) {
+            throw new InvalidArgumentException("Width and height of cutout needs to be defined.");
         }
-
         $cropped = new Size($width, $height);
         $position = new Point($x, $y);
-
         // align boxes
-        if (is_null($x) && is_null($y)) {
+        if (\is_null($x) && \is_null($y)) {
             $position = $image->getSize()->align('center')->relativePosition($cropped->align('center'));
         }
-
         // crop image core
         $image->getCore()->cropImage($cropped->width, $cropped->height, $position->x, $position->y);
-        $image->getCore()->setImagePage(0,0,0,0);
-
-        return true;
+        $image->getCore()->setImagePage(0, 0, 0, 0);
+        return \true;
     }
 }

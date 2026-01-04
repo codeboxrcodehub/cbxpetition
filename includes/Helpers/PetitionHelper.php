@@ -1,6 +1,9 @@
 <?php
-
 namespace Cbx\Petition\Helpers;
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
 
 use Cbx\Petition\CBXSetting;
 
@@ -55,7 +58,8 @@ class PetitionHelper {
                           email varchar(100) NOT NULL COMMENT 'signer email',
                           comment text DEFAULT NULL COMMENT 'signer comment about petition',
                           state varchar(30) NOT NULL DEFAULT 'pending' COMMENT 'sign condition',
-                          activation VARCHAR(255) DEFAULT NULL COMMENT 'activation code', 
+                          activation VARCHAR(255) DEFAULT NULL COMMENT 'activation code',
+                          delete_token VARCHAR(255) DEFAULT NULL COMMENT 'delete token for signature deletion via email link',
                           add_by bigint(11) unsigned NOT NULL DEFAULT '0' COMMENT 'foreign key of user table. who added this, if uest zero',
                           mod_by bigint(11) unsigned NOT NULL DEFAULT '0' COMMENT 'foreign key of user table. who last modify this list',
                           add_date datetime DEFAULT NULL COMMENT 'add date',

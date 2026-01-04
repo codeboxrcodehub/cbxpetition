@@ -1,11 +1,10 @@
 <?php
 
-namespace Intervention\Image\Imagick;
+namespace CbxPetitionScoped\Intervention\Image\Imagick;
 
-use Intervention\Image\AbstractDriver;
-use Intervention\Image\Exception\NotSupportedException;
-use Intervention\Image\Image;
-
+use CbxPetitionScoped\Intervention\Image\AbstractDriver;
+use CbxPetitionScoped\Intervention\Image\Exception\NotSupportedException;
+use CbxPetitionScoped\Intervention\Image\Image;
 class Driver extends AbstractDriver
 {
     /**
@@ -16,16 +15,12 @@ class Driver extends AbstractDriver
      */
     public function __construct(Decoder $decoder = null, Encoder $encoder = null)
     {
-        if ( ! $this->coreAvailable()) {
-            throw new NotSupportedException(
-                "ImageMagick module not available with this PHP installation."
-            );
+        if (!$this->coreAvailable()) {
+            throw new NotSupportedException("ImageMagick module not available with this PHP installation.");
         }
-
-        $this->decoder = $decoder ? $decoder : new Decoder;
-        $this->encoder = $encoder ? $encoder : new Encoder;
+        $this->decoder = $decoder ? $decoder : new Decoder();
+        $this->encoder = $encoder ? $encoder : new Encoder();
     }
-
     /**
      * Creates new image instance
      *
@@ -37,20 +32,16 @@ class Driver extends AbstractDriver
     public function newImage($width, $height, $background = null)
     {
         $background = new Color($background);
-
         // create empty core
-        $core = new \Imagick;
+        $core = new \Imagick();
         $core->newImage($width, $height, $background->getPixel(), 'png');
         $core->setType(\Imagick::IMGTYPE_UNDEFINED);
         $core->setImageType(\Imagick::IMGTYPE_UNDEFINED);
         $core->setColorspace(\Imagick::COLORSPACE_UNDEFINED);
-
         // build image
-        $image = new Image(new static, $core);
-
+        $image = new Image(new static(), $core);
         return $image;
     }
-
     /**
      * Reads given string into color object
      *
@@ -61,7 +52,6 @@ class Driver extends AbstractDriver
     {
         return new Color($value);
     }
-
     /**
      * Checks if core module installation is available
      *
@@ -69,6 +59,6 @@ class Driver extends AbstractDriver
      */
     protected function coreAvailable()
     {
-        return (extension_loaded('imagick') && class_exists('Imagick'));
+        return \extension_loaded('imagick') && \class_exists('Imagick');
     }
 }

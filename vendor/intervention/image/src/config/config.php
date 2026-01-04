@@ -1,7 +1,8 @@
 <?php
 
-return [
+namespace CbxPetitionScoped;
 
+return [
     /*
     |--------------------------------------------------------------------------
     | Image Driver
@@ -14,7 +15,5 @@ return [
     | Supported: "gd", "imagick"
     |
     */
-
-    'driver' => 'gd'
-
+    'driver' => 'gd',
 ];

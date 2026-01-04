@@ -1,9 +1,8 @@
 <?php
 
-namespace Intervention\Image;
+namespace CbxPetitionScoped\Intervention\Image;
 
 use Closure;
-
 class ImageManagerStatic
 {
     /**
@@ -12,7 +11,6 @@ class ImageManagerStatic
      * @var ImageManager
      */
     public static $manager;
-
     /**
      * Creates a new instance
      *
@@ -20,9 +18,8 @@ class ImageManagerStatic
      */
     public function __construct(ImageManager $manager = null)
     {
-        self::$manager = $manager ? $manager : new ImageManager;
+        self::$manager = $manager ? $manager : new ImageManager();
     }
-
     /**
      * Get or create new ImageManager instance
      *
@@ -30,9 +27,8 @@ class ImageManagerStatic
      */
     public static function getManager()
     {
-        return self::$manager ? self::$manager : new ImageManager;
+        return self::$manager ? self::$manager : new ImageManager();
     }
-
     /**
      * Statically create new custom configured image manager
      *
@@ -44,7 +40,6 @@ class ImageManagerStatic
     {
         return self::$manager = self::getManager()->configure($config);
     }
-
     /**
      * Statically initiates an Image instance from different input types
      *
@@ -57,7 +52,6 @@ class ImageManagerStatic
     {
         return self::getManager()->make($data);
     }
-
     /**
      * Statically creates an empty image canvas
      *
@@ -71,7 +65,6 @@ class ImageManagerStatic
     {
         return self::getManager()->canvas($width, $height, $background);
     }
-
     /**
      * Create new cached image and run callback statically
      *
@@ -81,7 +74,7 @@ class ImageManagerStatic
      *
      * @return mixed
      */
-    public static function cache(Closure $callback, $lifetime = null, $returnObj = false)
+    public static function cache(Closure $callback, $lifetime = null, $returnObj = \false)
     {
         return self::getManager()->cache($callback, $lifetime, $returnObj);
     }

@@ -1,11 +1,10 @@
 <?php
 
-namespace Intervention\Image\Imagick\Shapes;
+namespace CbxPetitionScoped\Intervention\Image\Imagick\Shapes;
 
-use Intervention\Image\AbstractShape;
-use Intervention\Image\Image;
-use Intervention\Image\Imagick\Color;
-
+use CbxPetitionScoped\Intervention\Image\AbstractShape;
+use CbxPetitionScoped\Intervention\Image\Image;
+use CbxPetitionScoped\Intervention\Image\Imagick\Color;
 class LineShape extends AbstractShape
 {
     /**
@@ -14,28 +13,24 @@ class LineShape extends AbstractShape
      * @var int
      */
     public $x = 0;
-
     /**
      * Starting point y-coordinate of line
      *
      * @var int
      */
     public $y = 0;
-
     /**
      * Color of line
      *
      * @var string
      */
     public $color = '#000000';
-
     /**
      * Width of line in pixels
      *
      * @var int
      */
     public $width = 1;
-
     /**
      * Create new line shape instance
      *
@@ -44,10 +39,9 @@ class LineShape extends AbstractShape
      */
     public function __construct($x = null, $y = null)
     {
-        $this->x = is_numeric($x) ? intval($x) : $this->x;
-        $this->y = is_numeric($y) ? intval($y) : $this->y;
+        $this->x = \is_numeric($x) ? \intval($x) : $this->x;
+        $this->y = \is_numeric($y) ? \intval($y) : $this->y;
     }
-
     /**
      * Set current line color
      *
@@ -58,7 +52,6 @@ class LineShape extends AbstractShape
     {
         $this->color = $color;
     }
-
     /**
      * Set current line width in pixels
      *
@@ -69,7 +62,6 @@ class LineShape extends AbstractShape
     {
         $this->width = $width;
     }
-
     /**
      * Draw current instance of line to given endpoint on given image
      *
@@ -80,15 +72,12 @@ class LineShape extends AbstractShape
      */
     public function applyToImage(Image $image, $x = 0, $y = 0)
     {
-        $line = new \ImagickDraw;
-
+        $line = new \ImagickDraw();
         $color = new Color($this->color);
         $line->setStrokeColor($color->getPixel());
         $line->setStrokeWidth($this->width);
-
         $line->line($this->x, $this->y, $x, $y);
         $image->getCore()->drawImage($line);
-
-        return true;
+        return \true;
     }
 }

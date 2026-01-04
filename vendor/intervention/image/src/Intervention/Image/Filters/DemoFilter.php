@@ -1,23 +1,20 @@
 <?php
 
-namespace Intervention\Image\Filters;
+namespace CbxPetitionScoped\Intervention\Image\Filters;
 
-use Intervention\Image\Image;
-
+use CbxPetitionScoped\Intervention\Image\Image;
 class DemoFilter implements FilterInterface
 {
     /**
      * Default size of filter effects
      */
     const DEFAULT_SIZE = 10;
-
     /**
      * Size of filter effects
      *
      * @var int
      */
     private $size;
-
     /**
      * Creates new instance of filter
      *
@@ -25,9 +22,8 @@ class DemoFilter implements FilterInterface
      */
     public function __construct($size = null)
     {
-        $this->size = is_numeric($size) ? intval($size) : self::DEFAULT_SIZE;
+        $this->size = \is_numeric($size) ? \intval($size) : self::DEFAULT_SIZE;
     }
-
     /**
      * Applies filter effects to given image
      *
@@ -38,7 +34,6 @@ class DemoFilter implements FilterInterface
     {
         $image->pixelate($this->size);
         $image->greyscale();
-
         return $image;
     }
 }

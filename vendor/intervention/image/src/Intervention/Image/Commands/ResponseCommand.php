@@ -1,9 +1,8 @@
 <?php
 
-namespace Intervention\Image\Commands;
+namespace CbxPetitionScoped\Intervention\Image\Commands;
 
-use Intervention\Image\Response;
-
+use CbxPetitionScoped\Intervention\Image\Response;
 class ResponseCommand extends AbstractCommand
 {
     /**
@@ -16,11 +15,8 @@ class ResponseCommand extends AbstractCommand
     {
         $format = $this->argument(0)->value();
         $quality = $this->argument(1)->between(0, 100)->value();
-
         $response = new Response($image, $format, $quality);
-
         $this->setOutput($response->make());
-
-        return true;
+        return \true;
     }
 }

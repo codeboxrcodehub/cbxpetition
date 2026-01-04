@@ -1,9 +1,8 @@
 <?php
 
-namespace Intervention\Image\Imagick\Commands;
+namespace CbxPetitionScoped\Intervention\Image\Imagick\Commands;
 
-use Intervention\Image\Commands\AbstractCommand;
-
+use CbxPetitionScoped\Intervention\Image\Commands\AbstractCommand;
 class DestroyCommand extends AbstractCommand
 {
     /**
@@ -16,12 +15,10 @@ class DestroyCommand extends AbstractCommand
     {
         // destroy image core
         $image->getCore()->clear();
-
         // destroy backups
         foreach ($image->getBackups() as $backup) {
             $backup->clear();
         }
-
-        return true;
+        return \true;
     }
 }

@@ -1,9 +1,8 @@
 <?php
 
-namespace Intervention\Image\Imagick\Commands;
+namespace CbxPetitionScoped\Intervention\Image\Imagick\Commands;
 
-use Intervention\Image\Commands\AbstractCommand;
-
+use CbxPetitionScoped\Intervention\Image\Commands\AbstractCommand;
 class GammaCommand extends AbstractCommand
 {
     /**
@@ -15,7 +14,6 @@ class GammaCommand extends AbstractCommand
     public function execute($image)
     {
         $gamma = $this->argument(0)->type('numeric')->required()->value();
-
         return $image->getCore()->gammaImage($gamma);
     }
 }

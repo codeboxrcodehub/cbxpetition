@@ -1,9 +1,8 @@
 <?php
 
-namespace Intervention\Image;
+namespace CbxPetitionScoped\Intervention\Image;
 
-use Intervention\Image\Exception\NotSupportedException;
-
+use CbxPetitionScoped\Intervention\Image\Exception\NotSupportedException;
 abstract class AbstractDriver
 {
     /**
@@ -12,14 +11,12 @@ abstract class AbstractDriver
      * @var \Intervention\Image\AbstractDecoder
      */
     public $decoder;
-
     /**
      * Image encoder instance
      *
      * @var \Intervention\Image\AbstractEncoder
      */
     public $encoder;
-
     /**
      * Creates new image instance
      *
@@ -28,23 +25,20 @@ abstract class AbstractDriver
      * @param  string  $background
      * @return \Intervention\Image\Image
      */
-    abstract public function newImage($width, $height, $background);
-
+    public abstract function newImage($width, $height, $background);
     /**
      * Reads given string into color object
      *
      * @param  string $value
      * @return AbstractColor
      */
-    abstract public function parseColor($value);
-
+    public abstract function parseColor($value);
     /**
      * Checks if core module installation is available
      *
      * @return boolean
      */
-    abstract protected function coreAvailable();
-
+    protected abstract function coreAvailable();
     /**
      * Returns clone of given core
      *
@@ -54,7 +48,6 @@ abstract class AbstractDriver
     {
         return clone $core;
     }
-
     /**
      * Initiates new image from given input
      *
@@ -65,7 +58,6 @@ abstract class AbstractDriver
     {
         return $this->decoder->init($data);
     }
-
     /**
      * Encodes given image
      *
@@ -78,7 +70,6 @@ abstract class AbstractDriver
     {
         return $this->encoder->process($image, $format, $quality);
     }
-
     /**
      * Executes named command on given image
      *
@@ -92,10 +83,8 @@ abstract class AbstractDriver
         $commandName = $this->getCommandClassName($name);
         $command = new $commandName($arguments);
         $command->execute($image);
-
         return $command;
     }
-
     /**
      * Returns classname of given command name
      *
@@ -104,27 +93,21 @@ abstract class AbstractDriver
      */
     private function getCommandClassName($name)
     {
-        if (extension_loaded('mbstring')) {
-            $name = mb_strtoupper(mb_substr($name, 0, 1)) . mb_substr($name, 1);
+        if (\extension_loaded('mbstring')) {
+            $name = \mb_strtoupper(\mb_substr($name, 0, 1)) . \mb_substr($name, 1);
         } else {
-            $name = strtoupper(substr($name, 0, 1)) . substr($name, 1);
+            $name = \strtoupper(\substr($name, 0, 1)) . \substr($name, 1);
         }
-
         $drivername = $this->getDriverName();
-        $classnameLocal = sprintf('\Intervention\Image\%s\Commands\%sCommand', $drivername, ucfirst($name));
-        $classnameGlobal = sprintf('\Intervention\Image\Commands\%sCommand', ucfirst($name));
-
-        if (class_exists($classnameLocal)) {
+        $classnameLocal = \sprintf('\\Intervention\\Image\\%s\\Commands\\%sCommand', $drivername, \ucfirst($name));
+        $classnameGlobal = \sprintf('\\Intervention\\Image\\Commands\\%sCommand', \ucfirst($name));
+        if (\class_exists($classnameLocal)) {
             return $classnameLocal;
-        } elseif (class_exists($classnameGlobal)) {
+        } elseif (\class_exists($classnameGlobal)) {
             return $classnameGlobal;
         }
-
-        throw new NotSupportedException(
-            "Command ({$name}) is not available for driver ({$drivername})."
-        );
+        throw new NotSupportedException("Command ({$name}) is not available for driver ({$drivername}).");
     }
-
     /**
      * Returns name of current driver instance
      *
@@ -134,7 +117,6 @@ abstract class AbstractDriver
     {
         $reflect = new \ReflectionClass($this);
         $namespace = $reflect->getNamespaceName();
-
-        return substr(strrchr($namespace, "\\"), 1);
+        return \substr(\strrchr($namespace, "\\"), 1);
     }
 }

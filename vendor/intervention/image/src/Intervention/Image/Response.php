@@ -1,10 +1,9 @@
 <?php
 
-namespace Intervention\Image;
+namespace CbxPetitionScoped\Intervention\Image;
 
-use Illuminate\Support\Facades\Response as IlluminateResponse;
-use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
-
+use CbxPetitionScoped\Illuminate\Support\Facades\Response as IlluminateResponse;
+use CbxPetitionScoped\Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 class Response
 {
     /**
@@ -13,21 +12,18 @@ class Response
      * @var Image
      */
     public $image;
-
     /**
      * Format of displayed image
      *
      * @var string
      */
     public $format;
-
     /**
      * Quality of displayed image
      *
      * @var int
      */
     public $quality;
-
     /**
      * Creates a new instance of response
      *
@@ -41,7 +37,6 @@ class Response
         $this->format = $format ? $format : $image->mime;
         $this->quality = $quality ? $quality : 90;
     }
-
     /**
      * Builds response according to settings
      *
@@ -51,28 +46,21 @@ class Response
     {
         $this->image->encode($this->format, $this->quality);
         $data = $this->image->getEncoded();
-        $mime = finfo_buffer(finfo_open(FILEINFO_MIME_TYPE), $data);
-        $length = strlen($data);
-
-        if (function_exists('app') && is_a($app = app(), 'Illuminate\Foundation\Application')) {
-
+        $mime = \finfo_buffer(\finfo_open(\FILEINFO_MIME_TYPE), $data);
+        $length = \strlen($data);
+        if (\function_exists('CbxPetitionScoped\\app') && \is_a($app = app(), 'CbxPetitionScoped\\Illuminate\\Foundation\\Application')) {
             $response = IlluminateResponse::make($data);
             $response->header('Content-Type', $mime);
             $response->header('Content-Length', $length);
-
-        } elseif (class_exists('\Symfony\Component\HttpFoundation\Response')) {
-
+        } elseif (\class_exists('CbxPetitionScoped\\Symfony\\Component\\HttpFoundation\\Response')) {
             $response = new SymfonyResponse($data);
             $response->headers->set('Content-Type', $mime);
             $response->headers->set('Content-Length', $length);
-
         } else {
-
-            header('Content-Type: ' . $mime);
-            header('Content-Length: ' . $length);
+            \header('Content-Type: ' . $mime);
+            \header('Content-Length: ' . $length);
             $response = $data;
         }
-
         return $response;
     }
 }

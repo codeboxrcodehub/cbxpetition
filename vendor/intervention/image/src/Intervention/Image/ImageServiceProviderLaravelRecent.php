@@ -1,9 +1,8 @@
 <?php
 
-namespace Intervention\Image;
+namespace CbxPetitionScoped\Intervention\Image;
 
-use Illuminate\Support\ServiceProvider;
-
+use CbxPetitionScoped\Illuminate\Support\ServiceProvider;
 class ImageServiceProviderLaravelRecent extends ServiceProvider
 {
     /**
@@ -13,9 +12,8 @@ class ImageServiceProviderLaravelRecent extends ServiceProvider
      */
     private function cacheIsInstalled()
     {
-        return class_exists('Intervention\\Image\\ImageCache');
+        return \class_exists('CbxPetitionScoped\\Intervention\\Image\\ImageCache');
     }
-
     /**
      * Bootstrap the application events.
      *
@@ -23,14 +21,10 @@ class ImageServiceProviderLaravelRecent extends ServiceProvider
      */
     public function boot()
     {
-        $this->publishes([
-            __DIR__.'/../../config/config.php' => config_path('image.php')
-        ]);
-
+        $this->publishes([__DIR__ . '/../../config/config.php' => config_path('image.php')]);
         // setup intervention/imagecache if package is installed
         $this->cacheIsInstalled() ? $this->bootstrapImageCache() : null;
     }
-
     /**
      * Register the service provider.
      *
@@ -39,21 +33,14 @@ class ImageServiceProviderLaravelRecent extends ServiceProvider
     public function register()
     {
         $app = $this->app;
-
         // merge default config
-        $this->mergeConfigFrom(
-            __DIR__.'/../../config/config.php',
-            'image'
-        );
-
+        $this->mergeConfigFrom(__DIR__ . '/../../config/config.php', 'image');
         // create image
         $app->singleton('image', function ($app) {
             return new ImageManager($this->getImageConfig($app));
         });
-
-        $app->alias('image', 'Intervention\Image\ImageManager');
+        $app->alias('image', 'CbxPetitionScoped\\Intervention\\Image\\ImageManager');
     }
-
     /**
      * Bootstrap imagecache
      *
@@ -62,31 +49,17 @@ class ImageServiceProviderLaravelRecent extends ServiceProvider
     protected function bootstrapImageCache()
     {
         $app = $this->app;
-        $config = __DIR__.'/../../../../imagecache/src/config/config.php';
-
-        $this->publishes([
-            $config => config_path('imagecache.php')
-        ]);
-
+        $config = __DIR__ . '/../../../../imagecache/src/config/config.php';
+        $this->publishes([$config => config_path('imagecache.php')]);
         // merge default config
-        $this->mergeConfigFrom(
-            $config,
-            'imagecache'
-        );
-
+        $this->mergeConfigFrom($config, 'imagecache');
         // imagecache route
-        if (is_string(config('imagecache.route'))) {
-
-            $filename_pattern = '[ \w\\.\\/\\-\\@\(\)\=]+';
-
+        if (\is_string(config('imagecache.route'))) {
+            $filename_pattern = '[ \\w\\.\\/\\-\\@\\(\\)\\=]+';
             // route to access template applied image file
-            $app['router']->get(config('imagecache.route').'/{template}/{filename}', [
-                'uses' => 'Intervention\Image\ImageCacheController@getResponse',
-                'as' => 'imagecache'
-            ])->where(['filename' => $filename_pattern]);
+            $app['router']->get(config('imagecache.route') . '/{template}/{filename}', ['uses' => 'Intervention\\Image\\ImageCacheController@getResponse', 'as' => 'imagecache'])->where(['filename' => $filename_pattern]);
         }
     }
-
     /**
      * Return image configuration as array
      *
@@ -96,11 +69,9 @@ class ImageServiceProviderLaravelRecent extends ServiceProvider
     private function getImageConfig($app)
     {
         $config = $app['config']->get('image');
-
-        if (is_null($config)) {
+        if (\is_null($config)) {
             return [];
         }
-
         return $config;
     }
 }

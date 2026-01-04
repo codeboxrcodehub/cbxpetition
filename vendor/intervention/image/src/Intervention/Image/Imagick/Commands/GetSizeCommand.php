@@ -1,10 +1,9 @@
 <?php
 
-namespace Intervention\Image\Imagick\Commands;
+namespace CbxPetitionScoped\Intervention\Image\Imagick\Commands;
 
-use Intervention\Image\Commands\AbstractCommand;
-use Intervention\Image\Size;
-
+use CbxPetitionScoped\Intervention\Image\Commands\AbstractCommand;
+use CbxPetitionScoped\Intervention\Image\Size;
 class GetSizeCommand extends AbstractCommand
 {
     /**
@@ -17,12 +16,7 @@ class GetSizeCommand extends AbstractCommand
     {
         /** @var \Imagick $core */
         $core = $image->getCore();
-
-        $this->setOutput(new Size(
-            $core->getImageWidth(),
-            $core->getImageHeight()
-        ));
-
-        return true;
+        $this->setOutput(new Size($core->getImageWidth(), $core->getImageHeight()));
+        return \true;
     }
 }

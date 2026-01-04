@@ -1,11 +1,10 @@
 <?php
 
-namespace Intervention\Image\Imagick\Shapes;
+namespace CbxPetitionScoped\Intervention\Image\Imagick\Shapes;
 
-use Intervention\Image\AbstractShape;
-use Intervention\Image\Image;
-use Intervention\Image\Imagick\Color;
-
+use CbxPetitionScoped\Intervention\Image\AbstractShape;
+use CbxPetitionScoped\Intervention\Image\Image;
+use CbxPetitionScoped\Intervention\Image\Imagick\Color;
 class EllipseShape extends AbstractShape
 {
     /**
@@ -14,14 +13,12 @@ class EllipseShape extends AbstractShape
      * @var int
      */
     public $width = 100;
-
     /**
      * Height of ellipse in pixels
      *
      * @var int
      */
     public $height = 100;
-
     /**
      * Create new ellipse instance
      *
@@ -30,10 +27,9 @@ class EllipseShape extends AbstractShape
      */
     public function __construct($width = null, $height = null)
     {
-        $this->width = is_numeric($width) ? intval($width) : $this->width;
-        $this->height = is_numeric($height) ? intval($height) : $this->height;
+        $this->width = \is_numeric($width) ? \intval($width) : $this->width;
+        $this->height = \is_numeric($height) ? \intval($height) : $this->height;
     }
-
     /**
      * Draw ellipse instance on given image
      *
@@ -44,23 +40,18 @@ class EllipseShape extends AbstractShape
      */
     public function applyToImage(Image $image, $x = 0, $y = 0)
     {
-        $circle = new \ImagickDraw;
-
+        $circle = new \ImagickDraw();
         // set background
         $bgcolor = new Color($this->background);
         $circle->setFillColor($bgcolor->getPixel());
-
         // set border
         if ($this->hasBorder()) {
             $border_color = new Color($this->border_color);
             $circle->setStrokeWidth($this->border_width);
             $circle->setStrokeColor($border_color->getPixel());
         }
-
         $circle->ellipse($x, $y, $this->width / 2, $this->height / 2, 0, 360);
-
         $image->getCore()->drawImage($circle);
-
-        return true;
+        return \true;
     }
 }

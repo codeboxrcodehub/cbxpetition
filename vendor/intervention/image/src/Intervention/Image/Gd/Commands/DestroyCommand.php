@@ -1,9 +1,8 @@
 <?php
 
-namespace Intervention\Image\Gd\Commands;
+namespace CbxPetitionScoped\Intervention\Image\Gd\Commands;
 
-use Intervention\Image\Commands\AbstractCommand;
-
+use CbxPetitionScoped\Intervention\Image\Commands\AbstractCommand;
 class DestroyCommand extends AbstractCommand
 {
     /**
@@ -15,13 +14,11 @@ class DestroyCommand extends AbstractCommand
     public function execute($image)
     {
         // destroy image core
-        imagedestroy($image->getCore());
-
+        \imagedestroy($image->getCore());
         // destroy backups
         foreach ($image->getBackups() as $backup) {
-            imagedestroy($backup);
+            \imagedestroy($backup);
         }
-
-        return true;
+        return \true;
     }
 }

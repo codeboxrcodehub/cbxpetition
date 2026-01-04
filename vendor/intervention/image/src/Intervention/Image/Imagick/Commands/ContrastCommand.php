@@ -1,9 +1,8 @@
 <?php
 
-namespace Intervention\Image\Imagick\Commands;
+namespace CbxPetitionScoped\Intervention\Image\Imagick\Commands;
 
-use Intervention\Image\Commands\AbstractCommand;
-
+use CbxPetitionScoped\Intervention\Image\Commands\AbstractCommand;
 class ContrastCommand extends AbstractCommand
 {
     /**
@@ -15,7 +14,6 @@ class ContrastCommand extends AbstractCommand
     public function execute($image)
     {
         $level = $this->argument(0)->between(-100, 100)->required()->value();
-
         return $image->getCore()->sigmoidalContrastImage($level > 0, $level / 4, 0);
     }
 }

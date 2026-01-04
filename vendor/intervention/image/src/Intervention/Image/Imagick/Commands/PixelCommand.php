@@ -1,10 +1,9 @@
 <?php
 
-namespace Intervention\Image\Imagick\Commands;
+namespace CbxPetitionScoped\Intervention\Image\Imagick\Commands;
 
-use Intervention\Image\Commands\AbstractCommand;
-use Intervention\Image\Imagick\Color;
-
+use CbxPetitionScoped\Intervention\Image\Commands\AbstractCommand;
+use CbxPetitionScoped\Intervention\Image\Imagick\Color;
 class PixelCommand extends AbstractCommand
 {
     /**
@@ -19,12 +18,10 @@ class PixelCommand extends AbstractCommand
         $color = new Color($color);
         $x = $this->argument(1)->type('digit')->required()->value();
         $y = $this->argument(2)->type('digit')->required()->value();
-
         // prepare pixel
-        $draw = new \ImagickDraw;
+        $draw = new \ImagickDraw();
         $draw->setFillColor($color->getPixel());
         $draw->point($x, $y);
-
         // apply pixel
         return $image->getCore()->drawImage($draw);
     }

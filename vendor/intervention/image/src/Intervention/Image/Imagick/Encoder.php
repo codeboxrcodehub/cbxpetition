@@ -1,10 +1,9 @@
 <?php
 
-namespace Intervention\Image\Imagick;
+namespace CbxPetitionScoped\Intervention\Image\Imagick;
 
-use Intervention\Image\AbstractEncoder;
-use Intervention\Image\Exception\NotSupportedException;
-
+use CbxPetitionScoped\Intervention\Image\AbstractEncoder;
+use CbxPetitionScoped\Intervention\Image\Exception\NotSupportedException;
 class Encoder extends AbstractEncoder
 {
     /**
@@ -16,7 +15,6 @@ class Encoder extends AbstractEncoder
     {
         $format = 'jpeg';
         $compression = \Imagick::COMPRESSION_JPEG;
-
         $imagick = $this->image->getCore();
         $imagick->setImageBackgroundColor('white');
         $imagick->setBackgroundColor('white');
@@ -27,10 +25,8 @@ class Encoder extends AbstractEncoder
         $imagick->setImageCompression($compression);
         $imagick->setCompressionQuality($this->quality);
         $imagick->setImageCompressionQuality($this->quality);
-
         return $imagick->getImagesBlob();
     }
-
     /**
      * Processes and returns encoded image as PNG string
      *
@@ -40,18 +36,14 @@ class Encoder extends AbstractEncoder
     {
         $format = 'png';
         $compression = \Imagick::COMPRESSION_ZIP;
-
         $imagick = $this->image->getCore();
         $imagick->setFormat($format);
         $imagick->setImageFormat($format);
         $imagick->setCompression($compression);
         $imagick->setImageCompression($compression);
-
-        $this->image->mime = image_type_to_mime_type(IMAGETYPE_PNG);
-
+        $this->image->mime = \image_type_to_mime_type(\IMAGETYPE_PNG);
         return $imagick->getImagesBlob();
     }
-
     /**
      * Processes and returns encoded image as GIF string
      *
@@ -61,42 +53,31 @@ class Encoder extends AbstractEncoder
     {
         $format = 'gif';
         $compression = \Imagick::COMPRESSION_LZW;
-
         $imagick = $this->image->getCore();
         $imagick->setFormat($format);
         $imagick->setImageFormat($format);
         $imagick->setCompression($compression);
         $imagick->setImageCompression($compression);
-
-        $this->image->mime = image_type_to_mime_type(IMAGETYPE_GIF);
-
+        $this->image->mime = \image_type_to_mime_type(\IMAGETYPE_GIF);
         return $imagick->getImagesBlob();
     }
-
     protected function processWebp()
     {
-        if ( ! \Imagick::queryFormats('WEBP')) {
-            throw new NotSupportedException(
-                "Webp format is not supported by Imagick installation."
-            );
+        if (!\Imagick::queryFormats('WEBP')) {
+            throw new NotSupportedException("Webp format is not supported by Imagick installation.");
         }
-
         $format = 'webp';
         $compression = \Imagick::COMPRESSION_JPEG;
-
         $imagick = $this->image->getCore();
         $imagick->setImageBackgroundColor(new \ImagickPixel('transparent'));
-
         $imagick = $imagick->mergeImageLayers(\Imagick::LAYERMETHOD_MERGE);
         $imagick->setFormat($format);
         $imagick->setImageFormat($format);
         $imagick->setCompression($compression);
         $imagick->setImageCompression($compression);
         $imagick->setImageCompressionQuality($this->quality);
-
         return $imagick->getImagesBlob();
     }
-
     /**
      * Processes and returns encoded image as TIFF string
      *
@@ -106,7 +87,6 @@ class Encoder extends AbstractEncoder
     {
         $format = 'tiff';
         $compression = \Imagick::COMPRESSION_UNDEFINED;
-
         $imagick = $this->image->getCore();
         $imagick->setFormat($format);
         $imagick->setImageFormat($format);
@@ -114,12 +94,9 @@ class Encoder extends AbstractEncoder
         $imagick->setImageCompression($compression);
         $imagick->setCompressionQuality($this->quality);
         $imagick->setImageCompressionQuality($this->quality);
-
-        $this->image->mime = image_type_to_mime_type(IMAGETYPE_TIFF_II);
-
+        $this->image->mime = \image_type_to_mime_type(\IMAGETYPE_TIFF_II);
         return $imagick->getImagesBlob();
     }
-
     /**
      * Processes and returns encoded image as BMP string
      *
@@ -129,18 +106,14 @@ class Encoder extends AbstractEncoder
     {
         $format = 'bmp';
         $compression = \Imagick::COMPRESSION_UNDEFINED;
-
         $imagick = $this->image->getCore();
         $imagick->setFormat($format);
         $imagick->setImageFormat($format);
         $imagick->setCompression($compression);
         $imagick->setImageCompression($compression);
-
-        $this->image->mime = image_type_to_mime_type(IMAGETYPE_BMP);
-
+        $this->image->mime = \image_type_to_mime_type(\IMAGETYPE_BMP);
         return $imagick->getImagesBlob();
     }
-
     /**
      * Processes and returns encoded image as ICO string
      *
@@ -150,18 +123,14 @@ class Encoder extends AbstractEncoder
     {
         $format = 'ico';
         $compression = \Imagick::COMPRESSION_UNDEFINED;
-
         $imagick = $this->image->getCore();
         $imagick->setFormat($format);
         $imagick->setImageFormat($format);
         $imagick->setCompression($compression);
         $imagick->setImageCompression($compression);
-
-        $this->image->mime = image_type_to_mime_type(IMAGETYPE_ICO);
-
+        $this->image->mime = \image_type_to_mime_type(\IMAGETYPE_ICO);
         return $imagick->getImagesBlob();
     }
-
     /**
      * Processes and returns encoded image as PSD string
      *
@@ -171,18 +140,14 @@ class Encoder extends AbstractEncoder
     {
         $format = 'psd';
         $compression = \Imagick::COMPRESSION_UNDEFINED;
-
         $imagick = $this->image->getCore();
         $imagick->setFormat($format);
         $imagick->setImageFormat($format);
         $imagick->setCompression($compression);
         $imagick->setImageCompression($compression);
-
-        $this->image->mime = image_type_to_mime_type(IMAGETYPE_PSD);
-
+        $this->image->mime = \image_type_to_mime_type(\IMAGETYPE_PSD);
         return $imagick->getImagesBlob();
     }
-
     /**
      * Processes and returns encoded image as AVIF string
      *
@@ -190,15 +155,11 @@ class Encoder extends AbstractEncoder
      */
     protected function processAvif()
     {
-        if ( ! \Imagick::queryFormats('AVIF')) {
-            throw new NotSupportedException(
-                "AVIF format is not supported by Imagick installation."
-            );
+        if (!\Imagick::queryFormats('AVIF')) {
+            throw new NotSupportedException("AVIF format is not supported by Imagick installation.");
         }
-
         $format = 'avif';
         $compression = \Imagick::COMPRESSION_UNDEFINED;
-
         $imagick = $this->image->getCore();
         $imagick->setFormat($format);
         $imagick->setImageFormat($format);
@@ -206,10 +167,8 @@ class Encoder extends AbstractEncoder
         $imagick->setImageCompression($compression);
         $imagick->setCompressionQuality($this->quality);
         $imagick->setImageCompressionQuality($this->quality);
-
         return $imagick->getImagesBlob();
     }
-
     /**
      * Processes and returns encoded image as HEIC string
      *
@@ -217,15 +176,11 @@ class Encoder extends AbstractEncoder
      */
     protected function processHeic()
     {
-        if ( ! \Imagick::queryFormats('HEIC')) {
-            throw new NotSupportedException(
-                "HEIC format is not supported by Imagick installation."
-            );
+        if (!\Imagick::queryFormats('HEIC')) {
+            throw new NotSupportedException("HEIC format is not supported by Imagick installation.");
         }
-
         $format = 'heic';
         $compression = \Imagick::COMPRESSION_UNDEFINED;
-
         $imagick = $this->image->getCore();
         $imagick->setFormat($format);
         $imagick->setImageFormat($format);
@@ -233,7 +188,6 @@ class Encoder extends AbstractEncoder
         $imagick->setImageCompression($compression);
         $imagick->setCompressionQuality($this->quality);
         $imagick->setImageCompressionQuality($this->quality);
-
         return $imagick->getImagesBlob();
     }
 }

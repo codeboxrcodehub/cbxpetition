@@ -1,9 +1,8 @@
 <?php
 
-namespace Intervention\Image\Imagick\Commands;
+namespace CbxPetitionScoped\Intervention\Image\Imagick\Commands;
 
-use Intervention\Image\Commands\AbstractCommand;
-
+use CbxPetitionScoped\Intervention\Image\Commands\AbstractCommand;
 class BackupCommand extends AbstractCommand
 {
     /**
@@ -15,11 +14,9 @@ class BackupCommand extends AbstractCommand
     public function execute($image)
     {
         $backupName = $this->argument(0)->value();
-
         // clone current image resource
         $clone = clone $image;
         $image->setBackup($clone->getCore(), $backupName);
-
-        return true;
+        return \true;
     }
 }

@@ -1,10 +1,9 @@
 <?php
 
-namespace Intervention\Image\Imagick\Commands;
+namespace CbxPetitionScoped\Intervention\Image\Imagick\Commands;
 
-use Intervention\Image\Commands\ExifCommand as BaseCommand;
-use Intervention\Image\Exception\NotSupportedException;
-
+use CbxPetitionScoped\Intervention\Image\Commands\ExifCommand as BaseCommand;
+use CbxPetitionScoped\Intervention\Image\Exception\NotSupportedException;
 class ExifCommand extends BaseCommand
 {
     /**
@@ -12,15 +11,14 @@ class ExifCommand extends BaseCommand
      *
      * @var bool
      */
-    private $preferExtension = true;
-
+    private $preferExtension = \true;
     /**
      *
      */
-    public function dontPreferExtension() {
-        $this->preferExtension = false;
+    public function dontPreferExtension()
+    {
+        $this->preferExtension = \false;
     }
-
     /**
      * Read Exif data from the given image
      *
@@ -29,35 +27,27 @@ class ExifCommand extends BaseCommand
      */
     public function execute($image)
     {
-        if ($this->preferExtension && function_exists('exif_read_data')) {
+        if ($this->preferExtension && \function_exists('exif_read_data')) {
             return parent::execute($image);
         }
-
         $core = $image->getCore();
-
-        if ( ! method_exists($core, 'getImageProperties')) {
-            throw new NotSupportedException(
-                "Reading Exif data is not supported by this PHP installation."
-            );
+        if (!\method_exists($core, 'getImageProperties')) {
+            throw new NotSupportedException("Reading Exif data is not supported by this PHP installation.");
         }
-
         $requestedKey = $this->argument(0)->value();
         if ($requestedKey !== null) {
             $this->setOutput($core->getImageProperty('exif:' . $requestedKey));
-            return true;
+            return \true;
         }
-
         $exif = [];
         $properties = $core->getImageProperties();
         foreach ($properties as $key => $value) {
-            if (substr($key, 0, 5) !== 'exif:') {
+            if (\substr($key, 0, 5) !== 'exif:') {
                 continue;
             }
-
-            $exif[substr($key, 5)] = $value;
+            $exif[\substr($key, 5)] = $value;
         }
-
         $this->setOutput($exif);
-        return true;
+        return \true;
     }
 }

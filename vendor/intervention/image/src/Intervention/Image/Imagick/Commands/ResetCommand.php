@@ -1,10 +1,9 @@
 <?php
 
-namespace Intervention\Image\Imagick\Commands;
+namespace CbxPetitionScoped\Intervention\Image\Imagick\Commands;
 
-use Intervention\Image\Commands\AbstractCommand;
-use Intervention\Image\Exception\RuntimeException;
-
+use CbxPetitionScoped\Intervention\Image\Commands\AbstractCommand;
+use CbxPetitionScoped\Intervention\Image\Exception\RuntimeException;
 class ResetCommand extends AbstractCommand
 {
     /**
@@ -16,25 +15,16 @@ class ResetCommand extends AbstractCommand
     public function execute($image)
     {
         $backupName = $this->argument(0)->value();
-
         $backup = $image->getBackup($backupName);
-
         if ($backup instanceof \Imagick) {
-
             // destroy current core
             $image->getCore()->clear();
-
             // clone backup
             $backup = clone $backup;
-
             // reset to new resource
             $image->setCore($backup);
-
-            return true;
+            return \true;
         }
-
-        throw new RuntimeException(
-            "Backup not available. Call backup({$backupName}) before reset()."
-        );
+        throw new RuntimeException("Backup not available. Call backup({$backupName}) before reset().");
     }
 }

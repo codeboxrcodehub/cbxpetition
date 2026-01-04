@@ -1,37 +1,32 @@
 <?php
 
-namespace Sabberworm\CSS\Property;
+namespace CbxPetitionScoped\Sabberworm\CSS\Property;
 
-use Sabberworm\CSS\Comment\Comment;
-use Sabberworm\CSS\OutputFormat;
-use Sabberworm\CSS\Position\Position;
-use Sabberworm\CSS\Position\Positionable;
-use Sabberworm\CSS\Value\URL;
-
+use CbxPetitionScoped\Sabberworm\CSS\Comment\Comment;
+use CbxPetitionScoped\Sabberworm\CSS\OutputFormat;
+use CbxPetitionScoped\Sabberworm\CSS\Position\Position;
+use CbxPetitionScoped\Sabberworm\CSS\Position\Positionable;
+use CbxPetitionScoped\Sabberworm\CSS\Value\URL;
 /**
  * Class representing an `@import` rule.
  */
 class Import implements AtRule, Positionable
 {
     use Position;
-
     /**
      * @var URL
      */
     private $oLocation;
-
     /**
      * @var string
      */
     private $sMediaQuery;
-
     /**
      * @var array<array-key, Comment>
      *
      * @internal since 8.8.0
      */
     protected $aComments;
-
     /**
      * @param URL $oLocation
      * @param string $sMediaQuery
@@ -44,7 +39,6 @@ class Import implements AtRule, Positionable
         $this->setPosition($iLineNo);
         $this->aComments = [];
     }
-
     /**
      * @param URL $oLocation
      *
@@ -54,7 +48,6 @@ class Import implements AtRule, Positionable
     {
         $this->oLocation = $oLocation;
     }
-
     /**
      * @return URL
      */
@@ -62,7 +55,6 @@ class Import implements AtRule, Positionable
     {
         return $this->oLocation;
     }
-
     /**
      * @return string
      *
@@ -72,7 +64,6 @@ class Import implements AtRule, Positionable
     {
         return $this->render(new OutputFormat());
     }
-
     /**
      * @param OutputFormat|null $oOutputFormat
      *
@@ -80,10 +71,8 @@ class Import implements AtRule, Positionable
      */
     public function render($oOutputFormat)
     {
-        return $oOutputFormat->comments($this) . "@import " . $this->oLocation->render($oOutputFormat)
-            . ($this->sMediaQuery === null ? '' : ' ' . $this->sMediaQuery) . ';';
+        return $oOutputFormat->comments($this) . "@import " . $this->oLocation->render($oOutputFormat) . ($this->sMediaQuery === null ? '' : ' ' . $this->sMediaQuery) . ';';
     }
-
     /**
      * @return string
      */
@@ -91,7 +80,6 @@ class Import implements AtRule, Positionable
     {
         return 'import';
     }
-
     /**
      * @return array<int, URL|string>
      */
@@ -99,11 +87,10 @@ class Import implements AtRule, Positionable
     {
         $aResult = [$this->oLocation];
         if ($this->sMediaQuery) {
-            array_push($aResult, $this->sMediaQuery);
+            \array_push($aResult, $this->sMediaQuery);
         }
         return $aResult;
     }
-
     /**
      * @param array<array-key, Comment> $aComments
      *
@@ -111,9 +98,8 @@ class Import implements AtRule, Positionable
      */
     public function addComments(array $aComments)
     {
-        $this->aComments = array_merge($this->aComments, $aComments);
+        $this->aComments = \array_merge($this->aComments, $aComments);
     }
-
     /**
      * @return array<array-key, Comment>
      */
@@ -121,7 +107,6 @@ class Import implements AtRule, Positionable
     {
         return $this->aComments;
     }
-
     /**
      * @param array<array-key, Comment> $aComments
      *
@@ -131,7 +116,6 @@ class Import implements AtRule, Positionable
     {
         $this->aComments = $aComments;
     }
-
     /**
      * @return string
      */

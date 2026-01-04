@@ -1,8 +1,7 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Pelago\Emogrifier\Utilities;
+declare (strict_types=1);
+namespace CbxPetitionScoped\Pelago\Emogrifier\Utilities;
 
 /**
  * PHP's `preg_*` functions can return `false` on failure.
@@ -24,18 +23,15 @@ final class Preg
      *
      * @var bool
      */
-    private $throwExceptions = false;
-
+    private $throwExceptions = \false;
     /**
      * Sets whether exceptions should be thrown if an error occurs.
      */
-    public function throwExceptions(bool $throw): self
+    public function throwExceptions(bool $throw) : self
     {
         $this->throwExceptions = $throw;
-
         return $this;
     }
-
     /**
      * Wraps `preg_replace`, though does not support `$subject` being an array.
      * If an error occurs, and exceptions are not being thrown, the original `$subject` is returned.
@@ -45,18 +41,15 @@ final class Preg
      *
      * @throws \RuntimeException
      */
-    public function replace($pattern, $replacement, string $subject, int $limit = -1, ?int &$count = null): string
+    public function replace($pattern, $replacement, string $subject, int $limit = -1, ?int &$count = null) : string
     {
         $result = \preg_replace($pattern, $replacement, $subject, $limit, $count);
-
         if ($result === null) {
             $this->logOrThrowPregLastError();
             $result = $subject;
         }
-
         return $result;
     }
-
     /**
      * Wraps `preg_replace_callback`, though does not support `$subject` being an array.
      * If an error occurs, and exceptions are not being thrown, the original `$subject` is returned.
@@ -69,23 +62,15 @@ final class Preg
      *
      * @throws \RuntimeException
      */
-    public function replaceCallback(
-        $pattern,
-        callable $callback,
-        string $subject,
-        int $limit = -1,
-        ?int &$count = null
-    ): string {
+    public function replaceCallback($pattern, callable $callback, string $subject, int $limit = -1, ?int &$count = null) : string
+    {
         $result = \preg_replace_callback($pattern, $callback, $subject, $limit, $count);
-
         if ($result === null) {
             $this->logOrThrowPregLastError();
             $result = $subject;
         }
-
         return $result;
     }
-
     /**
      * Wraps `preg_split`.
      * If an error occurs, and exceptions are not being thrown,
@@ -98,22 +83,18 @@ final class Preg
      *
      * @throws \RuntimeException
      */
-    public function split(string $pattern, string $subject, int $limit = -1, int $flags = 0): array
+    public function split(string $pattern, string $subject, int $limit = -1, int $flags = 0) : array
     {
-        if (($flags & PREG_SPLIT_OFFSET_CAPTURE) !== 0) {
+        if (($flags & \PREG_SPLIT_OFFSET_CAPTURE) !== 0) {
             throw new \RuntimeException('PREG_SPLIT_OFFSET_CAPTURE is not supported by Preg::split', 1726506348);
         }
-
         $result = \preg_split($pattern, $subject, $limit, $flags);
-
-        if ($result === false) {
+        if ($result === \false) {
             $this->logOrThrowPregLastError();
             $result = [$subject];
         }
-
         return $result;
     }
-
     /**
      * Wraps `preg_match`.
      * If an error occurs, and exceptions are not being thrown,
@@ -127,19 +108,16 @@ final class Preg
      *
      * @throws \RuntimeException
      */
-    public function match(string $pattern, string $subject, ?array &$matches = null): int
+    public function match(string $pattern, string $subject, ?array &$matches = null) : int
     {
         $result = \preg_match($pattern, $subject, $matches);
-
-        if ($result === false) {
+        if ($result === \false) {
             $this->logOrThrowPregLastError();
             $result = 0;
             $matches = [];
         }
-
         return $result;
     }
-
     /**
      * Wraps `preg_match_all`.
      *
@@ -158,19 +136,16 @@ final class Preg
      *
      * @throws \RuntimeException
      */
-    public function matchAll(string $pattern, string $subject, ?array &$matches = null): int
+    public function matchAll(string $pattern, string $subject, ?array &$matches = null) : int
     {
         $result = \preg_match_all($pattern, $subject, $matches);
-
-        if ($result === false) {
+        if ($result === \false) {
             $this->logOrThrowPregLastError();
             $result = 0;
             $matches = \array_fill(0, \substr_count($pattern, '(') + 1, []);
         }
-
         return $result;
     }
-
     /**
      * Obtains the name of the error constant for `preg_last_error`
      * (based on code posted at {@see https://www.php.net/manual/en/function.preg-last-error.php#124124})
@@ -179,21 +154,14 @@ final class Preg
      *
      * @throws \RuntimeException
      */
-    private function logOrThrowPregLastError(): void
+    private function logOrThrowPregLastError() : void
     {
-        $pcreConstants = \get_defined_constants(true)['pcre'];
-        $pcreErrorConstantNames = \array_flip(\array_filter(
-            $pcreConstants,
-            static function (string $key): bool {
-                return \substr($key, -6) === '_ERROR';
-            },
-            ARRAY_FILTER_USE_KEY
-        ));
-
+        $pcreConstants = \get_defined_constants(\true)['pcre'];
+        $pcreErrorConstantNames = \array_flip(\array_filter($pcreConstants, static function (string $key) : bool {
+            return \substr($key, -6) === '_ERROR';
+        }, \ARRAY_FILTER_USE_KEY));
         $pregLastError = \preg_last_error();
-        $message = 'PCRE regex execution error `' . (string) ($pcreErrorConstantNames[$pregLastError] ?? $pregLastError)
-            . '`';
-
+        $message = 'PCRE regex execution error `' . (string) ($pcreErrorConstantNames[$pregLastError] ?? $pregLastError) . '`';
         if ($this->throwExceptions) {
             throw new \RuntimeException($message, 1592870147);
         }

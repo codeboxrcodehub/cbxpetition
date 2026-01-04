@@ -1,9 +1,8 @@
 <?php
 
-namespace Intervention\Image\Gd\Shapes;
+namespace CbxPetitionScoped\Intervention\Image\Gd\Shapes;
 
-use Intervention\Image\Image;
-
+use CbxPetitionScoped\Intervention\Image\Image;
 class CircleShape extends EllipseShape
 {
     /**
@@ -12,7 +11,6 @@ class CircleShape extends EllipseShape
      * @var int
      */
     public $diameter = 100;
-
     /**
      * Create new instance of circle
      *
@@ -20,11 +18,10 @@ class CircleShape extends EllipseShape
      */
     public function __construct($diameter = null)
     {
-        $this->width = is_numeric($diameter) ? intval($diameter) : $this->diameter;
-        $this->height = is_numeric($diameter) ? intval($diameter) : $this->diameter;
-        $this->diameter = is_numeric($diameter) ? intval($diameter) : $this->diameter;
+        $this->width = \is_numeric($diameter) ? \intval($diameter) : $this->diameter;
+        $this->height = \is_numeric($diameter) ? \intval($diameter) : $this->diameter;
+        $this->diameter = \is_numeric($diameter) ? \intval($diameter) : $this->diameter;
     }
-
     /**
      * Draw current circle on given image
      *

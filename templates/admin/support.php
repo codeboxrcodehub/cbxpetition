@@ -107,10 +107,21 @@ $doc_url    = PetitionHelper::url_utmy( 'https://codeboxr.com/doc/cbxpetition-do
                 <div class="cbx-backend-card dashboard-changelog">
                     <div class="header">
                         <div class="text">
-                            <h2><?php esc_html_e( 'Changelog Core Plugin', 'cbxpetition' ); ?></h2>
+                            <h2><?php esc_html_e( 'Changelog of Core Plugin', 'cbxpetition' ); ?></h2>
                         </div>
                     </div>
                     <div class="content">
+                        <div class="cbx-backend-settings-row">
+                            <p>
+                                Version - 2.0.12
+                            </p>
+                            <ul>
+                                <li>[updated] WordPress Core 6.9 compatible</li>
+                                <li>[updated] Plugin Check 1.8.0 compatible</li>
+                                <li>[updated] Pro Addon 2.0.8 released</li>
+                                <li>[improvement] Misc improvement</li>
+                            </ul>
+                        </div>
                         <div class="cbx-backend-settings-row">
                             <p>
                                 Version - 2.0.11
@@ -129,36 +140,6 @@ $doc_url    = PetitionHelper::url_utmy( 'https://codeboxr.com/doc/cbxpetition-do
                                 <li>[updated] Misc changes</li>
                             </ul>
                         </div>
-                        <div class="cbx-backend-settings-row">
-                            <p>
-                                Version - 2.0.9
-                            </p>
-                            <ul>
-                                <li>[fixed] Composer platform check issue resolved</li>
-                                <li>[updated] Plugin check V1.7.0 coding standard compatible</li>
-                                <li>[updated] Pro Addon 2.0.6 released</li>
-                            </ul>
-                        </div>
-                        <div class="cbx-backend-settings-row">
-                            <p>
-                                Version - 2.0.8
-                            </p>
-                            <ul>
-                                <li>[fixed] Uninstall error fixed</li>
-                            </ul>
-                        </div>
-                        <div class="cbx-backend-settings-row">
-                            <p>
-                                Version - 2.0.7
-                            </p>
-                            <ul>
-                                <li>[fixed] Elementor widget improved and bug fixed</li>
-                                <li>[fixed] Block widget improved and bug fixed</li>
-                                <li>[fixed] Setting inputs loading error or bug fixed</li>
-                                <li>[updated] Other misc changes</li>
-                                <li>[new] Pro addon plugin V2.0.5 released and compatible with core</li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
                 <div class="cbx-backend-card dashboard-changelog">
@@ -168,6 +149,19 @@ $doc_url    = PetitionHelper::url_utmy( 'https://codeboxr.com/doc/cbxpetition-do
                         </div>
                     </div>
                     <div class="content">
+                        <div class="cbx-backend-settings-row">
+                            <p>
+                                Version - 2.0.8
+                            </p>
+                            <ul>
+                                <li>[new] Gamipress integration</li>
+                                <li>[new] Uncanny Automator integration</li>
+                                <li>[updated] WordPress Core 6.9 compatible</li>
+                                <li>[updated] Plugin Check 1.8.0 compatible</li>
+                                <li>[updated] Core plugin 2.0.12 released</li>
+                                <li>[improvement] Misc improvement</li>
+                            </ul>
+                        </div>
                         <div class="cbx-backend-settings-row">
                             <p>
                                 Version - 2.0.7
@@ -185,28 +179,6 @@ $doc_url    = PetitionHelper::url_utmy( 'https://codeboxr.com/doc/cbxpetition-do
                                 <li>[fixed] Composer platform check issue resolved</li>
                                 <li>[updated] Plugin check V1.7.0 coding standard compatible</li>
                                 <li>[updated] Core plugin 2.0.9 released</li>
-                            </ul>
-                        </div>
-                        <div class="cbx-backend-settings-row">
-                            <p>
-                                Version - 2.0.5
-                            </p>
-                            <ul>
-                                <li>[fixed] Elementor widget improved and bug fixed</li>
-                                <li>[fixed] Block widget improved and bug fixed</li>
-                                <li>[fixed] Setting inputs loading error or bug fixed</li>
-                                <li>[new] Core plugin V2.0.7 released</li>
-                                <li>[updated] Other misc changes</li>
-                            </ul>
-                        </div>
-                        <div class="cbx-backend-settings-row">
-                            <p>
-                                Version - 2.0.4
-                            </p>
-                            <ul>
-                                <li>[updated] Dashboard Shortcode display fixed</li>
-                                <li>[updated] Js vendor library updated</li>
-                                <li>[new] Core plugin V2.0.6 released</li>
                             </ul>
                         </div>
                     </div>

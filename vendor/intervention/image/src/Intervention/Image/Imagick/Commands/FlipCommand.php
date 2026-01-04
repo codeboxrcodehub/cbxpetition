@@ -1,9 +1,8 @@
 <?php
 
-namespace Intervention\Image\Imagick\Commands;
+namespace CbxPetitionScoped\Intervention\Image\Imagick\Commands;
 
-use Intervention\Image\Commands\AbstractCommand;
-
+use CbxPetitionScoped\Intervention\Image\Commands\AbstractCommand;
 class FlipCommand extends AbstractCommand
 {
     /**
@@ -15,8 +14,7 @@ class FlipCommand extends AbstractCommand
     public function execute($image)
     {
         $mode = $this->argument(0)->value('h');
-
-        if (in_array(strtolower($mode), [2, 'v', 'vert', 'vertical'])) {
+        if (\in_array(\strtolower($mode), [2, 'v', 'vert', 'vertical'])) {
             // flip vertical
             return $image->getCore()->flipImage();
         } else {

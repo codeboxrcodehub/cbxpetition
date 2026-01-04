@@ -1,9 +1,8 @@
 <?php
 
-namespace Intervention\Image\Gd\Commands;
+namespace CbxPetitionScoped\Intervention\Image\Gd\Commands;
 
-use Intervention\Image\Commands\AbstractCommand;
-
+use CbxPetitionScoped\Intervention\Image\Commands\AbstractCommand;
 class GreyscaleCommand extends AbstractCommand
 {
     /**
@@ -14,6 +13,6 @@ class GreyscaleCommand extends AbstractCommand
      */
     public function execute($image)
     {
-        return imagefilter($image->getCore(), IMG_FILTER_GRAYSCALE);
+        return \imagefilter($image->getCore(), \IMG_FILTER_GRAYSCALE);
     }
 }

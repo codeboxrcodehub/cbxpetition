@@ -1,6 +1,9 @@
 <?php
-
 namespace Cbx\Petition;
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+    die;
+}
 
 use Cbx\Petition\Helpers\PetitionHelper;
 

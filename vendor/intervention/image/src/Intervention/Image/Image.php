@@ -1,12 +1,11 @@
 <?php
 
-namespace Intervention\Image;
+namespace CbxPetitionScoped\Intervention\Image;
 
-use Intervention\Image\Exception\NotWritableException;
-use Intervention\Image\Exception\RuntimeException;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\StreamInterface;
-
+use CbxPetitionScoped\Intervention\Image\Exception\NotWritableException;
+use CbxPetitionScoped\Intervention\Image\Exception\RuntimeException;
+use CbxPetitionScoped\Psr\Http\Message\ResponseInterface;
+use CbxPetitionScoped\Psr\Http\Message\StreamInterface;
 /**
  * @method \Intervention\Image\Image backup(string $name = 'default')                                                                                                     Backups current image state as fallback for reset method under an optional name. Overwrites older state on every call, unless a different name is passed.
  * @method \Intervention\Image\Image blur(int $amount = 1)                                                                                                            Apply a gaussian blur filter with a optional amount on the current image. Use values between 0 and 100.
@@ -61,28 +60,24 @@ class Image extends File
      * @var AbstractDriver
      */
     protected $driver;
-
     /**
      * Image resource/object of current image processor
      *
      * @var mixed
      */
     protected $core;
-
     /**
      * Array of Image resource backups of current image processor
      *
      * @var array
      */
     protected $backups = [];
-
     /**
      * Last image encoding result
      *
      * @var string
      */
     public $encoded = '';
-
     /**
      * Creates a new Image instance
      *
@@ -94,7 +89,6 @@ class Image extends File
         $this->driver = $driver;
         $this->core = $core;
     }
-
     /**
      * Magic method to catch all image calls
      * usually any AbstractCommand
@@ -108,7 +102,6 @@ class Image extends File
         $command = $this->driver->executeCommand($this, $name, $arguments);
         return $command->hasOutput() ? $command->getOutput() : $this;
     }
-
     /**
      * Starts encoding of current image
      *
@@ -120,7 +113,6 @@ class Image extends File
     {
         return $this->driver->encode($this, $format, $quality);
     }
-
     /**
      * Saves encoded image in filesystem
      *
@@ -131,33 +123,22 @@ class Image extends File
      */
     public function save($path = null, $quality = null, $format = null)
     {
-        $path = is_null($path) ? $this->basePath() : $path;
-
-        if (is_null($path)) {
-            throw new NotWritableException(
-                "Can't write to undefined path."
-            );
+        $path = \is_null($path) ? $this->basePath() : $path;
+        if (\is_null($path)) {
+            throw new NotWritableException("Can't write to undefined path.");
         }
-
         if ($format === null) {
-            $format = pathinfo($path, PATHINFO_EXTENSION);
+            $format = \pathinfo($path, \PATHINFO_EXTENSION);
         }
-
         $data = $this->encode($format, $quality);
-        $saved = @file_put_contents($path, $data);
-
-        if ($saved === false) {
-            throw new NotWritableException(
-                "Can't write image data to path ({$path})"
-            );
+        $saved = @\file_put_contents($path, $data);
+        if ($saved === \false) {
+            throw new NotWritableException("Can't write image data to path ({$path})");
         }
-
         // set new file info
         $this->setFileInfoFromPath($path);
-
         return $this;
     }
-
     /**
      * Runs a given filter on current image
      *
@@ -168,7 +149,6 @@ class Image extends File
     {
         return $filter->applyFilter($this);
     }
-
     /**
      * Returns current image driver
      *
@@ -178,7 +158,6 @@ class Image extends File
     {
         return $this->driver;
     }
-
     /**
      * Sets current image driver
      * @param AbstractDriver $driver
@@ -186,10 +165,8 @@ class Image extends File
     public function setDriver(AbstractDriver $driver)
     {
         $this->driver = $driver;
-
         return $this;
     }
-
     /**
      * Returns current image resource/obj
      *
@@ -199,7 +176,6 @@ class Image extends File
     {
         return $this->core;
     }
-
     /**
      * Sets current image resource
      *
@@ -208,10 +184,8 @@ class Image extends File
     public function setCore($core)
     {
         $this->core = $core;
-
         return $this;
     }
-
     /**
      * Returns current image backup
      *
@@ -220,17 +194,12 @@ class Image extends File
      */
     public function getBackup($name = null)
     {
-        $name = is_null($name) ? 'default' : $name;
-
-        if ( ! $this->backupExists($name)) {
-            throw new RuntimeException(
-                "Backup with name ({$name}) not available. Call backup() before reset()."
-            );
+        $name = \is_null($name) ? 'default' : $name;
+        if (!$this->backupExists($name)) {
+            throw new RuntimeException("Backup with name ({$name}) not available. Call backup() before reset().");
         }
-
         return $this->backups[$name];
     }
-
     /**
      * Returns all backups attached to image
      *
@@ -240,7 +209,6 @@ class Image extends File
     {
         return $this->backups;
     }
-
     /**
      * Sets current image backup
      *
@@ -250,13 +218,10 @@ class Image extends File
      */
     public function setBackup($resource, $name = null)
     {
-        $name = is_null($name) ? 'default' : $name;
-
+        $name = \is_null($name) ? 'default' : $name;
         $this->backups[$name] = $resource;
-
         return $this;
     }
-
     /**
      * Checks if named backup exists
      *
@@ -265,9 +230,8 @@ class Image extends File
      */
     private function backupExists($name)
     {
-        return array_key_exists($name, $this->backups);
+        return \array_key_exists($name, $this->backups);
     }
-
     /**
      * Checks if current image is already encoded
      *
@@ -275,9 +239,8 @@ class Image extends File
      */
     public function isEncoded()
     {
-        return ! empty($this->encoded);
+        return !empty($this->encoded);
     }
-
     /**
      * Returns encoded image data of current image
      *
@@ -287,7 +250,6 @@ class Image extends File
     {
         return $this->encoded;
     }
-
     /**
      * Sets encoded image buffer
      *
@@ -296,10 +258,8 @@ class Image extends File
     public function setEncoded($value)
     {
         $this->encoded = $value;
-
         return $this;
     }
-
     /**
      * Calculates current image width
      *
@@ -309,7 +269,6 @@ class Image extends File
     {
         return $this->getSize()->width;
     }
-
     /**
      * Alias of getWidth()
      *
@@ -319,7 +278,6 @@ class Image extends File
     {
         return $this->getWidth();
     }
-
     /**
      * Calculates current image height
      *
@@ -329,7 +287,6 @@ class Image extends File
     {
         return $this->getSize()->height;
     }
-
     /**
      * Alias of getHeight
      *
@@ -339,7 +296,6 @@ class Image extends File
     {
         return $this->getHeight();
     }
-
     /**
      * Reads mime type
      *
@@ -349,7 +305,6 @@ class Image extends File
     {
         return $this->mime;
     }
-
     /**
      * Returns encoded image data in string conversion
      *
@@ -359,7 +314,6 @@ class Image extends File
     {
         return $this->encoded;
     }
-
     /**
      * Cloning an image
      */

@@ -1,9 +1,8 @@
 <?php
 
-namespace Intervention\Image\Gd\Commands;
+namespace CbxPetitionScoped\Intervention\Image\Gd\Commands;
 
-use Intervention\Image\Commands\AbstractCommand;
-
+use CbxPetitionScoped\Intervention\Image\Commands\AbstractCommand;
 class SharpenCommand extends AbstractCommand
 {
     /**
@@ -15,20 +14,13 @@ class SharpenCommand extends AbstractCommand
     public function execute($image)
     {
         $amount = $this->argument(0)->between(0, 100)->value(10);
-
         // build matrix
         $min = $amount >= 10 ? $amount * -0.01 : 0;
         $max = $amount * -0.025;
-        $abs = ((4 * $min + 4 * $max) * -1) + 1;
+        $abs = (4 * $min + 4 * $max) * -1 + 1;
         $div = 1;
-
-        $matrix = [
-            [$min, $max, $min],
-            [$max, $abs, $max],
-            [$min, $max, $min]
-        ];
-
+        $matrix = [[$min, $max, $min], [$max, $abs, $max], [$min, $max, $min]];
         // apply the matrix
-        return imageconvolution($image->getCore(), $matrix, $div, 0);
+        return \imageconvolution($image->getCore(), $matrix, $div, 0);
     }
 }

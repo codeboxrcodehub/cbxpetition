@@ -1,6 +1,6 @@
 <?php
 
-namespace Intervention\Image\Exception;
+namespace CbxPetitionScoped\Intervention\Image\Exception;
 
 class NotWritableException extends ImageException
 {

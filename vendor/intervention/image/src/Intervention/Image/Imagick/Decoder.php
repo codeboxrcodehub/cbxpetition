@@ -1,12 +1,11 @@
 <?php
 
-namespace Intervention\Image\Imagick;
+namespace CbxPetitionScoped\Intervention\Image\Imagick;
 
-use Intervention\Image\AbstractDecoder;
-use Intervention\Image\Exception\NotReadableException;
-use Intervention\Image\Exception\NotSupportedException;
-use Intervention\Image\Image;
-
+use CbxPetitionScoped\Intervention\Image\AbstractDecoder;
+use CbxPetitionScoped\Intervention\Image\Exception\NotReadableException;
+use CbxPetitionScoped\Intervention\Image\Exception\NotSupportedException;
+use CbxPetitionScoped\Intervention\Image\Image;
 class Decoder extends AbstractDecoder
 {
     /**
@@ -17,29 +16,19 @@ class Decoder extends AbstractDecoder
      */
     public function initFromPath($path)
     {
-        $core = new \Imagick;
-
+        $core = new \Imagick();
         try {
-
             $core->setBackgroundColor(new \ImagickPixel('transparent'));
             $core->readImage($path);
-            $core->setImageType(defined('\Imagick::IMGTYPE_TRUECOLORALPHA') ? \Imagick::IMGTYPE_TRUECOLORALPHA : \Imagick::IMGTYPE_TRUECOLORMATTE);
-
+            $core->setImageType(\defined('\\Imagick::IMGTYPE_TRUECOLORALPHA') ? \Imagick::IMGTYPE_TRUECOLORALPHA : \Imagick::IMGTYPE_TRUECOLORMATTE);
         } catch (\ImagickException $e) {
-            throw new \Intervention\Image\Exception\NotReadableException(
-                "Unable to read image from path ({$path}).",
-                0,
-                $e
-            );
+            throw new \CbxPetitionScoped\Intervention\Image\Exception\NotReadableException("Unable to read image from path ({$path}).", 0, $e);
         }
-
         // build image
         $image = $this->initFromImagick($core);
         $image->setFileInfoFromPath($path);
-
         return $image;
     }
-
     /**
      * Initiates new image from GD resource
      *
@@ -48,11 +37,8 @@ class Decoder extends AbstractDecoder
      */
     public function initFromGdResource($resource)
     {
-        throw new NotSupportedException(
-            'Imagick driver is unable to init from GD resource.'
-        );
+        throw new NotSupportedException('Imagick driver is unable to init from GD resource.');
     }
-
     /**
      * Initiates new image from Imagick object
      *
@@ -64,13 +50,10 @@ class Decoder extends AbstractDecoder
         // currently animations are not supported
         // so all images are turned into static
         $object = $this->removeAnimation($object);
-
         // reset image orientation
         $object->setImageOrientation(\Imagick::ORIENTATION_UNDEFINED);
-
-        return new Image(new Driver, $object);
+        return new Image(new Driver(), $object);
     }
-
     /**
      * Initiates new image from binary data
      *
@@ -79,28 +62,18 @@ class Decoder extends AbstractDecoder
      */
     public function initFromBinary($binary)
     {
-        $core = new \Imagick;
-
+        $core = new \Imagick();
         try {
             $core->setBackgroundColor(new \ImagickPixel('transparent'));
-
             $core->readImageBlob($binary);
-
         } catch (\ImagickException $e) {
-            throw new NotReadableException(
-                "Unable to read image from binary data.",
-                0,
-                $e
-            );
+            throw new NotReadableException("Unable to read image from binary data.", 0, $e);
         }
-
         // build image
         $image = $this->initFromImagick($core);
-        $image->mime = finfo_buffer(finfo_open(FILEINFO_MIME_TYPE), $binary);
-
+        $image->mime = \finfo_buffer(\finfo_open(\FILEINFO_MIME_TYPE), $binary);
         return $image;
     }
-
     /**
      * Turns object into one frame Imagick object
      * by removing all frames except first
@@ -110,15 +83,12 @@ class Decoder extends AbstractDecoder
      */
     private function removeAnimation(\Imagick $object)
     {
-        $imagick = new \Imagick;
-
+        $imagick = new \Imagick();
         foreach ($object as $frame) {
             $imagick->addImage($frame->getImage());
             break;
         }
-
         $object->destroy();
-
         return $imagick;
     }
 }

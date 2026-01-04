@@ -1,9 +1,8 @@
 <?php
 
-namespace Intervention\Image\Imagick\Commands;
+namespace CbxPetitionScoped\Intervention\Image\Imagick\Commands;
 
-use Intervention\Image\Commands\AbstractCommand;
-
+use CbxPetitionScoped\Intervention\Image\Commands\AbstractCommand;
 class InvertCommand extends AbstractCommand
 {
     /**
@@ -14,6 +13,6 @@ class InvertCommand extends AbstractCommand
      */
     public function execute($image)
     {
-        return $image->getCore()->negateImage(false);
+        return $image->getCore()->negateImage(\false);
     }
 }

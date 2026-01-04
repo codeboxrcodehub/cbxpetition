@@ -1,6 +1,6 @@
 <?php
 
-namespace Intervention\Image\Exception;
+namespace CbxPetitionScoped\Intervention\Image\Exception;
 
 class NotSupportedException extends ImageException
 {

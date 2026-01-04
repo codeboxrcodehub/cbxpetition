@@ -1,11 +1,10 @@
 <?php
 
-namespace Intervention\Image\Imagick\Shapes;
+namespace CbxPetitionScoped\Intervention\Image\Imagick\Shapes;
 
-use Intervention\Image\AbstractShape;
-use Intervention\Image\Image;
-use Intervention\Image\Imagick\Color;
-
+use CbxPetitionScoped\Intervention\Image\AbstractShape;
+use CbxPetitionScoped\Intervention\Image\Image;
+use CbxPetitionScoped\Intervention\Image\Imagick\Color;
 class PolygonShape extends AbstractShape
 {
     /**
@@ -14,7 +13,6 @@ class PolygonShape extends AbstractShape
      * @var array
      */
     public $points;
-
     /**
      * Create new polygon instance
      *
@@ -24,7 +22,6 @@ class PolygonShape extends AbstractShape
     {
         $this->points = $this->formatPoints($points);
     }
-
     /**
      * Draw polygon on given image
      *
@@ -35,26 +32,20 @@ class PolygonShape extends AbstractShape
      */
     public function applyToImage(Image $image, $x = 0, $y = 0)
     {
-        $polygon = new \ImagickDraw;
-
+        $polygon = new \ImagickDraw();
         // set background
         $bgcolor = new Color($this->background);
         $polygon->setFillColor($bgcolor->getPixel());
-
         // set border
         if ($this->hasBorder()) {
             $border_color = new Color($this->border_color);
             $polygon->setStrokeWidth($this->border_width);
             $polygon->setStrokeColor($border_color->getPixel());
         }
-
         $polygon->polygon($this->points);
-
         $image->getCore()->drawImage($polygon);
-
-        return true;
+        return \true;
     }
-
     /**
      * Format polygon points to Imagick format
      *
@@ -65,9 +56,8 @@ class PolygonShape extends AbstractShape
     {
         $ipoints = [];
         $count = 1;
-
         foreach ($points as $key => $value) {
-            if ($count%2 === 0) {
+            if ($count % 2 === 0) {
                 $y = $value;
                 $ipoints[] = ['x' => $x, 'y' => $y];
             } else {
@@ -75,7 +65,6 @@ class PolygonShape extends AbstractShape
             }
             $count++;
         }
-
         return $ipoints;
     }
 }

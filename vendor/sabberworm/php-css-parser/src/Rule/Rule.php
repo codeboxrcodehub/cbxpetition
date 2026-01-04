@@ -1,19 +1,18 @@
 <?php
 
-namespace Sabberworm\CSS\Rule;
+namespace CbxPetitionScoped\Sabberworm\CSS\Rule;
 
-use Sabberworm\CSS\Comment\Comment;
-use Sabberworm\CSS\Comment\Commentable;
-use Sabberworm\CSS\CSSElement;
-use Sabberworm\CSS\OutputFormat;
-use Sabberworm\CSS\Parsing\ParserState;
-use Sabberworm\CSS\Parsing\UnexpectedEOFException;
-use Sabberworm\CSS\Parsing\UnexpectedTokenException;
-use Sabberworm\CSS\Position\Position;
-use Sabberworm\CSS\Position\Positionable;
-use Sabberworm\CSS\Value\RuleValueList;
-use Sabberworm\CSS\Value\Value;
-
+use CbxPetitionScoped\Sabberworm\CSS\Comment\Comment;
+use CbxPetitionScoped\Sabberworm\CSS\Comment\Commentable;
+use CbxPetitionScoped\Sabberworm\CSS\CSSElement;
+use CbxPetitionScoped\Sabberworm\CSS\OutputFormat;
+use CbxPetitionScoped\Sabberworm\CSS\Parsing\ParserState;
+use CbxPetitionScoped\Sabberworm\CSS\Parsing\UnexpectedEOFException;
+use CbxPetitionScoped\Sabberworm\CSS\Parsing\UnexpectedTokenException;
+use CbxPetitionScoped\Sabberworm\CSS\Position\Position;
+use CbxPetitionScoped\Sabberworm\CSS\Position\Positionable;
+use CbxPetitionScoped\Sabberworm\CSS\Value\RuleValueList;
+use CbxPetitionScoped\Sabberworm\CSS\Value\Value;
 /**
  * `Rule`s just have a string key (the rule) and a 'Value'.
  *
@@ -22,34 +21,28 @@ use Sabberworm\CSS\Value\Value;
 class Rule implements Commentable, CSSElement, Positionable
 {
     use Position;
-
     /**
      * @var string
      */
     private $sRule;
-
     /**
      * @var RuleValueList|string|null
      */
     private $mValue;
-
     /**
      * @var bool
      */
     private $bIsImportant;
-
     /**
      * @var array<int, int>
      */
     private $aIeHack;
-
     /**
      * @var array<array-key, Comment>
      *
      * @internal since 8.8.0
      */
     protected $aComments;
-
     /**
      * @param string $sRule
      * @param int $iLineNo
@@ -59,12 +52,11 @@ class Rule implements Commentable, CSSElement, Positionable
     {
         $this->sRule = $sRule;
         $this->mValue = null;
-        $this->bIsImportant = false;
+        $this->bIsImportant = \false;
         $this->aIeHack = [];
         $this->setPosition($iLineNo, $iColNo);
         $this->aComments = [];
     }
-
     /**
      * @param array<int, Comment> $commentsBeforeRule
      *
@@ -78,11 +70,7 @@ class Rule implements Commentable, CSSElement, Positionable
     public static function parse(ParserState $oParserState, $commentsBeforeRule = [])
     {
         $aComments = \array_merge($commentsBeforeRule, $oParserState->consumeWhiteSpace());
-        $oRule = new Rule(
-            $oParserState->parseIdentifier(!$oParserState->comes("--")),
-            $oParserState->currentLine(),
-            $oParserState->currentColumn()
-        );
+        $oRule = new Rule($oParserState->parseIdentifier(!$oParserState->comes("--")), $oParserState->currentLine(), $oParserState->currentColumn());
         $oRule->setComments($aComments);
         $oRule->addComments($oParserState->consumeWhiteSpace());
         $oParserState->consume(':');
@@ -100,16 +88,14 @@ class Rule implements Commentable, CSSElement, Positionable
             $oParserState->consume('!');
             $oParserState->consumeWhiteSpace();
             $oParserState->consume('important');
-            $oRule->setIsImportant(true);
+            $oRule->setIsImportant(\true);
         }
         $oParserState->consumeWhiteSpace();
         while ($oParserState->comes(';')) {
             $oParserState->consume(';');
         }
-
         return $oRule;
     }
-
     /**
      * Returns a list of delimiters (or separators).
      * The first item is the innermost separator (or, put another way, the highest-precedence operator).
@@ -121,10 +107,9 @@ class Rule implements Commentable, CSSElement, Positionable
      */
     private static function listDelimiterForRule($sRule)
     {
-        if (preg_match('/^font($|-)/', $sRule)) {
+        if (\preg_match('/^font($|-)/', $sRule)) {
             return [',', '/', ' '];
         }
-
         switch ($sRule) {
             case 'src':
                 return [' ', ','];
@@ -132,7 +117,6 @@ class Rule implements Commentable, CSSElement, Positionable
                 return [',', ' ', '/'];
         }
     }
-
     /**
      * @param string $sRule
      *
@@ -142,7 +126,6 @@ class Rule implements Commentable, CSSElement, Positionable
     {
         $this->sRule = $sRule;
     }
-
     /**
      * @return string
      */
@@ -150,7 +133,6 @@ class Rule implements Commentable, CSSElement, Positionable
     {
         return $this->sRule;
     }
-
     /**
      * @return RuleValueList|string|null
      */
@@ -158,7 +140,6 @@ class Rule implements Commentable, CSSElement, Positionable
     {
         return $this->mValue;
     }
-
     /**
      * @param RuleValueList|string|null $mValue
      *
@@ -168,7 +149,6 @@ class Rule implements Commentable, CSSElement, Positionable
     {
         $this->mValue = $mValue;
     }
-
     /**
      * @param array<array-key, array<array-key, RuleValueList>> $aSpaceSeparatedValues
      *
@@ -181,12 +161,12 @@ class Rule implements Commentable, CSSElement, Positionable
     public function setValues(array $aSpaceSeparatedValues)
     {
         $oSpaceSeparatedList = null;
-        if (count($aSpaceSeparatedValues) > 1) {
+        if (\count($aSpaceSeparatedValues) > 1) {
             $oSpaceSeparatedList = new RuleValueList(' ', $this->iLineNo);
         }
         foreach ($aSpaceSeparatedValues as $aCommaSeparatedValues) {
             $oCommaSeparatedList = null;
-            if (count($aCommaSeparatedValues) > 1) {
+            if (\count($aCommaSeparatedValues) > 1) {
                 $oCommaSeparatedList = new RuleValueList(',', $this->iLineNo);
             }
             foreach ($aCommaSeparatedValues as $mValue) {
@@ -210,7 +190,6 @@ class Rule implements Commentable, CSSElement, Positionable
         $this->mValue = $oSpaceSeparatedList;
         return $oSpaceSeparatedList;
     }
-
     /**
      * @return array<int, array<int, RuleValueList>>
      *
@@ -232,16 +211,15 @@ class Rule implements Commentable, CSSElement, Positionable
                 $aResult[] = [$mValue];
                 continue;
             }
-            if ($this->mValue->getListSeparator() === ' ' || count($aResult) === 0) {
+            if ($this->mValue->getListSeparator() === ' ' || \count($aResult) === 0) {
                 $aResult[] = [];
             }
             foreach ($mValue->getListComponents() as $mValue) {
-                $aResult[count($aResult) - 1][] = $mValue;
+                $aResult[\count($aResult) - 1][] = $mValue;
             }
         }
         return $aResult;
     }
-
     /**
      * Adds a value to the existing value. Value will be appended if a `RuleValueList` exists of the given type.
      * Otherwise, the existing value will be wrapped by one.
@@ -253,7 +231,7 @@ class Rule implements Commentable, CSSElement, Positionable
      */
     public function addValue($mValue, $sType = ' ')
     {
-        if (!is_array($mValue)) {
+        if (!\is_array($mValue)) {
             $mValue = [$mValue];
         }
         if (!$this->mValue instanceof RuleValueList || $this->mValue->getListSeparator() !== $sType) {
@@ -267,7 +245,6 @@ class Rule implements Commentable, CSSElement, Positionable
             $this->mValue->addListComponent($mValueItem);
         }
     }
-
     /**
      * @param int $iModifier
      *
@@ -279,7 +256,6 @@ class Rule implements Commentable, CSSElement, Positionable
     {
         $this->aIeHack[] = $iModifier;
     }
-
     /**
      * @param array<int, int> $aModifiers
      *
@@ -291,7 +267,6 @@ class Rule implements Commentable, CSSElement, Positionable
     {
         $this->aIeHack = $aModifiers;
     }
-
     /**
      * @return array<int, int>
      *
@@ -301,7 +276,6 @@ class Rule implements Commentable, CSSElement, Positionable
     {
         return $this->aIeHack;
     }
-
     /**
      * @param bool $bIsImportant
      *
@@ -311,7 +285,6 @@ class Rule implements Commentable, CSSElement, Positionable
     {
         $this->bIsImportant = $bIsImportant;
     }
-
     /**
      * @return bool
      */
@@ -319,7 +292,6 @@ class Rule implements Commentable, CSSElement, Positionable
     {
         return $this->bIsImportant;
     }
-
     /**
      * @return string
      *
@@ -329,7 +301,6 @@ class Rule implements Commentable, CSSElement, Positionable
     {
         return $this->render(new OutputFormat());
     }
-
     /**
      * @param OutputFormat|null $oOutputFormat
      *
@@ -338,13 +309,14 @@ class Rule implements Commentable, CSSElement, Positionable
     public function render($oOutputFormat)
     {
         $sResult = "{$oOutputFormat->comments($this)}{$this->sRule}:{$oOutputFormat->spaceAfterRuleName()}";
-        if ($this->mValue instanceof Value) { // Can also be a ValueList
+        if ($this->mValue instanceof Value) {
+            // Can also be a ValueList
             $sResult .= $this->mValue->render($oOutputFormat);
         } else {
             $sResult .= $this->mValue;
         }
         if (!empty($this->aIeHack)) {
-            $sResult .= ' \\' . implode('\\', $this->aIeHack);
+            $sResult .= ' \\' . \implode('\\', $this->aIeHack);
         }
         if ($this->bIsImportant) {
             $sResult .= ' !important';
@@ -352,7 +324,6 @@ class Rule implements Commentable, CSSElement, Positionable
         $sResult .= ';';
         return $sResult;
     }
-
     /**
      * @param array<array-key, Comment> $aComments
      *
@@ -360,9 +331,8 @@ class Rule implements Commentable, CSSElement, Positionable
      */
     public function addComments(array $aComments)
     {
-        $this->aComments = array_merge($this->aComments, $aComments);
+        $this->aComments = \array_merge($this->aComments, $aComments);
     }
-
     /**
      * @return array<array-key, Comment>
      */
@@ -370,7 +340,6 @@ class Rule implements Commentable, CSSElement, Positionable
     {
         return $this->aComments;
     }
-
     /**
      * @param array<array-key, Comment> $aComments
      *

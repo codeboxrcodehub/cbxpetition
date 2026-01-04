@@ -6,13 +6,13 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'enshrined\\svgSanitize\\' => array($vendorDir . '/enshrined/svg-sanitize/src'),
-    'Symfony\\Component\\CssSelector\\' => array($vendorDir . '/symfony/css-selector'),
-    'Soundasleep\\' => array($vendorDir . '/soundasleep/html2text/src'),
-    'Sabberworm\\CSS\\' => array($vendorDir . '/sabberworm/php-css-parser/src'),
-    'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-factory/src', $vendorDir . '/psr/http-message/src'),
-    'Pelago\\Emogrifier\\' => array($vendorDir . '/pelago/emogrifier/src'),
-    'Intervention\\Image\\' => array($vendorDir . '/intervention/image/src/Intervention/Image'),
-    'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
     'Cbx\\Petition\\' => array($baseDir . '/includes'),
+    'CbxPetitionScoped\\enshrined\\svgSanitize\\' => array($vendorDir . '/enshrined/svg-sanitize/src'),
+    'CbxPetitionScoped\\Symfony\\Component\\CssSelector\\' => array($vendorDir . '/symfony/css-selector'),
+    'CbxPetitionScoped\\Soundasleep\\' => array($vendorDir . '/soundasleep/html2text/src'),
+    'CbxPetitionScoped\\Sabberworm\\CSS\\' => array($vendorDir . '/sabberworm/php-css-parser/src'),
+    'CbxPetitionScoped\\Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-factory/src', $vendorDir . '/psr/http-message/src'),
+    'CbxPetitionScoped\\Pelago\\Emogrifier\\' => array($vendorDir . '/pelago/emogrifier/src'),
+    'CbxPetitionScoped\\Intervention\\Image\\' => array($vendorDir . '/intervention/image/src/Intervention/Image'),
+    'CbxPetitionScoped\\GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
 );

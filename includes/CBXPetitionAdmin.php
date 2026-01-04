@@ -1,6 +1,10 @@
 <?php
-
 namespace Cbx\Petition;
+
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
 
 use Cbx\Petition\CBXSetting;
 use Cbx\Petition\Helpers\PetitionHelper;
@@ -513,6 +517,10 @@ class CBXPetitionAdmin {
 				if ( $old_state !== $new_state && $new_state == 'approved' ) {
 					do_action( 'cbxpetition_sign_approved', $signature, $old_state, $new_state );
 				}//end signature approve
+
+				if ( $old_state !== $new_state ) {
+					do_action( 'cbxpetition_sign_status_change',$signature_id, $petition_id, $signature, $old_state, $new_state );					
+				}
 
 			} else {
 				//update failed

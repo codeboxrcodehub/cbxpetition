@@ -1,9 +1,8 @@
 <?php
 
-namespace Intervention\Image\Filters;
+namespace CbxPetitionScoped\Intervention\Image\Filters;
 
-use Intervention\Image\Image;
-
+use CbxPetitionScoped\Intervention\Image\Image;
 interface FilterInterface
 {
     /**

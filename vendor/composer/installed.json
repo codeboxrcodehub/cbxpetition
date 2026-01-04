@@ -1,17 +1,17 @@
 {
     "packages": [
         {
-            "name": "enshrined/svg-sanitize",
+            "name": "enshrined\/svg-sanitize",
             "version": "dev-master",
             "version_normalized": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/darylldoyle/svg-sanitizer.git",
+                "url": "https:\/\/github.com\/darylldoyle\/svg-sanitizer.git",
                 "reference": "c1ad90f6a3819ec40fb98fff0193f14fdeab35c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/darylldoyle/svg-sanitizer/zipball/c1ad90f6a3819ec40fb98fff0193f14fdeab35c8",
+                "url": "https:\/\/api.github.com\/repos\/darylldoyle\/svg-sanitizer\/zipball\/c1ad90f6a3819ec40fb98fff0193f14fdeab35c8",
                 "reference": "c1ad90f6a3819ec40fb98fff0193f14fdeab35c8",
                 "shasum": ""
             },
@@ -21,7 +21,7 @@
                 "php": "^7.1 || ^8.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^6.5 || ^8.5"
+                "phpunit\/phpunit": "^6.5 || ^8.5"
             },
             "time": "2025-08-12T15:43:45+00:00",
             "default-branch": true,
@@ -29,10 +29,10 @@
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
-                    "enshrined\\svgSanitize\\": "src"
+                    "CbxPetitionScoped\\enshrined\\svgSanitize\\": "src"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https:\/\/packagist.org\/downloads\/",
             "license": [
                 "GPL-2.0-or-later"
             ],
@@ -44,43 +44,43 @@
             ],
             "description": "An SVG sanitizer for PHP",
             "support": {
-                "issues": "https://github.com/darylldoyle/svg-sanitizer/issues",
-                "source": "https://github.com/darylldoyle/svg-sanitizer/tree/master"
+                "issues": "https:\/\/github.com\/darylldoyle\/svg-sanitizer\/issues",
+                "source": "https:\/\/github.com\/darylldoyle\/svg-sanitizer\/tree\/master"
             },
-            "install-path": "../enshrined/svg-sanitize"
+            "install-path": "..\/enshrined\/svg-sanitize"
         },
         {
-            "name": "guzzlehttp/psr7",
+            "name": "guzzlehttp\/psr7",
             "version": "2.8.0",
             "version_normalized": "2.8.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/guzzle/psr7.git",
+                "url": "https:\/\/github.com\/guzzle\/psr7.git",
                 "reference": "21dc724a0583619cd1652f673303492272778051"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/21dc724a0583619cd1652f673303492272778051",
+                "url": "https:\/\/api.github.com\/repos\/guzzle\/psr7\/zipball\/21dc724a0583619cd1652f673303492272778051",
                 "reference": "21dc724a0583619cd1652f673303492272778051",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.2.5 || ^8.0",
-                "psr/http-factory": "^1.0",
-                "psr/http-message": "^1.1 || ^2.0",
-                "ralouphie/getallheaders": "^3.0"
+                "psr\/http-factory": "^1.0",
+                "psr\/http-message": "^1.1 || ^2.0",
+                "ralouphie\/getallheaders": "^3.0"
             },
             "provide": {
-                "psr/http-factory-implementation": "1.0",
-                "psr/http-message-implementation": "1.0"
+                "psr\/http-factory-implementation": "1.0",
+                "psr\/http-message-implementation": "1.0"
             },
             "require-dev": {
-                "bamarni/composer-bin-plugin": "^1.8.2",
-                "http-interop/http-factory-tests": "0.9.0",
-                "phpunit/phpunit": "^8.5.44 || ^9.6.25"
+                "bamarni\/composer-bin-plugin": "^1.8.2",
+                "http-interop\/http-factory-tests": "0.9.0",
+                "phpunit\/phpunit": "^8.5.44 || ^9.6.25"
             },
             "suggest": {
-                "laminas/laminas-httphandlerrunner": "Emit PSR-7 responses"
+                "laminas\/laminas-httphandlerrunner": "Emit PSR-7 responses"
             },
             "time": "2025-08-23T21:21:41+00:00",
             "type": "library",
@@ -93,10 +93,10 @@
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
-                    "GuzzleHttp\\Psr7\\": "src/"
+                    "CbxPetitionScoped\\GuzzleHttp\\Psr7\\": "src\/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https:\/\/packagist.org\/downloads\/",
             "license": [
                 "MIT"
             ],
@@ -104,37 +104,37 @@
                 {
                     "name": "Graham Campbell",
                     "email": "hello@gjcampbell.co.uk",
-                    "homepage": "https://github.com/GrahamCampbell"
+                    "homepage": "https:\/\/github.com\/GrahamCampbell"
                 },
                 {
                     "name": "Michael Dowling",
                     "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
+                    "homepage": "https:\/\/github.com\/mtdowling"
                 },
                 {
                     "name": "George Mponos",
                     "email": "gmponos@gmail.com",
-                    "homepage": "https://github.com/gmponos"
+                    "homepage": "https:\/\/github.com\/gmponos"
                 },
                 {
                     "name": "Tobias Nyholm",
                     "email": "tobias.nyholm@gmail.com",
-                    "homepage": "https://github.com/Nyholm"
+                    "homepage": "https:\/\/github.com\/Nyholm"
                 },
                 {
-                    "name": "Márk Sági-Kazár",
+                    "name": "M\u00e1rk S\u00e1gi-Kaz\u00e1r",
                     "email": "mark.sagikazar@gmail.com",
-                    "homepage": "https://github.com/sagikazarmark"
+                    "homepage": "https:\/\/github.com\/sagikazarmark"
                 },
                 {
                     "name": "Tobias Schultze",
                     "email": "webmaster@tubo-world.de",
-                    "homepage": "https://github.com/Tobion"
+                    "homepage": "https:\/\/github.com\/Tobion"
                 },
                 {
-                    "name": "Márk Sági-Kazár",
+                    "name": "M\u00e1rk S\u00e1gi-Kaz\u00e1r",
                     "email": "mark.sagikazar@gmail.com",
-                    "homepage": "https://sagikazarmark.hu"
+                    "homepage": "https:\/\/sagikazarmark.hu"
                 }
             ],
             "description": "PSR-7 message implementation that also provides common utility methods",
@@ -149,53 +149,53 @@
                 "url"
             ],
             "support": {
-                "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/2.8.0"
+                "issues": "https:\/\/github.com\/guzzle\/psr7\/issues",
+                "source": "https:\/\/github.com\/guzzle\/psr7\/tree\/2.8.0"
             },
             "funding": [
                 {
-                    "url": "https://github.com/GrahamCampbell",
+                    "url": "https:\/\/github.com\/GrahamCampbell",
                     "type": "github"
                 },
                 {
-                    "url": "https://github.com/Nyholm",
+                    "url": "https:\/\/github.com\/Nyholm",
                     "type": "github"
                 },
                 {
-                    "url": "https://tidelift.com/funding/github/packagist/guzzlehttp/psr7",
+                    "url": "https:\/\/tidelift.com\/funding\/github\/packagist\/guzzlehttp\/psr7",
                     "type": "tidelift"
                 }
             ],
-            "install-path": "../guzzlehttp/psr7"
+            "install-path": "..\/guzzlehttp\/psr7"
         },
         {
-            "name": "intervention/image",
+            "name": "intervention\/image",
             "version": "2.7.2",
             "version_normalized": "2.7.2.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Intervention/image.git",
+                "url": "https:\/\/github.com\/Intervention\/image.git",
                 "reference": "04be355f8d6734c826045d02a1079ad658322dad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Intervention/image/zipball/04be355f8d6734c826045d02a1079ad658322dad",
+                "url": "https:\/\/api.github.com\/repos\/Intervention\/image\/zipball\/04be355f8d6734c826045d02a1079ad658322dad",
                 "reference": "04be355f8d6734c826045d02a1079ad658322dad",
                 "shasum": ""
             },
             "require": {
                 "ext-fileinfo": "*",
-                "guzzlehttp/psr7": "~1.1 || ^2.0",
+                "guzzlehttp\/psr7": "~1.1 || ^2.0",
                 "php": ">=5.4.0"
             },
             "require-dev": {
-                "mockery/mockery": "~0.9.2",
-                "phpunit/phpunit": "^4.8 || ^5.7 || ^7.5.15"
+                "mockery\/mockery": "~0.9.2",
+                "phpunit\/phpunit": "^4.8 || ^5.7 || ^7.5.15"
             },
             "suggest": {
                 "ext-gd": "to use GD library based image processing.",
                 "ext-imagick": "to use Imagick based image processing.",
-                "intervention/imagecache": "Caching extension for the Intervention Image library"
+                "intervention\/imagecache": "Caching extension for the Intervention Image library"
             },
             "time": "2022-05-21T17:30:32+00:00",
             "type": "library",
@@ -205,7 +205,7 @@
                         "Image": "Intervention\\Image\\Facades\\Image"
                     },
                     "providers": [
-                        "Intervention\\Image\\ImageServiceProvider"
+                        "CbxPetitionScoped\\Intervention\\Image\\ImageServiceProvider"
                     ]
                 },
                 "branch-alias": {
@@ -215,10 +215,10 @@
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
-                    "Intervention\\Image\\": "src/Intervention/Image"
+                    "CbxPetitionScoped\\Intervention\\Image\\": "src\/Intervention\/Image"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https:\/\/packagist.org\/downloads\/",
             "license": [
                 "MIT"
             ],
@@ -226,11 +226,11 @@
                 {
                     "name": "Oliver Vogel",
                     "email": "oliver@intervention.io",
-                    "homepage": "https://intervention.io/"
+                    "homepage": "https:\/\/intervention.io\/"
                 }
             ],
             "description": "Image handling and manipulation library with support for Laravel integration",
-            "homepage": "http://image.intervention.io/",
+            "homepage": "http:\/\/image.intervention.io\/",
             "keywords": [
                 "gd",
                 "image",
@@ -240,33 +240,33 @@
                 "watermark"
             ],
             "support": {
-                "issues": "https://github.com/Intervention/image/issues",
-                "source": "https://github.com/Intervention/image/tree/2.7.2"
+                "issues": "https:\/\/github.com\/Intervention\/image\/issues",
+                "source": "https:\/\/github.com\/Intervention\/image\/tree\/2.7.2"
             },
             "funding": [
                 {
-                    "url": "https://paypal.me/interventionio",
+                    "url": "https:\/\/paypal.me\/interventionio",
                     "type": "custom"
                 },
                 {
-                    "url": "https://github.com/Intervention",
+                    "url": "https:\/\/github.com\/Intervention",
                     "type": "github"
                 }
             ],
-            "install-path": "../intervention/image"
+            "install-path": "..\/intervention\/image"
         },
         {
-            "name": "pelago/emogrifier",
+            "name": "pelago\/emogrifier",
             "version": "v7.3.0",
             "version_normalized": "7.3.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/MyIntervals/emogrifier.git",
+                "url": "https:\/\/github.com\/MyIntervals\/emogrifier.git",
                 "reference": "6e00d9d8235e8cc8eec857e8dcd6cfeefdfd0cd6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MyIntervals/emogrifier/zipball/6e00d9d8235e8cc8eec857e8dcd6cfeefdfd0cd6",
+                "url": "https:\/\/api.github.com\/repos\/MyIntervals\/emogrifier\/zipball\/6e00d9d8235e8cc8eec857e8dcd6cfeefdfd0cd6",
                 "reference": "6e00d9d8235e8cc8eec857e8dcd6cfeefdfd0cd6",
                 "shasum": ""
             },
@@ -274,17 +274,17 @@
                 "ext-dom": "*",
                 "ext-libxml": "*",
                 "php": "~7.3.0 || ~7.4.0 || ~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0",
-                "sabberworm/php-css-parser": "^8.7.0",
-                "symfony/css-selector": "^4.4.23 || ^5.4.0 || ^6.0.0 || ^7.0.0"
+                "sabberworm\/php-css-parser": "^8.7.0",
+                "symfony\/css-selector": "^4.4.23 || ^5.4.0 || ^6.0.0 || ^7.0.0"
             },
             "require-dev": {
-                "php-parallel-lint/php-parallel-lint": "1.4.0",
-                "phpstan/extension-installer": "1.4.3",
-                "phpstan/phpstan": "1.12.7",
-                "phpstan/phpstan-phpunit": "1.4.0",
-                "phpstan/phpstan-strict-rules": "1.6.1",
-                "phpunit/phpunit": "9.6.21",
-                "rawr/cross-data-providers": "2.4.0"
+                "php-parallel-lint\/php-parallel-lint": "1.4.0",
+                "phpstan\/extension-installer": "1.4.3",
+                "phpstan\/phpstan": "1.12.7",
+                "phpstan\/phpstan-phpunit": "1.4.0",
+                "phpstan\/phpstan-strict-rules": "1.6.1",
+                "phpunit\/phpunit": "9.6.21",
+                "rawr\/cross-data-providers": "2.4.0"
             },
             "time": "2024-10-28T16:12:26+00:00",
             "type": "library",
@@ -296,10 +296,10 @@
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
-                    "Pelago\\Emogrifier\\": "src/"
+                    "CbxPetitionScoped\\Pelago\\Emogrifier\\": "src\/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https:\/\/packagist.org\/downloads\/",
             "license": [
                 "MIT"
             ],
@@ -309,7 +309,7 @@
                     "email": "github@oliverklee.de"
                 },
                 {
-                    "name": "Zoli Szabó",
+                    "name": "Zoli Szab\u00f3",
                     "email": "zoli.szabo+github@gmail.com"
                 },
                 {
@@ -328,36 +328,36 @@
                 }
             ],
             "description": "Converts CSS styles into inline style attributes in your HTML code",
-            "homepage": "https://www.myintervals.com/emogrifier.php",
+            "homepage": "https:\/\/www.myintervals.com\/emogrifier.php",
             "keywords": [
                 "css",
                 "email",
                 "pre-processing"
             ],
             "support": {
-                "issues": "https://github.com/MyIntervals/emogrifier/issues",
-                "source": "https://github.com/MyIntervals/emogrifier"
+                "issues": "https:\/\/github.com\/MyIntervals\/emogrifier\/issues",
+                "source": "https:\/\/github.com\/MyIntervals\/emogrifier"
             },
-            "install-path": "../pelago/emogrifier"
+            "install-path": "..\/pelago\/emogrifier"
         },
         {
-            "name": "psr/http-factory",
+            "name": "psr\/http-factory",
             "version": "1.1.0",
             "version_normalized": "1.1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/php-fig/http-factory.git",
+                "url": "https:\/\/github.com\/php-fig\/http-factory.git",
                 "reference": "2b4765fddfe3b508ac62f829e852b1501d3f6e8a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/http-factory/zipball/2b4765fddfe3b508ac62f829e852b1501d3f6e8a",
+                "url": "https:\/\/api.github.com\/repos\/php-fig\/http-factory\/zipball\/2b4765fddfe3b508ac62f829e852b1501d3f6e8a",
                 "reference": "2b4765fddfe3b508ac62f829e852b1501d3f6e8a",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1",
-                "psr/http-message": "^1.0 || ^2.0"
+                "psr\/http-message": "^1.0 || ^2.0"
             },
             "time": "2024-04-15T12:06:14+00:00",
             "type": "library",
@@ -369,17 +369,17 @@
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
-                    "Psr\\Http\\Message\\": "src/"
+                    "CbxPetitionScoped\\Psr\\Http\\Message\\": "src\/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https:\/\/packagist.org\/downloads\/",
             "license": [
                 "MIT"
             ],
             "authors": [
                 {
                     "name": "PHP-FIG",
-                    "homepage": "https://www.php-fig.org/"
+                    "homepage": "https:\/\/www.php-fig.org\/"
                 }
             ],
             "description": "PSR-17: Common interfaces for PSR-7 HTTP message factories",
@@ -394,22 +394,22 @@
                 "response"
             ],
             "support": {
-                "source": "https://github.com/php-fig/http-factory"
+                "source": "https:\/\/github.com\/php-fig\/http-factory"
             },
-            "install-path": "../psr/http-factory"
+            "install-path": "..\/psr\/http-factory"
         },
         {
-            "name": "psr/http-message",
+            "name": "psr\/http-message",
             "version": "2.0",
             "version_normalized": "2.0.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/php-fig/http-message.git",
+                "url": "https:\/\/github.com\/php-fig\/http-message.git",
                 "reference": "402d35bcb92c70c026d1a6a9883f06b2ead23d71"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/http-message/zipball/402d35bcb92c70c026d1a6a9883f06b2ead23d71",
+                "url": "https:\/\/api.github.com\/repos\/php-fig\/http-message\/zipball\/402d35bcb92c70c026d1a6a9883f06b2ead23d71",
                 "reference": "402d35bcb92c70c026d1a6a9883f06b2ead23d71",
                 "shasum": ""
             },
@@ -426,21 +426,21 @@
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
-                    "Psr\\Http\\Message\\": "src/"
+                    "CbxPetitionScoped\\Psr\\Http\\Message\\": "src\/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https:\/\/packagist.org\/downloads\/",
             "license": [
                 "MIT"
             ],
             "authors": [
                 {
                     "name": "PHP-FIG",
-                    "homepage": "https://www.php-fig.org/"
+                    "homepage": "https:\/\/www.php-fig.org\/"
                 }
             ],
             "description": "Common interface for HTTP messages",
-            "homepage": "https://github.com/php-fig/http-message",
+            "homepage": "https:\/\/github.com\/php-fig\/http-message",
             "keywords": [
                 "http",
                 "http-message",
@@ -450,22 +450,22 @@
                 "response"
             ],
             "support": {
-                "source": "https://github.com/php-fig/http-message/tree/2.0"
+                "source": "https:\/\/github.com\/php-fig\/http-message\/tree\/2.0"
             },
-            "install-path": "../psr/http-message"
+            "install-path": "..\/psr\/http-message"
         },
         {
-            "name": "ralouphie/getallheaders",
+            "name": "ralouphie\/getallheaders",
             "version": "3.0.3",
             "version_normalized": "3.0.3.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/ralouphie/getallheaders.git",
+                "url": "https:\/\/github.com\/ralouphie\/getallheaders.git",
                 "reference": "120b605dfeb996808c31b6477290a714d356e822"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ralouphie/getallheaders/zipball/120b605dfeb996808c31b6477290a714d356e822",
+                "url": "https:\/\/api.github.com\/repos\/ralouphie\/getallheaders\/zipball\/120b605dfeb996808c31b6477290a714d356e822",
                 "reference": "120b605dfeb996808c31b6477290a714d356e822",
                 "shasum": ""
             },
@@ -473,18 +473,18 @@
                 "php": ">=5.6"
             },
             "require-dev": {
-                "php-coveralls/php-coveralls": "^2.1",
-                "phpunit/phpunit": "^5 || ^6.5"
+                "php-coveralls\/php-coveralls": "^2.1",
+                "phpunit\/phpunit": "^5 || ^6.5"
             },
             "time": "2019-03-08T08:55:37+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
                 "files": [
-                    "src/getallheaders.php"
+                    "src\/getallheaders.php"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https:\/\/packagist.org\/downloads\/",
             "license": [
                 "MIT"
             ],
@@ -496,23 +496,23 @@
             ],
             "description": "A polyfill for getallheaders.",
             "support": {
-                "issues": "https://github.com/ralouphie/getallheaders/issues",
-                "source": "https://github.com/ralouphie/getallheaders/tree/develop"
+                "issues": "https:\/\/github.com\/ralouphie\/getallheaders\/issues",
+                "source": "https:\/\/github.com\/ralouphie\/getallheaders\/tree\/develop"
             },
-            "install-path": "../ralouphie/getallheaders"
+            "install-path": "..\/ralouphie\/getallheaders"
         },
         {
-            "name": "sabberworm/php-css-parser",
+            "name": "sabberworm\/php-css-parser",
             "version": "v8.9.0",
             "version_normalized": "8.9.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/MyIntervals/PHP-CSS-Parser.git",
+                "url": "https:\/\/github.com\/MyIntervals\/PHP-CSS-Parser.git",
                 "reference": "d8e916507b88e389e26d4ab03c904a082aa66bb9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MyIntervals/PHP-CSS-Parser/zipball/d8e916507b88e389e26d4ab03c904a082aa66bb9",
+                "url": "https:\/\/api.github.com\/repos\/MyIntervals\/PHP-CSS-Parser\/zipball\/d8e916507b88e389e26d4ab03c904a082aa66bb9",
                 "reference": "d8e916507b88e389e26d4ab03c904a082aa66bb9",
                 "shasum": ""
             },
@@ -521,8 +521,8 @@
                 "php": "^5.6.20 || ^7.0.0 || ~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "5.7.27 || 6.5.14 || 7.5.20 || 8.5.41",
-                "rawr/cross-data-providers": "^2.0.0"
+                "phpunit\/phpunit": "5.7.27 || 6.5.14 || 7.5.20 || 8.5.41",
+                "rawr\/cross-data-providers": "^2.0.0"
             },
             "suggest": {
                 "ext-mbstring": "for parsing UTF-8 CSS"
@@ -537,10 +537,10 @@
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
-                    "Sabberworm\\CSS\\": "src/"
+                    "CbxPetitionScoped\\Sabberworm\\CSS\\": "src\/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https:\/\/packagist.org\/downloads\/",
             "license": [
                 "MIT"
             ],
@@ -558,30 +558,30 @@
                 }
             ],
             "description": "Parser for CSS Files written in PHP",
-            "homepage": "https://www.sabberworm.com/blog/2010/6/10/php-css-parser",
+            "homepage": "https:\/\/www.sabberworm.com\/blog\/2010\/6\/10\/php-css-parser",
             "keywords": [
                 "css",
                 "parser",
                 "stylesheet"
             ],
             "support": {
-                "issues": "https://github.com/MyIntervals/PHP-CSS-Parser/issues",
-                "source": "https://github.com/MyIntervals/PHP-CSS-Parser/tree/v8.9.0"
+                "issues": "https:\/\/github.com\/MyIntervals\/PHP-CSS-Parser\/issues",
+                "source": "https:\/\/github.com\/MyIntervals\/PHP-CSS-Parser\/tree\/v8.9.0"
             },
-            "install-path": "../sabberworm/php-css-parser"
+            "install-path": "..\/sabberworm\/php-css-parser"
         },
         {
-            "name": "soundasleep/html2text",
+            "name": "soundasleep\/html2text",
             "version": "2.1.0",
             "version_normalized": "2.1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/soundasleep/html2text.git",
+                "url": "https:\/\/github.com\/soundasleep\/html2text.git",
                 "reference": "83502b6f8f1aaef8e2e238897199d64f284b4af3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/soundasleep/html2text/zipball/83502b6f8f1aaef8e2e238897199d64f284b4af3",
+                "url": "https:\/\/api.github.com\/repos\/soundasleep\/html2text\/zipball\/83502b6f8f1aaef8e2e238897199d64f284b4af3",
                 "reference": "83502b6f8f1aaef8e2e238897199d64f284b4af3",
                 "shasum": ""
             },
@@ -591,30 +591,30 @@
                 "php": "^7.3|^8.0"
             },
             "require-dev": {
-                "phpstan/phpstan": "^1.9",
-                "phpunit/phpunit": "^7.0|^8.0|^9.0"
+                "phpstan\/phpstan": "^1.9",
+                "phpunit\/phpunit": "^7.0|^8.0|^9.0"
             },
             "time": "2023-01-06T09:28:15+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
-                    "Soundasleep\\": "src"
+                    "CbxPetitionScoped\\Soundasleep\\": "src"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https:\/\/packagist.org\/downloads\/",
             "license": [
                 "MIT"
             ],
             "authors": [
                 {
                     "name": "Jevon Wright",
-                    "homepage": "https://jevon.org",
+                    "homepage": "https:\/\/jevon.org",
                     "role": "Developer"
                 }
             ],
             "description": "A PHP script to convert HTML into a plain text format",
-            "homepage": "https://github.com/soundasleep/html2text",
+            "homepage": "https:\/\/github.com\/soundasleep\/html2text",
             "keywords": [
                 "email",
                 "html",
@@ -623,41 +623,41 @@
             ],
             "support": {
                 "email": "support@jevon.org",
-                "issues": "https://github.com/soundasleep/html2text/issues",
-                "source": "https://github.com/soundasleep/html2text/tree/2.1.0"
+                "issues": "https:\/\/github.com\/soundasleep\/html2text\/issues",
+                "source": "https:\/\/github.com\/soundasleep\/html2text\/tree\/2.1.0"
             },
-            "install-path": "../soundasleep/html2text"
+            "install-path": "..\/soundasleep\/html2text"
         },
         {
-            "name": "symfony/css-selector",
-            "version": "v7.3.0",
-            "version_normalized": "7.3.0.0",
+            "name": "symfony\/css-selector",
+            "version": "v7.4.0",
+            "version_normalized": "7.4.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/css-selector.git",
-                "reference": "601a5ce9aaad7bf10797e3663faefce9e26c24e2"
+                "url": "https:\/\/github.com\/symfony\/css-selector.git",
+                "reference": "ab862f478513e7ca2fe9ec117a6f01a8da6e1135"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/css-selector/zipball/601a5ce9aaad7bf10797e3663faefce9e26c24e2",
-                "reference": "601a5ce9aaad7bf10797e3663faefce9e26c24e2",
+                "url": "https:\/\/api.github.com\/repos\/symfony\/css-selector\/zipball\/ab862f478513e7ca2fe9ec117a6f01a8da6e1135",
+                "reference": "ab862f478513e7ca2fe9ec117a6f01a8da6e1135",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.2"
             },
-            "time": "2024-09-25T14:21:43+00:00",
+            "time": "2025-10-30T13:39:42+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
-                    "Symfony\\Component\\CssSelector\\": ""
+                    "CbxPetitionScoped\\Symfony\\Component\\CssSelector\\": ""
                 },
                 "exclude-from-classmap": [
-                    "/Tests/"
+                    "\/Tests\/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https:\/\/packagist.org\/downloads\/",
             "license": [
                 "MIT"
             ],
@@ -667,36 +667,40 @@
                     "email": "fabien@symfony.com"
                 },
                 {
-                    "name": "Jean-François Simon",
+                    "name": "Jean-Fran\u00e7ois Simon",
                     "email": "jeanfrancois.simon@sensiolabs.com"
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "homepage": "https:\/\/symfony.com\/contributors"
                 }
             ],
             "description": "Converts CSS selectors to XPath expressions",
-            "homepage": "https://symfony.com",
+            "homepage": "https:\/\/symfony.com",
             "support": {
-                "source": "https://github.com/symfony/css-selector/tree/v7.3.0"
+                "source": "https:\/\/github.com\/symfony\/css-selector\/tree\/v7.4.0"
             },
             "funding": [
                 {
-                    "url": "https://symfony.com/sponsor",
+                    "url": "https:\/\/symfony.com\/sponsor",
                     "type": "custom"
                 },
                 {
-                    "url": "https://github.com/fabpot",
+                    "url": "https:\/\/github.com\/fabpot",
                     "type": "github"
                 },
                 {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "url": "https:\/\/github.com\/nicolas-grekas",
+                    "type": "github"
+                },
+                {
+                    "url": "https:\/\/tidelift.com\/funding\/github\/packagist\/symfony\/symfony",
                     "type": "tidelift"
                 }
             ],
-            "install-path": "../symfony/css-selector"
+            "install-path": "..\/symfony\/css-selector"
         }
     ],
-    "dev": true,
+    "dev": false,
     "dev-package-names": []
 }

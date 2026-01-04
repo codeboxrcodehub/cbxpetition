@@ -1,11 +1,10 @@
 <?php
 
-namespace Intervention\Image;
+namespace CbxPetitionScoped\Intervention\Image;
 
-use Illuminate\Support\ServiceProvider;
-use Laravel\Lumen\Application as LumenApplication;
-use Illuminate\Foundation\Application as IlluminateApplication;
-
+use CbxPetitionScoped\Illuminate\Support\ServiceProvider;
+use CbxPetitionScoped\Laravel\Lumen\Application as LumenApplication;
+use CbxPetitionScoped\Illuminate\Foundation\Application as IlluminateApplication;
 class ImageServiceProvider extends ServiceProvider
 {
     /**
@@ -13,15 +12,13 @@ class ImageServiceProvider extends ServiceProvider
      *
      * @var bool
      */
-    protected $defer = false;
-
+    protected $defer = \false;
     /**
      * Actual provider
      *
      * @var \Illuminate\Support\ServiceProvider
      */
     protected $provider;
-
     /**
      * Create a new service provider instance.
      *
@@ -31,10 +28,8 @@ class ImageServiceProvider extends ServiceProvider
     public function __construct($app)
     {
         parent::__construct($app);
-
         $this->provider = $this->getProvider();
     }
-
     /**
      * Bootstrap the application events.
      *
@@ -42,11 +37,10 @@ class ImageServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (method_exists($this->provider, 'boot')) {
+        if (\method_exists($this->provider, 'boot')) {
             return $this->provider->boot();
         }
     }
-
     /**
      * Register the service provider.
      *
@@ -56,7 +50,6 @@ class ImageServiceProvider extends ServiceProvider
     {
         return $this->provider->register();
     }
-
     /**
      * Return ServiceProvider according to Laravel version
      *
@@ -65,16 +58,14 @@ class ImageServiceProvider extends ServiceProvider
     private function getProvider()
     {
         if ($this->app instanceof LumenApplication) {
-            $provider = '\Intervention\Image\ImageServiceProviderLumen';
-        } elseif (version_compare(IlluminateApplication::VERSION, '5.0', '<')) {
-            $provider = '\Intervention\Image\ImageServiceProviderLaravel4';
+            $provider = 'CbxPetitionScoped\\Intervention\\Image\\ImageServiceProviderLumen';
+        } elseif (\version_compare(IlluminateApplication::VERSION, '5.0', '<')) {
+            $provider = 'CbxPetitionScoped\\Intervention\\Image\\ImageServiceProviderLaravel4';
         } else {
-            $provider = '\Intervention\Image\ImageServiceProviderLaravelRecent';
+            $provider = 'CbxPetitionScoped\\Intervention\\Image\\ImageServiceProviderLaravelRecent';
         }
-
         return new $provider($this->app);
     }
-
     /**
      * Get the services provided by the provider.
      *

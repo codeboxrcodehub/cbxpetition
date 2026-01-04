@@ -1,9 +1,8 @@
 <?php
 
-namespace Intervention\Image\Commands;
+namespace CbxPetitionScoped\Intervention\Image\Commands;
 
-use Intervention\Image\Commands\Argument;
-
+use CbxPetitionScoped\Intervention\Image\Commands\Argument;
 abstract class AbstractCommand
 {
     /**
@@ -12,22 +11,19 @@ abstract class AbstractCommand
      * @var array
      */
     public $arguments;
-
     /**
      * Output of command
      *
      * @var mixed
      */
     protected $output;
-
     /**
      * Executes current command on given image
      *
      * @param  \Intervention\Image\Image $image
      * @return mixed
      */
-    abstract public function execute($image);
-
+    public abstract function execute($image);
     /**
      * Creates new command instance
      *
@@ -37,7 +33,6 @@ abstract class AbstractCommand
     {
         $this->arguments = $arguments;
     }
-
     /**
      * Creates new argument instance from given argument key
      *
@@ -48,7 +43,6 @@ abstract class AbstractCommand
     {
         return new Argument($this, $key);
     }
-
     /**
      * Returns output data of current command
      *
@@ -58,7 +52,6 @@ abstract class AbstractCommand
     {
         return $this->output ? $this->output : null;
     }
-
     /**
      * Determines if current instance has output data
      *
@@ -66,9 +59,8 @@ abstract class AbstractCommand
      */
     public function hasOutput()
     {
-        return ! is_null($this->output);
+        return !\is_null($this->output);
     }
-
     /**
      * Sets output data of current command
      *

@@ -19,6 +19,13 @@ do_action( 'cbxpetition_email_header', $email_heading, $email ); ?>
     <p style="margin-bottom:0;"><?php echo esc_html__( 'Email: {signature_email}', 'cbxpetition' ); ?></p>
     <p style="margin-bottom:0;"><?php echo esc_html__( 'Comment: {signature_comment}', 'cbxpetition' ); ?></p>
     <p><?php echo esc_html__( 'Signature Status: {signature_status}', 'cbxpetition' ); ?></p>
+    <?php if(isset($data['id']) && $data['id'] > 0): ?>
+    <p><?php echo '{signature_link}'; ?></p>
+    <?php endif; ?>
+    <?php if(isset($data['delete_token']) && $data['delete_token'] != ''): ?>
+    <h2><?php esc_html_e('Manage Your Signature', 'cbxpetition'); ?></h2>
+    <p><?php echo '{signature_delete_link}'; ?></p>
+    <?php endif; ?>
     <h2><?php echo esc_html__( 'Thank you.', 'cbxpetition' ); ?></h2>
     <p style="margin-bottom:0;"><?php echo esc_html__( 'Want to make an even bigger impact? Share this petition with your friends and network.', 'cbxpetition' ); ?></p>
     <p><?php echo esc_html__( 'Thank you for your support! Stay tuned for updates.', 'cbxpetition' ); ?></p>

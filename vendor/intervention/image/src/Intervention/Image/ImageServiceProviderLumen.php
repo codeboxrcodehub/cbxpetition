@@ -1,9 +1,8 @@
 <?php
 
-namespace Intervention\Image;
+namespace CbxPetitionScoped\Intervention\Image;
 
-use Illuminate\Support\ServiceProvider;
-
+use CbxPetitionScoped\Illuminate\Support\ServiceProvider;
 class ImageServiceProviderLumen extends ServiceProvider
 {
     /**
@@ -14,21 +13,14 @@ class ImageServiceProviderLumen extends ServiceProvider
     public function register()
     {
         $app = $this->app;
-
         // merge default config
-        $this->mergeConfigFrom(
-          __DIR__.'/../../config/config.php',
-          'image'
-        );
-
+        $this->mergeConfigFrom(__DIR__ . '/../../config/config.php', 'image');
         // set configuration
         $app->configure('image');
-
         // create image
-        $app->singleton('image',function ($app) {
+        $app->singleton('image', function ($app) {
             return new ImageManager($app['config']->get('image'));
         });
-
-        $app->alias('image', 'Intervention\Image\ImageManager');
+        $app->alias('image', 'CbxPetitionScoped\\Intervention\\Image\\ImageManager');
     }
 }

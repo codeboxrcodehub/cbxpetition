@@ -1,4 +1,9 @@
 <?php
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+    die;
+}
+
 // phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 do_action( 'cbxpetition_before_main_content', 'shortcode' );
 do_action( 'cbxpetition_single_before_main_content', 'shortcode' );

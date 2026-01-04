@@ -1,11 +1,10 @@
 <?php
 
-namespace Intervention\Image\Gd;
+namespace CbxPetitionScoped\Intervention\Image\Gd;
 
-use Intervention\Image\Exception\NotSupportedException;
-use Intervention\Image\Image;
-
-class Driver extends \Intervention\Image\AbstractDriver
+use CbxPetitionScoped\Intervention\Image\Exception\NotSupportedException;
+use CbxPetitionScoped\Intervention\Image\Image;
+class Driver extends \CbxPetitionScoped\Intervention\Image\AbstractDriver
 {
     /**
      * Creates new instance of driver
@@ -15,16 +14,12 @@ class Driver extends \Intervention\Image\AbstractDriver
      */
     public function __construct(Decoder $decoder = null, Encoder $encoder = null)
     {
-        if ( ! $this->coreAvailable()) {
-            throw new NotSupportedException(
-                "GD Library extension not available with this PHP installation."
-            );
+        if (!$this->coreAvailable()) {
+            throw new NotSupportedException("GD Library extension not available with this PHP installation.");
         }
-
-        $this->decoder = $decoder ? $decoder : new Decoder;
-        $this->encoder = $encoder ? $encoder : new Encoder;
+        $this->decoder = $decoder ? $decoder : new Decoder();
+        $this->encoder = $encoder ? $encoder : new Encoder();
     }
-
     /**
      * Creates new image instance
      *
@@ -36,16 +31,13 @@ class Driver extends \Intervention\Image\AbstractDriver
     public function newImage($width, $height, $background = null)
     {
         // create empty resource
-        $core = imagecreatetruecolor($width, $height);
-        $image = new Image(new static, $core);
-
+        $core = \imagecreatetruecolor($width, $height);
+        $image = new Image(new static(), $core);
         // set background color
         $background = new Color($background);
-        imagefill($image->getCore(), 0, 0, $background->getInt());
-
+        \imagefill($image->getCore(), 0, 0, $background->getInt());
         return $image;
     }
-
     /**
      * Reads given string into color object
      *
@@ -56,7 +48,6 @@ class Driver extends \Intervention\Image\AbstractDriver
     {
         return new Color($value);
     }
-
     /**
      * Checks if core module installation is available
      *
@@ -64,9 +55,8 @@ class Driver extends \Intervention\Image\AbstractDriver
      */
     protected function coreAvailable()
     {
-        return (extension_loaded('gd') && function_exists('gd_info'));
+        return \extension_loaded('gd') && \function_exists('gd_info');
     }
-
     /**
      * Returns clone of given core
      *
@@ -74,16 +64,14 @@ class Driver extends \Intervention\Image\AbstractDriver
      */
     public function cloneCore($core)
     {
-        $width = imagesx($core);
-        $height = imagesy($core);
-        $clone = imagecreatetruecolor($width, $height);
-        imagealphablending($clone, false);
-        imagesavealpha($clone, true);
-        $transparency = imagecolorallocatealpha($clone, 0, 0, 0, 127);
-        imagefill($clone, 0, 0, $transparency);
-        
-        imagecopy($clone, $core, 0, 0, 0, 0, $width, $height);
-
+        $width = \imagesx($core);
+        $height = \imagesy($core);
+        $clone = \imagecreatetruecolor($width, $height);
+        \imagealphablending($clone, \false);
+        \imagesavealpha($clone, \true);
+        $transparency = \imagecolorallocatealpha($clone, 0, 0, 0, 127);
+        \imagefill($clone, 0, 0, $transparency);
+        \imagecopy($clone, $core, 0, 0, 0, 0, $width, $height);
         return $clone;
     }
 }

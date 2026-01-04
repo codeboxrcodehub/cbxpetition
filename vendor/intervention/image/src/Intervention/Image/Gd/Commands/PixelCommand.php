@@ -1,10 +1,9 @@
 <?php
 
-namespace Intervention\Image\Gd\Commands;
+namespace CbxPetitionScoped\Intervention\Image\Gd\Commands;
 
-use Intervention\Image\Commands\AbstractCommand;
-use Intervention\Image\Gd\Color;
-
+use CbxPetitionScoped\Intervention\Image\Commands\AbstractCommand;
+use CbxPetitionScoped\Intervention\Image\Gd\Color;
 class PixelCommand extends AbstractCommand
 {
     /**
@@ -19,7 +18,6 @@ class PixelCommand extends AbstractCommand
         $color = new Color($color);
         $x = $this->argument(1)->type('digit')->required()->value();
         $y = $this->argument(2)->type('digit')->required()->value();
-
-        return imagesetpixel($image->getCore(), $x, $y, $color->getInt());
+        return \imagesetpixel($image->getCore(), $x, $y, $color->getInt());
     }
 }

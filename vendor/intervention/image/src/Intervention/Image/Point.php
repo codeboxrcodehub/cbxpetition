@@ -1,6 +1,6 @@
 <?php
 
-namespace Intervention\Image;
+namespace CbxPetitionScoped\Intervention\Image;
 
 class Point
 {
@@ -10,14 +10,12 @@ class Point
      * @var int
      */
     public $x;
-
     /**
      * Y coordinate
      *
      * @var int
      */
     public $y;
-
     /**
      * Creates a new instance
      *
@@ -26,10 +24,9 @@ class Point
      */
     public function __construct($x = null, $y = null)
     {
-        $this->x = is_numeric($x) ? intval($x) : 0;
-        $this->y = is_numeric($y) ? intval($y) : 0;
+        $this->x = \is_numeric($x) ? \intval($x) : 0;
+        $this->y = \is_numeric($y) ? \intval($y) : 0;
     }
-
     /**
      * Sets X coordinate
      *
@@ -37,9 +34,8 @@ class Point
      */
     public function setX($x)
     {
-        $this->x = intval($x);
+        $this->x = \intval($x);
     }
-
     /**
      * Sets Y coordinate
      *
@@ -47,9 +43,8 @@ class Point
      */
     public function setY($y)
     {
-        $this->y = intval($y);
+        $this->y = \intval($y);
     }
-
     /**
      * Sets both X and Y coordinate
      *

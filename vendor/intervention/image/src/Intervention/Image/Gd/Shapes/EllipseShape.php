@@ -1,11 +1,10 @@
 <?php
 
-namespace Intervention\Image\Gd\Shapes;
+namespace CbxPetitionScoped\Intervention\Image\Gd\Shapes;
 
-use Intervention\Image\AbstractShape;
-use Intervention\Image\Gd\Color;
-use Intervention\Image\Image;
-
+use CbxPetitionScoped\Intervention\Image\AbstractShape;
+use CbxPetitionScoped\Intervention\Image\Gd\Color;
+use CbxPetitionScoped\Intervention\Image\Image;
 class EllipseShape extends AbstractShape
 {
     /**
@@ -14,14 +13,12 @@ class EllipseShape extends AbstractShape
      * @var int
      */
     public $width = 100;
-
     /**
      * Height of ellipse in pixels
      *
      * @var int
      */
     public $height = 100;
-
     /**
      * Create new ellipse instance
      *
@@ -30,10 +27,9 @@ class EllipseShape extends AbstractShape
      */
     public function __construct($width = null, $height = null)
     {
-        $this->width = is_numeric($width) ? intval($width) : $this->width;
-        $this->height = is_numeric($height) ? intval($height) : $this->height;
+        $this->width = \is_numeric($width) ? \intval($width) : $this->width;
+        $this->height = \is_numeric($height) ? \intval($height) : $this->height;
     }
-
     /**
      * Draw ellipse instance on given image
      *
@@ -46,20 +42,16 @@ class EllipseShape extends AbstractShape
     {
         // parse background color
         $background = new Color($this->background);
-
         if ($this->hasBorder()) {
             // slightly smaller ellipse to keep 1px bordered edges clean
-            imagefilledellipse($image->getCore(), $x, $y, $this->width-1, $this->height-1, $background->getInt());
-
+            \imagefilledellipse($image->getCore(), $x, $y, $this->width - 1, $this->height - 1, $background->getInt());
             $border_color = new Color($this->border_color);
-            imagesetthickness($image->getCore(), $this->border_width);
-
+            \imagesetthickness($image->getCore(), $this->border_width);
             // gd's imageellipse doesn't respect imagesetthickness so i use imagearc with 359.9 degrees here
-            imagearc($image->getCore(), $x, $y, $this->width, $this->height, 0, 359.99, $border_color->getInt());
+            \imagearc($image->getCore(), $x, $y, $this->width, $this->height, 0, 359.99, $border_color->getInt());
         } else {
-            imagefilledellipse($image->getCore(), $x, $y, $this->width, $this->height, $background->getInt());
+            \imagefilledellipse($image->getCore(), $x, $y, $this->width, $this->height, $background->getInt());
         }
-
-        return true;
+        return \true;
     }
 }

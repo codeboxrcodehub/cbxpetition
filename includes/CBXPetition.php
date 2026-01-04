@@ -1,4 +1,9 @@
 <?php
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
 use Cbx\Petition\Helpers\PetitionHelper;
 use Cbx\Petition\CBXPetitionAdmin;
 use Cbx\Petition\CBXPetitionPublic;
@@ -240,12 +245,16 @@ final class CBXPetition {
 		add_filter( 'query_vars', [ $public, 'add_query_vars' ] );
 		add_action( 'init', [ $public, 'rewrite_rules' ] );
 		add_action( 'template_redirect', [ $public, 'guest_email_validation' ] );
+		add_action( 'template_redirect', [ $public, 'signature_delete_handler' ] );
 
 		add_action( 'wp_ajax_cbxpetition_sign_submit', [ $public, 'petition_sign_submit' ] );
 		add_action( 'wp_ajax_nopriv_cbxpetition_sign_submit', [ $public, 'petition_sign_submit' ] );
 
 		add_action( 'wp_ajax_cbxpetition_load_more_signs', [ $public, 'petition_load_more_signs' ] );
 		add_action( 'wp_ajax_nopriv_cbxpetition_load_more_signs', [ $public, 'petition_load_more_signs' ] );
+
+		//frontend signature delete by logged-in owner
+		add_action( 'wp_ajax_cbxpetition_front_sign_delete', [ $public, 'petition_sign_delete_front' ] );
 
 		add_action( 'wp_enqueue_scripts', [ $public, 'enqueue_styles' ] );
 		add_action( 'wp_enqueue_scripts', [ $public, 'enqueue_scripts' ] );

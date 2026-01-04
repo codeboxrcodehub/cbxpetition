@@ -36,8 +36,11 @@ if ( ! class_exists( 'CBXPetitionNewSignUserAlertEmail', false ) ) :
 				'{signature_comment}'    => '',
 				'{signature_id}'         => '',
 				'{signature_count}'      => '',
-				'{signature_status}'     => '',
+				'{signature_status}'     => '',				
+				'{petition_letter}'      => '',
 				'{signature_activation_link}'      => '',
+				'{signature_delete_link}'      => '',
+				'{signature_link}'      => '',
 			];
 
 			// Triggers for this email.
@@ -154,10 +157,20 @@ if ( ! class_exists( 'CBXPetitionNewSignUserAlertEmail', false ) ) :
 				$sign_status = PetitionHelper::getPetitionSignStates();
 
 				//petition related
-				$this->placeholders['{petition}']        = '<a href="' . esc_url( get_permalink( $petition_id ) ) . '">' . get_the_title( $petition_id ) . '</a>';
+				$petition_url = esc_url( get_permalink( $petition_id ) );
+				$this->placeholders['{petition}']        = '<a href="' . $petition_url . '">' . get_the_title( $petition_id ) . '</a>';
 				$this->placeholders['{petition_id}']     = $petition_id;
 				$this->placeholders['{petition_title}']  = get_the_title( $petition_id );
 				$this->placeholders['{signature_count}'] = cbxpetition_signature_count( $petition_id );
+
+				// Generate signature link with anchor to exact signature
+				$signature_link = '';
+				if ( $log_id > 0 ) {
+					$signature_link = $petition_url . '#cbxpetition_signature_item_' . absint( $log_id );
+					/* translators: %s: signature link  */
+					$signature_link = sprintf( wp_kses( __( '<a href="%s">View your signature on the petition page</a>', 'cbxpetition' ), [ 'a' => [ 'href' => [] ] ] ), $signature_link );
+				}
+				$this->placeholders['{signature_link}'] = $signature_link;
 
 				//signature related
 				$activation_link = '';
@@ -174,6 +187,19 @@ if ( ! class_exists( 'CBXPetitionNewSignUserAlertEmail', false ) ) :
 
 				}
 
+				// Generate delete link
+				$delete_link = '';
+				if ( isset( $log_data['delete_token'] ) && $log_data['delete_token'] != null && $log_data['delete_token'] != '' ) {
+					$delete_link = add_query_arg(
+						[
+							'cbxpetitionsign_delete' => $log_data['delete_token'],
+						],
+						home_url( '/' )
+					);
+
+					/* translators: %s: delete link  */
+					$delete_link = sprintf( wp_kses( __( 'If you wish to remove your signature, you can <a href="%s">click here to delete it</a>.', 'cbxpetition' ), [ 'a' => [ 'href' => [] ] ] ), $delete_link );
+				}
 
 				$this->placeholders['{signature_first_name}'] = $log_data['f_name'];
 				$this->placeholders['{signature_last_name}']  = $log_data['l_name'];
@@ -184,7 +210,13 @@ if ( ! class_exists( 'CBXPetitionNewSignUserAlertEmail', false ) ) :
 
 				//signature and user scope related
 				$this->placeholders['{signature_activation_link}'] = $activation_link;
+				$this->placeholders['{signature_delete_link}']     = $delete_link;
 
+				$petition_letter = PetitionHelper::petitionLetterInfo( $petition_id );
+
+				if(isset($petition_letter['letter'])){
+					$this->placeholders['{petition_letter}']    = wp_kses(wpautop($petition_letter['letter']), PetitionHelper::allowedHtmlTags());
+				}
 
 				$this->send( $this->get_recipient(), $this->get_subject(), $this->get_content(), $this->get_headers(), $this->get_attachments() );
 			}

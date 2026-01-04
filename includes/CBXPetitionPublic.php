@@ -1,6 +1,9 @@
 <?php
-
 namespace Cbx\Petition;
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
 
 use Cbx\Petition\CBXSetting;
 use Cbx\Petition\Helpers\PetitionHelper;
@@ -118,6 +121,7 @@ class CBXPetitionPublic {
 	 */
 	public function add_query_vars( $vars ) {
 		$vars[] = 'cbxpetitionsign_verification';
+		$vars[] = 'cbxpetitionsign_delete';
 
 		return $vars;
 	}//end method add_query_vars
@@ -129,6 +133,7 @@ class CBXPetitionPublic {
 	 */
 	public function rewrite_rules() {
 		add_rewrite_rule( 'petition-verify' . '/([^/]*)/?', 'index.php?cbxpetitionsign_verification=$matches[1]', 'top' );
+		add_rewrite_rule( 'petition-delete' . '/([^/]*)/?', 'index.php?cbxpetitionsign_delete=$matches[1]', 'top' );
 	}//end method rewrite_rules
 
 	/**
@@ -248,6 +253,115 @@ class CBXPetitionPublic {
 			//}
 		}
 	}//end method guest_email_validation
+
+	/**
+	 * public template_redirect callback to process signature deletion via email link
+	 * @since 1.0.0
+	 */
+	public function signature_delete_handler() {
+		global $wp_query;
+
+		if ( array_key_exists( 'cbxpetitionsign_delete', $wp_query->query_vars ) ) {
+			PetitionHelper::cbxpetition_public_styles();
+
+			$settings = $this->settings;
+			global $wpdb;
+			$signature_table = esc_sql($wpdb->prefix . 'cbxpetition_signs');
+
+			$delete_token = sanitize_text_field( wp_unslash( get_query_var( 'cbxpetitionsign_delete' ) ) );
+
+			if ( $delete_token == '' ) {
+				//delete token empty
+				$confirmation_message = '<div class="cbxpetition-alert cbxpetition-alert-danger">';
+				$confirmation_message .= '<p>' . esc_html__( 'Sorry, no delete token found. Please follow correct url from your email notification.', 'cbxpetition' ) . '</p>';
+				$confirmation_message .= '<p><a class="button primary" href="' . esc_url( home_url() ) . '">' . esc_html__( 'Click to go home', 'cbxpetition' ) . '</a></p>';
+				$confirmation_message .= '</div>';
+
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo cbxpetition_get_template_html( 'petition_delete.php', [ 'confirmation_message' => $confirmation_message ] );
+				exit();
+			}
+
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+			$sign_info = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $signature_table WHERE delete_token = %s", $delete_token ) );
+
+			$confirmation_message = '';
+
+			//if sign log found
+			if ( $sign_info !== null ) {
+				$log_id      = absint( $sign_info->id );
+				$petition_id = absint( $sign_info->petition_id );
+				$sign_email  = sanitize_email( $sign_info->email );
+
+				// Check if user confirmed deletion
+				$confirmed = isset( $_GET['confirm'] ) && sanitize_text_field( wp_unslash( $_GET['confirm'] ) ) === 'yes';//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+
+				// Always show confirmation window first for security
+				if ( ! $confirmed ) {
+					$confirmation_message = '<div class="cbxpetition-alert cbxpetition-alert-info">';
+					$confirmation_message .= '<h3>' . esc_html__( 'Delete Signature Confirmation', 'cbxpetition' ) . '</h3>';
+					$confirmation_message .= '<p>' . esc_html__( 'You are about to delete your signature from this petition. This action cannot be undone.', 'cbxpetition' ) . '</p>';
+					$confirmation_message .= '<p><strong>' . esc_html__( 'Petition:', 'cbxpetition' ) . '</strong> <a target="_blank" href="' . esc_url( get_permalink( $petition_id ) ) . '">' . esc_html( get_the_title( $petition_id ) ) . '</a></p>';
+					$confirmation_message .= '<p><strong>' . esc_html__( 'Signature Email:', 'cbxpetition' ) . '</strong> ' . esc_html( $sign_email ) . '</p>';
+					$confirmation_message .= '<p style="margin-top: 20px;">';
+					$confirmation_message .= '<a class="button error" href="' . esc_url( add_query_arg( [ 'cbxpetitionsign_delete' => $delete_token, 'confirm' => 'yes' ], home_url( '/' ) ) ) . '">' . esc_html__( 'Yes, Delete My Signature', 'cbxpetition' ) . '</a> ';
+					$confirmation_message .= '<a class="button" href="' . esc_url( get_permalink( $petition_id ) ) . '">' . esc_html__( 'Cancel', 'cbxpetition' ) . '</a>';
+					$confirmation_message .= '</p>';
+					$confirmation_message .= '</div>';
+
+					// Show confirmation window
+					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo cbxpetition_get_template_html( 'petition_delete.php', [ 'confirmation_message' => $confirmation_message ] );
+					exit();
+				}
+
+				// Proceed with deletion
+				do_action( 'cbxpetition_sign_delete_before', (array) $sign_info, $log_id, $petition_id );
+
+				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+				$delete_status = $wpdb->query( $wpdb->prepare( "DELETE FROM {$signature_table} WHERE id=%d AND delete_token=%s", $log_id, $delete_token ) );
+
+				$petition_url = esc_url( get_permalink( $petition_id ) );
+
+				if ( $delete_status !== false && intval( $delete_status ) > 0 ) {
+					do_action( 'cbxpetition_sign_delete_after', (array) $sign_info, $log_id, $petition_id );
+
+					// Success message
+					$confirmation_message = '<div class="cbxpetition-alert cbxpetition-alert-success">';
+					$confirmation_message .= '<h3>' . esc_html__( 'Signature Deleted Successfully', 'cbxpetition' ) . '</h3>';
+					$confirmation_message .= '<p>' . esc_html__( 'Your signature has been successfully removed from this petition.', 'cbxpetition' ) . '</p>';
+					$confirmation_message .= '<p><strong>' . esc_html__( 'Petition:', 'cbxpetition' ) . '</strong> <a target="_blank" href="' . esc_url( get_permalink( $petition_id ) ) . '">' . esc_html( get_the_title( $petition_id ) ) . '</a></p>';
+					$confirmation_message .= '<p style="margin-top: 20px;">';
+					$confirmation_message .= '<a class="button primary" href="' . esc_url( $petition_url ) . '">' . esc_html__( 'View Petition', 'cbxpetition' ) . '</a>';
+					$confirmation_message .= '<a class="button" href="' . esc_url( home_url() ) . '">' . esc_html__( 'Go to Home', 'cbxpetition' ) . '</a>';
+					$confirmation_message .= '</p>';
+					$confirmation_message .= '</div>';
+
+				} else {
+					// Failed to delete
+					$confirmation_message = '<div class="cbxpetition-alert cbxpetition-alert-danger">';
+					$confirmation_message .= '<p>' . esc_html__( 'Sorry, failed to delete signature. Please try again or contact support.', 'cbxpetition' ) . '</p>';
+					$confirmation_message .= '<p><a class="button primary" href="' . esc_url( $petition_url ) . '">' . esc_html__( 'Click to go petition page', 'cbxpetition' ) . '</a></p>';
+					$confirmation_message .= '</div>';
+				}
+
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo cbxpetition_get_template_html( 'petition_delete.php', [ 'confirmation_message' => $confirmation_message ] );
+				exit();
+
+			} else {
+				//sign log not found or invalid token
+				$confirmation_message = '<div class="cbxpetition-alert cbxpetition-alert-info">';
+				$confirmation_message .= '<p>' . esc_html__( 'Sorry, signature not found or invalid delete token.', 'cbxpetition' ) . '</p>';
+				$confirmation_message .= '<p><a class="button primary" href="' . esc_url( home_url() ) . '">' . esc_html__( 'Click to go home', 'cbxpetition' ) . '</a></p>';
+				$confirmation_message .= '</div>';
+
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo cbxpetition_get_template_html( 'petition_delete.php', [ 'confirmation_message' => $confirmation_message ] );
+				exit();
+			}
+		}
+	}//end method signature_delete_handler
 
 	/**
 	 * Store petition sign by ajax request
@@ -373,8 +487,12 @@ class CBXPetitionPublic {
 
 			}
 
-			$data_safe['state']      = $default_state;
-			$data_safe['activation'] = $activation_code;
+			// Generate delete token for signature deletion via email link
+			$delete_token = wp_generate_password( $length = 32, false, false );
+
+			$data_safe['state']        = $default_state;
+			$data_safe['activation']   = $activation_code;
+			$data_safe['delete_token'] = $delete_token;
 
 			//insert
 			$data_safe['add_by']   = $user_id;
@@ -390,6 +508,7 @@ class CBXPetitionPublic {
 				'%s', //comment
 				'%s', //state
 				'%s', //activation
+				'%s', //delete_token
 				'%d', //add_by
 				'%s'  //add_date
 			];
@@ -507,6 +626,88 @@ class CBXPetitionPublic {
 		echo json_encode( $response );
 		wp_die();
 	}//end method petition_load_more_signs
+
+	/**
+	 * Frontend ajax: delete signature for logged-in owner from petition details page
+	 *
+	 * @since 1.0.0
+	 */
+	public function petition_sign_delete_front() {
+		$response = [
+			'error' => 1,
+		];
+
+		$errors = [];
+
+		check_ajax_referer( 'cbxpetition_nonce', 'security' );
+
+		if ( ! is_user_logged_in() ) {
+			$errors[] = esc_html__( 'Sorry! You must be logged in to delete your signature.', 'cbxpetition' );
+		}
+
+		$post_data    = wp_unslash( $_POST ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$signature_id = isset( $post_data['signature_id'] ) ? absint( $post_data['signature_id'] ) : 0;
+
+		if ( $signature_id === 0 ) {
+			$errors[] = esc_html__( 'Sorry! Invalid signature id.', 'cbxpetition' );
+		}
+
+		$signature   = null;
+		$petition_id = 0;
+
+		if ( sizeof( $errors ) === 0 ) {
+			$signature = PetitionHelper::petitionSignInfo( $signature_id );
+
+			if ( $signature === null || ! is_array( $signature ) || sizeof( $signature ) === 0 ) {
+				$errors[] = esc_html__( 'Sorry! Signature not found.', 'cbxpetition' );
+			} else {
+				$petition_id = isset( $signature['petition_id'] ) ? absint( $signature['petition_id'] ) : 0;
+
+				if ( $petition_id === 0 ) {
+					$errors[] = esc_html__( 'Invalid petition, petition doesn\'t exist or expired.', 'cbxpetition' );
+				} else {
+					// verify ownership: created by current user or email matches
+					$current_user = wp_get_current_user();
+					$current_id   = isset( $current_user->ID ) ? absint( $current_user->ID ) : 0;
+					$current_mail = isset( $current_user->user_email ) ? $current_user->user_email : '';
+
+					$add_by     = isset( $signature['add_by'] ) ? absint( $signature['add_by'] ) : 0;
+					$sign_email = isset( $signature['email'] ) ? sanitize_email( $signature['email'] ) : '';
+
+					$is_owner = ( $current_id > 0 && $add_by === $current_id );
+
+					if ( ! $is_owner ) {
+						$errors[] = esc_html__( 'Sorry! You are not authorized to delete this signature.', 'cbxpetition' );
+					}
+				}
+			}
+		}
+
+		if ( sizeof( $errors ) > 0 ) {
+			$response['errors'] = $errors;
+			wp_send_json( $response );
+		}
+
+		global $wpdb;
+		$signature_table = esc_sql( $wpdb->prefix . 'cbxpetition_signs' );
+
+		do_action( 'cbxpetition_sign_delete_before', $signature, $signature_id, $petition_id );
+
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		$sql = $wpdb->prepare( "DELETE FROM $signature_table WHERE id=%d", $signature_id );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
+		$delete_status = $wpdb->query( $sql );
+
+		if ( $delete_status !== false ) {
+			do_action( 'cbxpetition_sign_delete_after', $signature, $signature_id, $petition_id );
+			$response['message'] = esc_html__( 'Signature deleted successfully.', 'cbxpetition' );
+			$response['error']   = 0;
+		} else {
+			$response['message'] = esc_html__( 'Sorry! Signature delete failed.', 'cbxpetition' );
+		}
+
+		wp_send_json( $response );
+	}//end method petition_sign_delete_front
 
 	/**
 	 * Register the stylesheets for the public-facing side of the site.

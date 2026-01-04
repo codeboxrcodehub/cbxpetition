@@ -1,12 +1,13 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 use Pelago\Emogrifier\CssInliner;
 use Pelago\Emogrifier\HtmlProcessor\CssToAttributeConverter;
 use Pelago\Emogrifier\HtmlProcessor\HtmlPruner;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+
 
 if ( class_exists( 'CBXPetitionEmail', false ) ) {
 	return;

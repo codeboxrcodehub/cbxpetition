@@ -307,6 +307,92 @@
         });
 
 
+        // frontend signature delete from petition details page (logged-in owner)
+        $('.cbxpetition_signature_wrapper').on('click', '.cbxpetition-sign-delete-btn', function (e) {
+            e.preventDefault();
+
+            var $this = $(this);
+
+            if (!Number(cbxpetition_public_js_vars.is_user_logged_in)) {
+                new AWN().alert(cbxpetition_public_js_vars.logout.confirm_desc);
+                return;
+            }
+
+            var busy = Number($this.data('busy'));
+            if (busy) {
+                return;
+            }
+
+            var notifier = new AWN(cbxpetition_awn_options);
+            var onCancel = () => {};
+
+            var onOk = () => {
+                var signatureId = Number($this.data('signature-id'));
+
+                if (!signatureId) {
+                    new AWN().alert(cbxpetition_public_js_vars.are_you_sure_delete_desc);
+                    return;
+                }
+
+                $this.data('busy', 1);
+                $this.prop('disabled', true);
+
+                var data = {
+                    signature_id: signatureId,
+                    action: 'cbxpetition_front_sign_delete',
+                    security: cbxpetition_public_js_vars.nonce
+                };
+
+                var request = $.ajax({
+                    type: 'POST',
+                    url: cbxpetition_public_js_vars.ajaxurl,
+                    data: data,
+                    dataType: 'json'
+                });
+
+                request.done(function (data) {
+                    if (typeof data.security !== 'undefined' && Number(data.security) === 1) {
+                        new AWN().alert(data.message);
+                    } else if (data.errors) {
+                        data.errors.forEach(function (error) {
+                            new AWN().alert(error);
+                        });
+                    } else if (data.error) {
+                        new AWN().alert(data.message);
+                    } else {
+                        new AWN().success(data.message);
+
+                        var $item = $this.closest('.cbxpetition_signature_item');
+                        $item.slideUp(300, function () {
+                            $(this).remove();
+                        });
+                    }
+
+                    $this.data('busy', 0);
+                    $this.prop('disabled', false);
+                });
+
+                request.fail(function () {
+                    $this.data('busy', 0);
+                    $this.prop('disabled', false);
+
+                    new AWN().alert(cbxpetition_public_js_vars.ajax.fail);
+                });
+            };
+
+            notifier.confirm(
+                cbxpetition_public_js_vars.are_you_sure_delete_desc,
+                onOk,
+                onCancel,
+                {
+                    labels: {
+                        confirm: cbxpetition_public_js_vars.are_you_sure_global
+                    }
+                }
+            );
+        });
+
+
         //add gallery feature to
         $('.cbxpetition_photo_background').venobox({});
 

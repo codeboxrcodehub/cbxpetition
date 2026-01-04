@@ -1,11 +1,10 @@
 <?php
 
-namespace Intervention\Image\Gd\Shapes;
+namespace CbxPetitionScoped\Intervention\Image\Gd\Shapes;
 
-use Intervention\Image\AbstractShape;
-use Intervention\Image\Gd\Color;
-use Intervention\Image\Image;
-
+use CbxPetitionScoped\Intervention\Image\AbstractShape;
+use CbxPetitionScoped\Intervention\Image\Gd\Color;
+use CbxPetitionScoped\Intervention\Image\Image;
 class PolygonShape extends AbstractShape
 {
     /**
@@ -14,7 +13,6 @@ class PolygonShape extends AbstractShape
      * @var int
      */
     public $points;
-
     /**
      * Create new polygon instance
      *
@@ -24,7 +22,6 @@ class PolygonShape extends AbstractShape
     {
         $this->points = $points;
     }
-
     /**
      * Draw polygon on given image
      *
@@ -36,14 +33,12 @@ class PolygonShape extends AbstractShape
     public function applyToImage(Image $image, $x = 0, $y = 0)
     {
         $background = new Color($this->background);
-        imagefilledpolygon($image->getCore(), $this->points, intval(count($this->points) / 2), $background->getInt());
-        
+        \imagefilledpolygon($image->getCore(), $this->points, \intval(\count($this->points) / 2), $background->getInt());
         if ($this->hasBorder()) {
             $border_color = new Color($this->border_color);
-            imagesetthickness($image->getCore(), $this->border_width);
-            imagepolygon($image->getCore(), $this->points, intval(count($this->points) / 2), $border_color->getInt());
+            \imagesetthickness($image->getCore(), $this->border_width);
+            \imagepolygon($image->getCore(), $this->points, \intval(\count($this->points) / 2), $border_color->getInt());
         }
-    
-        return true;
+        return \true;
     }
 }

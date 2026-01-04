@@ -1,10 +1,9 @@
 <?php
 
-namespace Intervention\Image;
+namespace CbxPetitionScoped\Intervention\Image;
 
-use Intervention\Image\Exception\InvalidArgumentException;
-use Intervention\Image\Exception\NotSupportedException;
-
+use CbxPetitionScoped\Intervention\Image\Exception\InvalidArgumentException;
+use CbxPetitionScoped\Intervention\Image\Exception\NotSupportedException;
 abstract class AbstractEncoder
 {
     /**
@@ -13,91 +12,78 @@ abstract class AbstractEncoder
      * @var string
      */
     public $result;
-
     /**
      * Image object to encode
      *
      * @var Image
      */
     public $image;
-
     /**
      * Output format of encoder instance
      *
      * @var string
      */
     public $format;
-
     /**
      * Output quality of encoder instance
      *
      * @var int
      */
     public $quality;
-    
     /**
      * Processes and returns encoded image as JPEG string
      *
      * @return string
      */
-    abstract protected function processJpeg();
-
+    protected abstract function processJpeg();
     /**
      * Processes and returns encoded image as PNG string
      *
      * @return string
      */
-    abstract protected function processPng();
-
+    protected abstract function processPng();
     /**
      * Processes and returns encoded image as GIF string
      *
      * @return string
      */
-    abstract protected function processGif();
-
+    protected abstract function processGif();
     /**
      * Processes and returns encoded image as TIFF string
      *
      * @return string
      */
-    abstract protected function processTiff();
-
+    protected abstract function processTiff();
     /**
      * Processes and returns encoded image as BMP string
      *
      * @return string
      */
-    abstract protected function processBmp();
-
+    protected abstract function processBmp();
     /**
      * Processes and returns encoded image as ICO string
      *
      * @return string
      */
-    abstract protected function processIco();
-
+    protected abstract function processIco();
     /**
      * Processes and returns image as WebP encoded string
      *
      * @return string
      */
-    abstract protected function processWebp();
-
+    protected abstract function processWebp();
     /**
      * Processes and returns image as Avif encoded string
      *
      * @return string
      */
-    abstract protected function processAvif();
-
+    protected abstract function processAvif();
     /**
      * Processes and returns image as Heic encoded string
      *
      * @return string
      */
-    abstract protected function processHeic();
-
+    protected abstract function processHeic();
     /**
      * Process a given image
      *
@@ -111,24 +97,19 @@ abstract class AbstractEncoder
         $this->setImage($image);
         $this->setFormat($format);
         $this->setQuality($quality);
-
-        switch (strtolower($this->format)) {
-
+        switch (\strtolower($this->format)) {
             case 'data-url':
                 $this->result = $this->processDataUrl();
                 break;
-
             case 'gif':
             case 'image/gif':
                 $this->result = $this->processGif();
                 break;
-
             case 'png':
             case 'image/png':
             case 'image/x-png':
                 $this->result = $this->processPng();
                 break;
-
             case 'jpg':
             case 'jpeg':
             case 'jfif':
@@ -139,7 +120,6 @@ abstract class AbstractEncoder
             case 'image/jfif':
                 $this->result = $this->processJpeg();
                 break;
-
             case 'tif':
             case 'tiff':
             case 'image/tiff':
@@ -148,7 +128,6 @@ abstract class AbstractEncoder
             case 'image/x-tiff':
                 $this->result = $this->processTiff();
                 break;
-
             case 'bmp':
             case 'ms-bmp':
             case 'x-bitmap':
@@ -166,47 +145,36 @@ abstract class AbstractEncoder
             case 'image/x-xbitmap':
                 $this->result = $this->processBmp();
                 break;
-
             case 'ico':
             case 'image/x-ico':
             case 'image/x-icon':
             case 'image/vnd.microsoft.icon':
                 $this->result = $this->processIco();
                 break;
-
             case 'psd':
             case 'image/vnd.adobe.photoshop':
                 $this->result = $this->processPsd();
                 break;
-
             case 'webp':
             case 'image/webp':
             case 'image/x-webp':
                 $this->result = $this->processWebp();
                 break;
-
             case 'avif':
             case 'image/avif':
                 $this->result = $this->processAvif();
                 break;
-
             case 'heic':
             case 'image/heic':
             case 'image/heif':
                 $this->result = $this->processHeic();
                 break;
-                
             default:
-                throw new NotSupportedException(
-                    "Encoding format ({$this->format}) is not supported."
-                );
+                throw new NotSupportedException("Encoding format ({$this->format}) is not supported.");
         }
-
         $this->setImage(null);
-
         return $image->setEncoded($this->result);
     }
-
     /**
      * Processes and returns encoded image as data-url string
      *
@@ -215,13 +183,8 @@ abstract class AbstractEncoder
     protected function processDataUrl()
     {
         $mime = $this->image->mime ? $this->image->mime : 'image/png';
-
-        return sprintf('data:%s;base64,%s',
-            $mime,
-            base64_encode($this->process($this->image, $mime, $this->quality))
-        );
+        return \sprintf('data:%s;base64,%s', $mime, \base64_encode($this->process($this->image, $mime, $this->quality)));
     }
-
     /**
      * Sets image to process
      *
@@ -231,7 +194,6 @@ abstract class AbstractEncoder
     {
         $this->image = $image;
     }
-
     /**
      * Determines output format
      *
@@ -242,12 +204,9 @@ abstract class AbstractEncoder
         if ($format == '' && $this->image instanceof Image) {
             $format = $this->image->mime;
         }
-
         $this->format = $format ? $format : 'jpg';
-
         return $this;
     }
-
     /**
      * Determines output quality
      *
@@ -255,17 +214,12 @@ abstract class AbstractEncoder
      */
     protected function setQuality($quality)
     {
-        $quality = is_null($quality) ? 90 : $quality;
+        $quality = \is_null($quality) ? 90 : $quality;
         $quality = $quality === 0 ? 1 : $quality;
-
         if ($quality < 0 || $quality > 100) {
-            throw new InvalidArgumentException(
-                'Quality must range from 0 to 100.'
-            );
+            throw new InvalidArgumentException('Quality must range from 0 to 100.');
         }
-
-        $this->quality = intval($quality);
-
+        $this->quality = \intval($quality);
         return $this;
     }
 }

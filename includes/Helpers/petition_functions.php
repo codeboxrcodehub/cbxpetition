@@ -5,7 +5,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 use \Cbx\Petition\Helpers\PetitionHelper;
-use enshrined\svgSanitize\Sanitizer;
+use CbxPetitionScoped\enshrined\svgSanitize\Sanitizer;
 
 //phpcs:disabled
 if(!function_exists('is_cbxpetition')){

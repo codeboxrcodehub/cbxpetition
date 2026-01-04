@@ -1,11 +1,12 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 
 use Cbx\Petition\CBXSetting;
 use Cbx\Petition\Helpers\PetitionHelper;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
-}
+
 
 if ( ! class_exists( 'CBXPetitionNewSignAdminAlertEmail', false ) ) :
 

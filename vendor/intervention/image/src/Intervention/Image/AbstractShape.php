@@ -1,6 +1,6 @@
 <?php
 
-namespace Intervention\Image;
+namespace CbxPetitionScoped\Intervention\Image;
 
 abstract class AbstractShape
 {
@@ -10,21 +10,18 @@ abstract class AbstractShape
      * @var string
      */
     public $background;
-
     /**
      * Border color of current shape
      *
      * @var string
      */
     public $border_color;
-
     /**
      * Border width of shape
      *
      * @var int
      */
     public $border_width = 0;
-
     /**
      * Draws shape to given image on given position
      *
@@ -33,8 +30,7 @@ abstract class AbstractShape
      * @param  int     $posy
      * @return boolean
      */
-    abstract public function applyToImage(Image $image, $posx = 0, $posy = 0);
-
+    public abstract function applyToImage(Image $image, $posx = 0, $posy = 0);
     /**
      * Set text to be written
      *
@@ -45,7 +41,6 @@ abstract class AbstractShape
     {
         $this->background = $color;
     }
-
     /**
      * Set border width and color of current shape
      *
@@ -55,10 +50,9 @@ abstract class AbstractShape
      */
     public function border($width, $color = null)
     {
-        $this->border_width = is_numeric($width) ? intval($width) : 0;
-        $this->border_color = is_null($color) ? '#000000' : $color;
+        $this->border_width = \is_numeric($width) ? \intval($width) : 0;
+        $this->border_color = \is_null($color) ? '#000000' : $color;
     }
-
     /**
      * Determines if current shape has border
      *
@@ -66,6 +60,6 @@ abstract class AbstractShape
      */
     public function hasBorder()
     {
-        return ($this->border_width >= 1);
+        return $this->border_width >= 1;
     }
 }

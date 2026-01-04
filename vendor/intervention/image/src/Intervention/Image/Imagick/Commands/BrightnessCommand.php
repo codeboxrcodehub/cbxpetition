@@ -1,9 +1,8 @@
 <?php
 
-namespace Intervention\Image\Imagick\Commands;
+namespace CbxPetitionScoped\Intervention\Image\Imagick\Commands;
 
-use Intervention\Image\Commands\AbstractCommand;
-
+use CbxPetitionScoped\Intervention\Image\Commands\AbstractCommand;
 class BrightnessCommand extends AbstractCommand
 {
     /**
@@ -15,7 +14,6 @@ class BrightnessCommand extends AbstractCommand
     public function execute($image)
     {
         $level = $this->argument(0)->between(-100, 100)->required()->value();
-
         return $image->getCore()->modulateImage(100 + $level, 100, 100);
     }
 }

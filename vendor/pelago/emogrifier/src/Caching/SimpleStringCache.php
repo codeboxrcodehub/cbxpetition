@@ -1,8 +1,7 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Pelago\Emogrifier\Caching;
+declare (strict_types=1);
+namespace CbxPetitionScoped\Pelago\Emogrifier\Caching;
 
 /**
  * This cache caches string values with string keys. It is not PSR-6-compliant.
@@ -26,7 +25,6 @@ final class SimpleStringCache
      * @var array<string, string>
      */
     private $values = [];
-
     /**
      * Checks whether there is an entry stored for the given key.
      *
@@ -34,13 +32,11 @@ final class SimpleStringCache
      *
      * @throws \InvalidArgumentException
      */
-    public function has(string $key): bool
+    public function has(string $key) : bool
     {
         $this->assertNotEmptyKey($key);
-
         return isset($this->values[$key]);
     }
-
     /**
      * Returns the entry stored for the given key, and throws an exception if the value does not exist
      * (which helps keep the return type simple).
@@ -51,15 +47,13 @@ final class SimpleStringCache
      *
      * @throws \BadMethodCallException
      */
-    public function get(string $key): string
+    public function get(string $key) : string
     {
         if (!$this->has($key)) {
             throw new \BadMethodCallException('You can only call `get` with a key for an existing value.', 1625996246);
         }
-
         return $this->values[$key];
     }
-
     /**
      * Sets or overwrites an entry.
      *
@@ -68,17 +62,15 @@ final class SimpleStringCache
      *
      * @throws \BadMethodCallException
      */
-    public function set(string $key, string $value): void
+    public function set(string $key, string $value) : void
     {
         $this->assertNotEmptyKey($key);
-
         $this->values[$key] = $value;
     }
-
     /**
      * @throws \InvalidArgumentException
      */
-    private function assertNotEmptyKey(string $key): void
+    private function assertNotEmptyKey(string $key) : void
     {
         if ($key === '') {
             throw new \InvalidArgumentException('Please provide a non-empty key.', 1625995840);

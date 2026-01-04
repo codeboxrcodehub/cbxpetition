@@ -1,23 +1,18 @@
 <?php
 
-namespace Intervention\Image;
+namespace CbxPetitionScoped\Intervention\Image;
 
-use League\Container\ServiceProvider\AbstractServiceProvider;
-
+use CbxPetitionScoped\League\Container\ServiceProvider\AbstractServiceProvider;
 class ImageServiceProviderLeague extends AbstractServiceProvider
 {
     /**
      * @var array $config
      */
     protected $config;
-
     /**
      * @var array $provides
      */
-    protected $provides = [
-        'Intervention\Image\ImageManager'
-    ];
-
+    protected $provides = ['CbxPetitionScoped\\Intervention\\Image\\ImageManager'];
     /**
      * Constructor.
      *
@@ -27,7 +22,6 @@ class ImageServiceProviderLeague extends AbstractServiceProvider
     {
         $this->config = $config;
     }
-
     /**
      * Register the server provider.
      *
@@ -35,7 +29,7 @@ class ImageServiceProviderLeague extends AbstractServiceProvider
      */
     public function register()
     {
-        $this->getContainer()->share('Intervention\Image\ImageManager', function () {
+        $this->getContainer()->share('CbxPetitionScoped\\Intervention\\Image\\ImageManager', function () {
             return new ImageManager($this->config);
         });
     }

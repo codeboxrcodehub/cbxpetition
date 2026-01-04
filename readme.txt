@@ -2,8 +2,8 @@
 Contributors: codeboxr, manchumahara
 Tags: petition,activism,signature,change,campaign
 Requires at least: 5.3
-Tested up to: 6.8
-Stable tag: 2.0.11
+Tested up to: 6.9
+Stable tag: 2.0.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -179,6 +179,11 @@ Using the pro addon we have added some cool features like frontend petition subm
 -  Role based control and access
 -  Template/Theme override features like core for pro addon
 
+**Pro Addon Custom Integration**
+
+-  Gamipress
+-  Uncanny Automator
+
 Get the [pro addon](https://codeboxr.com/product/cbx-petition-for-wordpress/)
 
 == Installation ==
@@ -195,6 +200,12 @@ Get the [pro addon](https://codeboxr.com/product/cbx-petition-for-wordpress/)
 
 
 == Changelog ==
+= 2.0.12 =
+* [updated] WordPress Core 6.9 compatible
+* [updated] Plugin Check 1.8.0 compatible
+* [updated] Pro Addon 2.0.8 released
+* [improvement] Misc improvement
+
 = 2.0.11 =
 * [improvement] Misc improvement
 * [updated] Pro Addon 2.0.7 released

@@ -1,9 +1,8 @@
 <?php
 
-namespace Intervention\Image\Imagick\Commands;
+namespace CbxPetitionScoped\Intervention\Image\Imagick\Commands;
 
-use Intervention\Image\Commands\AbstractCommand;
-
+use CbxPetitionScoped\Intervention\Image\Commands\AbstractCommand;
 class BlurCommand extends AbstractCommand
 {
     /**
@@ -15,7 +14,6 @@ class BlurCommand extends AbstractCommand
     public function execute($image)
     {
         $amount = $this->argument(0)->between(0, 100)->value(1);
-
         return $image->getCore()->blurImage(1 * $amount, 0.5 * $amount);
     }
 }

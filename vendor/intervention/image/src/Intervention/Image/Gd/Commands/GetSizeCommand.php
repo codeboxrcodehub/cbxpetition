@@ -1,10 +1,9 @@
 <?php
 
-namespace Intervention\Image\Gd\Commands;
+namespace CbxPetitionScoped\Intervention\Image\Gd\Commands;
 
-use Intervention\Image\Commands\AbstractCommand;
-use Intervention\Image\Size;
-
+use CbxPetitionScoped\Intervention\Image\Commands\AbstractCommand;
+use CbxPetitionScoped\Intervention\Image\Size;
 class GetSizeCommand extends AbstractCommand
 {
     /**
@@ -15,11 +14,7 @@ class GetSizeCommand extends AbstractCommand
      */
     public function execute($image)
     {
-        $this->setOutput(new Size(
-            imagesx($image->getCore()),
-            imagesy($image->getCore())
-        ));
-
-        return true;
+        $this->setOutput(new Size(\imagesx($image->getCore()), \imagesy($image->getCore())));
+        return \true;
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Intervention\Image;
+namespace CbxPetitionScoped\Intervention\Image;
 
 abstract class AbstractFont
 {
@@ -10,56 +10,48 @@ abstract class AbstractFont
      * @var String
      */
     public $text;
-
     /**
      * Text size in pixels
      *
      * @var int
      */
     public $size = 12;
-
     /**
      * Color of the text
      *
      * @var mixed
      */
     public $color = '000000';
-
     /**
      * Rotation angle of the text
      *
      * @var int
      */
     public $angle = 0;
-
     /**
      * Horizontal alignment of the text
      *
      * @var String
      */
     public $align;
-
     /**
      * Vertical alignment of the text
      *
      * @var String
      */
     public $valign;
-
     /**
      * Space between text characters
      *
      * @var float
      */
     public $kerning = 0;
-
     /**
      * Path to TTF or GD library internal font file of the text
      *
      * @var mixed
      */
     public $file;
-
     /**
      * Draws font to given image on given position
      *
@@ -68,15 +60,13 @@ abstract class AbstractFont
      * @param  int     $posy
      * @return boolean
      */
-    abstract public function applyToImage(Image $image, $posx = 0, $posy = 0);
-
+    public abstract function applyToImage(Image $image, $posx = 0, $posy = 0);
     /**
      * Calculates bounding box of current font setting
      *
      * @return array
      */
-    abstract public function getBoxSize();
-
+    public abstract function getBoxSize();
     /**
      * Create a new instance of Font
      *
@@ -86,7 +76,6 @@ abstract class AbstractFont
     {
         $this->text = $text;
     }
-
     /**
      * Set text to be written
      *
@@ -96,10 +85,8 @@ abstract class AbstractFont
     public function text($text)
     {
         $this->text = $text;
-
         return $this;
     }
-
     /**
      * Get text to be written
      *
@@ -109,7 +96,6 @@ abstract class AbstractFont
     {
         return $this->text;
     }
-
     /**
      * Set font size in pixels
      *
@@ -119,10 +105,8 @@ abstract class AbstractFont
     public function size($size)
     {
         $this->size = $size;
-
         return $this;
     }
-
     /**
      * Get font size in pixels
      *
@@ -132,7 +116,6 @@ abstract class AbstractFont
     {
         return $this->size;
     }
-
     /**
      * Set color of text to be written
      *
@@ -142,10 +125,8 @@ abstract class AbstractFont
     public function color($color)
     {
         $this->color = $color;
-
         return $this;
     }
-
     /**
      * Get color of text
      *
@@ -155,7 +136,6 @@ abstract class AbstractFont
     {
         return $this->color;
     }
-
     /**
      * Set rotation angle of text
      *
@@ -165,10 +145,8 @@ abstract class AbstractFont
     public function angle($angle)
     {
         $this->angle = $angle;
-
         return $this;
     }
-
     /**
      * Get rotation angle of text
      *
@@ -178,7 +156,6 @@ abstract class AbstractFont
     {
         return $this->angle;
     }
-
     /**
      * Set horizontal text alignment
      *
@@ -188,10 +165,8 @@ abstract class AbstractFont
     public function align($align)
     {
         $this->align = $align;
-
         return $this;
     }
-
     /**
      * Get horizontal text alignment
      *
@@ -201,7 +176,6 @@ abstract class AbstractFont
     {
         return $this->align;
     }
-
     /**
      * Set vertical text alignment
      *
@@ -211,10 +185,8 @@ abstract class AbstractFont
     public function valign($valign)
     {
         $this->valign = $valign;
-
         return $this;
     }
-
     /**
      * Get vertical text alignment
      *
@@ -224,7 +196,6 @@ abstract class AbstractFont
     {
         return $this->valign;
     }
-
     /**
      * Set text kerning
      *
@@ -235,7 +206,6 @@ abstract class AbstractFont
     {
         $this->kerning = $kerning;
     }
-
     /**
      * Get kerning
      *
@@ -245,7 +215,6 @@ abstract class AbstractFont
     {
         return $this->kerning;
     }
-
     /**
      * Set path to font file
      *
@@ -255,10 +224,8 @@ abstract class AbstractFont
     public function file($file)
     {
         $this->file = $file;
-
         return $this;
     }
-
     /**
      * Get path to font file
      *
@@ -268,7 +235,6 @@ abstract class AbstractFont
     {
         return $this->file;
     }
-
     /**
      * Checks if current font has access to an applicable font file
      *
@@ -276,13 +242,11 @@ abstract class AbstractFont
      */
     protected function hasApplicableFontFile()
     {
-        if (is_string($this->file)) {
-            return file_exists($this->file);
+        if (\is_string($this->file)) {
+            return \file_exists($this->file);
         }
-
-        return false;
+        return \false;
     }
-
     /**
      * Counts lines of text to be written
      *
@@ -290,6 +254,6 @@ abstract class AbstractFont
      */
     public function countLines()
     {
-        return count(explode(PHP_EOL, $this->text));
+        return \count(\explode(\PHP_EOL, $this->text));
     }
 }

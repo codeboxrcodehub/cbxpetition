@@ -1,9 +1,8 @@
 <?php
 
-namespace Intervention\Image\Gd\Commands;
+namespace CbxPetitionScoped\Intervention\Image\Gd\Commands;
 
-use Intervention\Image\Commands\AbstractCommand;
-
+use CbxPetitionScoped\Intervention\Image\Commands\AbstractCommand;
 class PixelateCommand extends AbstractCommand
 {
     /**
@@ -15,7 +14,6 @@ class PixelateCommand extends AbstractCommand
     public function execute($image)
     {
         $size = $this->argument(0)->type('digit')->value(10);
-
-        return imagefilter($image->getCore(), IMG_FILTER_PIXELATE, $size, true);
+        return \imagefilter($image->getCore(), \IMG_FILTER_PIXELATE, $size, \true);
     }
 }

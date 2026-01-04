@@ -1,8 +1,7 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Pelago\Emogrifier\Utilities;
+declare (strict_types=1);
+namespace CbxPetitionScoped\Pelago\Emogrifier\Utilities;
 
 /**
  * Provides a common method for parsing CSS declaration blocks.
@@ -18,7 +17,6 @@ final class DeclarationBlockParser
      * @var array<string, array<non-empty-string, string>>
      */
     private static $cache = [];
-
     /**
      * CSS custom properties (variables) have case-sensitive names, so their case must be preserved.
      * Standard CSS properties have case-insensitive names, which are converted to lowercase.
@@ -27,7 +25,7 @@ final class DeclarationBlockParser
      *
      * @return non-empty-string
      */
-    public function normalizePropertyName(string $name): string
+    public function normalizePropertyName(string $name) : string
     {
         if (\substr($name, 0, 2) === '--') {
             return $name;
@@ -35,7 +33,6 @@ final class DeclarationBlockParser
             return \strtolower($name);
         }
     }
-
     /**
      * Parses a CSS declaration block into property name/value pairs.
      *
@@ -57,30 +54,19 @@ final class DeclarationBlockParser
      *
      * @throws \UnexpectedValueException if an empty property name is encountered (which cannot happen)
      */
-    public function parse(string $declarationBlock): array
+    public function parse(string $declarationBlock) : array
     {
         if (isset(self::$cache[$declarationBlock])) {
             return self::$cache[$declarationBlock];
         }
-
         $preg = new Preg();
-
         $declarations = $preg->split('/;(?!base64|charset)/', $declarationBlock);
-
         $properties = [];
         foreach ($declarations as $declaration) {
             $matches = [];
-            if (
-                $preg->match(
-                    '/^([A-Za-z\\-]+)\\s*:\\s*(.+)$/s',
-                    \trim($declaration),
-                    $matches
-                )
-                === 0
-            ) {
+            if ($preg->match('/^([A-Za-z\\-]+)\\s*:\\s*(.+)$/s', \trim($declaration), $matches) === 0) {
                 continue;
             }
-
             $propertyName = $matches[1];
             if ($propertyName === '') {
                 // This cannot happen since the regular epression matches one or more characters.
@@ -90,7 +76,6 @@ final class DeclarationBlockParser
             $properties[$this->normalizePropertyName($propertyName)] = $propertyValue;
         }
         self::$cache[$declarationBlock] = $properties;
-
         return $properties;
     }
 }

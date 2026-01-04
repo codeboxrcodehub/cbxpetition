@@ -1,21 +1,19 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace CbxPetitionScoped\Pelago\Emogrifier\Css;
 
-namespace Pelago\Emogrifier\Css;
-
-use Pelago\Emogrifier\Utilities\Preg;
-use Sabberworm\CSS\CSSList\AtRuleBlockList as CssAtRuleBlockList;
-use Sabberworm\CSS\CSSList\Document as SabberwormCssDocument;
-use Sabberworm\CSS\Parser as CssParser;
-use Sabberworm\CSS\Property\AtRule as CssAtRule;
-use Sabberworm\CSS\Property\Charset as CssCharset;
-use Sabberworm\CSS\Property\Import as CssImport;
-use Sabberworm\CSS\Renderable as CssRenderable;
-use Sabberworm\CSS\RuleSet\DeclarationBlock as CssDeclarationBlock;
-use Sabberworm\CSS\RuleSet\RuleSet as CssRuleSet;
-use Sabberworm\CSS\Settings as ParserSettings;
-
+use CbxPetitionScoped\Pelago\Emogrifier\Utilities\Preg;
+use CbxPetitionScoped\Sabberworm\CSS\CSSList\AtRuleBlockList as CssAtRuleBlockList;
+use CbxPetitionScoped\Sabberworm\CSS\CSSList\Document as SabberwormCssDocument;
+use CbxPetitionScoped\Sabberworm\CSS\Parser as CssParser;
+use CbxPetitionScoped\Sabberworm\CSS\Property\AtRule as CssAtRule;
+use CbxPetitionScoped\Sabberworm\CSS\Property\Charset as CssCharset;
+use CbxPetitionScoped\Sabberworm\CSS\Property\Import as CssImport;
+use CbxPetitionScoped\Sabberworm\CSS\Renderable as CssRenderable;
+use CbxPetitionScoped\Sabberworm\CSS\RuleSet\DeclarationBlock as CssDeclarationBlock;
+use CbxPetitionScoped\Sabberworm\CSS\RuleSet\RuleSet as CssRuleSet;
+use CbxPetitionScoped\Sabberworm\CSS\Settings as ParserSettings;
 /**
  * Parses and stores a CSS document from a string of CSS, and provides methods to obtain the CSS in parts or as data
  * structures.
@@ -28,15 +26,13 @@ final class CssDocument
      * @var SabberwormCssDocument
      */
     private $sabberwormCssDocument;
-
     /**
      * `@import` rules must precede all other types of rules, except `@charset` rules.  This property is used while
      * rendering at-rules to enforce that.
      *
      * @var bool
      */
-    private $isImportRuleAllowed = true;
-
+    private $isImportRuleAllowed = \true;
     /**
      * @param string $css
      * @param bool $debug
@@ -47,12 +43,10 @@ final class CssDocument
     {
         // CSS Parser currently throws exception with nested at-rules (like `@media`) in strict parsing mode
         $parserSettings = ParserSettings::create()->withLenientParsing(!$debug || $this->hasNestedAtRule($css));
-
         // CSS Parser currently throws exception with non-empty whitespace-only CSS in strict parsing mode, so `trim()`
         // @see https://github.com/sabberworm/PHP-CSS-Parser/issues/349
         $this->sabberwormCssDocument = (new CssParser(\trim($css), $parserSettings))->parse();
     }
-
     /**
      * Tests if a string of CSS appears to contain an at-rule with nested rules
      * (`@media`, `@supports`, `@keyframes`, `@document`,
@@ -60,12 +54,10 @@ final class CssDocument
      *
      * @see https://github.com/sabberworm/PHP-CSS-Parser/issues/127
      */
-    private function hasNestedAtRule(string $css): bool
+    private function hasNestedAtRule(string $css) : bool
     {
-        return (new Preg())
-            ->match('/@(?:media|supports|(?:-webkit-|-moz-|-ms-|-o-)?+(keyframes|document))\\b/', $css) !== 0;
+        return (new Preg())->match('/@(?:media|supports|(?:-webkit-|-moz-|-ms-|-o-)?+(keyframes|document))\\b/', $css) !== 0;
     }
-
     /**
      * Collates the media query, selectors and declarations for individual rules from the parsed CSS, in order.
      *
@@ -73,7 +65,7 @@ final class CssDocument
      *
      * @return list<StyleRule>
      */
-    public function getStyleRulesData(array $allowedMediaTypes): array
+    public function getStyleRulesData(array $allowedMediaTypes) : array
     {
         $ruleMatches = [];
         /** @var CssRenderable $rule */
@@ -92,10 +84,8 @@ final class CssDocument
                 $ruleMatches[] = new StyleRule($rule);
             }
         }
-
         return $ruleMatches;
     }
-
     /**
      * Renders at-rules from the parsed CSS that are valid and not conditional group rules (i.e. not rules such as
      * `@media` which contain style rules whose data is returned by {@see getStyleRulesData}).  Also does not render
@@ -103,22 +93,18 @@ final class CssDocument
      *
      * @return string
      */
-    public function renderNonConditionalAtRules(): string
+    public function renderNonConditionalAtRules() : string
     {
-        $this->isImportRuleAllowed = true;
+        $this->isImportRuleAllowed = \true;
         $cssContents = $this->sabberwormCssDocument->getContents();
         $atRules = \array_filter($cssContents, [$this, 'isValidAtRuleToRender']);
-
         if ($atRules === []) {
             return '';
         }
-
         $atRulesDocument = new SabberwormCssDocument();
         $atRulesDocument->setContents($atRules);
-
         return $atRulesDocument->render();
     }
-
     /**
      * @param CssAtRuleBlockList $rule
      * @param array<array-key, string> $allowedMediaTypes
@@ -127,35 +113,27 @@ final class CssDocument
      *         If the nested at-rule is supported, it's opening declaration (e.g. "@media (max-width: 768px)") is
      *         returned; otherwise the return value is null.
      */
-    private function getFilteredAtIdentifierAndRule(CssAtRuleBlockList $rule, array $allowedMediaTypes): ?string
+    private function getFilteredAtIdentifierAndRule(CssAtRuleBlockList $rule, array $allowedMediaTypes) : ?string
     {
         $result = null;
-
         if ($rule->atRuleName() === 'media') {
             $mediaQueryList = $rule->atRuleArgs();
             [$mediaType] = \explode('(', $mediaQueryList, 2);
             if (\trim($mediaType) !== '') {
-                $escapedAllowedMediaTypes = \array_map(
-                    static function (string $allowedMediaType): string {
-                        return \preg_quote($allowedMediaType, '/');
-                    },
-                    $allowedMediaTypes
-                );
+                $escapedAllowedMediaTypes = \array_map(static function (string $allowedMediaType) : string {
+                    return \preg_quote($allowedMediaType, '/');
+                }, $allowedMediaTypes);
                 $mediaTypesMatcher = \implode('|', $escapedAllowedMediaTypes);
-                $isAllowed
-                    = (new Preg())->match('/^\\s*+(?:only\\s++)?+(?:' . $mediaTypesMatcher . ')/i', $mediaType) !== 0;
+                $isAllowed = (new Preg())->match('/^\\s*+(?:only\\s++)?+(?:' . $mediaTypesMatcher . ')/i', $mediaType) !== 0;
             } else {
-                $isAllowed = true;
+                $isAllowed = \true;
             }
-
             if ($isAllowed) {
                 $result = '@media ' . $mediaQueryList;
             }
         }
-
         return $result;
     }
-
     /**
      * Tests if a CSS rule is an at-rule that should be passed though and copied to a `<style>` element unmodified:
      * - `@charset` rules are discarded - only UTF-8 is supported - `false` is returned;
@@ -170,35 +148,28 @@ final class CssDocument
      *
      * @return bool
      */
-    private function isValidAtRuleToRender(CssRenderable $rule): bool
+    private function isValidAtRuleToRender(CssRenderable $rule) : bool
     {
         if ($rule instanceof CssCharset) {
-            return false;
+            return \false;
         }
-
         if ($rule instanceof CssImport) {
             return $this->isImportRuleAllowed;
         }
-
-        $this->isImportRuleAllowed = false;
-
+        $this->isImportRuleAllowed = \false;
         if (!$rule instanceof CssAtRule) {
-            return false;
+            return \false;
         }
-
         switch ($rule->atRuleName()) {
             case 'media':
-                $result = false;
+                $result = \false;
                 break;
             case 'font-face':
-                $result = $rule instanceof CssRuleSet
-                    && $rule->getRules('font-family') !== []
-                    && $rule->getRules('src') !== [];
+                $result = $rule instanceof CssRuleSet && $rule->getRules('font-family') !== [] && $rule->getRules('src') !== [];
                 break;
             default:
-                $result = true;
+                $result = \true;
         }
-
         return $result;
     }
 }
