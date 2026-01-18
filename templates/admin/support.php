@@ -113,6 +113,14 @@ $doc_url    = PetitionHelper::url_utmy( 'https://codeboxr.com/doc/cbxpetition-do
                     <div class="content">
                         <div class="cbx-backend-settings-row">
                             <p>
+                                Version - 2.0.13
+                            </p>
+                            <ul>
+                                <li>Plugin setting's left menu hides in some cases(fixed)</li>
+                            </ul>
+                        </div>
+                        <div class="cbx-backend-settings-row">
+                            <p>
                                 Version - 2.0.12
                             </p>
                             <ul>
