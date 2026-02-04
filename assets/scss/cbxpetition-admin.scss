@@ -1,0 +1,373 @@
+@import "misc/variable";
+@import  "../../../../../cbxdesign/chota/chota";
+@import  "misc/menu_branding";
+@import  "misc/icons";
+@import  "misc/app_status_colors";
+
+@import  "../../../../../cbxdesign/chota/support_dashboard";
+@import  "../../../../../cbxdesign/chota/admin_dash_override";
+@import  "../../../../../cbxdesign/chota/wplisting_filters";
+@import  "../../../../../cbxdesign/chota/setting_fields/notice";
+@import  "../../../../../cbxdesign/chota/magic_check/magic_extras";
+@import  "../../../../../cbxdesign/chota/builders/misc";
+@import  "petition/petition-add-edit";
+
+
+
+
+
+.cbxpetition_display_none {
+  display: none !important;
+}
+
+.wp-heading-wrap {
+  display: flex;
+  flex-wrap: wrap;
+
+  #setting-error-settings_updated{
+    width: 100%;
+    p{
+      margin-bottom: 0;
+    }
+
+    button{
+      background: transparent !important;
+      border: none !important;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    justify-content: center;
+  }
+
+  .wp-heading-inline {
+    padding: 0 !important;
+    margin: 0 !important;
+    line-height: 1 !important;
+    margin-right: auto;
+
+    @media screen and (max-width: 600px) {
+      font-size: 25px !important;
+      text-align: center;
+    }
+  }
+
+  .pull-left {
+    order: 1;
+    margin-right: auto;
+
+    @media screen and (max-width: 600px) {
+      display: flex;
+      flex-wrap: wrap;
+      flex: 0 0 100% !important;
+      width: 100% !important;
+      justify-content: center;
+
+      margin-bottom: 20px;
+    }
+  }
+
+  .pull-right {
+    order: 2;
+    margin-left: auto;
+    max-height: 28px;
+
+    @media screen and (max-width: 600px) {
+      display: flex;
+      flex-wrap: wrap;
+      flex: 0 0 100% !important;
+      width: 100% !important;
+      justify-content: center;
+    }
+  }
+}
+
+table.widefat {
+  border-top: 1px solid var(--color-primary);
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  box-shadow: 0 10px 22px 0 rgba(0, 4, 32, .05);
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+}
+
+input:not(.magic-radio)[type=radio] {
+  //border: 1px solid #ccc !important;
+  //box-shadow: none !important;
+  //position: relative;
+}
+
+input:not(.magic-radio)[type=radio]:checked::before {
+  //border: 1px solid var(--color-primary) !important;
+  //background-color: var(--color-primary) !important;
+}
+
+input:not(.magic-radio)[type=radio]:focus {
+}
+
+input:not(.magic-checkbox):not(.vtl-tbody-checkbox):not(.vtl-thead-checkbox)[type=checkbox] {
+  border: 1px solid var(--color-primary) !important;
+  box-shadow: none !important;
+  transition: all .3s !important;
+}
+
+input:not(.magic-checkbox):not(.vtl-tbody-checkbox):not(.vtl-thead-checkbox)[type=checkbox]:focus {
+  border-color: var(--color-primary) !important;
+  box-shadow: 0 0 0 1px var(--color-primary) !important;
+  outline: none !important;
+}
+
+.cbxpetition-page-wrapper{
+  margin-top: 50px;
+  .container{
+    max-width: 1200px;
+  }
+  .postbox{
+    border-radius: 8px;
+    box-shadow: 0 10px 22px 0 rgba(0, 4, 32, .05) !important;
+    border: 0 none;
+  }
+
+  #col-left, #col-right{
+    width: 100% !important;
+  }
+
+  #titlediv #title-prompt-text{
+    position: static !important;
+    padding-left: 0 !important;
+  }
+
+  .postbox{
+    .newtag{
+      display: inline-block !important;
+      width: auto !important;
+    }
+  }
+
+  #post_status{
+    display: inline-block !important;
+    width: auto !important;
+  }
+
+  &.cbxpetition-addedit-wrapper{
+      box-shadow: 0 10px 22px 0 rgba(0,4,32,0.05)!important;
+      background-color: #fff;
+      padding: 10px;
+      border-radius: 10px;
+  }
+}
+
+
+#cbxpetition_signs_filters_wrap{
+  .cbxpetition_signs_filters{
+
+  }
+}
+
+
+
+//from pro addon
+#cbxpetition-import-wrapper{
+  input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="color"]):not([type="button"]):not([type="reset"]),
+  select,
+  textarea,
+  textarea[type="text"], input[type="file"] {
+    width: 100% !important;
+    max-width: 500px;
+  }
+
+  .inside{
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+
+.postbox-header{
+  h2{
+    font-size: 18px!important
+  }
+}
+
+#editable-post-name{
+  input{
+    display: inline-block;
+  }
+}
+
+//petition edit widgets
+#taxonomy-cbxpetition_cat{
+  .tabs{
+    display: initial;
+    margin-bottom: 6px;
+  }
+}
+
+.flatpickr-current-month input.cur-year{
+  min-height: auto !important;
+}
+
+.cbxpetition-tax-wrapper{
+  .col-wrap{
+    padding-top: 20px !important;
+  }
+  #addtag{
+    display: none;
+
+  }
+
+  #edittag, #addtag{
+    width: 100%;
+    max-width: 500px;
+    input[type=text], input[type=email], input[type=url], input[type=number], textarea, select{
+      width: 100%;
+      max-width: 500px;
+    }
+    .edit-tag-actions{
+      text-align: center;
+    }
+    p.submit{
+      text-align: center;
+    }
+  }
+}
+
+.cbxpetition-singature-wrapper{
+  #cbxpetition_signs{
+    padding-top: 20px !important;
+
+    #cbxpetition_signs_filters_wrap{
+      margin-bottom: 20px;
+    }
+  }
+}
+
+
+#titlewrap{
+  #title-prompt-text{
+    padding-top: 0 !important;
+  }
+}
+
+#edit-slug-box{
+  padding-left: 0 !important;
+}
+
+.cbxpetition_fields_heading{
+  .small{
+    font-size: 13px !important;
+  }
+}
+
+.cbxpetition_signform_wrapper{
+  width: 100%;
+  max-width: 500px;
+
+  p.error{
+    color: red !important;
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+  }
+
+  .cbxpetition-signform-field input[type="text"].error,
+  .cbxpetition-signform-field input[type="email"].error,
+  .cbxpetition-signform-field input[type="url"].error {
+    border: 1px solid red !important;
+  }
+
+  .cbxpetition-signform-field textarea.error {
+    border: 1px solid red !important;
+  }
+}
+
+.cbxpetition_sign_row{
+  .column-state{
+    vertical-align: middle;
+    text-align: left;
+  }
+}
+
+.cbx-chota{
+  .cbx-sub-heading{
+    margin-bottom:0 !important;
+  }
+
+  textarea{
+    font-weight: normal !important;
+  }
+
+  .column-signature_received_value{
+  }
+}
+
+.button_actions_signatures{
+  .card-menu{
+    padding: 0!important;
+  }
+}
+
+#message.notice{
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 5px 10px !important;
+
+  p{
+    margin-bottom: 0 !important;
+  }
+}
+
+#ajax-response{
+  .notice{
+    display: flex !important;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    align-items: center !important;
+
+    p{
+      line-height: 30px;
+      margin-bottom: 0 !important;
+    }
+
+    button{
+      margin-left: auto !important;
+      margin-bottom: 0 !important;
+      position: relative !important;
+      border: 1px solid var(--color-darkGrey) !important;
+      background-color: transparent !important;
+      padding: 0 4px !important;
+
+      &:before{
+        width: 20px;
+        height: 20px;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: url("../icons/icon_close.svg") !important;
+        content: '';
+      }
+    }
+  }
+}
+
+
+.cbx-chota{
+  #dashlisting_toolbar{
+    padding: 10px;
+    background-color: #EFF0FD;
+    border: 1px solid #5d5dff33;
+    border-radius: 10px;
+    box-shadow: 0 10px 22px 0 rgba(0,4,32,.05) !important;
+
+    h2{
+      margin-bottom: 0 !important;
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+.timestamp-wrap{
+  display: flex;
+}

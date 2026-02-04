@@ -1,0 +1,21 @@
+.component_status.component_status_resume{
+  max-width:  100%;
+  min-width: 200px;
+  align-items: center;
+  justify-content: center;
+
+  &.component_status_primary{
+    background-color:  transparent;
+    color: $app_primary_color;
+    &:hover, &:focus{
+      border: 1px solid transparent;
+    }
+  }
+  &.component_status_secondary{
+    background-color:  transparent;
+    color: $app_secondary_color;
+    &:hover, &:focus{
+      border: 1px solid transparent;
+    }
+  }
+}

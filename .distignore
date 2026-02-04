@@ -2,7 +2,14 @@
 /.git
 /.github
 /node_modules
+/assets/scss/
+/vite.config.js
+/composer.lock
+/package-lock.json
+/assets/vuejs/**
 
 .distignore
 .gitignore
 .gitattributes
+
+assets/scss/

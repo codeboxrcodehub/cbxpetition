@@ -1,5 +1,7 @@
 <?php
+
 namespace Cbx\Petition\Helpers;
+
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
@@ -183,7 +185,8 @@ class PetitionHelper {
 					'post_status' => 'publish',
 				];
 				wp_update_post( $page_data );
-			} elseif ( ( $page_id = intval( $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_type = 'page' AND post_status = 'trash' AND post_name = %s LIMIT 1;", // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			} elseif ( ( $page_id = intval( $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_type = 'page' AND post_status = 'trash' AND post_name = %s LIMIT 1;",
+					// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 					$slug . '__trashed' ) ) ) ) > 0 ) {
 
 				//trash post found and unstrash/publish it
@@ -218,7 +221,6 @@ class PetitionHelper {
 	public static function create_cbxpetition_post_type() {
 		$settings = new CBXSetting();
 
-		//post slugs
 		$post_slug_default    = esc_attr( $settings->get_field( 'post_slug', 'cbxpetition_basic', 'cbxpetition' ) );
 		$archive_slug_default = esc_attr( $settings->get_field( 'archive_slug', 'cbxpetition_basic', 'cbxpetitions' ) );
 
@@ -501,7 +503,7 @@ class PetitionHelper {
 
 		$signature_table = $wpdb->prefix . 'cbxpetition_signs';
 		//phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-		$sql      = $wpdb->prepare( "SELECT * FROM $signature_table WHERE petition_id=%d AND email=%s", $petition_id, $email );
+		$sql = $wpdb->prepare( "SELECT * FROM $signature_table WHERE petition_id=%d AND email=%s", $petition_id, $email );
 
 		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 		$log_info = $wpdb->get_row( $sql,
@@ -824,6 +826,7 @@ class PetitionHelper {
 				],
 			],
 		];
+
 		//phpcs:enable
 
 		return get_posts( $args );
@@ -854,6 +857,7 @@ class PetitionHelper {
 				],
 			],
 		];
+
 		//phpcs:enable
 
 		return get_posts( $args );
@@ -872,6 +876,7 @@ class PetitionHelper {
 		$signature_table = $wpdb->prefix . 'cbxpetition_signs';
 		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 		$sql = $wpdb->prepare( "SELECT * FROM $signature_table WHERE id=%d ", intval( $sign_id ) );
+
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 		return $wpdb->get_row( $sql, ARRAY_A );
 	}//end method petitionSignInfo
@@ -1897,12 +1902,12 @@ class PetitionHelper {
 					'label'   => esc_html__( 'Category Slug', 'cbxpetition' ),
 					'desc'    => esc_html__( 'Petition category slug. Default: petition-cat', 'cbxpetition' ),
 					'type'    => 'slug',
-					'default' => esc_attr_x( 'petition-cat', 'Petition category slug', 'cbxpetition' )
+					'default' => 'petition-cat'
 				],
 				'tag_enable'      => [
 					'name'    => 'tag_enable',
 					'label'   => esc_html__( 'Enable Tag', 'cbxpetition' ),
-					'desc'    => esc_html__( 'Enable/disable category tag for petition. Category is non hierarchical taxonomy.', 'cbxpetition' ),
+					'desc'    => esc_html__( 'Enable/disable tag taxonomy for petition. Tag is non hierarchical taxonomy.', 'cbxpetition' ),
 					'type'    => 'checkbox',
 					'default' => 'on'
 				],
@@ -1911,7 +1916,7 @@ class PetitionHelper {
 					'label'   => esc_html__( 'Tag Slug', 'cbxpetition' ),
 					'desc'    => esc_html__( 'Petition tag slug. Default: petition-tag', 'cbxpetition' ),
 					'type'    => 'slug',
-					'default' => esc_attr_x( 'petition-tag', 'Petition tag slug', 'cbxpetition' )
+					'default' => 'petition-tag'
 				],
 				'custom_template' => [
 					'name'    => 'custom_template',
