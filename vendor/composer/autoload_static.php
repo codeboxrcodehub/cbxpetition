@@ -8,12 +8,18 @@ class ComposerStaticInitbbb171607e424b8e2889b18b196f9338
 {
     public static $files = array (
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
+        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
+        'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         'e5c549289a364910535a9d3f40556cd3' => __DIR__ . '/../..' . '/includes/Helpers/petition_functions.php',
         '1365a2f3a29db2f30d4f6cae3c7ecc93' => __DIR__ . '/../..' . '/includes/Helpers/petition_tpl_loader.php',
         '8c0b3aaf70332647929783c1deb90d57' => __DIR__ . '/../..' . '/includes/Helpers/CBXPetitionEmailFunctions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        'S' => 
+        array (
+            'Symfony\\Polyfill\\Php80\\' => 23,
+        ),
         'C' => 
         array (
             'Cbx\\Petition\\' => 13,
@@ -29,6 +35,10 @@ class ComposerStaticInitbbb171607e424b8e2889b18b196f9338
     );
 
     public static $prefixDirsPsr4 = array (
+        'Symfony\\Polyfill\\Php80\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
+        ),
         'Cbx\\Petition\\' => 
         array (
             0 => __DIR__ . '/../..' . '/includes',
@@ -69,6 +79,7 @@ class ComposerStaticInitbbb171607e424b8e2889b18b196f9338
     );
 
     public static $classMap = array (
+        'CbxPetitionScoped\\Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'CbxPetitionScoped\\GuzzleHttp\\Psr7\\AppendStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/AppendStream.php',
         'CbxPetitionScoped\\GuzzleHttp\\Psr7\\BufferStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/BufferStream.php',
         'CbxPetitionScoped\\GuzzleHttp\\Psr7\\CachingStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/CachingStream.php',
@@ -89,6 +100,7 @@ class ComposerStaticInitbbb171607e424b8e2889b18b196f9338
         'CbxPetitionScoped\\GuzzleHttp\\Psr7\\Query' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Query.php',
         'CbxPetitionScoped\\GuzzleHttp\\Psr7\\Request' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Request.php',
         'CbxPetitionScoped\\GuzzleHttp\\Psr7\\Response' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Response.php',
+        'CbxPetitionScoped\\GuzzleHttp\\Psr7\\Rfc3986' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Rfc3986.php',
         'CbxPetitionScoped\\GuzzleHttp\\Psr7\\Rfc7230' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Rfc7230.php',
         'CbxPetitionScoped\\GuzzleHttp\\Psr7\\ServerRequest' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/ServerRequest.php',
         'CbxPetitionScoped\\GuzzleHttp\\Psr7\\Stream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Stream.php',
@@ -239,6 +251,7 @@ class ComposerStaticInitbbb171607e424b8e2889b18b196f9338
         'CbxPetitionScoped\\Pelago\\Emogrifier\\Utilities\\CssConcatenator' => __DIR__ . '/..' . '/pelago/emogrifier/src/Utilities/CssConcatenator.php',
         'CbxPetitionScoped\\Pelago\\Emogrifier\\Utilities\\DeclarationBlockParser' => __DIR__ . '/..' . '/pelago/emogrifier/src/Utilities/DeclarationBlockParser.php',
         'CbxPetitionScoped\\Pelago\\Emogrifier\\Utilities\\Preg' => __DIR__ . '/..' . '/pelago/emogrifier/src/Utilities/Preg.php',
+        'CbxPetitionScoped\\PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
         'CbxPetitionScoped\\Psr\\Http\\Message\\MessageInterface' => __DIR__ . '/..' . '/psr/http-message/src/MessageInterface.php',
         'CbxPetitionScoped\\Psr\\Http\\Message\\RequestFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/RequestFactoryInterface.php',
         'CbxPetitionScoped\\Psr\\Http\\Message\\RequestInterface' => __DIR__ . '/..' . '/psr/http-message/src/RequestInterface.php',
@@ -297,6 +310,7 @@ class ComposerStaticInitbbb171607e424b8e2889b18b196f9338
         'CbxPetitionScoped\\Sabberworm\\CSS\\Value\\ValueList' => __DIR__ . '/..' . '/sabberworm/php-css-parser/src/Value/ValueList.php',
         'CbxPetitionScoped\\Soundasleep\\Html2Text' => __DIR__ . '/..' . '/soundasleep/html2text/src/Html2Text.php',
         'CbxPetitionScoped\\Soundasleep\\Html2TextException' => __DIR__ . '/..' . '/soundasleep/html2text/src/Html2TextException.php',
+        'CbxPetitionScoped\\Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'CbxPetitionScoped\\Symfony\\Component\\CssSelector\\CssSelectorConverter' => __DIR__ . '/..' . '/symfony/css-selector/CssSelectorConverter.php',
         'CbxPetitionScoped\\Symfony\\Component\\CssSelector\\Exception\\ExceptionInterface' => __DIR__ . '/..' . '/symfony/css-selector/Exception/ExceptionInterface.php',
         'CbxPetitionScoped\\Symfony\\Component\\CssSelector\\Exception\\ExpressionErrorException' => __DIR__ . '/..' . '/symfony/css-selector/Exception/ExpressionErrorException.php',
@@ -347,6 +361,8 @@ class ComposerStaticInitbbb171607e424b8e2889b18b196f9338
         'CbxPetitionScoped\\Symfony\\Component\\CssSelector\\XPath\\Translator' => __DIR__ . '/..' . '/symfony/css-selector/XPath/Translator.php',
         'CbxPetitionScoped\\Symfony\\Component\\CssSelector\\XPath\\TranslatorInterface' => __DIR__ . '/..' . '/symfony/css-selector/XPath/TranslatorInterface.php',
         'CbxPetitionScoped\\Symfony\\Component\\CssSelector\\XPath\\XPathExpr' => __DIR__ . '/..' . '/symfony/css-selector/XPath/XPathExpr.php',
+        'CbxPetitionScoped\\UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
+        'CbxPetitionScoped\\ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
         'CbxPetitionScoped\\enshrined\\svgSanitize\\ElementReference\\Resolver' => __DIR__ . '/..' . '/enshrined/svg-sanitize/src/ElementReference/Resolver.php',
         'CbxPetitionScoped\\enshrined\\svgSanitize\\ElementReference\\Subject' => __DIR__ . '/..' . '/enshrined/svg-sanitize/src/ElementReference/Subject.php',
         'CbxPetitionScoped\\enshrined\\svgSanitize\\ElementReference\\Usage' => __DIR__ . '/..' . '/enshrined/svg-sanitize/src/ElementReference/Usage.php',
@@ -368,6 +384,8 @@ class ComposerStaticInitbbb171607e424b8e2889b18b196f9338
         'Cbx\\Petition\\Widgets\\Classic\\CBXPetitionSignformWidget' => __DIR__ . '/../..' . '/includes/Widgets/Classic/CBXPetitionSignformWidget.php',
         'Cbx\\Petition\\Widgets\\Classic\\CBXPetitionSummaryWidget' => __DIR__ . '/../..' . '/includes/Widgets/Classic/CBXPetitionSummaryWidget.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Symfony\\Polyfill\\Php80\\Php80' => __DIR__ . '/..' . '/symfony/polyfill-php80/Php80.php',
+        'Symfony\\Polyfill\\Php80\\PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/PhpToken.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

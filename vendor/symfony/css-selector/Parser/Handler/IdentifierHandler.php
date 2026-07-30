@@ -30,7 +30,7 @@ class IdentifierHandler implements HandlerInterface
     public function __construct(private TokenizerPatterns $patterns, private TokenizerEscaping $escaping)
     {
     }
-    public function handle(Reader $reader, TokenStream $stream) : bool
+    public function handle(Reader $reader, TokenStream $stream): bool
     {
         $match = $reader->findPattern($this->patterns->getIdentifierPattern());
         if (!$match) {

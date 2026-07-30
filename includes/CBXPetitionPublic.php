@@ -1,5 +1,7 @@
 <?php
+
 namespace Cbx\Petition;
+
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
@@ -92,10 +94,12 @@ class CBXPetitionPublic {
 			}
 		}
 
-		$content_details_before = '<div class="cbxpetition_content_details cbxpetition_content_details_' . absint($petition_id) . '" id="cbxpetition_content_details_' . absint($petition_id) . '">';
+		$content_details_before = '<div class="cbxpetition_content_details cbxpetition_content_details_' . absint( $petition_id ) . '" id="cbxpetition_content_details_' . absint( $petition_id ) . '">';
 		$content_details_after  = '</div>';
 
-		$content = apply_filters( 'cbxpetition_content_details_before', $content_details_before, $petition_id ) . $content . apply_filters( 'cbxpetition_content_details_after', $content_details_after, $petition_id );
+		$content = apply_filters( 'cbxpetition_content_details_before', $content_details_before,
+				$petition_id ) . $content . apply_filters( 'cbxpetition_content_details_after', $content_details_after,
+				$petition_id );
 
 		return $before_content . $content . $after_content;
 	}//end method auto_integration;
@@ -114,7 +118,7 @@ class CBXPetitionPublic {
 	/**
 	 * Extra query vars adding for dynamic url
 	 *
-	 * @param array $vars
+	 * @param  array  $vars
 	 *
 	 * @return array
 	 * @since 1.0.4
@@ -132,7 +136,8 @@ class CBXPetitionPublic {
 	 * @since 1.0.0
 	 */
 	public function rewrite_rules() {
-		add_rewrite_rule( 'petition-verify' . '/([^/]*)/?', 'index.php?cbxpetitionsign_verification=$matches[1]', 'top' );
+		add_rewrite_rule( 'petition-verify' . '/([^/]*)/?', 'index.php?cbxpetitionsign_verification=$matches[1]',
+			'top' );
 		add_rewrite_rule( 'petition-delete' . '/([^/]*)/?', 'index.php?cbxpetitionsign_delete=$matches[1]', 'top' );
 	}//end method rewrite_rules
 
@@ -150,37 +155,44 @@ class CBXPetitionPublic {
 
 			$settings = $this->settings;
 			global $wpdb;
-			$signature_table = esc_sql($wpdb->prefix . 'cbxpetition_signs');
+			$signature_table = esc_sql( $wpdb->prefix . 'cbxpetition_signs' );
 
 			$activation_code = sanitize_text_field( wp_unslash( get_query_var( 'cbxpetitionsign_verification' ) ) );
 
 			if ( $activation_code == '' ) {
 				//activation code empty
 				$confirmation_message = '<div class="cbxpetition-alert cbxpetition-alert-danger">';
-				$confirmation_message .= '<p>' . esc_html__( 'Sorry, no activation code found. Please follow correct url from your email notification.', 'cbxpetition' ) . '</p>';
-				$confirmation_message .= '<p><a class="button primary" href="' . esc_url( home_url() ) . '">' . esc_html__( 'Click to go home', 'cbxpetition' ) . '</a></p>';
+				$confirmation_message .= '<p>' . esc_html__( 'Sorry, no activation code found. Please follow correct url from your email notification.',
+						'cbxpetition' ) . '</p>';
+				$confirmation_message .= '<p><a class="button primary" href="' . esc_url( home_url() ) . '">' . esc_html__( 'Click to go home',
+						'cbxpetition' ) . '</a></p>';
 				$confirmation_message .= '</div>';
 
 				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				echo cbxpetition_get_template_html( 'verification.php', [ 'confirmation_message' => $confirmation_message ] );
+				echo cbxpetition_get_template_html( 'verification.php',
+					[ 'confirmation_message' => $confirmation_message ] );
 				exit();
 			}
 
 			if ( is_user_logged_in() ) {
 				//guest should verify but found a logged in user
 				$confirmation_message = '<div class="cbxpetition-alert cbxpetition-alert-danger">';
-				$confirmation_message .= '<p>' . esc_html__( 'Sorry, seems you are currently logged in as system user but this verification process is for guest user only.', 'cbxpetition' ) . '</p>';
-				$confirmation_message .= '<p><a class="button primary" href="' . esc_url( home_url() ) . '">' . esc_html__( 'Click to go home', 'cbxpetition' ) . '</a></p>';
+				$confirmation_message .= '<p>' . esc_html__( 'Sorry, seems you are currently logged in as system user but this verification process is for guest user only.',
+						'cbxpetition' ) . '</p>';
+				$confirmation_message .= '<p><a class="button primary" href="' . esc_url( home_url() ) . '">' . esc_html__( 'Click to go home',
+						'cbxpetition' ) . '</a></p>';
 				$confirmation_message .= '</div>';
 
 				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				echo cbxpetition_get_template_html( 'verification.php', [ 'confirmation_message' => $confirmation_message ] );
+				echo cbxpetition_get_template_html( 'verification.php',
+					[ 'confirmation_message' => $confirmation_message ] );
 				exit();
 			}
 
 
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-			$sign_info = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $signature_table WHERE activation = %s", $activation_code ) );
+			$sign_info = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $signature_table WHERE activation = %s",
+				$activation_code ) );
 
 			$confirmation_message = '';
 
@@ -221,33 +233,41 @@ class CBXPetitionPublic {
 				//sign log found and updated
 				if ( $update_status !== false && intval( $update_status ) > 0 ) {
 					$confirmation_message = '<div class="cbxpetition-alert cbxpetition-alert-success">';
-					$confirmation_message .= '<p>' . esc_html__( 'Signature validated successfully. No email will be sent to inform this. Site admin will check your request and signature confirmation will be set as per system setting.', 'cbxpetition' ) . '</p>';
-					$confirmation_message .= '<p><a class="button primary" href="' . esc_url( $petition_url ) . '">' . esc_html__( 'Click to go petition page', 'cbxpetition' ) . '</a></p>';
+					$confirmation_message .= '<p>' . esc_html__( 'Signature validated successfully. No email will be sent to inform this. Site admin will check your request and signature confirmation will be set as per system setting.',
+							'cbxpetition' ) . '</p>';
+					$confirmation_message .= '<p><a class="button primary" href="' . esc_url( $petition_url ) . '">' . esc_html__( 'Click to go petition page',
+							'cbxpetition' ) . '</a></p>';
 					$confirmation_message .= '</div>';
 
 				} else {
 					//failed to update sign log
 					$confirmation_message = '<div class="cbxpetition-alert cbxpetition-alert-warning">';
-					$confirmation_message .= '<p>' . esc_html__( 'Sorry, signature found but validation failed.', 'cbxpetition' ) . '</p>';
-					$confirmation_message .= '<p><a class="button primary" href="' . esc_url( $petition_url ) . '">' . esc_html__( 'Click to go petition page', 'cbxpetition' ) . '</a></p>';
+					$confirmation_message .= '<p>' . esc_html__( 'Sorry, signature found but validation failed.',
+							'cbxpetition' ) . '</p>';
+					$confirmation_message .= '<p><a class="button primary" href="' . esc_url( $petition_url ) . '">' . esc_html__( 'Click to go petition page',
+							'cbxpetition' ) . '</a></p>';
 					$confirmation_message .= '</div>';
 
 				}
 
 				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				echo cbxpetition_get_template_html( 'verification.php', [ 'confirmation_message' => $confirmation_message ] );
+				echo cbxpetition_get_template_html( 'verification.php',
+					[ 'confirmation_message' => $confirmation_message ] );
 
 				exit();
 
 			} else {
 				//sign log not found or already activated
 				$confirmation_message = '<div class="cbxpetition-alert cbxpetition-alert-info">';
-				$confirmation_message .= '<p>' . esc_html__( 'Sorry, signature not found or already validated.', 'cbxpetition' ) . '</p>';
-				$confirmation_message .= '<p><a class="button primary" href="' . esc_url( home_url() ) . '">' . esc_html__( 'Click to go home', 'cbxpetition' ) . '</a></p>';
+				$confirmation_message .= '<p>' . esc_html__( 'Sorry, signature not found or already validated.',
+						'cbxpetition' ) . '</p>';
+				$confirmation_message .= '<p><a class="button primary" href="' . esc_url( home_url() ) . '">' . esc_html__( 'Click to go home',
+						'cbxpetition' ) . '</a></p>';
 				$confirmation_message .= '</div>';
 
 				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				echo cbxpetition_get_template_html( 'verification.php', [ 'confirmation_message' => $confirmation_message ] );
+				echo cbxpetition_get_template_html( 'verification.php',
+					[ 'confirmation_message' => $confirmation_message ] );
 				exit();
 			}
 			//}
@@ -266,24 +286,28 @@ class CBXPetitionPublic {
 
 			$settings = $this->settings;
 			global $wpdb;
-			$signature_table = esc_sql($wpdb->prefix . 'cbxpetition_signs');
+			$signature_table = esc_sql( $wpdb->prefix . 'cbxpetition_signs' );
 
 			$delete_token = sanitize_text_field( wp_unslash( get_query_var( 'cbxpetitionsign_delete' ) ) );
 
 			if ( $delete_token == '' ) {
 				//delete token empty
 				$confirmation_message = '<div class="cbxpetition-alert cbxpetition-alert-danger">';
-				$confirmation_message .= '<p>' . esc_html__( 'Sorry, no delete token found. Please follow correct url from your email notification.', 'cbxpetition' ) . '</p>';
-				$confirmation_message .= '<p><a class="button primary" href="' . esc_url( home_url() ) . '">' . esc_html__( 'Click to go home', 'cbxpetition' ) . '</a></p>';
+				$confirmation_message .= '<p>' . esc_html__( 'Sorry, no delete token found. Please follow correct url from your email notification.',
+						'cbxpetition' ) . '</p>';
+				$confirmation_message .= '<p><a class="button primary" href="' . esc_url( home_url() ) . '">' . esc_html__( 'Click to go home',
+						'cbxpetition' ) . '</a></p>';
 				$confirmation_message .= '</div>';
 
 				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				echo cbxpetition_get_template_html( 'petition_delete.php', [ 'confirmation_message' => $confirmation_message ] );
+				echo cbxpetition_get_template_html( 'petition_delete.php',
+					[ 'confirmation_message' => $confirmation_message ] );
 				exit();
 			}
 
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-			$sign_info = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $signature_table WHERE delete_token = %s", $delete_token ) );
+			$sign_info = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $signature_table WHERE delete_token = %s",
+				$delete_token ) );
 
 			$confirmation_message = '';
 
@@ -299,19 +323,29 @@ class CBXPetitionPublic {
 				// Always show confirmation window first for security
 				if ( ! $confirmed ) {
 					$confirmation_message = '<div class="cbxpetition-alert cbxpetition-alert-info">';
-					$confirmation_message .= '<h3>' . esc_html__( 'Delete Signature Confirmation', 'cbxpetition' ) . '</h3>';
-					$confirmation_message .= '<p>' . esc_html__( 'You are about to delete your signature from this petition. This action cannot be undone.', 'cbxpetition' ) . '</p>';
-					$confirmation_message .= '<p><strong>' . esc_html__( 'Petition:', 'cbxpetition' ) . '</strong> <a target="_blank" href="' . esc_url( get_permalink( $petition_id ) ) . '">' . esc_html( get_the_title( $petition_id ) ) . '</a></p>';
-					$confirmation_message .= '<p><strong>' . esc_html__( 'Signature Email:', 'cbxpetition' ) . '</strong> ' . esc_html( $sign_email ) . '</p>';
+					$confirmation_message .= '<h3>' . esc_html__( 'Delete Signature Confirmation',
+							'cbxpetition' ) . '</h3>';
+					$confirmation_message .= '<p>' . esc_html__( 'You are about to delete your signature from this petition. This action cannot be undone.',
+							'cbxpetition' ) . '</p>';
+					$confirmation_message .= '<p><strong>' . esc_html__( 'Petition:',
+							'cbxpetition' ) . '</strong> <a target="_blank" href="' . esc_url( get_permalink( $petition_id ) ) . '">' . esc_html( get_the_title( $petition_id ) ) . '</a></p>';
+					$confirmation_message .= '<p><strong>' . esc_html__( 'Signature Email:',
+							'cbxpetition' ) . '</strong> ' . esc_html( $sign_email ) . '</p>';
 					$confirmation_message .= '<p style="margin-top: 20px;">';
-					$confirmation_message .= '<a class="button error" href="' . esc_url( add_query_arg( [ 'cbxpetitionsign_delete' => $delete_token, 'confirm' => 'yes' ], home_url( '/' ) ) ) . '">' . esc_html__( 'Yes, Delete My Signature', 'cbxpetition' ) . '</a> ';
-					$confirmation_message .= '<a class="button" href="' . esc_url( get_permalink( $petition_id ) ) . '">' . esc_html__( 'Cancel', 'cbxpetition' ) . '</a>';
+					$confirmation_message .= '<a class="button error" href="' . esc_url( add_query_arg( [
+							'cbxpetitionsign_delete' => $delete_token,
+							'confirm'                => 'yes'
+						], home_url( '/' ) ) ) . '">' . esc_html__( 'Yes, Delete My Signature',
+							'cbxpetition' ) . '</a> ';
+					$confirmation_message .= '<a class="button button-cancel" href="' . esc_url( get_permalink( $petition_id ) ) . '">' . esc_html__( 'Cancel',
+							'cbxpetition' ) . '</a>';
 					$confirmation_message .= '</p>';
 					$confirmation_message .= '</div>';
 
 					// Show confirmation window
 					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					echo cbxpetition_get_template_html( 'petition_delete.php', [ 'confirmation_message' => $confirmation_message ] );
+					echo cbxpetition_get_template_html( 'petition_delete.php',
+						[ 'confirmation_message' => $confirmation_message ] );
 					exit();
 				}
 
@@ -319,7 +353,8 @@ class CBXPetitionPublic {
 				do_action( 'cbxpetition_sign_delete_before', (array) $sign_info, $log_id, $petition_id );
 
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-				$delete_status = $wpdb->query( $wpdb->prepare( "DELETE FROM {$signature_table} WHERE id=%d AND delete_token=%s", $log_id, $delete_token ) );
+				$delete_status = $wpdb->query( $wpdb->prepare( "DELETE FROM {$signature_table} WHERE id=%d AND delete_token=%s",
+					$log_id, $delete_token ) );
 
 				$petition_url = esc_url( get_permalink( $petition_id ) );
 
@@ -328,36 +363,47 @@ class CBXPetitionPublic {
 
 					// Success message
 					$confirmation_message = '<div class="cbxpetition-alert cbxpetition-alert-success">';
-					$confirmation_message .= '<h3>' . esc_html__( 'Signature Deleted Successfully', 'cbxpetition' ) . '</h3>';
-					$confirmation_message .= '<p>' . esc_html__( 'Your signature has been successfully removed from this petition.', 'cbxpetition' ) . '</p>';
-					$confirmation_message .= '<p><strong>' . esc_html__( 'Petition:', 'cbxpetition' ) . '</strong> <a target="_blank" href="' . esc_url( get_permalink( $petition_id ) ) . '">' . esc_html( get_the_title( $petition_id ) ) . '</a></p>';
+					$confirmation_message .= '<h3>' . esc_html__( 'Signature Deleted Successfully',
+							'cbxpetition' ) . '</h3>';
+					$confirmation_message .= '<p>' . esc_html__( 'Your signature has been successfully removed from this petition.',
+							'cbxpetition' ) . '</p>';
+					$confirmation_message .= '<p><strong>' . esc_html__( 'Petition:',
+							'cbxpetition' ) . '</strong> <a target="_blank" href="' . esc_url( get_permalink( $petition_id ) ) . '">' . esc_html( get_the_title( $petition_id ) ) . '</a></p>';
 					$confirmation_message .= '<p style="margin-top: 20px;">';
-					$confirmation_message .= '<a class="button primary" href="' . esc_url( $petition_url ) . '">' . esc_html__( 'View Petition', 'cbxpetition' ) . '</a>';
-					$confirmation_message .= '<a class="button" href="' . esc_url( home_url() ) . '">' . esc_html__( 'Go to Home', 'cbxpetition' ) . '</a>';
+					$confirmation_message .= '<a class="button primary" href="' . esc_url( $petition_url ) . '">' . esc_html__( 'View Petition',
+							'cbxpetition' ) . '</a>';
+					$confirmation_message .= '<a class="button" href="' . esc_url( home_url() ) . '">' . esc_html__( 'Go to Home',
+							'cbxpetition' ) . '</a>';
 					$confirmation_message .= '</p>';
 					$confirmation_message .= '</div>';
 
 				} else {
 					// Failed to delete
 					$confirmation_message = '<div class="cbxpetition-alert cbxpetition-alert-danger">';
-					$confirmation_message .= '<p>' . esc_html__( 'Sorry, failed to delete signature. Please try again or contact support.', 'cbxpetition' ) . '</p>';
-					$confirmation_message .= '<p><a class="button primary" href="' . esc_url( $petition_url ) . '">' . esc_html__( 'Click to go petition page', 'cbxpetition' ) . '</a></p>';
+					$confirmation_message .= '<p>' . esc_html__( 'Sorry, failed to delete signature. Please try again or contact support.',
+							'cbxpetition' ) . '</p>';
+					$confirmation_message .= '<p><a class="button primary" href="' . esc_url( $petition_url ) . '">' . esc_html__( 'Click to go petition page',
+							'cbxpetition' ) . '</a></p>';
 					$confirmation_message .= '</div>';
 				}
 
 				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				echo cbxpetition_get_template_html( 'petition_delete.php', [ 'confirmation_message' => $confirmation_message ] );
+				echo cbxpetition_get_template_html( 'petition_delete.php',
+					[ 'confirmation_message' => $confirmation_message ] );
 				exit();
 
 			} else {
 				//sign log not found or invalid token
 				$confirmation_message = '<div class="cbxpetition-alert cbxpetition-alert-info">';
-				$confirmation_message .= '<p>' . esc_html__( 'Sorry, signature not found or invalid delete token.', 'cbxpetition' ) . '</p>';
-				$confirmation_message .= '<p><a class="button primary" href="' . esc_url( home_url() ) . '">' . esc_html__( 'Click to go home', 'cbxpetition' ) . '</a></p>';
+				$confirmation_message .= '<p>' . esc_html__( 'Sorry, signature not found or invalid delete token.',
+						'cbxpetition' ) . '</p>';
+				$confirmation_message .= '<p><a class="button primary" href="' . esc_url( home_url() ) . '">' . esc_html__( 'Click to go home',
+						'cbxpetition' ) . '</a></p>';
 				$confirmation_message .= '</div>';
 
 				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				echo cbxpetition_get_template_html( 'petition_delete.php', [ 'confirmation_message' => $confirmation_message ] );
+				echo cbxpetition_get_template_html( 'petition_delete.php',
+					[ 'confirmation_message' => $confirmation_message ] );
 				exit();
 			}
 		}
@@ -369,12 +415,14 @@ class CBXPetitionPublic {
 	 */
 	public function petition_sign_submit() {
 		//if frontend sign submit and also nonce verified then go
-		// phpcs:ignore WordPress.Security.NonceVerification.Missing 
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing
 		if ( ( isset( $_POST['cbxpetition_sign_submit'] ) && absint( $_POST['cbxpetition_sign_submit'] ) == 1 ) ) {
 			$validation_errors = [];
 
-			if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['cbxpetition_token'] ?? '' ) ), 'cbxpetition_nonce' ) ) {
-				$validation_errors['message']  = esc_html__( 'Security token verify failed, please refresh or reload.', 'cbxpetition' );
+			if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['cbxpetition_token'] ?? '' ) ),
+				'cbxpetition_nonce' ) ) {
+				$validation_errors['message']  = esc_html__( 'Security token verify failed, please refresh or reload.',
+					'cbxpetition' );
 				$validation_errors['security'] = 1;
 				wp_send_json( $validation_errors );
 			}
@@ -390,7 +438,7 @@ class CBXPetitionPublic {
 
 			global $wpdb;
 
-			$signature_table = esc_sql($wpdb->prefix . 'cbxpetition_signs');
+			$signature_table = esc_sql( $wpdb->prefix . 'cbxpetition_signs' );
 			$post_data       = wp_unslash( $_POST ); //data is sanitized later below using $post_data
 
 			$user_id = 0;
@@ -414,45 +462,53 @@ class CBXPetitionPublic {
 			} else {
 				$first_name = isset( $post_data['cbxpetition-fname'] ) ? sanitize_text_field( wp_unslash( $post_data['cbxpetition-fname'] ) ) : '';
 				$last_name  = isset( $post_data['cbxpetition-lname'] ) ? sanitize_text_field( wp_unslash( $post_data['cbxpetition-lname'] ) ) : '';
-				$email      = isset( $post_data['cbxpetition-email'] ) ? sanitize_email( $post_data['cbxpetition-email'] ) : '';
+				$email      = isset( $post_data['cbxpetition-email'] ) ? sanitize_email( wp_unslash( $post_data['cbxpetition-email'] ) ) : '';
 			}
 
 			$privacy = isset( $post_data['cbxpetition-privacy'] ) ? absint( $post_data['cbxpetition-privacy'] ) : 0;
 
 			// sanitization
 			$petition_id = isset( $post_data['cbxpetition-id'] ) ? absint( $post_data['cbxpetition-id'] ) : 0;
-			$comment     = isset( $post_data['cbxpetition-comment'] ) ? sanitize_textarea_field( $post_data['cbxpetition-comment'] ) : '';
+			$comment     = isset( $post_data['cbxpetition-comment'] ) ? sanitize_textarea_field( wp_unslash( $post_data['cbxpetition-comment'] ) ) : '';
+			$location    = isset( $post_data['cbxpetition-location'] ) ? sanitize_text_field( $post_data['cbxpetition-location'] ) : '';
 
 			$page_url = home_url( add_query_arg( null, null ) );
 
 
 			if ( $petition_id == 0 ) {
-				$validation_errors['top_errors'][] = esc_html__( 'Invalid petition, petition doesn\'t exists or expired.', 'cbxpetition' );
+				$validation_errors['top_errors'][] = esc_html__( 'Invalid petition, petition doesn\'t exists or expired.',
+					'cbxpetition' );
 			} else {
 				if ( $guest ) {
 					if ( strlen( $first_name ) < 2 ) {
-						$validation_errors['cbxpetition-fname'] = esc_html__( 'First name is required and needs at least 3 characters.', 'cbxpetition' );
+						$validation_errors['cbxpetition-fname'] = esc_html__( 'First name is required and needs at least 3 characters.',
+							'cbxpetition' );
 					}
 
 					if ( strlen( $last_name ) < 2 ) {
-						$validation_errors['cbxpetition-lname'] = esc_html__( 'Last name is required and needs at least 3 characters.', 'cbxpetition' );
+						$validation_errors['cbxpetition-lname'] = esc_html__( 'Last name is required and needs at least 3 characters.',
+							'cbxpetition' );
 					}
 				}
 
 
 				if ( ! is_email( $email ) ) {
-					$validation_errors['cbxpetition-email'] = esc_html__( 'Email is required and needs valid email address', 'cbxpetition' );
+					$validation_errors['cbxpetition-email'] = esc_html__( 'Email is required and needs valid email address',
+						'cbxpetition' );
 				} elseif ( ! is_user_logged_in() ) {
 					if ( email_exists( $email ) ) {
-						$validation_errors['cbxpetition-email'] = esc_html__( 'Email already exists to any registered user. Either login or try with different email address.', 'cbxpetition' );
+						$validation_errors['cbxpetition-email'] = esc_html__( 'Email already exists to any registered user. Either login or try with different email address.',
+							'cbxpetition' );
 					} elseif ( PetitionHelper::isPetitionSignedByGuest( $petition_id, $email ) ) {
-						$validation_errors['cbxpetition-email'] = esc_html__( 'This petition has been signed using this email.', 'cbxpetition' );
+						$validation_errors['cbxpetition-email'] = esc_html__( 'This petition has been signed using this email.',
+							'cbxpetition' );
 					}
 				}
 
 
 				if ( $privacy == 0 ) {
-					$validation_errors['cbxpetition-privacy'] = esc_html__( 'You must agree to privacy terms and conditions.', 'cbxpetition' );
+					$validation_errors['cbxpetition-privacy'] = esc_html__( 'You must agree to privacy terms and conditions.',
+						'cbxpetition' );
 				}
 			}
 
@@ -473,6 +529,7 @@ class CBXPetitionPublic {
 			$data_safe['l_name']      = $last_name;
 			$data_safe['email']       = $email;
 			$data_safe['comment']     = $comment;
+			$data_safe['location']    = $location;
 
 			$default_state    = $settings->get_field( 'default_state', 'cbxpetition_general', 'approved' );
 			$guest_activation = $settings->get_field( 'guest_activation', 'cbxpetition_general', '' );
@@ -506,6 +563,7 @@ class CBXPetitionPublic {
 				'%s', //l_name
 				'%s', //email
 				'%s', //comment
+				'%s', //comment
 				'%s', //state
 				'%s', //activation
 				'%s', //delete_token
@@ -528,7 +586,9 @@ class CBXPetitionPublic {
 
 			$log_data = null;
 
-			if ( $wpdb->insert( $signature_table, $data_safe, $data_format ) !== false ) { // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
+			if ( $wpdb->insert( $signature_table, $data_safe,
+					$data_format ) !== false ) {
 				//$show_form = 0;
 
 				$log_id          = $wpdb->insert_id;
@@ -540,11 +600,13 @@ class CBXPetitionPublic {
 				do_action( 'cbxpetition_sign_submit_after_insert', $petition_id, $log_id, $log_data );
 
 				$single_message = [
-					'text' => esc_html__( 'Your signature request stored successfully. Thank you!', 'cbxpetition' ),
+					'text' => esc_html__( 'Thank you for signing this petition. Your signature has been submitted and counted toward this petition\'s goal. Your support helps drive meaningful change.',
+						'cbxpetition' ),
 					'type' => 'success',
 				];
 
-				$success_arr[]  = apply_filters( 'cbxpetition_sign_submit_insert_message', $single_message, $petition_id, $log_id, $log_data );
+				$success_arr[] = apply_filters( 'cbxpetition_sign_submit_insert_message', $single_message, $petition_id,
+					$log_id, $log_data );
 
 
 			} else {
@@ -611,7 +673,7 @@ class CBXPetitionPublic {
 							'petition_sign' => $petition_sign,
 							'order'         => $order,
 							'orderby'       => $order_by,
-							'per_page'       => $per_page,
+							'per_page'      => $per_page,
 							'page'          => $page
 						]
 					);
@@ -677,7 +739,8 @@ class CBXPetitionPublic {
 					$is_owner = ( $current_id > 0 && $add_by === $current_id );
 
 					if ( ! $is_owner ) {
-						$errors[] = esc_html__( 'Sorry! You are not authorized to delete this signature.', 'cbxpetition' );
+						$errors[] = esc_html__( 'Sorry! You are not authorized to delete this signature.',
+							'cbxpetition' );
 					}
 				}
 			}
@@ -733,31 +796,29 @@ class CBXPetitionPublic {
 	 * @return mixed|string
 	 * @since 2.0.0
 	 */
-	public function include_custom_templates($template) {
+	public function include_custom_templates( $template ) {
 		$settings             = $this->settings;
 		$load_custom_template = esc_attr( $settings->get_field( 'custom_template', 'cbxpetition_basic', 'on' ) );
 
 
 		if ( $load_custom_template == 'on' ) {
 			if ( is_singular( 'cbxpetition' ) ) {
-				$theme_template = locate_template('single-cbxpetition.php');
-				if ($theme_template) {
+				$theme_template = locate_template( 'single-cbxpetition.php' );
+				if ( $theme_template ) {
 					return $theme_template;
 				}
 
 				return CBXPETITION_ROOT_PATH . 'templates/single-cbxpetition.php';
-			}
-			else if(is_post_type_archive('cbxpetition')){
-				$theme_template = locate_template('archive-cbxpetition.php');
-				if ($theme_template) {
+			} elseif ( is_post_type_archive( 'cbxpetition' ) ) {
+				$theme_template = locate_template( 'archive-cbxpetition.php' );
+				if ( $theme_template ) {
 					return $theme_template;
 				}
 
 				return CBXPETITION_ROOT_PATH . 'templates/archive-cbxpetition.php';
-			}
-			else if(is_tax('cbxpetition_cat') || is_tax('cbxpetition_tag')){
-				$theme_template = locate_template('taxonomy-cbxpetition.php');
-				if ($theme_template) {
+			} elseif ( is_tax( 'cbxpetition_cat' ) || is_tax( 'cbxpetition_tag' ) ) {
+				$theme_template = locate_template( 'taxonomy-cbxpetition.php' );
+				if ( $theme_template ) {
 					return $theme_template;
 				}
 
@@ -768,15 +829,39 @@ class CBXPetitionPublic {
 		return $template;
 	}//end method include_custom_templates
 
+	public function category_display_header( $petition_id ) {
+		$settings   = $this->settings;
+		$cat_enable = $settings->get_field( 'cat_enable', 'cbxpetition_basic', 'on' );
+		if ( $cat_enable == 'on' ) {
+			// Specify the custom taxonomy name
+			$taxonomy = 'cbxpetition_cat';
+
+			// Get the terms associated with the post
+			$terms = get_the_terms( $petition_id, $taxonomy );
+			if ( $terms && ! is_wp_error( $terms ) ) {
+				foreach ( $terms as $term ) {
+					// Get the term link
+					$term_link = get_term_link( $term );
+					if ( ! is_wp_error( $term_link ) ) {
+						// Display the term link
+						echo '<span class="cbxpetition_archive_loop_item_category "><a class="button primary" href="' . esc_url( $term_link ) . '">' . esc_html( $term->name ) . '</a></span>';
+						break;
+					}
+				}
+			}
+		}
+
+	}//end method category_display_header
+
 	/**
 	 * Display petition category after title in details page
 	 *
 	 * @return void
 	 */
 	public function category_display_after_title() {
-		$settings = $this->settings;
-		$cat_enable       = $settings->get_field( 'cat_enable', 'cbxpetition_basic', 'on' );
-		if($cat_enable == 'on'){
+		$settings   = $this->settings;
+		$cat_enable = $settings->get_field( 'cat_enable', 'cbxpetition_basic', 'on' );
+		if ( $cat_enable == 'on' ) {
 			// Get the current post ID
 			$post_id = get_the_ID();
 
@@ -784,16 +869,16 @@ class CBXPetitionPublic {
 			$taxonomy = 'cbxpetition_cat';
 
 			// Get the terms associated with the post
-			$terms = get_the_terms($post_id, $taxonomy);
+			$terms = get_the_terms( $post_id, $taxonomy );
 
-			if ($terms && !is_wp_error($terms)) {
+			if ( $terms && ! is_wp_error( $terms ) ) {
 				echo '<ul class="tags petition-taxonomy-links petition-category-links">';
-				foreach ($terms as $term) {
+				foreach ( $terms as $term ) {
 					// Get the term link
-					$term_link = get_term_link($term);
-					if (!is_wp_error($term_link)) {
+					$term_link = get_term_link( $term );
+					if ( ! is_wp_error( $term_link ) ) {
 						// Display the term link
-						echo '<li class="tag tag-petition"><a href="' . esc_url($term_link) . '">' . esc_html($term->name) . '</a></li>';
+						echo '<li class="tag tag-petition"><a href="' . esc_url( $term_link ) . '">' . esc_html( $term->name ) . '</a></li>';
 					}
 				}
 				echo '</ul>';
@@ -802,14 +887,60 @@ class CBXPetitionPublic {
 	}//end method category_display_after_title
 
 	/**
+	 * Display petition stat in archive loop
+	 *
+	 * @return string
+	 */
+	public function loop_item_content_inside_stat( $petition_id ) {
+		echo do_shortcode( '[cbxpetition_stat petition_id="' . absint( $petition_id ) . '" style="2"]' );
+	}//end method loop_item_content_inside_stat
+
+	/**
+	 * Display petition stat in archive loop
+	 *
+	 * @return string
+	 */
+	public function loop_item_content_inside_sign_now( $petition_id ) {
+		$expire_date = get_post_meta( $petition_id, '_cbxpetition_expire_date', true );
+		$expire_date = new \DateTime( $expire_date );
+		$now_date    = new \DateTime( 'now' );
+
+		echo '<div class="loop_item_content_sign_wrap">';
+
+		if ( $expire_date == '' ) {
+			echo '';
+		} elseif ( $expire_date < $now_date ) {
+			//expired
+			echo '<a class="loop_item_content_sign_ref loop_item_content_sign_expired button outline error disabled" href="#">' . esc_html__( 'Expired',
+					'cbxpetition' ) . '</a>';
+		} else {
+			//not expired
+			$days_left = $now_date->diff( $expire_date )->days;
+			/* translators: 1: Petition expiration days left, string,  */
+			$message = sprintf(
+			/* translators: %s: number of days left */
+				esc_html__( '%s days left', 'cbxpetition' ),
+				esc_html( number_format_i18n( intval( $days_left ) ) )
+			);
+			//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<span class="loop_item_content_sign_left">' . $message . '</span>';
+
+			echo '<a class="loop_item_content_sign_ref button outline success" href="' . esc_url( get_the_permalink( $petition_id ) ) . '#cbxpetition_signform_' . absint( $petition_id ) . '">' . esc_html__( 'Sign Now',
+					'cbxpetition' ) . '</a>';
+		}
+
+		echo '</div>';
+	}//end method loop_item_content_inside_sign_now
+
+	/**
 	 * Display petition category after title in details page
 	 *
 	 * @return void
 	 */
 	public function tag_display_after_title() {
-		$settings = $this->settings;
-		$tag_enable       = $settings->get_field( 'tag_enable', 'cbxpetition_basic', 'on' );
-		if($tag_enable == 'on'){
+		$settings   = $this->settings;
+		$tag_enable = $settings->get_field( 'tag_enable', 'cbxpetition_basic', 'on' );
+		if ( $tag_enable == 'on' ) {
 			// Get the current post ID
 			$post_id = get_the_ID();
 
@@ -817,20 +948,35 @@ class CBXPetitionPublic {
 			$taxonomy = 'cbxpetition_tag';
 
 			// Get the terms associated with the post
-			$terms = get_the_terms($post_id, $taxonomy);
+			$terms = get_the_terms( $post_id, $taxonomy );
 
-			if ($terms && !is_wp_error($terms)) {
+			if ( $terms && ! is_wp_error( $terms ) ) {
 				echo '<ul class="tags petition-taxonomy-links petition-tag-links">';
-				foreach ($terms as $term) {
+				foreach ( $terms as $term ) {
 					// Get the term link
-					$term_link = get_term_link($term);
-					if (!is_wp_error($term_link)) {
+					$term_link = get_term_link( $term );
+					if ( ! is_wp_error( $term_link ) ) {
 						// Display the term link
-						echo '<li class="tag tag-petition"><a href="' . esc_url($term_link) . '">' . esc_html($term->name) . '</a></li>';
+						echo '<li class="tag tag-petition"><a href="' . esc_url( $term_link ) . '">' . esc_html( $term->name ) . '</a></li>';
 					}
 				}
 				echo '</ul>';
 			}
 		}
 	}//end method tag_display_after_title
+
+	/**
+	 * Display petition title in loop/archive
+	 *
+	 * @param $petition_id
+	 *
+	 * @return void
+	 */
+	public function loop_item_title($petition_id) {
+		?>
+		<h2 class="cbxpetition_loop_item-title cbxpetition_loop_item-title-archive">
+			<a href="<?php echo esc_url(get_the_permalink()); ?>"><?php echo esc_html(get_the_title()); ?></a>
+		</h2>
+		<?php
+	}//end method loop_item_title
 }//end class CBXPetitionPublic

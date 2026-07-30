@@ -9,7 +9,8 @@ class ResetCommand extends AbstractCommand
     /**
      * Resets given image to its backup state
      *
-     * @param  \Intervention\Image\Image $image
+     * @param \Intervention\Image\Image $image
+     *
      * @return boolean
      */
     public function execute($image)

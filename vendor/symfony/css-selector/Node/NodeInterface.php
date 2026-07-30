@@ -22,6 +22,6 @@ namespace CbxPetitionScoped\Symfony\Component\CssSelector\Node;
  */
 interface NodeInterface extends \Stringable
 {
-    public function getNodeName() : string;
-    public function getSpecificity() : Specificity;
+    public function getNodeName(): string;
+    public function getSpecificity(): Specificity;
 }

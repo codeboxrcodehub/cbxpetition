@@ -41,17 +41,18 @@ class RectangleShape extends AbstractShape
      */
     public function __construct($x1 = null, $y1 = null, $x2 = null, $y2 = null)
     {
-        $this->x1 = \is_numeric($x1) ? \intval($x1) : $this->x1;
-        $this->y1 = \is_numeric($y1) ? \intval($y1) : $this->y1;
-        $this->x2 = \is_numeric($x2) ? \intval($x2) : $this->x2;
-        $this->y2 = \is_numeric($y2) ? \intval($y2) : $this->y2;
+        $this->x1 = is_numeric($x1) ? intval($x1) : $this->x1;
+        $this->y1 = is_numeric($y1) ? intval($y1) : $this->y1;
+        $this->x2 = is_numeric($x2) ? intval($x2) : $this->x2;
+        $this->y2 = is_numeric($y2) ? intval($y2) : $this->y2;
     }
     /**
      * Draw rectangle to given image at certain position
      *
-     * @param  Image   $image
-     * @param  int     $x
-     * @param  int     $y
+     * @param Image $image
+     * @param int $x
+     * @param int $y
+     *
      * @return boolean
      */
     public function applyToImage(Image $image, $x = 0, $y = 0)

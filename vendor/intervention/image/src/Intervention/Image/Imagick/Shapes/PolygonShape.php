@@ -25,9 +25,10 @@ class PolygonShape extends AbstractShape
     /**
      * Draw polygon on given image
      *
-     * @param  Image   $image
-     * @param  int     $x
-     * @param  int     $y
+     * @param Image $image
+     * @param int $x
+     * @param int $y
+     *
      * @return boolean
      */
     public function applyToImage(Image $image, $x = 0, $y = 0)
@@ -49,7 +50,8 @@ class PolygonShape extends AbstractShape
     /**
      * Format polygon points to Imagick format
      *
-     * @param  Array $points
+     * @param Array $points
+     *
      * @return Array
      */
     private function formatPoints($points)

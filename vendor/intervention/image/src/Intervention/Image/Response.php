@@ -27,9 +27,9 @@ class Response
     /**
      * Creates a new instance of response
      *
-     * @param Image   $image
-     * @param string  $format
-     * @param int     $quality
+     * @param Image $image
+     * @param string $format
+     * @param int $quality
      */
     public function __construct(Image $image, $format = null, $quality = null)
     {
@@ -46,19 +46,19 @@ class Response
     {
         $this->image->encode($this->format, $this->quality);
         $data = $this->image->getEncoded();
-        $mime = \finfo_buffer(\finfo_open(\FILEINFO_MIME_TYPE), $data);
-        $length = \strlen($data);
-        if (\function_exists('CbxPetitionScoped\\app') && \is_a($app = app(), 'CbxPetitionScoped\\Illuminate\\Foundation\\Application')) {
+        $mime = finfo_buffer(finfo_open(\FILEINFO_MIME_TYPE), $data);
+        $length = strlen($data);
+        if (function_exists('CbxPetitionScoped\app') && is_a($app = app(), 'CbxPetitionScoped\Illuminate\Foundation\Application')) {
             $response = IlluminateResponse::make($data);
             $response->header('Content-Type', $mime);
             $response->header('Content-Length', $length);
-        } elseif (\class_exists('CbxPetitionScoped\\Symfony\\Component\\HttpFoundation\\Response')) {
+        } elseif (class_exists('CbxPetitionScoped\Symfony\Component\HttpFoundation\Response')) {
             $response = new SymfonyResponse($data);
             $response->headers->set('Content-Type', $mime);
             $response->headers->set('Content-Length', $length);
         } else {
-            \header('Content-Type: ' . $mime);
-            \header('Content-Length: ' . $length);
+            header('Content-Type: ' . $mime);
+            header('Content-Length: ' . $length);
             $response = $data;
         }
         return $response;

@@ -8,7 +8,8 @@ class SharpenCommand extends AbstractCommand
     /**
      * Sharpen image
      *
-     * @param  \Intervention\Image\Image $image
+     * @param \Intervention\Image\Image $image
+     *
      * @return boolean
      */
     public function execute($image)
@@ -21,6 +22,6 @@ class SharpenCommand extends AbstractCommand
         $div = 1;
         $matrix = [[$min, $max, $min], [$max, $abs, $max], [$min, $max, $min]];
         // apply the matrix
-        return \imageconvolution($image->getCore(), $matrix, $div, 0);
+        return imageconvolution($image->getCore(), $matrix, $div, 0);
     }
 }

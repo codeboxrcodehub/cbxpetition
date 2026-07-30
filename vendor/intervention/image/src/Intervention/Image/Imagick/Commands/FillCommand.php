@@ -12,7 +12,8 @@ class FillCommand extends AbstractCommand
     /**
      * Fills image with color or pattern
      *
-     * @param  \Intervention\Image\Image $image
+     * @param \Intervention\Image\Image $image
+     *
      * @return boolean
      */
     public function execute($image)
@@ -30,7 +31,7 @@ class FillCommand extends AbstractCommand
             $filling = new Color($filling);
         }
         // flood fill if coordinates are set
-        if (\is_int($x) && \is_int($y)) {
+        if (is_int($x) && is_int($y)) {
             // flood fill with texture
             if ($filling instanceof Image) {
                 // create tile
@@ -62,17 +63,15 @@ class FillCommand extends AbstractCommand
                 // restore alpha channel of original image
                 $image->getCore()->compositeImage($alpha, \Imagick::COMPOSITE_COPYOPACITY, 0, 0);
             }
-        } else {
-            if ($filling instanceof Image) {
-                // fill whole image with texture
-                $image->setCore($image->getCore()->textureImage($filling->getCore()));
-            } elseif ($filling instanceof Color) {
-                // fill whole image with color
-                $draw = new \ImagickDraw();
-                $draw->setFillColor($filling->getPixel());
-                $draw->rectangle(0, 0, $image->getWidth(), $image->getHeight());
-                $image->getCore()->drawImage($draw);
-            }
+        } else if ($filling instanceof Image) {
+            // fill whole image with texture
+            $image->setCore($image->getCore()->textureImage($filling->getCore()));
+        } elseif ($filling instanceof Color) {
+            // fill whole image with color
+            $draw = new \ImagickDraw();
+            $draw->setFillColor($filling->getPixel());
+            $draw->rectangle(0, 0, $image->getWidth(), $image->getHeight());
+            $image->getCore()->drawImage($draw);
         }
         return \true;
     }

@@ -71,7 +71,7 @@ function cbxpetition_get_template( $template_name, $args = [], $template_path = 
 
 	if ( ! file_exists( $located ) ) {
 		/* translators: %s template */
-		_doing_it_wrong( __FUNCTION__, sprintf( __( '%s does not exist.', 'cbxpetition' ), '<code>' . esc_html($located) . '</code>' ), '1.0.0' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		_doing_it_wrong( __FUNCTION__, sprintf( __( '%s does not exist.', 'cbxpetition' ), '<code>' . esc_html( $located ) . '</code>' ), '1.0.0' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		return;
 	}

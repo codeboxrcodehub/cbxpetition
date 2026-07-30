@@ -59,6 +59,7 @@ class PetitionHelper {
                           l_name varchar(255) DEFAULT NULL COMMENT 'signer last name',
                           email varchar(100) NOT NULL COMMENT 'signer email',
                           comment text DEFAULT NULL COMMENT 'signer comment about petition',
+                          location varchar(255) DEFAULT NULL COMMENT 'signer location  or address',
                           state varchar(30) NOT NULL DEFAULT 'pending' COMMENT 'sign condition',
                           activation VARCHAR(255) DEFAULT NULL COMMENT 'activation code',
                           delete_token VARCHAR(255) DEFAULT NULL COMMENT 'delete token for signature deletion via email link',
@@ -66,7 +67,10 @@ class PetitionHelper {
                           mod_by bigint(11) unsigned NOT NULL DEFAULT '0' COMMENT 'foreign key of user table. who last modify this list',
                           add_date datetime DEFAULT NULL COMMENT 'add date',
                           mod_date datetime DEFAULT NULL COMMENT 'last modified date',
-                          PRIMARY KEY (id)
+                          PRIMARY KEY (id),
+						  KEY state (state),
+                          KEY email (email),
+                          KEY add_by (add_by)
                         ) $charset_collate; ";
 
 		dbDelta( [ $signature_table_sql ] );
@@ -154,6 +158,8 @@ class PetitionHelper {
 		}
 
 
+		//phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+
 		$page_id = absint( $page_id );
 		if ( $page_id > 0 ) {
 			//page found
@@ -172,11 +178,8 @@ class PetitionHelper {
 
 		} else {
 			//search by slug for non trashed and then trashed, then if not found create one
-
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			if ( ( $page_id = intval( $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_type = 'page' AND post_status != 'trash' AND post_name = %s LIMIT 1;",
 					$slug ) ) ) ) > 0 ) {
-
 				//non trashed post found by slug
 				//page found but not publish, so publish it
 				//$page_id   = $page_found_by_slug;
@@ -186,7 +189,7 @@ class PetitionHelper {
 				];
 				wp_update_post( $page_data );
 			} elseif ( ( $page_id = intval( $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_type = 'page' AND post_status = 'trash' AND post_name = %s LIMIT 1;",
-					// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+
 					$slug . '__trashed' ) ) ) ) > 0 ) {
 
 				//trash post found and unstrash/publish it
@@ -204,6 +207,8 @@ class PetitionHelper {
 				$page_id = wp_insert_post( $page_data );
 			}
 		}
+
+		//phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 
 		//let's update the option
 		if ( is_numeric( $page_id ) ) {
@@ -801,7 +806,7 @@ class PetitionHelper {
 	}//end method getSignListingDataCount
 
 	/**
-	 * petitions to expire for widget
+	 * Get Expired petitions
 	 *
 	 * @param  int  $per_page
 	 *
@@ -1274,7 +1279,7 @@ class PetitionHelper {
 			//$r .= '<nav '. $nav_class .' aria-label="navigation">' . "\n\t";
 			$r .= '<div ' . $nav_class . ' aria-label="navigation">' . "\n\t";
 
-			$r .= '<ul class="cbxpetition-pagination ' . $ul_class . '">' . "\n";
+			$r .= '<ul class="cbxpetition-pagination ' . esc_attr( $ul_class ) . '">' . "\n";
 			foreach ( $page_links as $link ) {
 				$li_classes = explode( " ", $args['li_class'] );
 				strpos( $link, 'current' ) !== false ? array_push( $li_classes, 'active' ) : ( strpos( $link, 'dots' ) !== false ? array_push( $li_classes, 'disabled' ) : '' );
@@ -1864,7 +1869,7 @@ class PetitionHelper {
 
 		$gust_login_forms        = self::guest_login_forms();
 		$tools_delete_table_html = '<div id="setting_resetinfo">' . esc_html__( 'Loading ...', 'cbxpetition' ) . '</div>';
-
+		$email_templates         = self::get_email_templates();
 
 		$settings_builtin_fields = [
 			'cbxpetition_basic'     => [
@@ -2201,6 +2206,14 @@ class PetitionHelper {
 					'type'    => 'heading',
 					'default' => '',
 				],
+				'selected_template'      => [
+					'name'              => 'selected_template',
+					'label'             => esc_html__( 'Email Template', 'cbxpetition' ),
+					'type'              => 'select',
+					'default'           => 'tpl-general',
+					'options'           => $email_templates,
+					'sanitize_callback' => 'sanitize_text_field'
+				],
 				'headerimage'            => [
 					'name'    => 'headerimage',
 					'label'   => esc_html__( 'Header Image', 'cbxpetition' ),
@@ -2215,7 +2228,7 @@ class PetitionHelper {
 					'type'    => 'wysiwyg',
 					'default' => '{site_title}',
 				],
-				'basecolor'              => [
+				/* 'basecolor'              => [
 					'name'    => 'basecolor',
 					'label'   => esc_html__( 'Base Color', 'cbxpetition' ),
 					'desc'    => esc_html__( 'The base color of the email.', 'cbxpetition' ),
@@ -2249,7 +2262,7 @@ class PetitionHelper {
 					'desc'    => esc_html__( 'The footer text colour of the footer of email.', 'cbxpetition' ),
 					'type'    => 'color',
 					'default' => '#3c3c3c',
-				],
+				], */
 			],
 			'cbxpetition_tools'     => [
 				'tools_heading'        => [
@@ -2852,4 +2865,70 @@ class PetitionHelper {
 			}
 		}
 	}//end method create_default_categories
+
+	/**
+	 * Returns email template names as array
+	 *
+	 * @return mixed|null
+	 * @since 1.0.12
+	 */
+	public static function get_email_templates() {
+		$email_templates = [
+			'tpl-general' => esc_html__( 'General Template', 'cbxpetition' ),
+			'tpl-clean'   => esc_html__( 'Clean Template', 'cbxpetition' ),
+		];
+
+		return apply_filters( 'cbxpetition_email_templates', $email_templates );
+	}//end metod get_email_templates
+
+	/**
+	 * Check if any array is associtive or has index based
+	 *
+	 * @param  array  $array
+	 *
+	 * @return bool
+	 */
+	public static function is_associative_array( array $array ): bool {
+		if ( $array === [] ) {
+			return false;
+		}
+
+		return array_keys( $array ) !== range( 0, count( $array ) - 1 );
+	}//end method is_associative_array
+
+	/**
+	 * Convert non associative array into associative array
+	 *
+	 * @param  array  $options
+	 *
+	 * @return array
+	 */
+	public static function convert_to_associative_array( array $options ) {
+		return array_combine(
+			$options,
+			array_map( 'ucfirst', $options )
+		);
+	}//end method convert_to_associative_array
+
+	/**
+	 * Check if petition expired or not
+	 *
+	 * @param $petition_id
+	 *
+	 * @return bool
+	 */
+	public static function is_petition_expired( $petition_id ) {
+		$expire_date = get_post_meta( $petition_id, '_cbxpetition_expire_date', true );
+
+		if ( $expire_date == '' ) {
+			return true;
+		} elseif ( $expire_date < $now_date ) {
+			//expired
+			return true;
+		} else {
+			//not expired
+			return false;
+		}
+
+	}
 }//end class PetitionHelper

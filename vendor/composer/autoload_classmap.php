@@ -6,6 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'CbxPetitionScoped\\Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
     'CbxPetitionScoped\\GuzzleHttp\\Psr7\\AppendStream' => $vendorDir . '/guzzlehttp/psr7/src/AppendStream.php',
     'CbxPetitionScoped\\GuzzleHttp\\Psr7\\BufferStream' => $vendorDir . '/guzzlehttp/psr7/src/BufferStream.php',
     'CbxPetitionScoped\\GuzzleHttp\\Psr7\\CachingStream' => $vendorDir . '/guzzlehttp/psr7/src/CachingStream.php',
@@ -26,6 +27,7 @@ return array(
     'CbxPetitionScoped\\GuzzleHttp\\Psr7\\Query' => $vendorDir . '/guzzlehttp/psr7/src/Query.php',
     'CbxPetitionScoped\\GuzzleHttp\\Psr7\\Request' => $vendorDir . '/guzzlehttp/psr7/src/Request.php',
     'CbxPetitionScoped\\GuzzleHttp\\Psr7\\Response' => $vendorDir . '/guzzlehttp/psr7/src/Response.php',
+    'CbxPetitionScoped\\GuzzleHttp\\Psr7\\Rfc3986' => $vendorDir . '/guzzlehttp/psr7/src/Rfc3986.php',
     'CbxPetitionScoped\\GuzzleHttp\\Psr7\\Rfc7230' => $vendorDir . '/guzzlehttp/psr7/src/Rfc7230.php',
     'CbxPetitionScoped\\GuzzleHttp\\Psr7\\ServerRequest' => $vendorDir . '/guzzlehttp/psr7/src/ServerRequest.php',
     'CbxPetitionScoped\\GuzzleHttp\\Psr7\\Stream' => $vendorDir . '/guzzlehttp/psr7/src/Stream.php',
@@ -176,6 +178,7 @@ return array(
     'CbxPetitionScoped\\Pelago\\Emogrifier\\Utilities\\CssConcatenator' => $vendorDir . '/pelago/emogrifier/src/Utilities/CssConcatenator.php',
     'CbxPetitionScoped\\Pelago\\Emogrifier\\Utilities\\DeclarationBlockParser' => $vendorDir . '/pelago/emogrifier/src/Utilities/DeclarationBlockParser.php',
     'CbxPetitionScoped\\Pelago\\Emogrifier\\Utilities\\Preg' => $vendorDir . '/pelago/emogrifier/src/Utilities/Preg.php',
+    'CbxPetitionScoped\\PhpToken' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
     'CbxPetitionScoped\\Psr\\Http\\Message\\MessageInterface' => $vendorDir . '/psr/http-message/src/MessageInterface.php',
     'CbxPetitionScoped\\Psr\\Http\\Message\\RequestFactoryInterface' => $vendorDir . '/psr/http-factory/src/RequestFactoryInterface.php',
     'CbxPetitionScoped\\Psr\\Http\\Message\\RequestInterface' => $vendorDir . '/psr/http-message/src/RequestInterface.php',
@@ -234,6 +237,7 @@ return array(
     'CbxPetitionScoped\\Sabberworm\\CSS\\Value\\ValueList' => $vendorDir . '/sabberworm/php-css-parser/src/Value/ValueList.php',
     'CbxPetitionScoped\\Soundasleep\\Html2Text' => $vendorDir . '/soundasleep/html2text/src/Html2Text.php',
     'CbxPetitionScoped\\Soundasleep\\Html2TextException' => $vendorDir . '/soundasleep/html2text/src/Html2TextException.php',
+    'CbxPetitionScoped\\Stringable' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
     'CbxPetitionScoped\\Symfony\\Component\\CssSelector\\CssSelectorConverter' => $vendorDir . '/symfony/css-selector/CssSelectorConverter.php',
     'CbxPetitionScoped\\Symfony\\Component\\CssSelector\\Exception\\ExceptionInterface' => $vendorDir . '/symfony/css-selector/Exception/ExceptionInterface.php',
     'CbxPetitionScoped\\Symfony\\Component\\CssSelector\\Exception\\ExpressionErrorException' => $vendorDir . '/symfony/css-selector/Exception/ExpressionErrorException.php',
@@ -284,6 +288,8 @@ return array(
     'CbxPetitionScoped\\Symfony\\Component\\CssSelector\\XPath\\Translator' => $vendorDir . '/symfony/css-selector/XPath/Translator.php',
     'CbxPetitionScoped\\Symfony\\Component\\CssSelector\\XPath\\TranslatorInterface' => $vendorDir . '/symfony/css-selector/XPath/TranslatorInterface.php',
     'CbxPetitionScoped\\Symfony\\Component\\CssSelector\\XPath\\XPathExpr' => $vendorDir . '/symfony/css-selector/XPath/XPathExpr.php',
+    'CbxPetitionScoped\\UnhandledMatchError' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
+    'CbxPetitionScoped\\ValueError' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
     'CbxPetitionScoped\\enshrined\\svgSanitize\\ElementReference\\Resolver' => $vendorDir . '/enshrined/svg-sanitize/src/ElementReference/Resolver.php',
     'CbxPetitionScoped\\enshrined\\svgSanitize\\ElementReference\\Subject' => $vendorDir . '/enshrined/svg-sanitize/src/ElementReference/Subject.php',
     'CbxPetitionScoped\\enshrined\\svgSanitize\\ElementReference\\Usage' => $vendorDir . '/enshrined/svg-sanitize/src/ElementReference/Usage.php',
@@ -305,4 +311,6 @@ return array(
     'Cbx\\Petition\\Widgets\\Classic\\CBXPetitionSignformWidget' => $baseDir . '/includes/Widgets/Classic/CBXPetitionSignformWidget.php',
     'Cbx\\Petition\\Widgets\\Classic\\CBXPetitionSummaryWidget' => $baseDir . '/includes/Widgets/Classic/CBXPetitionSummaryWidget.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'Symfony\\Polyfill\\Php80\\Php80' => $vendorDir . '/symfony/polyfill-php80/Php80.php',
+    'Symfony\\Polyfill\\Php80\\PhpToken' => $vendorDir . '/symfony/polyfill-php80/PhpToken.php',
 );

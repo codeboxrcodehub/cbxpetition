@@ -8,7 +8,8 @@ class SharpenCommand extends AbstractCommand
     /**
      * Sharpen image
      *
-     * @param  \Intervention\Image\Image $image
+     * @param \Intervention\Image\Image $image
+     *
      * @return boolean
      */
     public function execute($image)

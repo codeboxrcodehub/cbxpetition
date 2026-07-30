@@ -1,4 +1,5 @@
 <?php
+
 namespace Cbx\Petition;
 
 // If this file is called directly, abort.
@@ -38,7 +39,7 @@ class CBXPetitionAdmin {
 		PetitionHelper::create_cbxpetition_post_type();
 
 		// Check the option we set on activation.
-		if ( get_transient( 'cbxpetition_flush_rewrite_rules' )) {
+		if ( get_transient( 'cbxpetition_flush_rewrite_rules' ) ) {
 			flush_rewrite_rules();
 			delete_transient( 'cbxpetition_flush_rewrite_rules' );
 		}
@@ -84,9 +85,7 @@ class CBXPetitionAdmin {
 
 		//petition sign listing
 		$sign_listing_page_hook = add_submenu_page( 'edit.php?post_type=cbxpetition',
-			esc_html__( 'Signs Listing', 'cbxpetition' ),
-			esc_html__( 'Signatures', 'cbxpetition' ),
-			'manage_options',
+			esc_html__( 'Signs Listing', 'cbxpetition' ), esc_html__( 'Signatures', 'cbxpetition' ), 'manage_options',
 			'cbxpetition-signatures', [
 				$this,
 				'display_signatures',
@@ -99,28 +98,18 @@ class CBXPetitionAdmin {
 		}
 
 		//add email menu for this plugin
-		add_submenu_page( 'edit.php?post_type=cbxpetition',
-			esc_html__( 'CBX Petition: Email Manager', 'cbxpetition' ),
-			esc_html__( 'Emails', 'cbxpetition' ),
-			'manage_options',
-			'cbxpetition-emails',
-			[ $this, 'admin_menu_display_emails' ], 8
-		);
+		add_submenu_page( 'edit.php?post_type=cbxpetition', esc_html__( 'CBX Petition: Email Manager', 'cbxpetition' ),
+			esc_html__( 'Emails', 'cbxpetition' ), 'manage_options', 'cbxpetition-emails',
+			[ $this, 'admin_menu_display_emails' ], 8 );
 
 		//add settings for this plugin
-		add_submenu_page( 'edit.php?post_type=cbxpetition',
-			esc_html__( 'Global Settings', 'cbxpetition' ),
-			esc_html__( 'Settings', 'cbxpetition' ),
-			'manage_options',
-			'cbxpetition-settings',
+		add_submenu_page( 'edit.php?post_type=cbxpetition', esc_html__( 'Global Settings', 'cbxpetition' ),
+			esc_html__( 'Settings', 'cbxpetition' ), 'manage_options', 'cbxpetition-settings',
 			[ $this, 'display_settings' ] );
 
 		//add settings for this plugin
-		add_submenu_page( 'edit.php?post_type=cbxpetition',
-			esc_html__( 'Helps & Updates', 'cbxpetition' ),
-			esc_html__( 'Helps & Updates', 'cbxpetition' ),
-			'manage_options',
-			'cbxpetition-doc',
+		add_submenu_page( 'edit.php?post_type=cbxpetition', esc_html__( 'Helps & Updates', 'cbxpetition' ),
+			esc_html__( 'Helps & Updates', 'cbxpetition' ), 'manage_options', 'cbxpetition-doc',
 			[ $this, 'display_support' ] );
 
 	}//end method admin_menus
@@ -140,13 +129,14 @@ class CBXPetitionAdmin {
 			$log_id = ( isset( $_GET['id'] ) && absint( $_GET['id'] ) > 0 ) ? absint( $_GET['id'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 			if ( $log_id == 0 ) {
-				echo esc_html__( 'Invalid signature', 'cbxpetition' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo esc_html__( 'Invalid signature',
+					'cbxpetition' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 
 			$sign_info = null;
 			if ( $log_id > 0 ) {
 				global $wpdb;
-				$petition_signature_table = esc_sql($wpdb->prefix . 'cbxpetition_signs');
+				$petition_signature_table = esc_sql( $wpdb->prefix . 'cbxpetition_signs' );
 
 				//$sign_info = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $petition_signature_table WHERE id = %d", $log_id ), ARRAY_A );
 				$sign_info = PetitionHelper::petitionSignInfo( $log_id );
@@ -154,24 +144,25 @@ class CBXPetitionAdmin {
 				if ( ! is_null( $sign_info ) && is_array( $sign_info ) ) {
 					$petition_id = isset( $sign_info['petition_id'] ) ? absint( $sign_info['petition_id'] ) : 0;
 					$comment     = isset( $sign_info['comment'] ) ? wp_unslash( $sign_info['comment'] ) : '';
+					$location    = isset( $sign_info['location'] ) ? wp_unslash( $sign_info['location'] ) : '';
 					$state       = isset( $sign_info['state'] ) ? $sign_info['state'] : '';
 
 					$state_arr = PetitionHelper::getPetitionSignStates();
 
 					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					echo cbxpetition_get_template_html( 'admin/admin-sign-edit.php',
-						[
-							'settings'    => $settings,
-							'log_id'      => $log_id,
-							'petition_id' => $petition_id,
-							'sign_info'   => $sign_info,
-							'comment'     => $comment,
-							'state'       => $state,
-							'state_arr'   => $state_arr
-						]
-					);
+					echo cbxpetition_get_template_html( 'admin/admin-sign-edit.php', [
+						'settings'    => $settings,
+						'log_id'      => $log_id,
+						'petition_id' => $petition_id,
+						'sign_info'   => $sign_info,
+						'comment'     => $comment,
+						'location'    => $location,
+						'state'       => $state,
+						'state_arr'   => $state_arr
+					] );
 				} else {
-					echo esc_html__( 'Invalid signature or not found', 'cbxpetition' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo esc_html__( 'Invalid signature or not found',
+						'cbxpetition' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				}
 			}
 
@@ -219,7 +210,8 @@ class CBXPetitionAdmin {
 			$template_data['id']   = $email_id;
 		}
 
-		echo cbxpetition_get_template_html( 'admin/email_manager.php', $template_data );//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo cbxpetition_get_template_html( 'admin/email_manager.php', $template_data );
 	}//end method admin_menu_display_emails
 
 	/**
@@ -229,12 +221,10 @@ class CBXPetitionAdmin {
 	 */
 	public function display_settings() {
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo cbxpetition_get_template_html( 'admin/settings.php',
-			[
-				'admin_ref' => $this,
-				'settings'  => $this->settings
-			]
-		);
+		echo cbxpetition_get_template_html( 'admin/settings.php', [
+			'admin_ref' => $this,
+			'settings'  => $this->settings
+		] );
 	}//end method display_settings
 
 	/**
@@ -244,11 +234,10 @@ class CBXPetitionAdmin {
 	 */
 	public function display_support() {
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo cbxpetition_get_template_html( 'admin/support.php',
-			[
-				'admin_ref' => $this,
-				'settings'  => $this->settings
-			] );
+		echo cbxpetition_get_template_html( 'admin/support.php', [
+			'admin_ref' => $this,
+			'settings'  => $this->settings
+		] );
 	}//end method display_settings
 
 	/**
@@ -272,7 +261,7 @@ class CBXPetitionAdmin {
 		$signatures = PetitionHelper::getSignListingData( '', $post_id, 0, 'all', 'DESC', 'id', - 1 );
 
 		if ( is_array( $signatures ) && count( $signatures ) > 0 ) {
-			$signature_table = esc_sql($wpdb->prefix . 'cbxpetition_signs');
+			$signature_table = esc_sql( $wpdb->prefix . 'cbxpetition_signs' );
 
 
 			foreach ( $signatures as $signature ) {
@@ -316,7 +305,8 @@ class CBXPetitionAdmin {
 		$errors = [];
 
 		if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['security'] ?? '' ) ), 'cbxpetition_nonce' ) ) {
-			$response['message']  = esc_html__( 'Security token verify failed, please refresh or reload.', 'cbxpetition' );
+			$response['message']  = esc_html__( 'Security token verify failed, please refresh or reload.',
+				'cbxpetition' );
 			$response['security'] = 1;
 			wp_send_json( $response );
 		}
@@ -352,7 +342,7 @@ class CBXPetitionAdmin {
 		//now delete the signature
 
 		global $wpdb;
-		$signature_table = esc_sql($wpdb->prefix . 'cbxpetition_signs');
+		$signature_table = esc_sql( $wpdb->prefix . 'cbxpetition_signs' );
 
 		do_action( 'cbxpetition_sign_delete_before', $signature, $signature_id, $petition_id );
 		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
@@ -378,8 +368,10 @@ class CBXPetitionAdmin {
 	public function petition_sign_edit() {
 		$validation_errors = [];
 
-		if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['cbxpetition_token'] ?? '' ) ), 'cbxpetition_nonce' ) ) {
-			$validation_errors['message']  = esc_html__( 'Security token verify failed, please refresh or reload.', 'cbxpetition' );
+		if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['cbxpetition_token'] ?? '' ) ),
+			'cbxpetition_nonce' ) ) {
+			$validation_errors['message']  = esc_html__( 'Security token verify failed, please refresh or reload.',
+				'cbxpetition' );
 			$validation_errors['security'] = 1;
 			wp_send_json( $validation_errors );
 		}
@@ -390,13 +382,14 @@ class CBXPetitionAdmin {
 		$current_user    = wp_get_current_user();
 		$current_user_id = absint( $current_user->ID );
 
-		$signature_table = esc_sql($wpdb->prefix . 'cbxpetition_signs');
+		$signature_table = esc_sql( $wpdb->prefix . 'cbxpetition_signs' );
 		$state_arr       = array_keys( PetitionHelper::getPetitionSignStates() );
 		$post_data       = wp_unslash( $_POST ); //all needed fields of $_POST is sanitized below
 
 		// sanitization
 		$signature_id = isset( $post_data['id'] ) ? absint( $post_data['id'] ) : 0;
 		$comment      = isset( $post_data['comment'] ) ? sanitize_textarea_field( wp_unslash( $post_data['comment'] ) ) : '';
+		$location     = isset( $post_data['location'] ) ? sanitize_text_field( wp_unslash( $post_data['location'] ) ) : '';
 		$state        = isset( $post_data['state'] ) ? sanitize_text_field( wp_unslash( $post_data['state'] ) ) : '';
 
 		$signature_url = esc_url( admin_url( 'edit.php?post_type=cbxpetition&page=cbxpetition-signatures' ) );
@@ -408,7 +401,8 @@ class CBXPetitionAdmin {
 		$petition_id = 0;
 
 		if ( ! current_user_can( 'manage_options' ) ) {
-			$validation_errors['top_errors'][] = esc_html__( 'Sorry! You are not authorized to edit signature.', 'cbxpetition' );
+			$validation_errors['top_errors'][] = esc_html__( 'Sorry! You are not authorized to edit signature.',
+				'cbxpetition' );
 		} elseif ( $signature_id == 0 ) {
 			$validation_errors['top_errors'][] = esc_html__( 'Sorry! Invalid signature id', 'cbxpetition' );
 		} else {
@@ -416,7 +410,8 @@ class CBXPetitionAdmin {
 			$petition_id = isset( $signature['petition_id'] ) ? absint( $signature['petition_id'] ) : 0;
 
 			if ( $petition_id == 0 ) {
-				$validation_errors['top_errors'][] = esc_html__( 'Invalid petition, petition doesn\'t exists or expired.', 'cbxpetition' );
+				$validation_errors['top_errors'][] = esc_html__( 'Invalid petition, petition doesn\'t exists or expired.',
+					'cbxpetition' );
 			}
 
 			if ( $state == '' ) {
@@ -428,19 +423,17 @@ class CBXPetitionAdmin {
 			}
 		}
 
-		$validation_errors = apply_filters( 'cbxpetition_sign_edit_validation_errors',
-			$validation_errors,
-			$post_data,
-			$signature_id,
-			$petition_id );
+		$validation_errors = apply_filters( 'cbxpetition_sign_edit_validation_errors', $validation_errors, $post_data,
+			$signature_id, $petition_id );
 
 		if ( sizeof( $validation_errors ) > 0 ) {
 			$validation_errors_response['error'] = $validation_errors;
 			wp_send_json( $validation_errors_response );
 		}
 
-		$data_safe['comment'] = $comment;
-		$data_safe['state']   = $state;
+		$data_safe['comment']  = $comment;
+		$data_safe['location'] = $location;
+		$data_safe['state']    = $state;
 
 
 		//update
@@ -451,12 +444,13 @@ class CBXPetitionAdmin {
 			$data_safe['mod_by']   = $current_user_id;
 			$data_safe['mod_date'] = current_time( 'mysql' );
 
-			if($state != 'unverified'){
+			if ( $state != 'unverified' ) {
 				$data_safe['activation'] = '';
 			}
 
 
-			$data_safe = apply_filters( 'cbxpetition_sign_edit_before_update_data', $data_safe, $signature_id, $petition_id );
+			$data_safe = apply_filters( 'cbxpetition_sign_edit_before_update_data', $data_safe, $signature_id,
+				$petition_id );
 
 			$where = [
 				'id' => $signature_id,
@@ -468,23 +462,26 @@ class CBXPetitionAdmin {
 
 			$data_format = [
 				'%s', //comment
+				'%s', //location
 				'%s', //status
 				'%d', //mod_by
 				'%s'  //mod_date
 			];
 
-			if($state != 'unverified'){
+			if ( $state != 'unverified' ) {
 				$data_format[] = '%s';
 			}
 
-			$data_format = apply_filters( 'cbxpetition_sign_edit_before_update_col_data_format', $data_format, $signature_id, $petition_id );
+			$data_format = apply_filters( 'cbxpetition_sign_edit_before_update_col_data_format', $data_format,
+				$signature_id, $petition_id );
 
 
 			$success_arr  = [];
 			$error_arr    = [];
 			$response_arr = [];
 
-			do_action( 'cbxpetition_sign_edit_before_update', $signature_id, $petition_id, $data_safe, $data_format, $where, $where_format );
+			do_action( 'cbxpetition_sign_edit_before_update', $signature_id, $petition_id, $data_safe, $data_format,
+				$where, $where_format );
 
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			if ( $wpdb->update( $signature_table, $data_safe, $where, $data_format, $where_format ) !== false ) {
@@ -502,7 +499,8 @@ class CBXPetitionAdmin {
 					'type' => 'success',
 				];
 
-				$success_arr[] = apply_filters( 'cbxpetition_sign_edit_insert_message', $single_message, $petition_id, $signature_id, $signature );;
+				$success_arr[] = apply_filters( 'cbxpetition_sign_edit_insert_message', $single_message, $petition_id,
+					$signature_id, $signature );;
 
 
 				//if no status change then we skip sending any email
@@ -511,7 +509,8 @@ class CBXPetitionAdmin {
 
 				if ( $old_state !== $new_state && $new_state == 'approved' ) {
 					do_action( 'cbxpetition_sign_log_status_to_' . $new_state, $signature, $old_state, $new_state );
-					do_action( 'cbxpetition_sign_log_status_from_' . $old_state . '_to_' . $new_state, $signature, $old_state, $new_state );
+					do_action( 'cbxpetition_sign_log_status_from_' . $old_state . '_to_' . $new_state, $signature,
+						$old_state, $new_state );
 				}
 				//signature approve event special care
 				if ( $old_state !== $new_state && $new_state == 'approved' ) {
@@ -519,7 +518,8 @@ class CBXPetitionAdmin {
 				}//end signature approve
 
 				if ( $old_state !== $new_state ) {
-					do_action( 'cbxpetition_sign_status_change',$signature_id, $petition_id, $signature, $old_state, $new_state );					
+					do_action( 'cbxpetition_sign_status_change', $signature_id, $petition_id, $signature, $old_state,
+						$new_state );
 				}
 
 			} else {
@@ -533,7 +533,8 @@ class CBXPetitionAdmin {
 			}
 		}//end if log id is fine
 
-		$success_arr = apply_filters( 'cbxpetition_sign_edit_success_messages', $success_arr, $signature_id, $petition_id );
+		$success_arr = apply_filters( 'cbxpetition_sign_edit_success_messages', $success_arr, $signature_id,
+			$petition_id );
 		$error_arr   = apply_filters( 'cbxpetition_sign_edit_error_messages', $error_arr, $signature_id, $petition_id );
 
 		$response_arr['success_arr']['messages'] = $success_arr;
@@ -555,26 +556,16 @@ class CBXPetitionAdmin {
 		], 'cbxpetition', 'normal', 'high' );
 
 		//add meta box in right col to show the result
-		add_meta_box( 'petitionresult_meta_box',
-			esc_html__( 'Petition Result', 'cbxpetition' ),
-			[
-				$this,
-				'metabox_result_display',
-			],
-			'cbxpetition',
-			'side',
-			'high' );
+		add_meta_box( 'petitionresult_meta_box', esc_html__( 'Petition Result', 'cbxpetition' ), [
+			$this,
+			'metabox_result_display',
+		], 'cbxpetition', 'side', 'high' );
 
 		//add meta box in right col to show the shortcode
-		add_meta_box( 'petitionshortcode_meta_box',
-			esc_html__( 'Shortcode', 'cbxpetition' ),
-			[
-				$this,
-				'cbxpetition_metaboxshortcode_display',
-			],
-			'cbxpetition',
-			'side',
-			'high' );
+		add_meta_box( 'petitionshortcode_meta_box', esc_html__( 'Shortcode', 'cbxpetition' ), [
+			$this,
+			'cbxpetition_metaboxshortcode_display',
+		], 'cbxpetition', 'side', 'high' );
 	}//end method meta_boxes_display
 
 	/**
@@ -601,7 +592,7 @@ class CBXPetitionAdmin {
 		}
 
 		// Check the user's permissions.
-		// phpcs:ignore WordPress.Security.NonceVerification.Missing 
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing
 		if ( isset( $_POST['post_type'] ) && 'cbxpetition' == sanitize_text_field( wp_unslash( $_POST['post_type'] ) ) ) {
 
 			if ( ! current_user_can( 'edit_post', $post_id ) ) {
@@ -630,7 +621,8 @@ class CBXPetitionAdmin {
 		//video meta informations
 		$media_info['video-url']         = isset( $petition_meta['video-url'] ) ? sanitize_text_field( $petition_meta['video-url'] ) : '';
 		$media_info['video-title']       = isset( $petition_meta['video-title'] ) ? sanitize_text_field( $petition_meta['video-title'] ) : '';
-		$media_info['video-description'] = isset( $petition_meta['video-description'] ) ? wp_kses( $petition_meta['video-description'], PetitionHelper::allowedHtmlTags() ) : '';
+		$media_info['video-description'] = isset( $petition_meta['video-description'] ) ? wp_kses( $petition_meta['video-description'],
+			PetitionHelper::allowedHtmlTags() ) : '';
 		//$media_info['video-description'] = wp_kses( $video_description, PetitionHelper::allowedHtmlTags() );
 
 
@@ -686,13 +678,13 @@ class CBXPetitionAdmin {
 		switch ( $column ) {
 			/* case 'shortcode':
                 echo '<span class="cbxpetitionshortcode">[cbxpetition petition_id="'.intval($post_id).'"]</span><span class="cbxpetition_ctp" aria-label="'.esc_html__('Click to copy', 'cbxpetition').'" data-balloon-pos="down">&nbsp;</span>';
-                break;*/
-			case 'signature_target':
-				echo '<span class="column-signature_target_value">' . absint( $signature_target ) . '</span>';
-				break;
+                break;*/ case 'signature_target':
+			echo '<span class="column-signature_target_value">' . absint( $signature_target ) . '</span>';
+			break;
 			case 'signature_received':
 				$signature_url = admin_url( 'edit.php?post_type=cbxpetition&page=cbxpetition-signatures&petition_id=' . absint( $post_id ) );
-				echo '<a class="button outline primary minsize rounded small column-signature_received_value" title="' . esc_attr__( 'View all signatures for this petition', 'cbxpetition' ) . '" href="' . esc_url( $signature_url ) . '">' . absint( $signature_count ) . '</a>';
+				echo '<a class="button outline primary minsize rounded small column-signature_received_value" title="' . esc_attr__( 'View all signatures for this petition',
+						'cbxpetition' ) . '" href="' . esc_url( $signature_url ) . '">' . absint( $signature_count ) . '</a>';
 				break;
 			case 'expire_date':
 				if ( $expire_date != '' ) {
@@ -729,7 +721,8 @@ class CBXPetitionAdmin {
 		if ( $post->post_type === 'cbxpetition' ) {
 			$post_id                      = intval( $post->ID );
 			$signature_url                = admin_url( 'edit.php?post_type=cbxpetition&page=cbxpetition-signatures&petition_id=' . absint( $post_id ) );
-			$actions['cbxpetition_signs'] = '<a href="' . esc_url( $signature_url ) . '">' . esc_html__( 'Signatures', 'cbxpetition' ) . '</a>';
+			$actions['cbxpetition_signs'] = '<a href="' . esc_url( $signature_url ) . '">' . esc_html__( 'Signatures',
+					'cbxpetition' ) . '</a>';
 		}
 
 		return $actions;
@@ -748,7 +741,7 @@ class CBXPetitionAdmin {
 		do_action( 'cbxpetition_sign_delete_on_user_delete_before', $user_id );
 
 		global $wpdb;
-		$signature_table = esc_sql($wpdb->prefix . 'cbxpetition_signs');
+		$signature_table = esc_sql( $wpdb->prefix . 'cbxpetition_signs' );
 
 		//get all signature by this user
 		$signatures = PetitionHelper::getSignListingData( '', 0, $user_id, 'all', 'DESC', 'id', - 1 );
@@ -763,7 +756,7 @@ class CBXPetitionAdmin {
 				do_action( 'cbxpetition_sign_delete_before', $signature, $signature_id, $petition_id );
 
 				if ( $signature !== null && sizeof( $signature ) > 0 ) {
-					//now delete
+
 					$sql = $wpdb->prepare( "DELETE FROM $signature_table WHERE id=%d", $signature_id ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 					// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
 					$delete_status = $wpdb->query( $sql );
@@ -832,8 +825,10 @@ class CBXPetitionAdmin {
 		$thumb_max_height = intval( $setting->get_option( 'thumb_max_height', 'cbxpetition_general', 400 ) );
 
 
-		$photo_max_files     = absint( $setting->get_option( 'photo_max_files', 'cbxpetition_general', 6 ) );    //default maximum 6 photos
-		$photo_max_file_size = absint( $setting->get_option( 'photo_max_file_size', 'cbxpetition_general', 2 ) );//mega bytes
+		$photo_max_files     = absint( $setting->get_option( 'photo_max_files', 'cbxpetition_general',
+			6 ) );    //default maximum 6 photos
+		$photo_max_file_size = absint( $setting->get_option( 'photo_max_file_size', 'cbxpetition_general',
+			2 ) );//mega bytes
 		$photo_max_file_size = $photo_max_file_size * 1024 * 1024;
 
 		$photo_file_exts = $setting->get_option( 'photo_allow_filexts', 'cbxpetition_general', [] );
@@ -896,7 +891,8 @@ class CBXPetitionAdmin {
 
 			if ( sizeof( $petition_photos ) >= $photo_max_files ) {
 				/* translators: %d: Maximum file number  */
-				$message['msg']          = sprintf( esc_html__( 'Maximum photo upload limit %d crossed, you can not upload more before delete one.', 'cbxpetition' ), $photo_max_files );
+				$message['msg']          = sprintf( esc_html__( 'Maximum photo upload limit %d crossed, you can not upload more before delete one.',
+					'cbxpetition' ), $photo_max_files );
 				$message['photos_count'] = sizeof( $petition_photos );
 				$message['photos']       = $petition_photos;
 				wp_send_json( $message );
@@ -914,7 +910,8 @@ class CBXPetitionAdmin {
 				WP_Filesystem();
 			}
 
-			$move_new_file = $wp_filesystem->move( $photo['tmp_name'], $dir_info['dir_part_base_dir'] . $photo_file_name, true );
+			$move_new_file = $wp_filesystem->move( $photo['tmp_name'],
+				$dir_info['dir_part_base_dir'] . $photo_file_name, true );
 
 			if ( $move_new_file ) {
 				$petition_photos[]             = $photo_file_name;
@@ -1078,7 +1075,8 @@ class CBXPetitionAdmin {
 				wp_send_json( $message );
 			} else {
 				$message['error'] = 0;
-				$message['msg'] = esc_html__( 'File/photo delete failed, seems doesn\'t exists, removed from database.', 'cbxpetition' );
+				$message['msg']   = esc_html__( 'File/photo delete failed, seems doesn\'t exists, removed from database.',
+					'cbxpetition' );
 				wp_send_json( $message );
 			}
 		} else {
@@ -1109,7 +1107,8 @@ class CBXPetitionAdmin {
 		//02. Check permission/capability
 		if ( ! current_user_can( 'manage_cbxpetition' ) ) {
 			$message['error'] = 1;
-			$message['msg']   = esc_html__( 'Sorry, you don\'t have enough permission to delete photos', 'cbxpetition' );
+			$message['msg']   = esc_html__( 'Sorry, you don\'t have enough permission to delete photos',
+				'cbxpetition' );
 			wp_send_json( $message );
 		}
 
@@ -1161,7 +1160,8 @@ class CBXPetitionAdmin {
 		// Initialize the WP_Filesystem
 		if ( ! \WP_Filesystem() ) {
 			$message['error'] = 1;
-			$message['msg']   = esc_html__( 'Failed to initialize the filesystem. Photos delete paused.', 'cbxpetition' );
+			$message['msg']   = esc_html__( 'Failed to initialize the filesystem. Photos delete paused.',
+				'cbxpetition' );
 			wp_send_json( $message );
 		}
 
@@ -1180,10 +1180,12 @@ class CBXPetitionAdmin {
 			if ( $wp_filesystem->exists( $dir_info['cbxpetition_base_dir'] . $petition_id . '/' . $petition_photo ) && $wp_filesystem->delete( $dir_info['cbxpetition_base_dir'] . $petition_id . '/' . $petition_photo ) ) {
 
 				/* translators: %s: Petition photo  */
-				$success_arr[ $petition_photo ] = sprintf( esc_html__( 'Photo %s deleted successfully.', 'cbxpetition' ), $petition_photo );
+				$success_arr[ $petition_photo ] = sprintf( esc_html__( 'Photo %s deleted successfully.',
+					'cbxpetition' ), $petition_photo );
 			} else {
 				/* translators: %s: Petition photo  */
-				$error_arr[ $petition_photo ] = sprintf( esc_html__( 'Photo %s delete failed.', 'cbxpetition' ), $petition_photo );
+				$error_arr[ $petition_photo ] = sprintf( esc_html__( 'Photo %s delete failed.', 'cbxpetition' ),
+					$petition_photo );
 			}
 		}
 
@@ -1252,7 +1254,8 @@ class CBXPetitionAdmin {
 		$max_height = intval( $setting->get_option( 'banner_max_height', 'cbxpetition_general', 400 ) );
 
 
-		$banner_max_file_size = absint( $setting->get_option( 'banner_max_file_size', 'cbxpetition_general', 2 ) );//mega bytes
+		$banner_max_file_size = absint( $setting->get_option( 'banner_max_file_size', 'cbxpetition_general',
+			2 ) );//mega bytes
 		$banner_max_file_size = $banner_max_file_size * 1024 * 1024;
 
 		$banner_file_exts = $setting->get_option( 'banner_allow_filexts', 'cbxpetition_general', [] );
@@ -1316,7 +1319,7 @@ class CBXPetitionAdmin {
 			// Get an instance of the WP_Filesystem
 			global $wp_filesystem;
 
-			$filename = isset($media_info['banner-image'])? $media_info['banner-image'] : '';
+			$filename = isset( $media_info['banner-image'] ) ? $media_info['banner-image'] : '';
 			if ( $filename != '' ) {
 
 				//$deleted = @unlink( $dir_info['cbxpetition_base_dir'] .$review_id.'/'. $filename );
@@ -1347,7 +1350,8 @@ class CBXPetitionAdmin {
 				WP_Filesystem();
 			}
 
-			$move_new_file = $wp_filesystem->move( $banner['tmp_name'], $dir_info['dir_part_base_dir'] . $banner_file_name, true );
+			$move_new_file = $wp_filesystem->move( $banner['tmp_name'],
+				$dir_info['dir_part_base_dir'] . $banner_file_name, true );
 
 			if ( $move_new_file ) {
 				//resize image
@@ -1469,7 +1473,8 @@ class CBXPetitionAdmin {
 			wp_send_json( $message );
 		} else {
 			$message['error'] = 0;
-			$message['msg'] = esc_html__( 'File/photo delete failed, seems doesn\'t exists, removed from database.', 'cbxpetition' );
+			$message['msg']   = esc_html__( 'File/photo delete failed, seems doesn\'t exists, removed from database.',
+				'cbxpetition' );
 			wp_send_json( $message );
 		}
 
@@ -1488,14 +1493,15 @@ class CBXPetitionAdmin {
 	/**
 	 * Show action links on the plugin screen.
 	 *
-	 * @param mixed $links Plugin Action links.
+	 * @param  mixed  $links  Plugin Action links.
 	 *
 	 * @return  array
 	 * @since 1.0.0
 	 */
 	public function plugin_action_links( $links ) {
 		$action_links = [
-			'settings' => '<a style="color: #f44336 !important; font-weight: bold;" href="' . esc_url(admin_url( 'edit.php?post_type=cbxpetition&page=cbxpetition-settings' )) . '" aria-label="' . esc_attr__( 'View settings', 'cbxpetition' ) . '">' . esc_html__( 'Settings', 'cbxpetition' ) . '</a>',
+			'settings' => '<a style="color: #f44336 !important; font-weight: bold;" href="' . esc_url( admin_url( 'edit.php?post_type=cbxpetition&page=cbxpetition-settings' ) ) . '" aria-label="' . esc_attr__( 'View settings',
+					'cbxpetition' ) . '">' . esc_html__( 'Settings', 'cbxpetition' ) . '</a>',
 		];
 
 		return array_merge( $action_links, $links );
@@ -1507,10 +1513,10 @@ class CBXPetitionAdmin {
 	 *
 	 * @access  public
 	 *
-	 * @param array $links_array An array of the plugin's metadata
-	 * @param string $plugin_file_name Path to the plugin file
-	 * @param array $plugin_data An array of plugin data
-	 * @param string $status Status of the plugin
+	 * @param  array  $links_array  An array of the plugin's metadata
+	 * @param  string  $plugin_file_name  Path to the plugin file
+	 * @param  array  $plugin_data  An array of plugin data
+	 * @param  string  $status  Status of the plugin
 	 *
 	 * @return  array       $links_array
 	 * @since 1.0.0
@@ -1521,13 +1527,17 @@ class CBXPetitionAdmin {
 				include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 			}
 
-			$links_array[] = '<a target="_blank" style="color:#f44336 !important; font-weight: bold;" href="https://wordpress.org/support/plugin/cbxpetition/" aria-label="' . esc_attr__( 'Free Support', 'cbxpetition' ) . '">' . esc_html__( 'Free Support', 'cbxpetition' ) . '</a>';
-			$links_array[] = '<a target="_blank" style="color:#f44336 !important; font-weight: bold;" href="https://wordpress.org/plugins/cbxpetition/#reviews" aria-label="' . esc_attr__( 'Reviews', 'cbxpetition' ) . '">' . esc_html__( 'Reviews', 'cbxpetition' ) . '</a>';
-			$links_array[] = '<a target="_blank" style="color:#f44336 !important; font-weight: bold;" href="https://codeboxr.com/doc/cbxpetition-doc/" aria-label="' . esc_attr__( 'Documentation', 'cbxpetition' ) . '">' . esc_html__( 'Documentation', 'cbxpetition' ) . '</a>';
+			$links_array[] = '<a target="_blank" style="color:#f44336 !important; font-weight: bold;" href="https://wordpress.org/support/plugin/cbxpetition/" aria-label="' . esc_attr__( 'Free Support',
+					'cbxpetition' ) . '">' . esc_html__( 'Free Support', 'cbxpetition' ) . '</a>';
+			$links_array[] = '<a target="_blank" style="color:#f44336 !important; font-weight: bold;" href="https://wordpress.org/plugins/cbxpetition/#reviews" aria-label="' . esc_attr__( 'Reviews',
+					'cbxpetition' ) . '">' . esc_html__( 'Reviews', 'cbxpetition' ) . '</a>';
+			$links_array[] = '<a target="_blank" style="color:#f44336 !important; font-weight: bold;" href="https://codeboxr.com/doc/cbxpetition-doc/" aria-label="' . esc_attr__( 'Documentation',
+					'cbxpetition' ) . '">' . esc_html__( 'Documentation', 'cbxpetition' ) . '</a>';
 
 			//phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
-			if (!defined( 'CBXPETITIONPROADDON_PLUGIN_NAME' )) {
-				$links_array[] = '<a target="_blank" style="color:#f44336 !important; font-weight: bold;" href="https://codeboxr.com/product/cbx-petition-for-wordpress/#downloadarea" aria-label="' . esc_attr__( 'Try Pro Addon', 'cbxpetition' ) . '">' . esc_html__( 'Try Pro Addon', 'cbxpetition' ) . '</a>';
+			if ( ! defined( 'CBXPETITIONPROADDON_PLUGIN_NAME' ) ) {
+				$links_array[] = '<a target="_blank" style="color:#f44336 !important; font-weight: bold;" href="https://codeboxr.com/product/cbx-petition-for-wordpress/#downloadarea" aria-label="' . esc_attr__( 'Try Pro Addon',
+						'cbxpetition' ) . '">' . esc_html__( 'Try Pro Addon', 'cbxpetition' ) . '</a>';
 			}
 		}
 
@@ -1606,7 +1616,8 @@ class CBXPetitionAdmin {
 
 			/* translators: 1: Settings url 2. plugin url  */
 			echo '<p>' . sprintf( wp_kses( __( 'Check Plugin <a href="%1$s">Setting</a> and <a href="%2$s" target="_blank"><span class="dashicons dashicons-external"></span> Documentation</a>',
-					'cbxpetition' ), $kiss_html_arr ), esc_attr( admin_url( 'edit.php?post_type=cbxpetition&page=cbxpetition-settings' ) ),
+					'cbxpetition' ), $kiss_html_arr ),
+					esc_attr( admin_url( 'edit.php?post_type=cbxpetition&page=cbxpetition-settings' ) ),
 					'https://codeboxr.com/product/cbx-petition-for-wordpress/' ) . '</p>';
 			echo '</div>';
 
@@ -1640,7 +1651,8 @@ class CBXPetitionAdmin {
 
 				/* translators: 1: Settings url 2. plugin url  */
 				echo sprintf( wp_kses( __( 'Check Plugin <a href="%1$s">Setting</a> and <a href="%2$s" target="_blank"><span class="dashicons dashicons-external"></span> Documentation</a>',
-					'cbxpetition' ), $kiss_html_arr ), esc_attr( admin_url( 'edit.php?post_type=cbxpetition&page=cbxpetition-settings' ) ),
+					'cbxpetition' ), $kiss_html_arr ),
+					esc_attr( admin_url( 'edit.php?post_type=cbxpetition&page=cbxpetition-settings' ) ),
 					'https://codeboxr.com/product/cbx-petition-for-wordpress/' );
 
 				echo '</p>';
@@ -1665,7 +1677,8 @@ class CBXPetitionAdmin {
 			echo '<img alt="icon" style="float: left; display: inline-block; margin-right: 20px;" src="' . esc_url( CBXPETITION_ROOT_URL . 'assets/images/petition_20.png' ) . '" />';
 
 
-			esc_html_e( 'Current version of  CBX Petition Pro Addon is not compatible with core  CBX Petition plugin and  CBX Petition Pro Addon is forced deactivate.', 'cbxpetition' );
+			esc_html_e( 'Current version of  CBX Petition Pro Addon is not compatible with core  CBX Petition plugin and  CBX Petition Pro Addon is forced deactivate.',
+				'cbxpetition' );
 
 			echo '</p>';
 			echo '</div>';
@@ -1682,9 +1695,10 @@ class CBXPetitionAdmin {
 		}
 
 		//if the pro addon is active or installed
-		if (!defined( 'CBXPETITIONPROADDON_PLUGIN_NAME' ) ) {
+		if ( ! defined( 'CBXPETITIONPROADDON_PLUGIN_NAME' ) ) {
 			/* translators: %s: Plugin Link */
-			$message = sprintf( __( 'CBX Petition Pro Addon has frontend petition submission features and more extra features, <a target="_blank" href="%s">try it</a> - Codeboxr Team', 'cbxpetition' ), esc_url( 'https://codeboxr.com/product/cbx-petition-for-wordpress/' ) );
+			$message = sprintf( __( 'CBX Petition Pro Addon has frontend petition submission features and more extra features, <a target="_blank" href="%s">try it</a> - Codeboxr Team',
+				'cbxpetition' ), esc_url( 'https://codeboxr.com/product/cbx-petition-for-wordpress/' ) );
 			echo '<div class="notice notice-warning is-dismissible"><p>' . wp_kses_post( $message ) . '</p></div>';
 		}
 
@@ -1697,7 +1711,8 @@ class CBXPetitionAdmin {
 	 * @since 2.0.0
 	 */
 	public function check_pro_addon() {
-		cbxpetition_check_and_deactivate_plugin( 'cbxpetitionproaddon/cbxpetitionproaddon.php', '2.0.6', 'cbxpetition_proaddon_deactivated' );
+		cbxpetition_check_and_deactivate_plugin( 'cbxpetitionproaddon/cbxpetitionproaddon.php', '2.0.6',
+			'cbxpetition_proaddon_deactivated' );
 	}//end method check_pro_addon
 
 	/**
@@ -1757,12 +1772,14 @@ class CBXPetitionAdmin {
 		$css_url_part_vendors = CBXPETITION_ROOT_URL . 'assets/vendors/';
 		$js_url_part_vendors  = CBXPETITION_ROOT_URL . 'assets/vendors/';
 
-		wp_register_style( 'awesome-notifications', $css_url_part_vendors . 'awesome-notifications/style.css', [], $ver );
+		wp_register_style( 'awesome-notifications', $css_url_part_vendors . 'awesome-notifications/style.css', [],
+			$ver );
 		wp_register_style( 'flatpickr', $css_url_part_vendors . 'flatpickr/flatpickr.min.css', [], $ver );
 
 		wp_register_style( 'cbxpetition-admin', $css_url_part . 'cbxpetition-admin.css', [], $ver );
 
-		wp_register_style( 'cbxpetition-email-manager', $css_url_part . 'cbxpetition-email-manager.css', [], $this->version, 'all' );
+		wp_register_style( 'cbxpetition-email-manager', $css_url_part . 'cbxpetition-email-manager.css', [],
+			$this->version, 'all' );
 
 
 		if ( $page == 'cbxpetition-settings' ) {
@@ -1794,13 +1811,15 @@ class CBXPetitionAdmin {
 		//$admin_slugs = PetitionHelper::admin_page_slugs();
 		$admin_slugs_styles = [ 'cbxpetition-signatures', 'cbxpetition-settings', 'cbxpetition-doc' ];
 
-		if ( ( $hook == 'post.php' || $hook == 'post-new.php' || $hook == 'edit.php' || $hook == 'edit-tags.php' || $hook == 'term.php' ) && $post_type == 'cbxpetition' || in_array( $page, $admin_slugs_styles ) ) {
+		if ( ( $hook == 'post.php' || $hook == 'post-new.php' || $hook == 'edit.php' || $hook == 'edit-tags.php' || $hook == 'term.php' ) && $post_type == 'cbxpetition' || in_array( $page,
+				$admin_slugs_styles ) ) {
 			wp_enqueue_style( 'flatpickr' );
 			wp_enqueue_style( 'awesome-notifications' );
 
 			//upload style
 			if ( ( $hook == 'post.php' || $hook == 'post-new.php' ) && $post_type == 'cbxpetition' ) {
-				wp_register_style( 'cbxpetition-file-upload', $js_url_part_vendors . 'dm-uploader/css/jquery.dm-uploader.min.css', [], $ver );
+				wp_register_style( 'cbxpetition-file-upload',
+					$js_url_part_vendors . 'dm-uploader/css/jquery.dm-uploader.min.css', [], $ver );
 				wp_enqueue_style( 'cbxpetition-file-upload' );
 			}
 
@@ -1841,8 +1860,10 @@ class CBXPetitionAdmin {
 
 
 		//photo
-		$photo_max_files     = $photo_max_size_mb = absint( $settings->get_field( 'photo_max_files', 'cbxpetition_general', 10 ) );
-		$photo_max_file_size = absint( $settings->get_field( 'max_file_size', 'cbxpetition_general', 1 ) );        //in mega bytes
+		$photo_max_files     = $photo_max_size_mb = absint( $settings->get_field( 'photo_max_files',
+			'cbxpetition_general', 10 ) );
+		$photo_max_file_size = absint( $settings->get_field( 'max_file_size', 'cbxpetition_general',
+			1 ) );        //in mega bytes
 		$photo_file_max_mb   = $photo_max_file_size;
 		$photo_max_file_size = $photo_max_file_size * 1024 * 1024;
 		$photo_file_exts     = $settings->get_field( 'photo_allow_filexts', 'cbxpetition_general', [] );
@@ -1861,7 +1882,8 @@ class CBXPetitionAdmin {
 
 
 		//banner
-		$banner_max_file_size = absint( $settings->get_field( 'banner_max_file_size', 'cbxpetition_general', 2 ) );//mega bytes
+		$banner_max_file_size = absint( $settings->get_field( 'banner_max_file_size', 'cbxpetition_general',
+			2 ) );//mega bytes
 		$banner_file_max_mb   = $banner_max_file_size;
 		$banner_max_file_size = $banner_max_file_size * 1024 * 1024;                                               //bytes
 
@@ -1881,11 +1903,14 @@ class CBXPetitionAdmin {
 
 
 		//register vendors
-		wp_register_script( 'awesome-notifications', $js_url_part_vendors . 'awesome-notifications/script.js', [], $ver, true );
+		wp_register_script( 'awesome-notifications', $js_url_part_vendors . 'awesome-notifications/script.js', [], $ver,
+			true );
 		wp_register_script( 'select2', $js_url_part_vendors . 'select2/select2.min.js', [ 'jquery' ], $ver, true );
-		wp_register_script( 'flatpickr', $js_url_part_vendors . 'flatpickr/flatpickr.min.js', [ 'jquery' ], $ver, true );
+		wp_register_script( 'flatpickr', $js_url_part_vendors . 'flatpickr/flatpickr.min.js', [ 'jquery' ], $ver,
+			true );
 		wp_register_script( 'pickr', $js_url_part_vendors . 'pickr/pickr.min.js', [], $ver, true );
-		wp_register_script( 'jquery-validate', $js_url_part_vendors . 'jquery-validation/jquery.validate.min.js', [ 'jquery' ], $ver, true );
+		wp_register_script( 'jquery-validate', $js_url_part_vendors . 'jquery-validation/jquery.validate.min.js',
+			[ 'jquery' ], $ver, true );
 
 		//end  register vendors
 
@@ -1905,12 +1930,15 @@ class CBXPetitionAdmin {
 			$setting_js_deps = apply_filters( 'cbxpetition_setting_js_deps', $setting_js_deps );
 
 			$setting_js_vars = [
-				'global_setting_link_html' => '<a href="' . esc_url( admin_url( 'edit.php?post_type=cbxpetition&page=cbxpetition-settings' ) ) . '"  class="button outline primary pull-right">' . esc_html__( 'Global Settings', 'cbxpetition' ) . '</a>',
+				'global_setting_link_html' => '<a href="' . esc_url( admin_url( 'edit.php?post_type=cbxpetition&page=cbxpetition-settings' ) ) . '"  class="button outline primary pull-right">' . esc_html__( 'Global Settings',
+						'cbxpetition' ) . '</a>',
 			];
 
-			$setting_js_vars = apply_filters( 'cbxpetition_setting_js_vars', array_merge( $setting_js_vars, $global_translation ) );
+			$setting_js_vars = apply_filters( 'cbxpetition_setting_js_vars',
+				array_merge( $setting_js_vars, $global_translation ) );
 
-			wp_register_script( 'cbxpetition-setting', $js_url_part_vanila . 'cbxpetition-admin-setting.js', $setting_js_deps, $ver, true );
+			wp_register_script( 'cbxpetition-setting', $js_url_part_vanila . 'cbxpetition-admin-setting.js',
+				$setting_js_deps, $ver, true );
 			wp_localize_script( 'cbxpetition-setting', 'cbxpetition_setting_js_var', $setting_js_vars );
 
 			//core
@@ -1945,9 +1973,11 @@ class CBXPetitionAdmin {
 
 			// Localize the script with new data
 			$signatures_js_vars = [];
-			$signatures_js_vars = apply_filters( 'cbxpetition_signatures_js_vars', array_merge( $signatures_js_vars, $global_translation ) );
+			$signatures_js_vars = apply_filters( 'cbxpetition_signatures_js_vars',
+				array_merge( $signatures_js_vars, $global_translation ) );
 
-			wp_register_script( 'cbxpetition-admin-signatures', $js_url_part_vanila . 'cbxpetition-admin-signatures.js', $signatures_js_deps, $ver, true );
+			wp_register_script( 'cbxpetition-admin-signatures', $js_url_part_vanila . 'cbxpetition-admin-signatures.js',
+				$signatures_js_deps, $ver, true );
 			wp_localize_script( 'cbxpetition-admin-signatures', 'cbxpetition_signatures_js_vars', $signatures_js_vars );
 
 
@@ -1979,21 +2009,22 @@ class CBXPetitionAdmin {
 			$new_petition_link_html = '<a href="' . esc_url( admin_url( 'edit.php?post_type=cbxpetition' ) ) . '" class="button secondary icon icon-right icon-inline mr-5"><i  class="cbx-icon">' . $plus_svg . '</i>' . esc_html__( 'New Petition',
 					'cbxpetition' ) . '</a>';
 
-			$global_setting_link_html = '<a href="' . esc_url( admin_url( 'edit.php?post_type=cbxpetition&page=cbxpetition-settings' ) ) . '"  class="button outline primary">' . esc_html__( 'Global Settings', 'cbxpetition' ) . '</a>';
+			$global_setting_link_html = '<a href="' . esc_url( admin_url( 'edit.php?post_type=cbxpetition&page=cbxpetition-settings' ) ) . '"  class="button outline primary">' . esc_html__( 'Global Settings',
+					'cbxpetition' ) . '</a>';
 
-			$tax_js_vars =
-				[
-					'tax_title_prefix' => esc_html__( 'Petition:', 'cbxpetition' ) . ' ',
-					'tags_title'       => esc_html__( 'Petition: Tags', 'cbxpetition' ),
-					'category_title'   => esc_html__( 'Petition: Category', 'cbxpetition' ),
-					//'new_petition_link_html'   => '<a href="' . esc_url( admin_url( 'edit.php?post_type=cbxpetition' ) ) . '" class="button primary icon icon-right icon-inline mr-5"><i  class="cbx-icon cbx-icon-plus-white"></i>' . esc_html__( 'New Petition', 'cbxpetition' ) . '</a>',
-					//'global_setting_link_html' => '<a href="' . esc_url( admin_url( 'edit.php?post_type=cbxpetition&page=cbxpetition-settings' ) ) . '"  class="button outline primary">' . esc_html__( 'Global Settings', 'cbxpetition' ) . '</a>',
-					'tax_new_setting'  => '<div class="wp-heading-wrap-right pull-right">' . $new_petition_link_html . $global_setting_link_html . '</div>'
-				];
+			$tax_js_vars = [
+				'tax_title_prefix' => esc_html__( 'Petition:', 'cbxpetition' ) . ' ',
+				'tags_title'       => esc_html__( 'Petition: Tags', 'cbxpetition' ),
+				'category_title'   => esc_html__( 'Petition: Category', 'cbxpetition' ),
+				//'new_petition_link_html'   => '<a href="' . esc_url( admin_url( 'edit.php?post_type=cbxpetition' ) ) . '" class="button primary icon icon-right icon-inline mr-5"><i  class="cbx-icon cbx-icon-plus-white"></i>' . esc_html__( 'New Petition', 'cbxpetition' ) . '</a>',
+				//'global_setting_link_html' => '<a href="' . esc_url( admin_url( 'edit.php?post_type=cbxpetition&page=cbxpetition-settings' ) ) . '"  class="button outline primary">' . esc_html__( 'Global Settings', 'cbxpetition' ) . '</a>',
+				'tax_new_setting'  => '<div class="wp-heading-wrap-right pull-right">' . $new_petition_link_html . $global_setting_link_html . '</div>'
+			];
 
 			$tax_js_vars = apply_filters( 'cbxpetition_tax_js_vars', array_merge( $tax_js_vars, $global_translation ) );
 
-			wp_register_script( 'cbxpetition-admin-tax', $js_url_part_vanila . 'cbxpetition-admin-tax.js', $tax_js_deps, $ver, true );
+			wp_register_script( 'cbxpetition-admin-tax', $js_url_part_vanila . 'cbxpetition-admin-tax.js', $tax_js_deps,
+				$ver, true );
 			wp_localize_script( 'cbxpetition-admin-tax', 'cbxpetition_tax', $tax_js_vars );
 
 
@@ -2025,8 +2056,10 @@ class CBXPetitionAdmin {
 				$petition_edit_mode = 1;
 
 				//scripts
-				wp_register_script( 'mustache', $js_url_part_vendors . 'mustache/mustache.min.js', [ 'jquery' ], $ver, true );
-				wp_register_script( 'cbxpetition-file-upload', $js_url_part_vendors . 'dm-uploader/js/jquery.dm-uploader.min.js', [ 'jquery' ], $ver, true );
+				wp_register_script( 'mustache', $js_url_part_vendors . 'mustache/mustache.min.js', [ 'jquery' ], $ver,
+					true );
+				wp_register_script( 'cbxpetition-file-upload',
+					$js_url_part_vendors . 'dm-uploader/js/jquery.dm-uploader.min.js', [ 'jquery' ], $ver, true );
 
 				$petition_media_js_deps = [
 					'cbxpetition-file-upload',
@@ -2039,46 +2072,53 @@ class CBXPetitionAdmin {
 
 
 			// Localize the script with new data
-			$admin_js_vars =
-				[
-					'petition_edit_mode'         => $petition_edit_mode,
-					'delete_text'                => esc_html__( 'Delete', 'cbxpetition' ),
-					'sort_text'                  => esc_html__( 'Sort', 'cbxpetition' ),
-					'photo'                      => [
-						'exists'                 => 0,
-						'data'                   => '',
-						'max_files'              => $photo_max_files,
-						'file_types'             => $photo_ext_mimes,
-						'file_exts'              => $photo_file_exts,
-						'max_filesize'           => $photo_max_file_size,
-						'error_wrong_file_count' => esc_html__( 'Photo upload failed, maximum allowed reached.', 'cbxpetition' ),
-						'error_wrong_file_type'  => esc_html__( 'Photo upload failed, wrong file type.', 'cbxpetition' ),
-						'error_wrong_file_ext'   => esc_html__( 'Photo upload failed, wrong file extension.', 'cbxpetition' ),
-						/* translators: %d: photo maximum size in mb  */
-						'error_wrong_file_size'  => sprintf( esc_html__( 'Photo upload failed, wrong file size(Max %d MB).', 'cbxpetition' ), $photo_max_size_mb ),
-					],
-					'banner'                     => [
-						'exists'                => 0,
-						'data'                  => '',
-						'file_types'            => $banner_ext_mimes,
-						'file_exts'             => $photo_file_exts,
-						'max_filesize'          => $banner_max_file_size,
-						'error_wrong_file_type' => esc_html__( 'Banner upload failed, wrong file type.', 'cbxpetition' ),
-						'error_wrong_file_ext'  => esc_html__( 'Banner upload failed, wrong file extension.', 'cbxpetition' ),
-						/* translators: %d: photo maximum size in mb  */
-						'error_wrong_file_size' => sprintf( esc_html__( 'Banner upload failed, wrong file size(Max %d MB).', 'cbxpetition' ), $banner_file_max_mb ),
-					],
-					// phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
-					'global_setting_link_html'   => '<a href="' . esc_url( admin_url( 'edit.php?post_type=cbxpetition&page=cbxpetition-settings' ) ) . '"  class="button outline primary pull-right">' . esc_html__( 'Global Settings', 'cbxpetition' ) . '</a>',
-					'tax_title_prefix'           => esc_html__( 'Petition:', 'cbxpetition' ) . ' ',
-					'petition_title_label'       => esc_attr__( 'Petition Title', 'cbxpetition' ),
-					'petition_title_placeholder' => esc_attr__( 'Petition title here', 'cbxpetition' )
-				];
+			$admin_js_vars = [
+				'petition_edit_mode'         => $petition_edit_mode,
+				'delete_text'                => esc_html__( 'Delete', 'cbxpetition' ),
+				'sort_text'                  => esc_html__( 'Sort', 'cbxpetition' ),
+				'photo'                      => [
+					'exists'                 => 0,
+					'data'                   => '',
+					'max_files'              => $photo_max_files,
+					'file_types'             => $photo_ext_mimes,
+					'file_exts'              => $photo_file_exts,
+					'max_filesize'           => $photo_max_file_size,
+					'error_wrong_file_count' => esc_html__( 'Photo upload failed, maximum allowed reached.',
+						'cbxpetition' ),
+					'error_wrong_file_type'  => esc_html__( 'Photo upload failed, wrong file type.', 'cbxpetition' ),
+					'error_wrong_file_ext'   => esc_html__( 'Photo upload failed, wrong file extension.',
+						'cbxpetition' ),
+					/* translators: %d: photo maximum size in mb  */
+					'error_wrong_file_size'  => sprintf( esc_html__( 'Photo upload failed, wrong file size(Max %d MB).',
+						'cbxpetition' ), $photo_max_size_mb ),
+				],
+				'banner'                     => [
+					'exists'                => 0,
+					'data'                  => '',
+					'file_types'            => $banner_ext_mimes,
+					'file_exts'             => $photo_file_exts,
+					'max_filesize'          => $banner_max_file_size,
+					'error_wrong_file_type' => esc_html__( 'Banner upload failed, wrong file type.', 'cbxpetition' ),
+					'error_wrong_file_ext'  => esc_html__( 'Banner upload failed, wrong file extension.',
+						'cbxpetition' ),
+					/* translators: %d: photo maximum size in mb  */
+					'error_wrong_file_size' => sprintf( esc_html__( 'Banner upload failed, wrong file size(Max %d MB).',
+						'cbxpetition' ), $banner_file_max_mb ),
+				],
+				// phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
+				'global_setting_link_html'   => '<a href="' . esc_url( admin_url( 'edit.php?post_type=cbxpetition&page=cbxpetition-settings' ) ) . '"  class="button outline primary pull-right">' . esc_html__( 'Global Settings',
+						'cbxpetition' ) . '</a>',
+				'tax_title_prefix'           => esc_html__( 'Petition:', 'cbxpetition' ) . ' ',
+				'petition_title_label'       => esc_attr__( 'Petition Title', 'cbxpetition' ),
+				'petition_title_placeholder' => esc_attr__( 'Petition title here', 'cbxpetition' )
+			];
 
-			$admin_js_vars = apply_filters( 'cbxpetition_admin_js_vars', array_merge( $admin_js_vars, $global_translation ) );
+			$admin_js_vars = apply_filters( 'cbxpetition_admin_js_vars',
+				array_merge( $admin_js_vars, $global_translation ) );
 			$admin_js_deps = apply_filters( 'cbxpetition_admin_js_deps', $admin_js_deps );
 
-			wp_register_script( 'cbxpetition-admin', $js_url_part_vanila . 'cbxpetition-admin.js', $admin_js_deps, $ver, true );
+			wp_register_script( 'cbxpetition-admin', $js_url_part_vanila . 'cbxpetition-admin.js', $admin_js_deps, $ver,
+				true );
 			wp_localize_script( 'cbxpetition-admin', 'cbxpetition_admin_js_vars', $admin_js_vars );
 
 			//core
@@ -2125,11 +2165,10 @@ class CBXPetitionAdmin {
 
 			/* translators: %1$d: signature count , %2$d: signature target, %3$s: signature target ratio */
 			$petition_output .= '<p>' . sprintf( esc_html__( 'Signatures: %1$d of %2$d (%3$s)', 'cbxpetition' ),
-					$signature_count,
-					$signature_target,
-					$signature_target_ratio . '%' ) . '</p>';
+					$signature_count, $signature_target, $signature_target_ratio . '%' ) . '</p>';
 			/* translators: %s: Petition expire date  */
-			$petition_output .= '<p>' . sprintf( esc_html__( 'Expiry Date: %s', 'cbxpetition' ), $expire_date ) . '</p>';
+			$petition_output .= '<p>' . sprintf( esc_html__( 'Expiry Date: %s', 'cbxpetition' ),
+					$expire_date ) . '</p>';
 		}
 
 		echo $petition_output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -2171,7 +2210,8 @@ class CBXPetitionAdmin {
 		echo '<div class="cbxshortcode-wrap">';
 		echo '<span data-clipboard-text=\'[cbxpetition petition_id="' . absint( $post_id ) . '"]\' title="' . esc_attr__( 'Click to copy',
 				'cbxpetition' ) . '" id="cbxpetitionshortcode-' . absint( $post_id ) . '" class="cbxshortcode cbxshortcode-edit cbxshortcode-' . absint( $post_id ) . '">[cbxpetition petition_id="' . absint( $post_id ) . '"]</span>';
-		echo '<span class="cbxballon_ctp_btn cbxballon_ctp" aria-label="' . esc_attr__( 'Click to copy', 'cbxpetition' ) . '" data-balloon-pos="up"><i></i></span>';
+		echo '<span class="cbxballon_ctp_btn cbxballon_ctp" aria-label="' . esc_attr__( 'Click to copy',
+				'cbxpetition' ) . '" data-balloon-pos="up"><i></i></span>';
 		echo '</div>';
 
 
@@ -2278,7 +2318,8 @@ class CBXPetitionAdmin {
 			$email_id = isset( $_POST['email_id'] ) ? sanitize_text_field( wp_unslash( $_POST['email_id'] ) ) : '';
 			$nonce    = isset( $_POST['_wpnonce'] ) ? sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			if ( $email_id != '' ) {
-				if ( ! wp_verify_nonce( $nonce, 'cbxpetition_email_edit_' . $email_id ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				if ( ! wp_verify_nonce( $nonce,
+					'cbxpetition_email_edit_' . $email_id ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 					die( esc_html__( 'Security check failed!', 'cbxpetition' ) );
 				} else {
 					// Do stuff here.
@@ -2328,17 +2369,19 @@ class CBXPetitionAdmin {
 	 *
 	 * @return void
 	 */
-	public function custom_message_after_plugin_row_proaddon($plugin_file, $plugin_data){
+	public function custom_message_after_plugin_row_proaddon( $plugin_file, $plugin_data ) {
 		if ( $plugin_file !== 'cbxpetitionproaddon/cbxpetitionproaddon.php' ) {
 			return;
 		}
 
-		if(defined('CBXPETITIONPROADDON_PLUGIN_NAME')) return;
+		if ( defined( 'CBXPETITIONPROADDON_PLUGIN_NAME' ) ) {
+			return;
+		}
 
-		$pro_addon_version = PetitionHelper::get_any_plugin_version('cbxpetitionproaddon/cbxpetitionproaddon.php');
-		$pro_latest_version  = CBXPETITION_PRO_VERSION;
+		$pro_addon_version  = PetitionHelper::get_any_plugin_version( 'cbxpetitionproaddon/cbxpetitionproaddon.php' );
+		$pro_latest_version = CBXPETITION_PRO_VERSION;
 
-		if($pro_addon_version != '' && version_compare( $pro_addon_version, $pro_latest_version, '<' ) ){
+		if ( $pro_addon_version != '' && version_compare( $pro_addon_version, $pro_latest_version, '<' ) ) {
 			// Custom message to display
 
 			//$plugin_setting_url = admin_url( 'admin.php?page=cbxpetition_settings#cbxpetition_licences' );
@@ -2346,7 +2389,14 @@ class CBXPetitionAdmin {
 
 
 			/* translators:translators: %s: plugin setting url for licence */
-			$custom_message     = wp_kses(sprintf( __( '<strong>Note:</strong> CBX Petition Pro Addon is custom plugin. This plugin can not be auto update from dashboard/plugin manager. For manual update please check <a target="_blank" href="%1$s">documentation</a>. <strong style="color: red;">It seems this plugin\'s current version is older than %2$s . To get the latest pro addon features, this plugin needs to upgrade to %2$s or later.</strong>', 'cbxpetition' ), esc_url( $plugin_manual_update ), $pro_latest_version ), ['strong' => ['style' => []],'a' => ['href' => [], 'target' => []]]);
+			$custom_message = wp_kses( sprintf( __( '<strong>Note:</strong> CBX Petition Pro Addon is custom plugin. This plugin can not be auto update from dashboard/plugin manager. For manual update please check <a target="_blank" href="%1$s">documentation</a>. <strong style="color: red;">It seems this plugin\'s current version is older than %2$s . To get the latest pro addon features, this plugin needs to upgrade to %2$s or later.</strong>',
+				'cbxpetition' ), esc_url( $plugin_manual_update ), $pro_latest_version ), [
+				'strong' => [ 'style' => [] ],
+				'a'      => [
+					'href'   => [],
+					'target' => []
+				]
+			] );
 
 			// Output a row with custom content
 			echo '<tr class="plugin-update-tr">
@@ -2368,7 +2418,7 @@ class CBXPetitionAdmin {
 		if ( get_transient( 'cbxpetition_create_cats' ) ) {
 			PetitionHelper::create_default_categories(); //from V2.0.3
 
-			delete_transient('cbxpetition_create_cats');
+			delete_transient( 'cbxpetition_create_cats' );
 		}
 	}//end method create_default_category
 }//end class CBXPetitionAdmin

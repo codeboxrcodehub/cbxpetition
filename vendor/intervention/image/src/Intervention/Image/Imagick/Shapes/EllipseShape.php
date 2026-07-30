@@ -27,15 +27,16 @@ class EllipseShape extends AbstractShape
      */
     public function __construct($width = null, $height = null)
     {
-        $this->width = \is_numeric($width) ? \intval($width) : $this->width;
-        $this->height = \is_numeric($height) ? \intval($height) : $this->height;
+        $this->width = is_numeric($width) ? intval($width) : $this->width;
+        $this->height = is_numeric($height) ? intval($height) : $this->height;
     }
     /**
      * Draw ellipse instance on given image
      *
-     * @param  Image   $image
-     * @param  int     $x
-     * @param  int     $y
+     * @param Image $image
+     * @param int $x
+     * @param int $y
+     *
      * @return boolean
      */
     public function applyToImage(Image $image, $x = 0, $y = 0)

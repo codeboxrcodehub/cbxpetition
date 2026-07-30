@@ -28,26 +28,26 @@ class XPathExpr
             $this->addStarPrefix();
         }
     }
-    public function getElement() : string
+    public function getElement(): string
     {
         return $this->element;
     }
     /**
      * @return $this
      */
-    public function addCondition(string $condition, string $operator = 'and') : static
+    public function addCondition(string $condition, string $operator = 'and'): static
     {
         $this->condition = $this->condition ? \sprintf('(%s) %s (%s)', $this->condition, $operator, $condition) : $condition;
         return $this;
     }
-    public function getCondition() : string
+    public function getCondition(): string
     {
         return $this->condition;
     }
     /**
      * @return $this
      */
-    public function addNameTest() : static
+    public function addNameTest(): static
     {
         if ('*' !== $this->element) {
             $this->addCondition('name() = ' . Translator::getXpathLiteral($this->element));
@@ -58,7 +58,7 @@ class XPathExpr
     /**
      * @return $this
      */
-    public function addStarPrefix() : static
+    public function addStarPrefix(): static
     {
         $this->path .= '*/';
         return $this;
@@ -68,7 +68,7 @@ class XPathExpr
      *
      * @return $this
      */
-    public function join(string $combiner, self $expr) : static
+    public function join(string $combiner, self $expr): static
     {
         $path = $this->__toString() . $combiner;
         if ('*/' !== $expr->path) {
@@ -79,7 +79,7 @@ class XPathExpr
         $this->condition = $expr->condition;
         return $this;
     }
-    public function __toString() : string
+    public function __toString(): string
     {
         $path = $this->path . $this->element;
         $condition = '' === $this->condition ? '' : '[' . $this->condition . ']';

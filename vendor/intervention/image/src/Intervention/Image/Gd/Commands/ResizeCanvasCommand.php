@@ -8,7 +8,8 @@ class ResizeCanvasCommand extends AbstractCommand
     /**
      * Resizes image boundaries
      *
-     * @param  \Intervention\Image\Image $image
+     * @param \Intervention\Image\Image $image
+     *
      * @return boolean
      */
     public function execute($image)
@@ -21,8 +22,8 @@ class ResizeCanvasCommand extends AbstractCommand
         $original_width = $image->getWidth();
         $original_height = $image->getHeight();
         // check of only width or height is set
-        $width = \is_null($width) ? $original_width : \intval($width);
-        $height = \is_null($height) ? $original_height : \intval($height);
+        $width = is_null($width) ? $original_width : intval($width);
+        $height = is_null($height) ? $original_height : intval($height);
         // check on relative width/height
         if ($relative) {
             $width = $original_width + $width;
@@ -58,12 +59,12 @@ class ResizeCanvasCommand extends AbstractCommand
         }
         // make image area transparent to keep transparency
         // even if background-color is set
-        $transparent = \imagecolorallocatealpha($canvas->getCore(), 255, 255, 255, 127);
-        \imagealphablending($canvas->getCore(), \false);
+        $transparent = imagecolorallocatealpha($canvas->getCore(), 255, 255, 255, 127);
+        imagealphablending($canvas->getCore(), \false);
         // do not blend / just overwrite
-        \imagefilledrectangle($canvas->getCore(), $dst_x, $dst_y, $dst_x + $src_w - 1, $dst_y + $src_h - 1, $transparent);
+        imagefilledrectangle($canvas->getCore(), $dst_x, $dst_y, $dst_x + $src_w - 1, $dst_y + $src_h - 1, $transparent);
         // copy image into new canvas
-        \imagecopy($canvas->getCore(), $image->getCore(), $dst_x, $dst_y, $src_x, $src_y, $src_w, $src_h);
+        imagecopy($canvas->getCore(), $image->getCore(), $dst_x, $dst_y, $src_x, $src_y, $src_w, $src_h);
         // set new core to canvas
         $image->setCore($canvas->getCore());
         return \true;

@@ -8,7 +8,7 @@ use \Cbx\Petition\Helpers\PetitionHelper;
 use CbxPetitionScoped\enshrined\svgSanitize\Sanitizer;
 
 //phpcs:disabled
-if(!function_exists('is_cbxpetition')){
+if ( ! function_exists( 'is_cbxpetition' ) ) {
 	/**
 	 * is_petition internal pages
 	 *
@@ -586,8 +586,8 @@ if ( ! function_exists( 'cbxpetition_category_count' ) ) {
 	 * @since 2.0.3
 	 */
 	function cbxpetition_category_count() {
-		$taxonomy      = 'cbxpetition_cat';
-		$count = wp_count_terms( [
+		$taxonomy = 'cbxpetition_cat';
+		$count    = wp_count_terms( [
 			'taxonomy'   => $taxonomy,
 			'hide_empty' => false,
 		] );
@@ -600,7 +600,7 @@ if ( ! function_exists( 'cbxpetition_category_count' ) ) {
 	}//end method cbxpetition_category_count
 }
 
-if(!function_exists('cbxpetition_decode_entities_array')){
+if ( ! function_exists( 'cbxpetition_decode_entities_array' ) ) {
 	/**
 	 * Html entitity decode for array
 	 *
@@ -609,9 +609,9 @@ if(!function_exists('cbxpetition_decode_entities_array')){
 	 * @return array|string[]
 	 * @since 2.0.9
 	 */
-	function cbxpetition_decode_entities_array($arr = []){
-		return array_map(function ($v) {
-			return is_string($v) ? html_entity_decode($v, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') : $v;
-		}, $arr);
+	function cbxpetition_decode_entities_array( $arr = [] ) {
+		return array_map( function ( $v ) {
+			return is_string( $v ) ? html_entity_decode( $v, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' ) : $v;
+		}, $arr );
 	}
 }

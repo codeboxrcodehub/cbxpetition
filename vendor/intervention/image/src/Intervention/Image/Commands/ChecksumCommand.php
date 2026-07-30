@@ -7,7 +7,8 @@ class ChecksumCommand extends AbstractCommand
     /**
      * Calculates checksum of given image
      *
-     * @param  \Intervention\Image\Image $image
+     * @param \Intervention\Image\Image $image
+     *
      * @return boolean
      */
     public function execute($image)
@@ -19,7 +20,7 @@ class ChecksumCommand extends AbstractCommand
                 $colors[] = $image->pickColor($x, $y, 'array');
             }
         }
-        $this->setOutput(\md5(\serialize($colors)));
+        $this->setOutput(md5(serialize($colors)));
         return \true;
     }
 }

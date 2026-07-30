@@ -45,7 +45,8 @@ class Constraint
     /**
      * Fix the given argument in current constraint
      *
-     * @param  int $type
+     * @param int $type
+     *
      * @return void
      */
     public function fix($type)
@@ -55,7 +56,8 @@ class Constraint
     /**
      * Checks if given argument is fixed in current constraint
      *
-     * @param  int  $type
+     * @param int $type
+     *
      * @return boolean
      */
     public function isFixed($type)

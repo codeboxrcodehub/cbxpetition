@@ -8,7 +8,8 @@ class OpacityCommand extends AbstractCommand
     /**
      * Defines opacity of an image
      *
-     * @param  \Intervention\Image\Image $image
+     * @param \Intervention\Image\Image $image
+     *
      * @return boolean
      */
     public function execute($image)

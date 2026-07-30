@@ -8,7 +8,8 @@ class ResizeCanvasCommand extends AbstractCommand
     /**
      * Resizes image boundaries
      *
-     * @param  \Intervention\Image\Image $image
+     * @param \Intervention\Image\Image $image
+     *
      * @return boolean
      */
     public function execute($image)
@@ -21,8 +22,8 @@ class ResizeCanvasCommand extends AbstractCommand
         $original_width = $image->getWidth();
         $original_height = $image->getHeight();
         // check of only width or height is set
-        $width = \is_null($width) ? $original_width : \intval($width);
-        $height = \is_null($height) ? $original_height : \intval($height);
+        $width = is_null($width) ? $original_width : intval($width);
+        $height = is_null($height) ? $original_height : intval($height);
         // check on relative width/height
         if ($relative) {
             $width = $original_width + $width;

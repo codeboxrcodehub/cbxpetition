@@ -10,7 +10,8 @@ class FillCommand extends AbstractCommand
     /**
      * Fills image with color or pattern
      *
-     * @param  \Intervention\Image\Image $image
+     * @param \Intervention\Image\Image $image
+     *
      * @return boolean
      */
     public function execute($image)
@@ -25,30 +26,30 @@ class FillCommand extends AbstractCommand
             // set image tile filling
             $source = new Decoder();
             $tile = $source->init($filling);
-            \imagesettile($image->getCore(), $tile->getCore());
+            imagesettile($image->getCore(), $tile->getCore());
             $filling = \IMG_COLOR_TILED;
         } catch (\CbxPetitionScoped\Intervention\Image\Exception\NotReadableException $e) {
             // set solid color filling
             $color = new Color($filling);
             $filling = $color->getInt();
         }
-        \imagealphablending($resource, \true);
-        if (\is_int($x) && \is_int($y)) {
+        imagealphablending($resource, \true);
+        if (is_int($x) && is_int($y)) {
             // resource should be visible through transparency
             $base = $image->getDriver()->newImage($width, $height)->getCore();
-            \imagecopy($base, $resource, 0, 0, 0, 0, $width, $height);
+            imagecopy($base, $resource, 0, 0, 0, 0, $width, $height);
             // floodfill if exact position is defined
-            \imagefill($resource, $x, $y, $filling);
+            imagefill($resource, $x, $y, $filling);
             // copy filled original over base
-            \imagecopy($base, $resource, 0, 0, 0, 0, $width, $height);
+            imagecopy($base, $resource, 0, 0, 0, 0, $width, $height);
             // set base as new resource-core
             $image->setCore($base);
-            \imagedestroy($resource);
+            imagedestroy($resource);
         } else {
             // fill whole image otherwise
-            \imagefilledrectangle($resource, 0, 0, $width - 1, $height - 1, $filling);
+            imagefilledrectangle($resource, 0, 0, $width - 1, $height - 1, $filling);
         }
-        isset($tile) ? \imagedestroy($tile->getCore()) : null;
+        isset($tile) ? imagedestroy($tile->getCore()) : null;
         return \true;
     }
 }

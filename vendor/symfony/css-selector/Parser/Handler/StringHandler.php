@@ -32,7 +32,7 @@ class StringHandler implements HandlerInterface
     public function __construct(private TokenizerPatterns $patterns, private TokenizerEscaping $escaping)
     {
     }
-    public function handle(Reader $reader, TokenStream $stream) : bool
+    public function handle(Reader $reader, TokenStream $stream): bool
     {
         $quote = $reader->getSubstring(1);
         if (!\in_array($quote, ["'", '"'], \true)) {

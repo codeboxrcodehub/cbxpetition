@@ -12,7 +12,7 @@ class ImageServiceProviderLaravelRecent extends ServiceProvider
      */
     private function cacheIsInstalled()
     {
-        return \class_exists('CbxPetitionScoped\\Intervention\\Image\\ImageCache');
+        return class_exists('CbxPetitionScoped\Intervention\Image\ImageCache');
     }
     /**
      * Bootstrap the application events.
@@ -39,7 +39,7 @@ class ImageServiceProviderLaravelRecent extends ServiceProvider
         $app->singleton('image', function ($app) {
             return new ImageManager($this->getImageConfig($app));
         });
-        $app->alias('image', 'CbxPetitionScoped\\Intervention\\Image\\ImageManager');
+        $app->alias('image', 'CbxPetitionScoped\Intervention\Image\ImageManager');
     }
     /**
      * Bootstrap imagecache
@@ -54,22 +54,23 @@ class ImageServiceProviderLaravelRecent extends ServiceProvider
         // merge default config
         $this->mergeConfigFrom($config, 'imagecache');
         // imagecache route
-        if (\is_string(config('imagecache.route'))) {
-            $filename_pattern = '[ \\w\\.\\/\\-\\@\\(\\)\\=]+';
+        if (is_string(config('imagecache.route'))) {
+            $filename_pattern = '[ \w\.\/\-\@\(\)\=]+';
             // route to access template applied image file
-            $app['router']->get(config('imagecache.route') . '/{template}/{filename}', ['uses' => 'Intervention\\Image\\ImageCacheController@getResponse', 'as' => 'imagecache'])->where(['filename' => $filename_pattern]);
+            $app['router']->get(config('imagecache.route') . '/{template}/{filename}', ['uses' => 'Intervention\Image\ImageCacheController@getResponse', 'as' => 'imagecache'])->where(['filename' => $filename_pattern]);
         }
     }
     /**
      * Return image configuration as array
      *
-     * @param  Application $app
+     * @param Application $app
+     *
      * @return array
      */
     private function getImageConfig($app)
     {
         $config = $app['config']->get('image');
-        if (\is_null($config)) {
+        if (is_null($config)) {
             return [];
         }
         return $config;

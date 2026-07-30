@@ -39,13 +39,14 @@ class LineShape extends AbstractShape
      */
     public function __construct($x = null, $y = null)
     {
-        $this->x = \is_numeric($x) ? \intval($x) : $this->x;
-        $this->y = \is_numeric($y) ? \intval($y) : $this->y;
+        $this->x = is_numeric($x) ? intval($x) : $this->x;
+        $this->y = is_numeric($y) ? intval($y) : $this->y;
     }
     /**
      * Set current line color
      *
-     * @param  string $color
+     * @param string $color
+     *
      * @return void
      */
     public function color($color)
@@ -55,7 +56,8 @@ class LineShape extends AbstractShape
     /**
      * Set current line width in pixels
      *
-     * @param  int $width
+     * @param int $width
+     *
      * @return void
      */
     public function width($width)
@@ -65,15 +67,16 @@ class LineShape extends AbstractShape
     /**
      * Draw current instance of line to given endpoint on given image
      *
-     * @param  Image   $image
-     * @param  int     $x
-     * @param  int     $y
+     * @param Image $image
+     * @param int $x
+     * @param int $y
+     *
      * @return boolean
      */
     public function applyToImage(Image $image, $x = 0, $y = 0)
     {
         $color = new Color($this->color);
-        \imageline($image->getCore(), $x, $y, $this->x, $this->y, $color->getInt());
+        imageline($image->getCore(), $x, $y, $this->x, $this->y, $color->getInt());
         return \true;
     }
 }

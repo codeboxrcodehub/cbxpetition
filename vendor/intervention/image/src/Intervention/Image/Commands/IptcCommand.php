@@ -8,21 +8,22 @@ class IptcCommand extends AbstractCommand
     /**
      * Read Iptc data from the given image
      *
-     * @param  \Intervention\Image\Image $image
+     * @param \Intervention\Image\Image $image
+     *
      * @return boolean
      */
     public function execute($image)
     {
-        if (!\function_exists('iptcparse')) {
+        if (!function_exists('iptcparse')) {
             throw new NotSupportedException("Reading Iptc data is not supported by this PHP installation.");
         }
         $key = $this->argument(0)->value();
         $info = [];
-        @\getimagesize($image->dirname . '/' . $image->basename, $info);
+        @getimagesize($image->dirname . '/' . $image->basename, $info);
         $data = [];
-        if (\array_key_exists('APP13', $info)) {
-            $iptc = \iptcparse($info['APP13']);
-            if (\is_array($iptc)) {
+        if (array_key_exists('APP13', $info)) {
+            $iptc = iptcparse($info['APP13']);
+            if (is_array($iptc)) {
                 $data['DocumentTitle'] = isset($iptc["2#005"][0]) ? $iptc["2#005"][0] : null;
                 $data['Urgency'] = isset($iptc["2#010"][0]) ? $iptc["2#010"][0] : null;
                 $data['Category'] = isset($iptc["2#015"][0]) ? $iptc["2#015"][0] : null;
@@ -48,8 +49,8 @@ class IptcCommand extends AbstractCommand
                 $data['CaptionWriter'] = isset($iptc["2#122"][0]) ? $iptc["2#122"][0] : null;
             }
         }
-        if (!\is_null($key) && \is_array($data)) {
-            $data = \array_key_exists($key, $data) ? $data[$key] : \false;
+        if (!is_null($key) && is_array($data)) {
+            $data = array_key_exists($key, $data) ? $data[$key] : \false;
         }
         $this->setOutput($data);
         return \true;

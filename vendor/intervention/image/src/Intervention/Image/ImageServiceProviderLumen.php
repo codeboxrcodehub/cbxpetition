@@ -21,6 +21,6 @@ class ImageServiceProviderLumen extends ServiceProvider
         $app->singleton('image', function ($app) {
             return new ImageManager($app['config']->get('image'));
         });
-        $app->alias('image', 'CbxPetitionScoped\\Intervention\\Image\\ImageManager');
+        $app->alias('image', 'CbxPetitionScoped\Intervention\Image\ImageManager');
     }
 }

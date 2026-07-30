@@ -41,7 +41,7 @@ class Encoder extends AbstractEncoder
         $imagick->setImageFormat($format);
         $imagick->setCompression($compression);
         $imagick->setImageCompression($compression);
-        $this->image->mime = \image_type_to_mime_type(\IMAGETYPE_PNG);
+        $this->image->mime = image_type_to_mime_type(\IMAGETYPE_PNG);
         return $imagick->getImagesBlob();
     }
     /**
@@ -58,7 +58,7 @@ class Encoder extends AbstractEncoder
         $imagick->setImageFormat($format);
         $imagick->setCompression($compression);
         $imagick->setImageCompression($compression);
-        $this->image->mime = \image_type_to_mime_type(\IMAGETYPE_GIF);
+        $this->image->mime = image_type_to_mime_type(\IMAGETYPE_GIF);
         return $imagick->getImagesBlob();
     }
     protected function processWebp()
@@ -94,7 +94,7 @@ class Encoder extends AbstractEncoder
         $imagick->setImageCompression($compression);
         $imagick->setCompressionQuality($this->quality);
         $imagick->setImageCompressionQuality($this->quality);
-        $this->image->mime = \image_type_to_mime_type(\IMAGETYPE_TIFF_II);
+        $this->image->mime = image_type_to_mime_type(\IMAGETYPE_TIFF_II);
         return $imagick->getImagesBlob();
     }
     /**
@@ -111,7 +111,7 @@ class Encoder extends AbstractEncoder
         $imagick->setImageFormat($format);
         $imagick->setCompression($compression);
         $imagick->setImageCompression($compression);
-        $this->image->mime = \image_type_to_mime_type(\IMAGETYPE_BMP);
+        $this->image->mime = image_type_to_mime_type(\IMAGETYPE_BMP);
         return $imagick->getImagesBlob();
     }
     /**
@@ -128,7 +128,7 @@ class Encoder extends AbstractEncoder
         $imagick->setImageFormat($format);
         $imagick->setCompression($compression);
         $imagick->setImageCompression($compression);
-        $this->image->mime = \image_type_to_mime_type(\IMAGETYPE_ICO);
+        $this->image->mime = image_type_to_mime_type(\IMAGETYPE_ICO);
         return $imagick->getImagesBlob();
     }
     /**
@@ -145,7 +145,7 @@ class Encoder extends AbstractEncoder
         $imagick->setImageFormat($format);
         $imagick->setCompression($compression);
         $imagick->setImageCompression($compression);
-        $this->image->mime = \image_type_to_mime_type(\IMAGETYPE_PSD);
+        $this->image->mime = image_type_to_mime_type(\IMAGETYPE_PSD);
         return $imagick->getImagesBlob();
     }
     /**

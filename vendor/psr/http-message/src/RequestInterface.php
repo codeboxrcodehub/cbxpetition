@@ -39,7 +39,7 @@ interface RequestInterface extends MessageInterface
      *
      * @return string
      */
-    public function getRequestTarget() : string;
+    public function getRequestTarget(): string;
     /**
      * Return an instance with the specific request-target.
      *
@@ -54,16 +54,18 @@ interface RequestInterface extends MessageInterface
      *
      * @link http://tools.ietf.org/html/rfc7230#section-5.3 (for the various
      *     request-target forms allowed in request messages)
+     *
      * @param string $requestTarget
+     *
      * @return static
      */
-    public function withRequestTarget(string $requestTarget) : RequestInterface;
+    public function withRequestTarget(string $requestTarget): RequestInterface;
     /**
      * Retrieves the HTTP method of the request.
      *
      * @return string Returns the request method.
      */
-    public function getMethod() : string;
+    public function getMethod(): string;
     /**
      * Return an instance with the provided HTTP method.
      *
@@ -76,10 +78,11 @@ interface RequestInterface extends MessageInterface
      * changed request method.
      *
      * @param string $method Case-sensitive method.
+     *
      * @return static
      * @throws \InvalidArgumentException for invalid HTTP methods.
      */
-    public function withMethod(string $method) : RequestInterface;
+    public function withMethod(string $method): RequestInterface;
     /**
      * Retrieves the URI instance.
      *
@@ -89,7 +92,7 @@ interface RequestInterface extends MessageInterface
      * @return UriInterface Returns a UriInterface instance
      *     representing the URI of the request.
      */
-    public function getUri() : UriInterface;
+    public function getUri(): UriInterface;
     /**
      * Returns an instance with the provided URI.
      *
@@ -116,9 +119,11 @@ interface RequestInterface extends MessageInterface
      * new UriInterface instance.
      *
      * @link http://tools.ietf.org/html/rfc3986#section-4.3
+     *
      * @param UriInterface $uri New request URI to use.
      * @param bool $preserveHost Preserve the original state of the Host header.
+     *
      * @return static
      */
-    public function withUri(UriInterface $uri, bool $preserveHost = \false) : RequestInterface;
+    public function withUri(UriInterface $uri, bool $preserveHost = \false): RequestInterface;
 }

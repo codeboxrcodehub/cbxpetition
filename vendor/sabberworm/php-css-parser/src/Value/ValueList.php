@@ -25,6 +25,7 @@ abstract class ValueList extends Value
     protected $sSeparator;
     /**
      * phpcs:ignore Generic.Files.LineLength
+     *
      * @param array<int, RuleValueList|CSSFunction|CSSString|LineName|Size|URL|string>|RuleValueList|CSSFunction|CSSString|LineName|Size|URL|string $aComponents
      * @param string $sSeparator
      * @param int $iLineNo
@@ -32,7 +33,7 @@ abstract class ValueList extends Value
     public function __construct($aComponents = [], $sSeparator = ',', $iLineNo = 0)
     {
         parent::__construct($iLineNo);
-        if (!\is_array($aComponents)) {
+        if (!is_array($aComponents)) {
             $aComponents = [$aComponents];
         }
         $this->aComponents = $aComponents;

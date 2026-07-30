@@ -8,7 +8,8 @@ class MaskCommand extends AbstractCommand
     /**
      * Applies an alpha mask to an image
      *
-     * @param  \Intervention\Image\Image $image
+     * @param \Intervention\Image\Image $image
+     *
      * @return boolean
      */
     public function execute($image)
@@ -25,10 +26,10 @@ class MaskCommand extends AbstractCommand
         if ($mask_size != $image_size) {
             $mask->resize($image_size->width, $image_size->height);
         }
-        \imagealphablending($canvas->getCore(), \false);
+        imagealphablending($canvas->getCore(), \false);
         if (!$mask_w_alpha) {
             // mask from greyscale image
-            \imagefilter($mask->getCore(), \IMG_FILTER_GRAYSCALE);
+            imagefilter($mask->getCore(), \IMG_FILTER_GRAYSCALE);
         }
         // redraw old image pixel by pixel considering alpha map
         for ($x = 0; $x < $image_size->width; $x++) {
@@ -38,15 +39,13 @@ class MaskCommand extends AbstractCommand
                 if ($mask_w_alpha) {
                     $alpha = $alpha[3];
                     // use alpha channel as mask
+                } else if ($alpha[3] == 0) {
+                    // transparent as black
+                    $alpha = 0;
                 } else {
-                    if ($alpha[3] == 0) {
-                        // transparent as black
-                        $alpha = 0;
-                    } else {
-                        // $alpha = floatval(round((($alpha[0] + $alpha[1] + $alpha[3]) / 3) / 255, 2));
-                        // image is greyscale, so channel doesn't matter (use red channel)
-                        $alpha = \floatval(\round($alpha[0] / 255, 2));
-                    }
+                    // $alpha = floatval(round((($alpha[0] + $alpha[1] + $alpha[3]) / 3) / 255, 2));
+                    // image is greyscale, so channel doesn't matter (use red channel)
+                    $alpha = floatval(round($alpha[0] / 255, 2));
                 }
                 // preserve alpha of original image...
                 if ($color[3] < $alpha) {

@@ -24,9 +24,10 @@ class Driver extends AbstractDriver
     /**
      * Creates new image instance
      *
-     * @param  int     $width
-     * @param  int     $height
-     * @param  mixed   $background
+     * @param int $width
+     * @param int $height
+     * @param mixed $background
+     *
      * @return \Intervention\Image\Image
      */
     public function newImage($width, $height, $background = null)
@@ -45,7 +46,8 @@ class Driver extends AbstractDriver
     /**
      * Reads given string into color object
      *
-     * @param  string $value
+     * @param string $value
+     *
      * @return AbstractColor
      */
     public function parseColor($value)
@@ -59,6 +61,6 @@ class Driver extends AbstractDriver
      */
     protected function coreAvailable()
     {
-        return \extension_loaded('imagick') && \class_exists('Imagick');
+        return extension_loaded('imagick') && class_exists('Imagick');
     }
 }

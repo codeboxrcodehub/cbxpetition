@@ -9,7 +9,7 @@ if ( ! function_exists( 'cbxpetition_rgb_from_hex' ) ) {
 	/**
 	 * Convert RGB to HEX.
 	 *
-	 * @param  mixed  $color  Color.
+	 * @param mixed $color Color.
 	 *
 	 * @return array
 	 */
@@ -32,8 +32,8 @@ if ( ! function_exists( 'cbxpetition_hex_darker' ) ) {
 	/**
 	 * Make HEX color darker.
 	 *
-	 * @param  mixed  $color  Color.
-	 * @param  int  $factor  Darker factor.
+	 * @param mixed $color Color.
+	 * @param int $factor Darker factor.
 	 *                      Defaults to 30.
 	 *
 	 * @return string
@@ -63,8 +63,8 @@ if ( ! function_exists( 'cbxpetition_hex_lighter' ) ) {
 	/**
 	 * Make HEX color lighter.
 	 *
-	 * @param  mixed  $color  Color.
-	 * @param  int  $factor  Lighter factor.
+	 * @param mixed $color Color.
+	 * @param int $factor Lighter factor.
 	 *                      Defaults to 30.
 	 *
 	 * @return string
@@ -95,7 +95,7 @@ if ( ! function_exists( 'cbxpetition_hex_is_light' ) ) {
 	/**
 	 * Determine whether a hex color is light.
 	 *
-	 * @param  mixed  $color  Color.
+	 * @param mixed $color Color.
 	 *
 	 * @return bool  True if a light color.
 	 */
@@ -117,10 +117,10 @@ if ( ! function_exists( 'cbxpetition_light_or_dark' ) ) {
 	/**
 	 * Detect if we should use a light or dark color on a background color.
 	 *
-	 * @param  mixed  $color  Color.
-	 * @param  string  $dark  Darkest reference.
+	 * @param mixed $color Color.
+	 * @param string $dark Darkest reference.
 	 *                      Defaults to '#000000'.
-	 * @param  string  $light  Lightest reference.
+	 * @param string $light Lightest reference.
 	 *                      Defaults to '#FFFFFF'.
 	 *
 	 * @return string
@@ -135,7 +135,7 @@ if ( ! function_exists( 'cbxpetition_format_hex' ) ) {
 	/**
 	 * Format string as hex.
 	 *
-	 * @param  string  $hex  HEX color.
+	 * @param string $hex HEX color.
 	 *
 	 * @return string|null
 	 */
@@ -159,9 +159,9 @@ if ( ! function_exists( 'cbxpetition_format_hex' ) ) {
  * but in PHP 8 it throws an error. Specifically, in WooCommerce we have a few places where
  * round('') is often executed.
  *
- * @param  mixed  $val  The value to round.
- * @param  int  $precision  The optional number of decimal digits to round to.
- * @param  int  $mode  A constant to specify the mode in which rounding occurs.
+ * @param mixed $val The value to round.
+ * @param int $precision The optional number of decimal digits to round to.
+ * @param int $mode A constant to specify the mode in which rounding occurs.
  *
  * @return float The value rounded to the given precision as a float, or the supplied default value.
  */
@@ -182,7 +182,7 @@ function cbxpetition_round( $val, int $precision = 0, int $mode = PHP_ROUND_HALF
  *
  * Note that, unlike the built-in array_sum, this one will always return a float, never an int.
  *
- * @param  array  $arr  The array of values to sum.
+ * @param array $arr The array of values to sum.
  *
  * @return float
  */

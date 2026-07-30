@@ -73,7 +73,7 @@ abstract class RuleSet implements CSSElement, Commentable, Positionable
                     try {
                         $sConsume = $oParserState->consumeUntil(["\n", ";", '}'], \true);
                         // We need to “unfind” the matches to the end of the ruleSet as this will be matched later
-                        if ($oParserState->streql(\substr($sConsume, -1), '}')) {
+                        if ($oParserState->streql(substr($sConsume, -1), '}')) {
                             $oParserState->backtrack(1);
                         } else {
                             while ($oParserState->comes(';')) {
@@ -105,9 +105,9 @@ abstract class RuleSet implements CSSElement, Commentable, Positionable
         if (!isset($this->aRules[$sRule])) {
             $this->aRules[$sRule] = [];
         }
-        $iPosition = \count($this->aRules[$sRule]);
+        $iPosition = count($this->aRules[$sRule]);
         if ($oSibling !== null) {
-            $iSiblingPos = \array_search($oSibling, $this->aRules[$sRule], \true);
+            $iSiblingPos = array_search($oSibling, $this->aRules[$sRule], \true);
             if ($iSiblingPos !== \false) {
                 $iPosition = $iSiblingPos;
                 $oRule->setPosition($oSibling->getLineNo(), $oSibling->getColNo() - 1);
@@ -117,7 +117,7 @@ abstract class RuleSet implements CSSElement, Commentable, Positionable
             //this node is added manually, give it the next best line
             $columnNumber = $oRule->getColNo();
             $rules = $this->getRules();
-            $pos = \count($rules);
+            $pos = count($rules);
             if ($pos > 0) {
                 $last = $rules[$pos - 1];
                 $oRule->setPosition($last->getLineNo() + 1, $columnNumber);
@@ -127,7 +127,7 @@ abstract class RuleSet implements CSSElement, Commentable, Positionable
         } elseif ($oRule->getColumnNumber() === null) {
             $oRule->setPosition($oRule->getLineNumber(), 0);
         }
-        \array_splice($this->aRules[$sRule], $iPosition, 0, [$oRule]);
+        array_splice($this->aRules[$sRule], $iPosition, 0, [$oRule]);
     }
     /**
      * Returns all rules matching the given rule name
@@ -156,11 +156,11 @@ abstract class RuleSet implements CSSElement, Commentable, Positionable
         foreach ($this->aRules as $sName => $aRules) {
             // Either no search rule is given or the search rule matches the found rule exactly
             // or the search rule ends in “-” and the found rule starts with the search rule.
-            if (!$mRule || $sName === $mRule || \strrpos($mRule, '-') === \strlen($mRule) - \strlen('-') && (\strpos($sName, $mRule) === 0 || $sName === \substr($mRule, 0, -1))) {
-                $aResult = \array_merge($aResult, $aRules);
+            if (!$mRule || $sName === $mRule || strrpos($mRule, '-') === strlen($mRule) - strlen('-') && (strpos($sName, $mRule) === 0 || $sName === substr($mRule, 0, -1))) {
+                $aResult = array_merge($aResult, $aRules);
             }
         }
-        \usort($aResult, function (Rule $first, Rule $second) {
+        usort($aResult, function (Rule $first, Rule $second) {
             if ($first->getLineNo() === $second->getLineNo()) {
                 return $first->getColNo() - $second->getColNo();
             }
@@ -276,7 +276,7 @@ abstract class RuleSet implements CSSElement, Commentable, Positionable
         $bIsFirst = \true;
         $oNextLevel = $oOutputFormat->nextLevel();
         foreach ($this->getRules() as $oRule) {
-            $sRendered = $oNextLevel->safely(function () use($oRule, $oNextLevel) {
+            $sRendered = $oNextLevel->safely(function () use ($oRule, $oNextLevel) {
                 return $oRule->render($oNextLevel);
             });
             if ($sRendered === null) {
@@ -303,7 +303,7 @@ abstract class RuleSet implements CSSElement, Commentable, Positionable
      */
     public function addComments(array $aComments)
     {
-        $this->aComments = \array_merge($this->aComments, $aComments);
+        $this->aComments = array_merge($this->aComments, $aComments);
     }
     /**
      * @return array<string, Comment>

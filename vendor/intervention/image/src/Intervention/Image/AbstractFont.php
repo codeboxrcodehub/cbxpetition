@@ -55,18 +55,19 @@ abstract class AbstractFont
     /**
      * Draws font to given image on given position
      *
-     * @param  Image   $image
-     * @param  int     $posx
-     * @param  int     $posy
+     * @param Image $image
+     * @param int $posx
+     * @param int $posy
+     *
      * @return boolean
      */
-    public abstract function applyToImage(Image $image, $posx = 0, $posy = 0);
+    abstract public function applyToImage(Image $image, $posx = 0, $posy = 0);
     /**
      * Calculates bounding box of current font setting
      *
      * @return array
      */
-    public abstract function getBoxSize();
+    abstract public function getBoxSize();
     /**
      * Create a new instance of Font
      *
@@ -79,7 +80,8 @@ abstract class AbstractFont
     /**
      * Set text to be written
      *
-     * @param  String $text
+     * @param String $text
+     *
      * @return self
      */
     public function text($text)
@@ -99,7 +101,8 @@ abstract class AbstractFont
     /**
      * Set font size in pixels
      *
-     * @param  int $size
+     * @param int $size
+     *
      * @return self
      */
     public function size($size)
@@ -119,7 +122,8 @@ abstract class AbstractFont
     /**
      * Set color of text to be written
      *
-     * @param  mixed $color
+     * @param mixed $color
+     *
      * @return self
      */
     public function color($color)
@@ -139,7 +143,8 @@ abstract class AbstractFont
     /**
      * Set rotation angle of text
      *
-     * @param  int $angle
+     * @param int $angle
+     *
      * @return self
      */
     public function angle($angle)
@@ -159,7 +164,8 @@ abstract class AbstractFont
     /**
      * Set horizontal text alignment
      *
-     * @param  string $align
+     * @param string $align
+     *
      * @return self
      */
     public function align($align)
@@ -179,7 +185,8 @@ abstract class AbstractFont
     /**
      * Set vertical text alignment
      *
-     * @param  string $valign
+     * @param string $valign
+     *
      * @return self
      */
     public function valign($valign)
@@ -199,7 +206,8 @@ abstract class AbstractFont
     /**
      * Set text kerning
      *
-     * @param  string $kerning
+     * @param string $kerning
+     *
      * @return void
      */
     public function kerning($kerning)
@@ -218,7 +226,8 @@ abstract class AbstractFont
     /**
      * Set path to font file
      *
-     * @param  string $file
+     * @param string $file
+     *
      * @return self
      */
     public function file($file)
@@ -242,8 +251,8 @@ abstract class AbstractFont
      */
     protected function hasApplicableFontFile()
     {
-        if (\is_string($this->file)) {
-            return \file_exists($this->file);
+        if (is_string($this->file)) {
+            return file_exists($this->file);
         }
         return \false;
     }
@@ -254,6 +263,6 @@ abstract class AbstractFont
      */
     public function countLines()
     {
-        return \count(\explode(\PHP_EOL, $this->text));
+        return count(explode(\PHP_EOL, $this->text));
     }
 }

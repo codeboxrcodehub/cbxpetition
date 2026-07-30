@@ -25,7 +25,7 @@ final class DeclarationBlockParser
      *
      * @return non-empty-string
      */
-    public function normalizePropertyName(string $name) : string
+    public function normalizePropertyName(string $name): string
     {
         if (\substr($name, 0, 2) === '--') {
             return $name;
@@ -54,7 +54,7 @@ final class DeclarationBlockParser
      *
      * @throws \UnexpectedValueException if an empty property name is encountered (which cannot happen)
      */
-    public function parse(string $declarationBlock) : array
+    public function parse(string $declarationBlock): array
     {
         if (isset(self::$cache[$declarationBlock])) {
             return self::$cache[$declarationBlock];
@@ -64,7 +64,7 @@ final class DeclarationBlockParser
         $properties = [];
         foreach ($declarations as $declaration) {
             $matches = [];
-            if ($preg->match('/^([A-Za-z\\-]+)\\s*:\\s*(.+)$/s', \trim($declaration), $matches) === 0) {
+            if ($preg->match('/^([A-Za-z\-]+)\s*:\s*(.+)$/s', \trim($declaration), $matches) === 0) {
                 continue;
             }
             $propertyName = $matches[1];

@@ -22,12 +22,13 @@ class DemoFilter implements FilterInterface
      */
     public function __construct($size = null)
     {
-        $this->size = \is_numeric($size) ? \intval($size) : self::DEFAULT_SIZE;
+        $this->size = is_numeric($size) ? intval($size) : self::DEFAULT_SIZE;
     }
     /**
      * Applies filter effects to given image
      *
-     * @param  \Intervention\Image\Image $image
+     * @param \Intervention\Image\Image $image
+     *
      * @return \Intervention\Image\Image
      */
     public function applyFilter(Image $image)

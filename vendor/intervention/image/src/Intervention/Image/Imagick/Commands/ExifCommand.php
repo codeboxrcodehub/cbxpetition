@@ -22,16 +22,17 @@ class ExifCommand extends BaseCommand
     /**
      * Read Exif data from the given image
      *
-     * @param  \Intervention\Image\Image $image
+     * @param \Intervention\Image\Image $image
+     *
      * @return boolean
      */
     public function execute($image)
     {
-        if ($this->preferExtension && \function_exists('exif_read_data')) {
+        if ($this->preferExtension && function_exists('exif_read_data')) {
             return parent::execute($image);
         }
         $core = $image->getCore();
-        if (!\method_exists($core, 'getImageProperties')) {
+        if (!method_exists($core, 'getImageProperties')) {
             throw new NotSupportedException("Reading Exif data is not supported by this PHP installation.");
         }
         $requestedKey = $this->argument(0)->value();
@@ -42,10 +43,10 @@ class ExifCommand extends BaseCommand
         $exif = [];
         $properties = $core->getImageProperties();
         foreach ($properties as $key => $value) {
-            if (\substr($key, 0, 5) !== 'exif:') {
+            if (substr($key, 0, 5) !== 'exif:') {
                 continue;
             }
-            $exif[\substr($key, 5)] = $value;
+            $exif[substr($key, 5)] = $value;
         }
         $this->setOutput($exif);
         return \true;

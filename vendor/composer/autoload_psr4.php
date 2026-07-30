@@ -6,6 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Symfony\\Polyfill\\Php80\\' => array($vendorDir . '/symfony/polyfill-php80'),
     'Cbx\\Petition\\' => array($baseDir . '/includes'),
     'CbxPetitionScoped\\enshrined\\svgSanitize\\' => array($vendorDir . '/enshrined/svg-sanitize/src'),
     'CbxPetitionScoped\\Symfony\\Component\\CssSelector\\' => array($vendorDir . '/symfony/css-selector'),

@@ -7,7 +7,8 @@ class WidenCommand extends ResizeCommand
     /**
      * Resize image proportionally to given width
      *
-     * @param  \Intervention\Image\Image $image
+     * @param \Intervention\Image\Image $image
+     *
      * @return boolean
      */
     public function execute($image)
@@ -16,9 +17,9 @@ class WidenCommand extends ResizeCommand
         $additionalConstraints = $this->argument(1)->type('closure')->value();
         $this->arguments[0] = $width;
         $this->arguments[1] = null;
-        $this->arguments[2] = function ($constraint) use($additionalConstraints) {
+        $this->arguments[2] = function ($constraint) use ($additionalConstraints) {
             $constraint->aspectRatio();
-            if (\is_callable($additionalConstraints)) {
+            if (is_callable($additionalConstraints)) {
                 $additionalConstraints($constraint);
             }
         };

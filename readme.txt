@@ -1,9 +1,9 @@
 === CBX Petition ===
 Contributors: codeboxr, manchumahara
 Tags: petition,activism,signature,change,campaign
-Requires at least: 5.3
-Tested up to: 6.9
-Stable tag: 2.0.14
+Requires at least: 5.9
+Tested up to: 7.0
+Stable tag: 2.0.15
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,7 +18,7 @@ CBX Petition for WordPress makes it easy to create, manage, and showcase online 
 
 >🤴 [Demo](https://codeboxr.net/wordpress/petition/save-the-green-park-stop-unplanned-commercial-construction/) | 📋 [Documentation](https://codeboxr.com/doc/cbxpetition-doc/) | 🌟 [Upgrade to PRO](https://codeboxr.com/product/cbx-petition-for-wordpress/) |  👨‍💻 [Free Support](https://wordpress.org/support/plugin/cbxpetition/) | 📱 [Free Support](https://wordpress.org/support/plugin/cbxpetition/) | 🤴 [Pro Support](https://codeboxr.com/contact-us)
 
-Note: Full source code(including scss files) available at [Github Repo](https://github.com/codeboxrcodehub/cbxpetition)
+Note: Full source code available at [Github Repo](https://github.com/codeboxrcodehub/cbxpetition)
 
 **If you think any necessary feature is missing contact with us, we will add in new release. Best way to check the feature is install the free core version in any dev site and explore**
 
@@ -201,6 +201,16 @@ Get the [pro addon](https://codeboxr.com/product/cbx-petition-for-wordpress/)
 
 
 == Changelog ==
+= 2.0.15 =
+* [new] New email template system
+* [new] Two new email templates
+* [new] On submit signature shows a message
+* [updated] Core plugin 2.0.15 released
+* [updated] Plugin check V2.0.0 coding standard compatible
+* [updated] WordPress 7.0 Compatible
+* [misc] Lots of ui/ux related improvement
+* [misc] Petition archive template improved
+
 = 2.0.14 =
 * [updated] Misc changes
 * [updated] Pro Addon V2.0.9 released

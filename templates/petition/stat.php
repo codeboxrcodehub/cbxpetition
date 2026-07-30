@@ -35,7 +35,7 @@ if ( ! defined( 'WPINC' ) ) {
 echo '<div class="cbxpetition_stat_wrapper">';
 if ( $show_count ) {
 	/* translators: %1$d: Petition Target, %2$d: signature count  */
-	echo '<p class="cbxpetition_stat_count">' . sprintf( wp_kses(__( '<span class="cbxpetition_stat_count_target">Target: %1$d</span> <span class="cbxpetition_stat_count_received">Received: %2$d</span>', 'cbxpetition' ),['span' => ['class'  => []]]), intval($target), intval($signature_count) ) . '</p>';
+	echo '<p class="cbxpetition_stat_count">' . sprintf( wp_kses( __( '<span class="cbxpetition_stat_count_target">Target: %1$d</span> <span class="cbxpetition_stat_count_received">Received: %2$d</span>', 'cbxpetition' ), [ 'span' => [ 'class' => [] ] ] ), intval( $target ), intval( $signature_count ) ) . '</p>';
 }
 
 if ( $show_progress ) {

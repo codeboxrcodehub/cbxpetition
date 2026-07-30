@@ -135,9 +135,7 @@
 
 
             // prevent double click form submission
-
             $element.on('submit', function (e) {
-
                 var $form = $(this);
 
                 if ($formvalidator.valid()) {
@@ -177,6 +175,16 @@
                                 });
 
                                 $element.remove();
+
+                                if ($success_messages.length > 0) {
+                                    //new AWN().success($success_messages[0].text);
+
+                                    $form_wrapper.find('.cbxpetition_section_heading_form').after('<p class="cbxpetition-info cbxpetition-info-alreadysigned cbxpetition-alert cbxpetition-alert-success">'+$success_messages[0].text+'</p>');
+
+                                    //console.log($success_messages[0].text);
+                                }
+
+                                //
                             } else {
                                 //validation error
                                 var visible_errors = [];

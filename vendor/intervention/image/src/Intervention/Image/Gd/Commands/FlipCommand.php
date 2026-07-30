@@ -7,7 +7,8 @@ class FlipCommand extends ResizeCommand
     /**
      * Mirrors an image
      *
-     * @param  \Intervention\Image\Image $image
+     * @param \Intervention\Image\Image $image
+     *
      * @return boolean
      */
     public function execute($image)
@@ -15,7 +16,7 @@ class FlipCommand extends ResizeCommand
         $mode = $this->argument(0)->value('h');
         $size = $image->getSize();
         $dst = clone $size;
-        switch (\strtolower($mode)) {
+        switch (strtolower($mode)) {
             case 2:
             case 'v':
             case 'vert':

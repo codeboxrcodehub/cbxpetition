@@ -48,7 +48,7 @@ if ( is_array( $petition_photos ) && sizeof( $petition_photos ) > 0 ):
 		$petition_photo_thumb_url = $dir_info['cbxpetition_base_url'] . $petition_id . '/thumbnail/' . $filename;
 
 		echo '<div class="cbxpetition_photo">';
-		echo '<a href="' . esc_url( $petition_photo_url ) . '" data-gall="cbxpetition_photo_background-' . esc_attr($petition_id) . '" class="venobox cbxpetition_photo_background" style="background-image: url(\'' . esc_url( $petition_photo_url ) . '\');"></a>';
+		echo '<a href="' . esc_url( $petition_photo_url ) . '" data-gall="cbxpetition_photo_background-' . esc_attr( $petition_id ) . '" class="venobox cbxpetition_photo_background" style="background-image: url(\'' . esc_url( $petition_photo_url ) . '\');"></a>';
 		echo '</div>';
 	}
 

@@ -22,7 +22,8 @@ class ImageServiceProvider extends ServiceProvider
     /**
      * Create a new service provider instance.
      *
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
+     * @param \Illuminate\Contracts\Foundation\Application $app
+     *
      * @return void
      */
     public function __construct($app)
@@ -37,7 +38,7 @@ class ImageServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (\method_exists($this->provider, 'boot')) {
+        if (method_exists($this->provider, 'boot')) {
             return $this->provider->boot();
         }
     }
@@ -58,11 +59,11 @@ class ImageServiceProvider extends ServiceProvider
     private function getProvider()
     {
         if ($this->app instanceof LumenApplication) {
-            $provider = 'CbxPetitionScoped\\Intervention\\Image\\ImageServiceProviderLumen';
-        } elseif (\version_compare(IlluminateApplication::VERSION, '5.0', '<')) {
-            $provider = 'CbxPetitionScoped\\Intervention\\Image\\ImageServiceProviderLaravel4';
+            $provider = 'CbxPetitionScoped\Intervention\Image\ImageServiceProviderLumen';
+        } elseif (version_compare(IlluminateApplication::VERSION, '5.0', '<')) {
+            $provider = 'CbxPetitionScoped\Intervention\Image\ImageServiceProviderLaravel4';
         } else {
-            $provider = 'CbxPetitionScoped\\Intervention\\Image\\ImageServiceProviderLaravelRecent';
+            $provider = 'CbxPetitionScoped\Intervention\Image\ImageServiceProviderLaravelRecent';
         }
         return new $provider($this->app);
     }

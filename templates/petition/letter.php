@@ -1,4 +1,5 @@
 <?php
+
 use Cbx\Petition\Helpers\PetitionHelper;
 
 /**

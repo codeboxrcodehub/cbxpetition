@@ -13,7 +13,7 @@ class Font extends \CbxPetitionScoped\Intervention\Image\AbstractFont
      */
     protected function getPointSize()
     {
-        return \intval(\ceil($this->size * 0.75));
+        return intval(ceil($this->size * 0.75));
     }
     /**
      * Filter function to access internal integer font values
@@ -22,12 +22,12 @@ class Font extends \CbxPetitionScoped\Intervention\Image\AbstractFont
      */
     private function getInternalFont()
     {
-        $internalfont = \is_null($this->file) ? 1 : $this->file;
-        $internalfont = \is_numeric($internalfont) ? $internalfont : \false;
-        if (!\in_array($internalfont, [1, 2, 3, 4, 5])) {
-            throw new NotSupportedException(\sprintf('Internal GD font (%s) not available. Use only 1-5.', $internalfont));
+        $internalfont = is_null($this->file) ? 1 : $this->file;
+        $internalfont = is_numeric($internalfont) ? $internalfont : \false;
+        if (!in_array($internalfont, [1, 2, 3, 4, 5])) {
+            throw new NotSupportedException(sprintf('Internal GD font (%s) not available. Use only 1-5.', $internalfont));
         }
-        return \intval($internalfont);
+        return intval($internalfont);
     }
     /**
      * Get width of an internal font character
@@ -71,33 +71,33 @@ class Font extends \CbxPetitionScoped\Intervention\Image\AbstractFont
             // character. Preserve any originally double encoded entities to be
             // represented as is.
             // eg: &amp;#160; will render &#160; rather than its character.
-            $this->text = \preg_replace('/&(#(?:x[a-fA-F0-9]+|[0-9]+);)/', '&#38;\\1', $this->text);
-            $this->text = \mb_encode_numericentity($this->text, array(0x80, 0xffff, 0, 0xffff), 'UTF-8');
+            $this->text = preg_replace('/&(#(?:x[a-fA-F0-9]+|[0-9]+);)/', '&#38;\1', $this->text);
+            $this->text = mb_encode_numericentity($this->text, array(0x80, 0xffff, 0, 0xffff), 'UTF-8');
             // get bounding box with angle 0
-            $box = \imagettfbbox($this->getPointSize(), 0, $this->file, $this->text);
+            $box = imagettfbbox($this->getPointSize(), 0, $this->file, $this->text);
             // rotate points manually
             if ($this->angle != 0) {
-                $angle = \pi() * 2 - $this->angle * \pi() * 2 / 360;
+                $angle = pi() * 2 - $this->angle * pi() * 2 / 360;
                 for ($i = 0; $i < 4; $i++) {
                     $x = $box[$i * 2];
                     $y = $box[$i * 2 + 1];
-                    $box[$i * 2] = \cos($angle) * $x - \sin($angle) * $y;
-                    $box[$i * 2 + 1] = \sin($angle) * $x + \cos($angle) * $y;
+                    $box[$i * 2] = cos($angle) * $x - sin($angle) * $y;
+                    $box[$i * 2 + 1] = sin($angle) * $x + cos($angle) * $y;
                 }
             }
-            $box['width'] = \intval(\abs($box[4] - $box[0]));
-            $box['height'] = \intval(\abs($box[5] - $box[1]));
+            $box['width'] = intval(abs($box[4] - $box[0]));
+            $box['height'] = intval(abs($box[5] - $box[1]));
         } else {
             // get current internal font size
             $width = $this->getInternalFontWidth();
             $height = $this->getInternalFontHeight();
-            if (\strlen($this->text) == 0) {
+            if (strlen($this->text) == 0) {
                 // no text -> no boxsize
                 $box['width'] = 0;
                 $box['height'] = 0;
             } else {
                 // calculate boxsize
-                $box['width'] = \strlen($this->text) * $width;
+                $box['width'] = strlen($this->text) * $width;
                 $box['height'] = $height;
             }
         }
@@ -106,9 +106,10 @@ class Font extends \CbxPetitionScoped\Intervention\Image\AbstractFont
     /**
      * Draws font to given image at given position
      *
-     * @param  Image   $image
-     * @param  int     $posx
-     * @param  int     $posy
+     * @param Image $image
+     * @param int $posx
+     * @param int $posy
+     *
      * @return void
      */
     public function applyToImage(Image $image, $posx = 0, $posy = 0)
@@ -116,15 +117,15 @@ class Font extends \CbxPetitionScoped\Intervention\Image\AbstractFont
         // parse text color
         $color = new Color($this->color);
         if ($this->hasApplicableFontFile()) {
-            if ($this->angle != 0 || \is_string($this->align) || \is_string($this->valign)) {
+            if ($this->angle != 0 || is_string($this->align) || is_string($this->valign)) {
                 $box = $this->getBoxSize();
-                $align = \is_null($this->align) ? 'left' : \strtolower($this->align);
-                $valign = \is_null($this->valign) ? 'bottom' : \strtolower($this->valign);
+                $align = is_null($this->align) ? 'left' : strtolower($this->align);
+                $valign = is_null($this->valign) ? 'bottom' : strtolower($this->valign);
                 // correction on position depending on v/h alignment
                 switch ($align . '-' . $valign) {
                     case 'center-top':
-                        $posx = $posx - \round(($box[6] + $box[4]) / 2);
-                        $posy = $posy - \round(($box[7] + $box[5]) / 2);
+                        $posx = $posx - round(($box[6] + $box[4]) / 2);
+                        $posy = $posy - round(($box[7] + $box[5]) / 2);
                         break;
                     case 'right-top':
                         $posx = $posx - $box[4];
@@ -136,22 +137,22 @@ class Font extends \CbxPetitionScoped\Intervention\Image\AbstractFont
                         break;
                     case 'center-center':
                     case 'center-middle':
-                        $posx = $posx - \round(($box[0] + $box[4]) / 2);
-                        $posy = $posy - \round(($box[1] + $box[5]) / 2);
+                        $posx = $posx - round(($box[0] + $box[4]) / 2);
+                        $posy = $posy - round(($box[1] + $box[5]) / 2);
                         break;
                     case 'right-center':
                     case 'right-middle':
-                        $posx = $posx - \round(($box[2] + $box[4]) / 2);
-                        $posy = $posy - \round(($box[3] + $box[5]) / 2);
+                        $posx = $posx - round(($box[2] + $box[4]) / 2);
+                        $posy = $posy - round(($box[3] + $box[5]) / 2);
                         break;
                     case 'left-center':
                     case 'left-middle':
-                        $posx = $posx - \round(($box[0] + $box[6]) / 2);
-                        $posy = $posy - \round(($box[1] + $box[7]) / 2);
+                        $posx = $posx - round(($box[0] + $box[6]) / 2);
+                        $posy = $posy - round(($box[1] + $box[7]) / 2);
                         break;
                     case 'center-bottom':
-                        $posx = $posx - \round(($box[0] + $box[2]) / 2);
-                        $posy = $posy - \round(($box[1] + $box[3]) / 2);
+                        $posx = $posx - round(($box[0] + $box[2]) / 2);
+                        $posy = $posy - round(($box[1] + $box[3]) / 2);
                         break;
                     case 'right-bottom':
                         $posx = $posx - $box[2];
@@ -164,9 +165,9 @@ class Font extends \CbxPetitionScoped\Intervention\Image\AbstractFont
                 }
             }
             // enable alphablending for imagettftext
-            \imagealphablending($image->getCore(), \true);
+            imagealphablending($image->getCore(), \true);
             // draw ttf text
-            \imagettftext($image->getCore(), $this->getPointSize(), $this->angle, $posx, $posy, $color->getInt(), $this->file, $this->text);
+            imagettftext($image->getCore(), $this->getPointSize(), $this->angle, $posx, $posy, $color->getInt(), $this->file, $this->text);
         } else {
             // get box size
             $box = $this->getBoxSize();
@@ -184,36 +185,37 @@ class Font extends \CbxPetitionScoped\Intervention\Image\AbstractFont
                 $bottom_correction = 4;
             }
             // x-position corrections for horizontal alignment
-            switch (\strtolower($this->align)) {
+            switch (strtolower($this->align)) {
                 case 'center':
-                    $posx = \ceil($posx - $width / 2);
+                    $posx = ceil($posx - $width / 2);
                     break;
                 case 'right':
-                    $posx = \ceil($posx - $width) + 1;
+                    $posx = ceil($posx - $width) + 1;
                     break;
             }
             // y-position corrections for vertical alignment
-            switch (\strtolower($this->valign)) {
+            switch (strtolower($this->valign)) {
                 case 'center':
                 case 'middle':
-                    $posy = \ceil($posy - $height / 2);
+                    $posy = ceil($posy - $height / 2);
                     break;
                 case 'top':
-                    $posy = \ceil($posy - $top_correction);
+                    $posy = ceil($posy - $top_correction);
                     break;
                 default:
                 case 'bottom':
-                    $posy = \round($posy - $height + $bottom_correction);
+                    $posy = round($posy - $height + $bottom_correction);
                     break;
             }
             // draw text
-            \imagestring($image->getCore(), $this->getInternalFont(), $posx, $posy, $this->text, $color->getInt());
+            imagestring($image->getCore(), $this->getInternalFont(), $posx, $posy, $this->text, $color->getInt());
         }
     }
     /**
      * Set text kerning
      *
-     * @param  string $kerning
+     * @param string $kerning
+     *
      * @return void
      */
     public function kerning($kerning)

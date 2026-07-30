@@ -54,9 +54,9 @@ final class CssDocument
      *
      * @see https://github.com/sabberworm/PHP-CSS-Parser/issues/127
      */
-    private function hasNestedAtRule(string $css) : bool
+    private function hasNestedAtRule(string $css): bool
     {
-        return (new Preg())->match('/@(?:media|supports|(?:-webkit-|-moz-|-ms-|-o-)?+(keyframes|document))\\b/', $css) !== 0;
+        return (new Preg())->match('/@(?:media|supports|(?:-webkit-|-moz-|-ms-|-o-)?+(keyframes|document))\b/', $css) !== 0;
     }
     /**
      * Collates the media query, selectors and declarations for individual rules from the parsed CSS, in order.
@@ -65,7 +65,7 @@ final class CssDocument
      *
      * @return list<StyleRule>
      */
-    public function getStyleRulesData(array $allowedMediaTypes) : array
+    public function getStyleRulesData(array $allowedMediaTypes): array
     {
         $ruleMatches = [];
         /** @var CssRenderable $rule */
@@ -93,7 +93,7 @@ final class CssDocument
      *
      * @return string
      */
-    public function renderNonConditionalAtRules() : string
+    public function renderNonConditionalAtRules(): string
     {
         $this->isImportRuleAllowed = \true;
         $cssContents = $this->sabberwormCssDocument->getContents();
@@ -113,18 +113,18 @@ final class CssDocument
      *         If the nested at-rule is supported, it's opening declaration (e.g. "@media (max-width: 768px)") is
      *         returned; otherwise the return value is null.
      */
-    private function getFilteredAtIdentifierAndRule(CssAtRuleBlockList $rule, array $allowedMediaTypes) : ?string
+    private function getFilteredAtIdentifierAndRule(CssAtRuleBlockList $rule, array $allowedMediaTypes): ?string
     {
         $result = null;
         if ($rule->atRuleName() === 'media') {
             $mediaQueryList = $rule->atRuleArgs();
             [$mediaType] = \explode('(', $mediaQueryList, 2);
             if (\trim($mediaType) !== '') {
-                $escapedAllowedMediaTypes = \array_map(static function (string $allowedMediaType) : string {
+                $escapedAllowedMediaTypes = \array_map(static function (string $allowedMediaType): string {
                     return \preg_quote($allowedMediaType, '/');
                 }, $allowedMediaTypes);
                 $mediaTypesMatcher = \implode('|', $escapedAllowedMediaTypes);
-                $isAllowed = (new Preg())->match('/^\\s*+(?:only\\s++)?+(?:' . $mediaTypesMatcher . ')/i', $mediaType) !== 0;
+                $isAllowed = (new Preg())->match('/^\s*+(?:only\s++)?+(?:' . $mediaTypesMatcher . ')/i', $mediaType) !== 0;
             } else {
                 $isAllowed = \true;
             }
@@ -148,7 +148,7 @@ final class CssDocument
      *
      * @return bool
      */
-    private function isValidAtRuleToRender(CssRenderable $rule) : bool
+    private function isValidAtRuleToRender(CssRenderable $rule): bool
     {
         if ($rule instanceof CssCharset) {
             return \false;

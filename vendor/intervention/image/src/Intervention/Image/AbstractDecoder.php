@@ -10,31 +10,35 @@ abstract class AbstractDecoder
     /**
      * Initiates new image from path in filesystem
      *
-     * @param  string $path
+     * @param string $path
+     *
      * @return \Intervention\Image\Image
      */
-    public abstract function initFromPath($path);
+    abstract public function initFromPath($path);
     /**
      * Initiates new image from binary data
      *
-     * @param  string $data
+     * @param string $data
+     *
      * @return \Intervention\Image\Image
      */
-    public abstract function initFromBinary($data);
+    abstract public function initFromBinary($data);
     /**
      * Initiates new image from GD resource
      *
-     * @param  Resource $resource
+     * @param Resource $resource
+     *
      * @return \Intervention\Image\Image
      */
-    public abstract function initFromGdResource($resource);
+    abstract public function initFromGdResource($resource);
     /**
      * Initiates new image from Imagick object
      *
      * @param \Imagick $object
+     *
      * @return \Intervention\Image\Image
      */
-    public abstract function initFromImagick(\Imagick $object);
+    abstract public function initFromImagick(\Imagick $object);
     /**
      * Buffer of input data
      *
@@ -53,7 +57,8 @@ abstract class AbstractDecoder
     /**
      * Init from given URL
      *
-     * @param  string $url
+     * @param string $url
+     *
      * @return \Intervention\Image\Image
      */
     public function initFromUrl($url)
@@ -64,8 +69,8 @@ abstract class AbstractDecoder
             // force use HTTP 1.1 for service mesh environment with envoy
             'header' => "Accept-language: en\r\n" . "User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36\r\n",
         ]];
-        $context = \stream_context_create($options);
-        if ($data = @\file_get_contents($url, \false, $context)) {
+        $context = stream_context_create($options);
+        if ($data = @file_get_contents($url, \false, $context)) {
             return $this->initFromBinary($data);
         }
         throw new NotReadableException("Unable to init from given url (" . $url . ").");
@@ -74,6 +79,7 @@ abstract class AbstractDecoder
      * Init from given stream
      *
      * @param StreamInterface|resource $stream
+     *
      * @return \Intervention\Image\Image
      */
     public function initFromStream($stream)
@@ -110,8 +116,8 @@ abstract class AbstractDecoder
      */
     public function isGdResource()
     {
-        if (\is_resource($this->data)) {
-            return \get_resource_type($this->data) == 'gd';
+        if (is_resource($this->data)) {
+            return get_resource_type($this->data) == 'gd';
         }
         if ($this->data instanceof \GdImage) {
             return \true;
@@ -125,7 +131,7 @@ abstract class AbstractDecoder
      */
     public function isImagick()
     {
-        return \is_a($this->data, 'Imagick');
+        return is_a($this->data, 'Imagick');
     }
     /**
      * Determines if current source data is Intervention\Image\Image object
@@ -134,7 +140,7 @@ abstract class AbstractDecoder
      */
     public function isInterventionImage()
     {
-        return \is_a($this->data, 'CbxPetitionScoped\\Intervention\\Image\\Image');
+        return is_a($this->data, 'CbxPetitionScoped\Intervention\Image\Image');
     }
     /**
      * Determines if current data is SplFileInfo object
@@ -143,7 +149,7 @@ abstract class AbstractDecoder
      */
     public function isSplFileInfo()
     {
-        return \is_a($this->data, 'SplFileInfo');
+        return is_a($this->data, 'SplFileInfo');
     }
     /**
      * Determines if current data is Symfony UploadedFile component
@@ -152,7 +158,7 @@ abstract class AbstractDecoder
      */
     public function isSymfonyUpload()
     {
-        return \is_a($this->data, 'CbxPetitionScoped\\Symfony\\Component\\HttpFoundation\\File\\UploadedFile');
+        return is_a($this->data, 'CbxPetitionScoped\Symfony\Component\HttpFoundation\File\UploadedFile');
     }
     /**
      * Determines if current source data is file path
@@ -161,9 +167,9 @@ abstract class AbstractDecoder
      */
     public function isFilePath()
     {
-        if (\is_string($this->data)) {
+        if (is_string($this->data)) {
             try {
-                return \is_file($this->data);
+                return is_file($this->data);
             } catch (\Exception $e) {
                 return \false;
             }
@@ -177,7 +183,7 @@ abstract class AbstractDecoder
      */
     public function isUrl()
     {
-        return (bool) \filter_var($this->data, \FILTER_VALIDATE_URL);
+        return (bool) filter_var($this->data, \FILTER_VALIDATE_URL);
     }
     /**
      * Determines if current source data is a stream resource
@@ -189,10 +195,10 @@ abstract class AbstractDecoder
         if ($this->data instanceof StreamInterface) {
             return \true;
         }
-        if (!\is_resource($this->data)) {
+        if (!is_resource($this->data)) {
             return \false;
         }
-        if (\get_resource_type($this->data) !== 'stream') {
+        if (get_resource_type($this->data) !== 'stream') {
             return \false;
         }
         return \true;
@@ -204,9 +210,9 @@ abstract class AbstractDecoder
      */
     public function isBinary()
     {
-        if (\is_string($this->data)) {
-            $mime = \finfo_buffer(\finfo_open(\FILEINFO_MIME_TYPE), $this->data);
-            return \substr($mime, 0, 4) != 'text' && $mime != 'application/x-empty';
+        if (is_string($this->data)) {
+            $mime = finfo_buffer(finfo_open(\FILEINFO_MIME_TYPE), $this->data);
+            return substr($mime, 0, 4) != 'text' && $mime != 'application/x-empty';
         }
         return \false;
     }
@@ -218,7 +224,7 @@ abstract class AbstractDecoder
     public function isDataUrl()
     {
         $data = $this->decodeDataUrl($this->data);
-        return \is_null($data) ? \false : \true;
+        return is_null($data) ? \false : \true;
     }
     /**
      * Determines if current source data is base64 encoded
@@ -227,15 +233,16 @@ abstract class AbstractDecoder
      */
     public function isBase64()
     {
-        if (!\is_string($this->data)) {
+        if (!is_string($this->data)) {
             return \false;
         }
-        return \base64_encode(\base64_decode($this->data)) === \str_replace(["\n", "\r"], '', $this->data);
+        return base64_encode(base64_decode($this->data)) === str_replace(["\n", "\r"], '', $this->data);
     }
     /**
      * Initiates new Image from Intervention\Image\Image
      *
-     * @param  Image $object
+     * @param Image $object
+     *
      * @return \Intervention\Image\Image
      */
     public function initFromInterventionImage($object)
@@ -245,25 +252,27 @@ abstract class AbstractDecoder
     /**
      * Parses and decodes binary image data from data-url
      *
-     * @param  string $data_url
+     * @param string $data_url
+     *
      * @return string
      */
     private function decodeDataUrl($data_url)
     {
-        if (!\is_string($data_url)) {
+        if (!is_string($data_url)) {
             return null;
         }
         $pattern = "/^data:(?:image\\/[a-zA-Z\\-\\.]+)(?:charset=\".+\")?;base64,(?P<data>.+)\$/";
-        \preg_match($pattern, \str_replace(["\n", "\r"], '', $data_url), $matches);
-        if (\is_array($matches) && \array_key_exists('data', $matches)) {
-            return \base64_decode($matches['data']);
+        preg_match($pattern, str_replace(["\n", "\r"], '', $data_url), $matches);
+        if (is_array($matches) && array_key_exists('data', $matches)) {
+            return base64_decode($matches['data']);
         }
         return null;
     }
     /**
      * Initiates new image from mixed data
      *
-     * @param  mixed $data
+     * @param mixed $data
+     *
      * @return \Intervention\Image\Image
      */
     public function init($data)
@@ -290,7 +299,7 @@ abstract class AbstractDecoder
                 return $this->initFromPath($this->data);
             // isBase64 has to be after isFilePath to prevent false positives
             case $this->isBase64():
-                return $this->initFromBinary(\base64_decode($this->data));
+                return $this->initFromBinary(base64_decode($this->data));
             default:
                 throw new NotReadableException("Image source not readable");
         }

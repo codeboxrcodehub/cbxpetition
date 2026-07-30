@@ -5,7 +5,7 @@ namespace CbxPetitionScoped\Soundasleep;
 class Html2Text
 {
     /** @return array<string, bool | string> */
-    public static function defaultOptions() : array
+    public static function defaultOptions(): array
     {
         return ['ignore_errors' => \false, 'drop_links' => \false, 'char_set' => 'auto'];
     }
@@ -21,31 +21,32 @@ class Html2Text
      *
      * @param string $html the input HTML
      * @param boolean|array<string, bool | string> $options if boolean, Ignore xml parsing errors, else ['ignore_errors' => false, 'drop_links' => false, 'char_set' => 'auto']
+     *
      * @return string the HTML converted, as best as possible, to text
      * @throws Html2TextException if the HTML could not be loaded as a {@link \DOMDocument}
      */
-    public static function convert(string $html, $options = []) : string
+    public static function convert(string $html, $options = []): string
     {
         if ($options === \false || $options === \true) {
             // Using old style (< 1.0) of passing in options
             $options = ['ignore_errors' => $options];
         }
-        $options = \array_merge(static::defaultOptions(), $options);
+        $options = array_merge(static::defaultOptions(), $options);
         // check all options are valid
         foreach ($options as $key => $value) {
-            if (!\in_array($key, \array_keys(static::defaultOptions()))) {
-                throw new \InvalidArgumentException("Unknown html2text option '{$key}'. Valid options are " . \implode(',', static::defaultOptions()));
+            if (!in_array($key, array_keys(static::defaultOptions()))) {
+                throw new \InvalidArgumentException("Unknown html2text option '{$key}'. Valid options are " . implode(',', static::defaultOptions()));
             }
         }
         $is_office_document = self::isOfficeDocument($html);
         if ($is_office_document) {
             // remove office namespace
-            $html = \str_replace(["<o:p>", "</o:p>"], "", $html);
+            $html = str_replace(["<o:p>", "</o:p>"], "", $html);
         }
         $html = self::fixNewlines($html);
         // use mb_convert_encoding for legacy versions of php
-        if (\PHP_MAJOR_VERSION * 10 + \PHP_MINOR_VERSION < 81 && \mb_detect_encoding($html, "UTF-8", \true)) {
-            $html = \mb_convert_encoding($html, "HTML-ENTITIES", "UTF-8");
+        if (\PHP_MAJOR_VERSION * 10 + \PHP_MINOR_VERSION < 81 && mb_detect_encoding($html, "UTF-8", \true)) {
+            $html = mb_convert_encoding($html, "HTML-ENTITIES", "UTF-8");
         }
         $doc = self::getDocument($html, $options);
         $output = self::iterateOverNode($doc, null, \false, $is_office_document, $options);
@@ -59,23 +60,24 @@ class Html2Text
      * all become \ns.
      *
      * @param string $text text with any number of \r, \r\n and \n combinations
+     *
      * @return string the fixed text
      */
-    public static function fixNewlines(string $text) : string
+    public static function fixNewlines(string $text): string
     {
         // replace \r\n to \n
-        $text = \str_replace("\r\n", "\n", $text);
+        $text = str_replace("\r\n", "\n", $text);
         // remove \rs
-        $text = \str_replace("\r", "\n", $text);
+        $text = str_replace("\r", "\n", $text);
         return $text;
     }
     /** @return array<string> */
-    public static function nbspCodes() : array
+    public static function nbspCodes(): array
     {
         return [" ", "\\u00a0"];
     }
     /** @return array<string> */
-    public static function zwnjCodes() : array
+    public static function zwnjCodes(): array
     {
         return ["‌", "\\u200c"];
     }
@@ -83,52 +85,54 @@ class Html2Text
      * Remove leading or trailing spaces and excess empty lines from provided multiline text
      *
      * @param string $text multiline text any number of leading or trailing spaces or excess lines
+     *
      * @return string the fixed text
      */
-    public static function processWhitespaceNewlines(string $text) : string
+    public static function processWhitespaceNewlines(string $text): string
     {
         // remove excess spaces around tabs
-        $text = \preg_replace("/ *\t */im", "\t", $text);
+        $text = preg_replace("/ *\t */im", "\t", $text);
         // remove leading whitespace
-        $text = \ltrim($text);
+        $text = ltrim($text);
         // remove leading spaces on each line
-        $text = \preg_replace("/\n[ \t]*/im", "\n", $text);
+        $text = preg_replace("/\n[ \t]*/im", "\n", $text);
         // convert non-breaking spaces to regular spaces to prevent output issues,
         // do it here so they do NOT get removed with other leading spaces, as they
         // are sometimes used for indentation
         $text = self::renderText($text);
         // remove trailing whitespace
-        $text = \rtrim($text);
+        $text = rtrim($text);
         // remove trailing spaces on each line
-        $text = \preg_replace("/[ \t]*\n/im", "\n", $text);
+        $text = preg_replace("/[ \t]*\n/im", "\n", $text);
         // unarmor pre blocks
         $text = self::fixNewLines($text);
         // remove unnecessary empty lines
-        $text = \preg_replace("/\n\n\n*/im", "\n\n", $text);
+        $text = preg_replace("/\n\n\n*/im", "\n\n", $text);
         return $text;
     }
     /**
      * Can we guess that this HTML is generated by Microsoft Office?
      */
-    public static function isOfficeDocument(string $html) : bool
+    public static function isOfficeDocument(string $html): bool
     {
-        return \strpos($html, "urn:schemas-microsoft-com:office") !== \false;
+        return strpos($html, "urn:schemas-microsoft-com:office") !== \false;
     }
-    public static function isWhitespace(string $text) : bool
+    public static function isWhitespace(string $text): bool
     {
-        return \strlen(\trim(self::renderText($text), "\n\r\t ")) === 0;
+        return strlen(trim(self::renderText($text), "\n\r\t ")) === 0;
     }
     /**
      * Parse HTML into a DOMDocument
      *
      * @param string $html the input HTML
      * @param array<string, bool | string> $options
+     *
      * @return \DOMDocument the parsed document tree
      */
-    private static function getDocument(string $html, array $options) : \DOMDocument
+    private static function getDocument(string $html, array $options): \DOMDocument
     {
         $doc = new \DOMDocument();
-        $html = \trim($html);
+        $html = trim($html);
         if (!$html) {
             // DOMDocument doesn't support empty value and throws an error
             // Return empty document instead
@@ -147,15 +151,13 @@ class Html2Text
             // use specified char_set, or auto detect if not set
             $char_set = !empty($options['char_set']) ? $options['char_set'] : 'auto';
             if ('auto' === $char_set) {
-                $char_set = \mb_detect_encoding($html);
-            } else {
-                if (\strpos($char_set, ',')) {
-                    \mb_detect_order($char_set);
-                    $char_set = \mb_detect_encoding($html);
-                }
+                $char_set = mb_detect_encoding($html);
+            } else if (strpos($char_set, ',')) {
+                mb_detect_order($char_set);
+                $char_set = mb_detect_encoding($html);
             }
             // turn off error detection for Windows-1252 legacy html
-            if (\strpos($char_set, '1252')) {
+            if (strpos($char_set, '1252')) {
                 $options['ignore_errors'] = \true;
             }
             $header = '<?xml version="1.0" encoding="' . $char_set . '">';
@@ -164,9 +166,9 @@ class Html2Text
             $doc->strictErrorChecking = \false;
             $doc->recover = \true;
             $doc->xmlStandalone = \true;
-            $old_internal_errors = \libxml_use_internal_errors(\true);
+            $old_internal_errors = libxml_use_internal_errors(\true);
             $load_result = $doc->loadHTML($header . $html, \LIBXML_NOWARNING | \LIBXML_NOERROR | \LIBXML_NONET | \LIBXML_PARSEHUGE);
-            \libxml_use_internal_errors($old_internal_errors);
+            libxml_use_internal_errors($old_internal_errors);
         } else {
             $load_result = $doc->loadHTML($header . $html);
         }
@@ -183,13 +185,13 @@ class Html2Text
      * This is to match our goal of rendering documents as they would be rendered
      * by a browser.
      */
-    private static function renderText(string $text) : string
+    private static function renderText(string $text): string
     {
-        $text = \str_replace(self::nbspCodes(), " ", $text);
-        $text = \str_replace(self::zwnjCodes(), "", $text);
+        $text = str_replace(self::nbspCodes(), " ", $text);
+        $text = str_replace(self::zwnjCodes(), "", $text);
         return $text;
     }
-    private static function nextChildName(?\DOMNode $node) : ?string
+    private static function nextChildName(?\DOMNode $node): ?string
     {
         // get the next child
         $nextNode = $node->nextSibling;
@@ -206,24 +208,24 @@ class Html2Text
         }
         $nextName = null;
         if (($nextNode instanceof \DOMElement || $nextNode instanceof \DOMText) && $nextNode != null) {
-            $nextName = \strtolower($nextNode->nodeName);
+            $nextName = strtolower($nextNode->nodeName);
         }
         return $nextName;
     }
     /** @param array<string, bool | string> $options */
-    private static function iterateOverNode(\DOMNode $node, ?string $prevName, bool $in_pre, bool $is_office_document, array $options) : string
+    private static function iterateOverNode(\DOMNode $node, ?string $prevName, bool $in_pre, bool $is_office_document, array $options): string
     {
         if ($node instanceof \DOMText) {
             // Replace whitespace characters with a space (equivilant to \s)
             if ($in_pre) {
-                $text = "\n" . \trim(self::renderText($node->wholeText), "\n\r\t ") . "\n";
+                $text = "\n" . trim(self::renderText($node->wholeText), "\n\r\t ") . "\n";
                 // Remove trailing whitespace only
-                $text = \preg_replace("/[ \t]*\n/im", "\n", $text);
+                $text = preg_replace("/[ \t]*\n/im", "\n", $text);
                 // armor newlines with \r.
-                return \str_replace("\n", "\r", $text);
+                return str_replace("\n", "\r", $text);
             }
             $text = self::renderText($node->wholeText);
-            $text = \preg_replace("/[\\t\\n\\f\\r ]+/im", " ", $text);
+            $text = preg_replace("/[\\t\\n\\f\\r ]+/im", " ", $text);
             if (!self::isWhitespace($text) && ($prevName == 'p' || $prevName == 'div')) {
                 return "\n" . $text;
             }
@@ -233,7 +235,7 @@ class Html2Text
             // ignore
             return "";
         }
-        $name = \strtolower($node->nodeName);
+        $name = strtolower($node->nodeName);
         $nextName = self::nextChildName($node);
         // start whitespace
         switch ($name) {
@@ -317,7 +319,7 @@ class Html2Text
                     // Keep current previousSiblingName, these are invisible
                     $trailing_whitespace++;
                 } else {
-                    $previousSiblingName = \strtolower($n->nodeName);
+                    $previousSiblingName = strtolower($n->nodeName);
                     $previousSiblingNames[] = $previousSiblingName;
                     $trailing_whitespace = 0;
                 }
@@ -327,17 +329,17 @@ class Html2Text
             }
             // Remove trailing whitespace, important for the br check below
             while ($trailing_whitespace-- > 0) {
-                \array_pop($parts);
+                array_pop($parts);
             }
             // suppress last br tag inside a node list if follows text
-            $last_name = \array_pop($previousSiblingNames);
+            $last_name = array_pop($previousSiblingNames);
             if ($last_name === 'br') {
-                $last_name = \array_pop($previousSiblingNames);
+                $last_name = array_pop($previousSiblingNames);
                 if ($last_name === '#text') {
-                    \array_pop($parts);
+                    array_pop($parts);
                 }
             }
-            $output .= \implode('', $parts);
+            $output .= implode('', $parts);
         }
         // end whitespace
         switch ($name) {
@@ -362,10 +364,10 @@ class Html2Text
                 // links are returned in [text](link) format
                 // @phpstan-ignore-next-line
                 $href = $node->getAttribute("href");
-                $output = \trim($output);
+                $output = trim($output);
                 // remove double [[ ]] s from linking images
-                if (\substr($output, 0, 1) == "[" && \substr($output, -1) == "]") {
-                    $output = \substr($output, 1, \strlen($output) - 2);
+                if (substr($output, 0, 1) == "[" && substr($output, -1) == "]") {
+                    $output = substr($output, 1, strlen($output) - 2);
                     // for linking images, the title of the <a> overrides the title of the <img>
                     // @phpstan-ignore-next-line
                     if ($node->getAttribute("title")) {
@@ -389,23 +391,18 @@ class Html2Text
                             $output = "[{$output}]";
                         }
                     }
-                } else {
-                    if ($href == $output || $href == "mailto:{$output}" || $href == "http://{$output}" || $href == "https://{$output}") {
-                        // link to the same address: just use link
+                } else if ($href == $output || $href == "mailto:{$output}" || $href == "http://{$output}" || $href == "https://{$output}") {
+                    // link to the same address: just use link
+                    $output = "{$output}";
+                } else if ($output) {
+                    if ($options['drop_links']) {
                         $output = "{$output}";
                     } else {
-                        // replace it
-                        if ($output) {
-                            if ($options['drop_links']) {
-                                $output = "{$output}";
-                            } else {
-                                $output = "[{$output}]({$href})";
-                            }
-                        } else {
-                            // empty string
-                            $output = "{$href}";
-                        }
+                        $output = "[{$output}]({$href})";
                     }
+                } else {
+                    // empty string
+                    $output = "{$href}";
                 }
                 // does the next node require additional whitespace?
                 switch ($nextName) {
@@ -441,9 +438,9 @@ class Html2Text
                 // add leading newline
                 $output = "\n" . $output;
                 // prepend '> ' at the beginning of all lines
-                $output = \preg_replace("/\n/im", "\n> ", $output);
+                $output = preg_replace("/\n/im", "\n> ", $output);
                 // replace leading '> >' with '>>'
-                $output = \preg_replace("/\n> >/im", "\n>>", $output);
+                $output = preg_replace("/\n> >/im", "\n>>", $output);
                 // add another leading newline and trailing newlines
                 $output = "\n" . $output . "\n\n";
                 break;

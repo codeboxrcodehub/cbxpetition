@@ -25,9 +25,9 @@ use CbxPetitionScoped\Symfony\Component\CssSelector\Parser\TokenStream;
  */
 class WhitespaceHandler implements HandlerInterface
 {
-    public function handle(Reader $reader, TokenStream $stream) : bool
+    public function handle(Reader $reader, TokenStream $stream): bool
     {
-        $match = $reader->findPattern('~^[ \\t\\r\\n\\f]+~');
+        $match = $reader->findPattern('~^[ \t\r\n\f]+~');
         if (\false === $match) {
             return \false;
         }

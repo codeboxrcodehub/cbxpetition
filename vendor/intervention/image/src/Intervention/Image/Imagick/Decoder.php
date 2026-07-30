@@ -11,7 +11,8 @@ class Decoder extends AbstractDecoder
     /**
      * Initiates new image from path in filesystem
      *
-     * @param  string $path
+     * @param string $path
+     *
      * @return \Intervention\Image\Image
      */
     public function initFromPath($path)
@@ -20,7 +21,7 @@ class Decoder extends AbstractDecoder
         try {
             $core->setBackgroundColor(new \ImagickPixel('transparent'));
             $core->readImage($path);
-            $core->setImageType(\defined('\\Imagick::IMGTYPE_TRUECOLORALPHA') ? \Imagick::IMGTYPE_TRUECOLORALPHA : \Imagick::IMGTYPE_TRUECOLORMATTE);
+            $core->setImageType(defined('\Imagick::IMGTYPE_TRUECOLORALPHA') ? \Imagick::IMGTYPE_TRUECOLORALPHA : \Imagick::IMGTYPE_TRUECOLORMATTE);
         } catch (\ImagickException $e) {
             throw new \CbxPetitionScoped\Intervention\Image\Exception\NotReadableException("Unable to read image from path ({$path}).", 0, $e);
         }
@@ -32,7 +33,8 @@ class Decoder extends AbstractDecoder
     /**
      * Initiates new image from GD resource
      *
-     * @param  Resource $resource
+     * @param Resource $resource
+     *
      * @return \Intervention\Image\Image
      */
     public function initFromGdResource($resource)
@@ -42,7 +44,8 @@ class Decoder extends AbstractDecoder
     /**
      * Initiates new image from Imagick object
      *
-     * @param  Imagick $object
+     * @param Imagick $object
+     *
      * @return \Intervention\Image\Image
      */
     public function initFromImagick(\Imagick $object)
@@ -57,7 +60,8 @@ class Decoder extends AbstractDecoder
     /**
      * Initiates new image from binary data
      *
-     * @param  string $data
+     * @param string $data
+     *
      * @return \Intervention\Image\Image
      */
     public function initFromBinary($binary)
@@ -71,14 +75,15 @@ class Decoder extends AbstractDecoder
         }
         // build image
         $image = $this->initFromImagick($core);
-        $image->mime = \finfo_buffer(\finfo_open(\FILEINFO_MIME_TYPE), $binary);
+        $image->mime = finfo_buffer(finfo_open(\FILEINFO_MIME_TYPE), $binary);
         return $image;
     }
     /**
      * Turns object into one frame Imagick object
      * by removing all frames except first
      *
-     * @param  Imagick $object
+     * @param Imagick $object
+     *
      * @return Imagick
      */
     private function removeAnimation(\Imagick $object)

@@ -40,11 +40,11 @@ abstract class Value implements CSSElement, Positionable
         $oParserState->consumeWhiteSpace();
         //Build a list of delimiters and parsed values
         while (!($oParserState->comes('}') || $oParserState->comes(';') || $oParserState->comes('!') || $oParserState->comes(')') || $oParserState->comes('\\') || $oParserState->isEnd())) {
-            if (\count($aStack) > 0) {
+            if (count($aStack) > 0) {
                 $bFoundDelimiter = \false;
                 foreach ($aListDelimiters as $sDelimiter) {
                     if ($oParserState->comes($sDelimiter)) {
-                        \array_push($aStack, $oParserState->consume($sDelimiter));
+                        array_push($aStack, $oParserState->consume($sDelimiter));
                         $oParserState->consumeWhiteSpace();
                         $bFoundDelimiter = \true;
                         break;
@@ -52,15 +52,15 @@ abstract class Value implements CSSElement, Positionable
                 }
                 if (!$bFoundDelimiter) {
                     //Whitespace was the list delimiter
-                    \array_push($aStack, ' ');
+                    array_push($aStack, ' ');
                 }
             }
-            \array_push($aStack, self::parsePrimitiveValue($oParserState));
+            array_push($aStack, self::parsePrimitiveValue($oParserState));
             $oParserState->consumeWhiteSpace();
         }
         // Convert the list to list objects
         foreach ($aListDelimiters as $sDelimiter) {
-            $iStackLength = \count($aStack);
+            $iStackLength = count($aStack);
             if ($iStackLength === 1) {
                 return $aStack[0];
             }
@@ -130,7 +130,7 @@ abstract class Value implements CSSElement, Positionable
     {
         $oValue = null;
         $oParserState->consumeWhiteSpace();
-        if (\is_numeric($oParserState->peek()) || $oParserState->comes('-.') && \is_numeric($oParserState->peek(1, 2)) || ($oParserState->comes('-') || $oParserState->comes('.')) && \is_numeric($oParserState->peek(1, 1))) {
+        if (is_numeric($oParserState->peek()) || $oParserState->comes('-.') && is_numeric($oParserState->peek(1, 2)) || ($oParserState->comes('-') || $oParserState->comes('.')) && is_numeric($oParserState->peek(1, 1))) {
             $oValue = Size::parse($oParserState);
         } elseif ($oParserState->comes('#') || $oParserState->comes('rgb', \true) || $oParserState->comes('hsl', \true)) {
             $oValue = Color::parse($oParserState);
@@ -187,7 +187,7 @@ abstract class Value implements CSSElement, Positionable
                 // Max length is 2 six digit code points + the dash(-) between them
             }
             $sRange .= $oParserState->consume(1);
-        } while (\strlen($sRange) < $iCodepointMaxLength && \preg_match("/[A-Fa-f0-9\\?-]/", $oParserState->peek()));
+        } while (strlen($sRange) < $iCodepointMaxLength && preg_match("/[A-Fa-f0-9\\?-]/", $oParserState->peek()));
         return "U+{$sRange}";
     }
 }

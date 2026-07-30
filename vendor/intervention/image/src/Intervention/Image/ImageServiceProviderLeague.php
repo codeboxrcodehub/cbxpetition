@@ -12,7 +12,7 @@ class ImageServiceProviderLeague extends AbstractServiceProvider
     /**
      * @var array $provides
      */
-    protected $provides = ['CbxPetitionScoped\\Intervention\\Image\\ImageManager'];
+    protected $provides = ['CbxPetitionScoped\Intervention\Image\ImageManager'];
     /**
      * Constructor.
      *
@@ -29,7 +29,7 @@ class ImageServiceProviderLeague extends AbstractServiceProvider
      */
     public function register()
     {
-        $this->getContainer()->share('CbxPetitionScoped\\Intervention\\Image\\ImageManager', function () {
+        $this->getContainer()->share('CbxPetitionScoped\Intervention\Image\ImageManager', function () {
             return new ImageManager($this->config);
         });
     }

@@ -35,61 +35,62 @@ abstract class AbstractEncoder
      *
      * @return string
      */
-    protected abstract function processJpeg();
+    abstract protected function processJpeg();
     /**
      * Processes and returns encoded image as PNG string
      *
      * @return string
      */
-    protected abstract function processPng();
+    abstract protected function processPng();
     /**
      * Processes and returns encoded image as GIF string
      *
      * @return string
      */
-    protected abstract function processGif();
+    abstract protected function processGif();
     /**
      * Processes and returns encoded image as TIFF string
      *
      * @return string
      */
-    protected abstract function processTiff();
+    abstract protected function processTiff();
     /**
      * Processes and returns encoded image as BMP string
      *
      * @return string
      */
-    protected abstract function processBmp();
+    abstract protected function processBmp();
     /**
      * Processes and returns encoded image as ICO string
      *
      * @return string
      */
-    protected abstract function processIco();
+    abstract protected function processIco();
     /**
      * Processes and returns image as WebP encoded string
      *
      * @return string
      */
-    protected abstract function processWebp();
+    abstract protected function processWebp();
     /**
      * Processes and returns image as Avif encoded string
      *
      * @return string
      */
-    protected abstract function processAvif();
+    abstract protected function processAvif();
     /**
      * Processes and returns image as Heic encoded string
      *
      * @return string
      */
-    protected abstract function processHeic();
+    abstract protected function processHeic();
     /**
      * Process a given image
      *
-     * @param  Image   $image
-     * @param  string  $format
-     * @param  int     $quality
+     * @param Image $image
+     * @param string $format
+     * @param int $quality
+     *
      * @return Image
      */
     public function process(Image $image, $format = null, $quality = null)
@@ -97,7 +98,7 @@ abstract class AbstractEncoder
         $this->setImage($image);
         $this->setFormat($format);
         $this->setQuality($quality);
-        switch (\strtolower($this->format)) {
+        switch (strtolower($this->format)) {
             case 'data-url':
                 $this->result = $this->processDataUrl();
                 break;
@@ -183,7 +184,7 @@ abstract class AbstractEncoder
     protected function processDataUrl()
     {
         $mime = $this->image->mime ? $this->image->mime : 'image/png';
-        return \sprintf('data:%s;base64,%s', $mime, \base64_encode($this->process($this->image, $mime, $this->quality)));
+        return sprintf('data:%s;base64,%s', $mime, base64_encode($this->process($this->image, $mime, $this->quality)));
     }
     /**
      * Sets image to process
@@ -214,12 +215,12 @@ abstract class AbstractEncoder
      */
     protected function setQuality($quality)
     {
-        $quality = \is_null($quality) ? 90 : $quality;
+        $quality = is_null($quality) ? 90 : $quality;
         $quality = $quality === 0 ? 1 : $quality;
         if ($quality < 0 || $quality > 100) {
             throw new InvalidArgumentException('Quality must range from 0 to 100.');
         }
-        $this->quality = \intval($quality);
+        $this->quality = intval($quality);
         return $this;
     }
 }

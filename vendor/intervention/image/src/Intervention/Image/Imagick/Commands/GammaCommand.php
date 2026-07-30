@@ -8,7 +8,8 @@ class GammaCommand extends AbstractCommand
     /**
      * Applies gamma correction to a given image
      *
-     * @param  \Intervention\Image\Image $image
+     * @param \Intervention\Image\Image $image
+     *
      * @return boolean
      */
     public function execute($image)

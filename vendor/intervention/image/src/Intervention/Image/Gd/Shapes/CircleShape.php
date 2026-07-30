@@ -18,16 +18,17 @@ class CircleShape extends EllipseShape
      */
     public function __construct($diameter = null)
     {
-        $this->width = \is_numeric($diameter) ? \intval($diameter) : $this->diameter;
-        $this->height = \is_numeric($diameter) ? \intval($diameter) : $this->diameter;
-        $this->diameter = \is_numeric($diameter) ? \intval($diameter) : $this->diameter;
+        $this->width = is_numeric($diameter) ? intval($diameter) : $this->diameter;
+        $this->height = is_numeric($diameter) ? intval($diameter) : $this->diameter;
+        $this->diameter = is_numeric($diameter) ? intval($diameter) : $this->diameter;
     }
     /**
      * Draw current circle on given image
      *
-     * @param  Image   $image
-     * @param  int     $x
-     * @param  int     $y
+     * @param Image $image
+     * @param int $x
+     * @param int $y
+     *
      * @return boolean
      */
     public function applyToImage(Image $image, $x = 0, $y = 0)

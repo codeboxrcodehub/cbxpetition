@@ -8,7 +8,8 @@ class LimitColorsCommand extends AbstractCommand
     /**
      * Reduces colors of a given image
      *
-     * @param  \Intervention\Image\Image $image
+     * @param \Intervention\Image\Image $image
+     *
      * @return boolean
      */
     public function execute($image)

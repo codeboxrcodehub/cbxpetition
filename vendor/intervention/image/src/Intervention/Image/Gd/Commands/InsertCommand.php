@@ -8,7 +8,8 @@ class InsertCommand extends AbstractCommand
     /**
      * Insert another image into given image
      *
-     * @param  \Intervention\Image\Image $image
+     * @param \Intervention\Image\Image $image
+     *
      * @return boolean
      */
     public function execute($image)
@@ -24,7 +25,7 @@ class InsertCommand extends AbstractCommand
         $watermark_size = $watermark->getSize()->align($position);
         $target = $image_size->relativePosition($watermark_size);
         // insert image at position
-        \imagealphablending($image->getCore(), \true);
-        return \imagecopy($image->getCore(), $watermark->getCore(), $target->x, $target->y, 0, 0, $watermark_size->width, $watermark_size->height);
+        imagealphablending($image->getCore(), \true);
+        return imagecopy($image->getCore(), $watermark->getCore(), $target->x, $target->y, 0, 0, $watermark_size->width, $watermark_size->height);
     }
 }

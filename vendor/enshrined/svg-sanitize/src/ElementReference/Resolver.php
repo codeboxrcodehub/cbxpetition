@@ -39,6 +39,7 @@ class Resolver
      *
      * @param \DOMElement $element
      * @param bool $considerChildren Whether to search in Subject's children as well
+     *
      * @return Subject|null
      */
     public function findByElement(\DOMElement $element, $considerChildren = \false)
@@ -56,11 +57,12 @@ class Resolver
      * it to client/browser implementation which element to actually use.
      *
      * @param string $elementId
+     *
      * @return Subject[]
      */
     public function findByElementId($elementId)
     {
-        return \array_filter($this->subjects, function (Subject $subject) use($elementId) {
+        return array_filter($this->subjects, function (Subject $subject) use ($elementId) {
             return $elementId === $subject->getElementId();
         });
     }
@@ -101,7 +103,7 @@ class Resolver
     protected function determineInvalidSubjects()
     {
         foreach ($this->subjects as $subject) {
-            if (\in_array($subject->getElement(), $this->elementsToRemove)) {
+            if (in_array($subject->getElement(), $this->elementsToRemove)) {
                 continue;
             }
             $useId = Helper::extractIdReferenceFromHref(Helper::getElementHref($subject->getElement()));
@@ -134,6 +136,6 @@ class Resolver
      */
     protected function markSubjectAsInvalid(Subject $subject)
     {
-        $this->elementsToRemove = \array_merge($this->elementsToRemove, $subject->clearInternalAndGetAffectedElements());
+        $this->elementsToRemove = array_merge($this->elementsToRemove, $subject->clearInternalAndGetAffectedElements());
     }
 }

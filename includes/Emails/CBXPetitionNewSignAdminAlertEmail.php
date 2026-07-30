@@ -7,7 +7,6 @@ use Cbx\Petition\CBXSetting;
 use Cbx\Petition\Helpers\PetitionHelper;
 
 
-
 if ( ! class_exists( 'CBXPetitionNewSignAdminAlertEmail', false ) ) :
 
 	/**
@@ -29,6 +28,7 @@ if ( ! class_exists( 'CBXPetitionNewSignAdminAlertEmail', false ) ) :
 
 			$this->placeholders = [
 				'{petition}'             => '', //html
+				'{petition_url}'         => '',//petition plain url
 				'{petition_id}'          => '',
 				'{petition_title}'       => '',
 				'{signature_first_name}' => '',
@@ -167,6 +167,7 @@ if ( ! class_exists( 'CBXPetitionNewSignAdminAlertEmail', false ) ) :
 
 				//petition related
 				$this->placeholders['{petition}']        = '<a href="' . esc_url( get_permalink( $petition_id ) ) . '">' . get_the_title( $petition_id ) . '</a>';
+				$this->placeholders['{petition_url}']    = esc_url( get_the_permalink( $petition_id ) );
 				$this->placeholders['{petition_id}']     = $petition_id;
 				$this->placeholders['{petition_title}']  = get_the_title( $petition_id );
 				$this->placeholders['{signature_count}'] = cbxpetition_signature_count( $petition_id );
@@ -180,7 +181,9 @@ if ( ! class_exists( 'CBXPetitionNewSignAdminAlertEmail', false ) ) :
 				$this->placeholders['{signature_status}']     = $sign_status[ $log_data['state'] ] ?? '';
 
 				//signature and admin scope related
-				$this->placeholders['{signature_edit_url}'] = $petition_sign_url_formatted;
+				$this->placeholders['{signature_edit_url}'] = $petition_sign_url;
+
+				$this->placeholders['{email_heading}'] = $this->get_default_heading();
 
 
 				$this->send( $this->get_recipient(), $this->get_subject(), $this->get_content(), $this->get_headers(), $this->get_attachments() );

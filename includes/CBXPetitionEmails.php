@@ -3,6 +3,7 @@
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
+
 class CBXPetitionEmails {
 	/**
 	 * The single instance of the class
@@ -73,9 +74,9 @@ class CBXPetitionEmails {
 		// Include email classes.
 		include_once __DIR__ . '/Emails/CBXPetitionEmail.php';
 
-		$this->emails['new_sign_admin_alert'] = include __DIR__ . '/Emails/CBXPetitionNewSignAdminAlertEmail.php';
-		$this->emails['new_sign_user_alert']  = include __DIR__ . '/Emails/CBXPetitionNewSignUserAlertEmail.php';
-		$this->emails['sign_approve_user_email']   = include __DIR__ . '/Emails/CBXPetitionSignApproveUserEmail.php';
+		$this->emails['new_sign_admin_alert']    = include __DIR__ . '/Emails/CBXPetitionNewSignAdminAlertEmail.php';
+		$this->emails['new_sign_user_alert']     = include __DIR__ . '/Emails/CBXPetitionNewSignUserAlertEmail.php';
+		$this->emails['sign_approve_user_email'] = include __DIR__ . '/Emails/CBXPetitionSignApproveUserEmail.php';
 
 		$this->emails = apply_filters( 'cbxpetition_email_classes', $this->emails );
 	}//end method init
@@ -83,14 +84,16 @@ class CBXPetitionEmails {
 	/**
 	 * Get the email header.
 	 *
-	 * @param  mixed  $email_heading  Heading for the email.
+	 * @param mixed $email_heading Heading for the email.
 	 */
 	public function email_header( $email_heading ) {
-		$template_settings = get_option( 'cbxpetition_email_tpl' );
+		$tpl_settings      = get_option( 'cbxpetition_email_tpl', [] );
+		$selected_template = isset( $tpl_settings['selected_template'] ) ? $tpl_settings['selected_template'] : 'tpl-general';
+
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo cbxpetition_get_template_html( 'emails/email-header.php', [
+		echo cbxpetition_get_template_html( 'email_templates/' . $selected_template . '/email-header.php', [
 			'email_heading'     => $email_heading,
-			'template_settings' => $template_settings
+			'template_settings' => $tpl_settings
 		] );
 	}//end method email_header
 
@@ -98,19 +101,23 @@ class CBXPetitionEmails {
 	 * Get the email footer.
 	 */
 	public function email_footer() {
-		$template_settings = get_option( 'cbxpetition_email_tpl' );
+		$tpl_settings = get_option( 'cbxpetition_email_tpl', [] );
+		$selected_tpl = isset( $tpl_settings['selected_template'] ) ? $tpl_settings['selected_template'] : 'tpl-general';
+
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo cbxpetition_get_template_html( 'emails/email-footer.php', [ 'template_settings' => $template_settings ] );
+		echo cbxpetition_get_template_html( 'email_templates/' . esc_attr( $selected_tpl ) . '/email-footer.php', [
+			'template_settings' => $tpl_settings
+		] );
 	}//end method email_footer
 
 	/**
 	 * Send the email.
 	 *
-	 * @param  mixed  $to  Receiver.
-	 * @param  mixed  $subject  Email subject.
-	 * @param  mixed  $message  Message.
-	 * @param  string  $headers  Email headers (default: "Content-Type: text/html\r\n").
-	 * @param  string  $attachments  Attachments (default: "").
+	 * @param mixed $to Receiver.
+	 * @param mixed $subject Email subject.
+	 * @param mixed $message Message.
+	 * @param string $headers Email headers (default: "Content-Type: text/html\r\n").
+	 * @param string $attachments Attachments (default: "").
 	 *
 	 * @return bool
 	 */
@@ -124,9 +131,9 @@ class CBXPetitionEmails {
 	/**
 	 * Wraps a message in the cbxpetition mail template.
 	 *
-	 * @param  string  $email_heading  Heading text.
-	 * @param  string  $message  Email message.
-	 * @param  bool  $plain_text  Set true to send as plain text. Default to false.
+	 * @param string $email_heading Heading text.
+	 * @param string $message Email message.
+	 * @param bool $plain_text Set true to send as plain text. Default to false.
 	 *
 	 * @return string
 	 */
@@ -168,7 +175,7 @@ class CBXPetitionEmails {
 	 *
 	 * @return void
 	 */
-	public function recipient_notification_email($petition_id, $to, $user_name, $attachments) {
+	public function recipient_notification_email( $petition_id, $to, $user_name, $attachments ) {
 		$email = $this->emails['recipient_notification_email'];
 		$email->trigger( $petition_id, $to, $user_name, $attachments );
 	}//end method recipient_notification_email

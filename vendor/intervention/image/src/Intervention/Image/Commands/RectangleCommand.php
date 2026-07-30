@@ -8,7 +8,8 @@ class RectangleCommand extends AbstractCommand
     /**
      * Draws rectangle on given image
      *
-     * @param  \Intervention\Image\Image $image
+     * @param \Intervention\Image\Image $image
+     *
      * @return boolean
      */
     public function execute($image)
@@ -18,7 +19,7 @@ class RectangleCommand extends AbstractCommand
         $x2 = $this->argument(2)->type('numeric')->required()->value();
         $y2 = $this->argument(3)->type('numeric')->required()->value();
         $callback = $this->argument(4)->type('closure')->value();
-        $rectangle_classname = \sprintf('\\Intervention\\Image\\%s\\Shapes\\RectangleShape', $image->getDriver()->getDriverName());
+        $rectangle_classname = sprintf('\Intervention\Image\%s\Shapes\RectangleShape', $image->getDriver()->getDriverName());
         $rectangle = new $rectangle_classname($x1, $y1, $x2, $y2);
         if ($callback instanceof Closure) {
             $callback($rectangle);

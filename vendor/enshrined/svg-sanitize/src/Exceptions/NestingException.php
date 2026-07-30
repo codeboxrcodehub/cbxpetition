@@ -12,9 +12,9 @@ class NestingException extends \Exception
     /**
      * NestingException constructor.
      *
-     * @param string           $message
-     * @param int              $code
-     * @param Exception|null   $previous
+     * @param string $message
+     * @param int $code
+     * @param Exception|null $previous
      * @param \DOMElement|null $element
      */
     public function __construct($message = "", $code = 0, ?Exception $previous = null, ?\DOMElement $element = null)

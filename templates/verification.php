@@ -1,6 +1,6 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+    exit; // Exit if accessed directly
 }
 ?>
 
@@ -17,16 +17,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 	wp_head();
 }
 else{*/
-	get_header( 'cbxpetition' );
+get_header( 'cbxpetition' );
 //}
 ?>
     <div class="cbx-chota" id="cbxpetition_verification_public">
         <div class="container" id="cbxpetition_verification_wrapper">
             <div class="cbxpetition_verification_inside">
-                <h2 class="cbxpetition_section_heading cbxpetition_section_heading_verification"><?php esc_html_e('Guest signature verification', 'cbxpetition'); ?></h2>
-				<?php
-				echo $confirmation_message; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				?>
+                <h2 class="cbxpetition_section_heading cbxpetition_section_heading_verification"><?php esc_html_e( 'Guest signature verification', 'cbxpetition' ); ?></h2>
+                <?php
+                echo $confirmation_message; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                ?>
             </div>
         </div>
     </div>
@@ -43,7 +43,7 @@ else{*/
 	wp_footer();
 }
 else{*/
-	get_footer( 'cbxpetition' );
+get_footer( 'cbxpetition' );
 //}
 
 // phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound

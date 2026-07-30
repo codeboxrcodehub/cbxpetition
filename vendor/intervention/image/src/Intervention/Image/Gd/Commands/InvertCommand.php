@@ -8,11 +8,12 @@ class InvertCommand extends AbstractCommand
     /**
      * Inverts colors of an image
      *
-     * @param  \Intervention\Image\Image $image
+     * @param \Intervention\Image\Image $image
+     *
      * @return boolean
      */
     public function execute($image)
     {
-        return \imagefilter($image->getCore(), \IMG_FILTER_NEGATE);
+        return imagefilter($image->getCore(), \IMG_FILTER_NEGATE);
     }
 }

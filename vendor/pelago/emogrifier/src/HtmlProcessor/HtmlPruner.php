@@ -25,7 +25,7 @@ final class HtmlPruner extends AbstractHtmlProcessor
      *
      * @return $this
      */
-    public function removeElementsWithDisplayNone() : self
+    public function removeElementsWithDisplayNone(): self
     {
         $elementsWithStyleDisplayNone = $this->getXPath()->query(self::DISPLAY_NONE_MATCHER);
         if ($elementsWithStyleDisplayNone->length === 0) {
@@ -52,7 +52,7 @@ final class HtmlPruner extends AbstractHtmlProcessor
      *
      * @return $this
      */
-    public function removeRedundantClasses(array $classesToKeep = []) : self
+    public function removeRedundantClasses(array $classesToKeep = []): self
     {
         $elementsWithClassAttribute = $this->getXPath()->query('//*[@class]');
         if ($classesToKeep !== []) {
@@ -70,13 +70,13 @@ final class HtmlPruner extends AbstractHtmlProcessor
      * @param \DOMNodeList $elements
      * @param array<array-key, string> $classesToKeep
      */
-    private function removeClassesFromElements(\DOMNodeList $elements, array $classesToKeep) : void
+    private function removeClassesFromElements(\DOMNodeList $elements, array $classesToKeep): void
     {
         $classesToKeepIntersector = new ArrayIntersector($classesToKeep);
         $preg = new Preg();
         /** @var \DOMElement $element */
         foreach ($elements as $element) {
-            $elementClasses = $preg->split('/\\s++/', \trim($element->getAttribute('class')));
+            $elementClasses = $preg->split('/\s++/', \trim($element->getAttribute('class')));
             $elementClassesToKeep = $classesToKeepIntersector->intersectWith($elementClasses);
             if ($elementClassesToKeep !== []) {
                 $element->setAttribute('class', \implode(' ', $elementClassesToKeep));
@@ -90,7 +90,7 @@ final class HtmlPruner extends AbstractHtmlProcessor
      *
      * @param \DOMNodeList $elements
      */
-    private function removeClassAttributeFromElements(\DOMNodeList $elements) : void
+    private function removeClassAttributeFromElements(\DOMNodeList $elements): void
     {
         /** @var \DOMElement $element */
         foreach ($elements as $element) {
@@ -110,12 +110,12 @@ final class HtmlPruner extends AbstractHtmlProcessor
      *
      * @throws \BadMethodCallException if `inlineCss` has not first been called on `$cssInliner`
      */
-    public function removeRedundantClassesAfterCssInlined(CssInliner $cssInliner) : self
+    public function removeRedundantClassesAfterCssInlined(CssInliner $cssInliner): self
     {
         $preg = new Preg();
         $classesToKeepAsKeys = [];
         foreach ($cssInliner->getMatchingUninlinableSelectors() as $selector) {
-            $preg->matchAll('/\\.(-?+[_a-zA-Z][\\w\\-]*+)/', $selector, $matches);
+            $preg->matchAll('/\.(-?+[_a-zA-Z][\w\-]*+)/', $selector, $matches);
             $classesToKeepAsKeys += \array_fill_keys($matches[1], \true);
         }
         $this->removeRedundantClasses(\array_keys($classesToKeepAsKeys));

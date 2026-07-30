@@ -30,11 +30,11 @@ class Specificity
     public function __construct(private int $a, private int $b, private int $c)
     {
     }
-    public function plus(self $specificity) : self
+    public function plus(self $specificity): self
     {
         return new self($this->a + $specificity->a, $this->b + $specificity->b, $this->c + $specificity->c);
     }
-    public function getValue() : int
+    public function getValue(): int
     {
         return $this->a * self::A_FACTOR + $this->b * self::B_FACTOR + $this->c * self::C_FACTOR;
     }
@@ -42,7 +42,7 @@ class Specificity
      * Returns -1 if the object specificity is lower than the argument,
      * 0 if they are equal, and 1 if the argument is lower.
      */
-    public function compareTo(self $specificity) : int
+    public function compareTo(self $specificity): int
     {
         if ($this->a !== $specificity->a) {
             return $this->a > $specificity->a ? 1 : -1;

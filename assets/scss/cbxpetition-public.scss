@@ -228,7 +228,6 @@ $app_success_color: #339D5D;
       .cbxpetition-signform-field-input {
         outline: none !important;
         padding: 5px 10px !important;
-        border: 1px solid;
         font-size: 14px !important;
         line-height: 1.5 !important;
         width: 100%;
@@ -278,6 +277,17 @@ h2.cbxpetition_section_heading {
 
   &:before {
     display: none;
+  }
+  &.cbxpetition_section_heading_signatures{
+    span{
+      float: right;
+      color: #3d5a80;
+      background: #e4eaf1;
+      padding: 7px 14px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 12px !important;
+    }
   }
 }
 
@@ -484,71 +494,94 @@ h2.cbxpetition_section_heading {
 .cbxpetition_signature_wrapper {
   width: 100%;
   //max-width: 600px;
-}
 
-.cbxpetition_signature_item {
-  margin-bottom: 20px;
+  .cbxpetition_signature_listing_total{
+    font-weight: bold;
+  }
 
-  .signature-card {
-    width: 100%;
-    box-shadow: 0 10px 22px 0 rgba(0, 4, 32, .05) !important;
-    background-color: #fff;
-    border-radius: 4px;
-    padding: 10px;
-
-    .signature-info {
-      display: flex;
-      margin-bottom: 10px;
-
-      .signature-thumb-photo {
-        margin: 0 10px 0 0;
-
-        img {
-          border-radius: 5px;
-        }
+  .cbxpetition_signature_items{
+    .cbxpetition_signature_item {
+      border-radius: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #dad4c6;
+      box-shadow: 0 10px 22px 0 rgba(0, 4, 32, .05) !important;
+      background-color: #fff;
+      &.cbxpetition_signature_item_me{
+        border-color: #3d5a80;
       }
 
-      .signature-person {
-        .signature-name {
-          text-transform: capitalize;
-          margin: 0 0 5px 0;
-          font-size: 12px;
+      .signature-card {
+        width: 100%;
+
+        //border-radius: 4px;
+        padding: 10px;
+
+        .signature-info {
+          display: flex;
+          margin-bottom: 10px;
+
+          .signature-thumb-photo {
+            margin: 0 10px 0 0;
+
+            img {
+              border-radius: 5px;
+            }
+          }
+          .signature-person {
+            .signature-name {
+              text-transform: capitalize;
+              margin: 0 !important;
+              font-size: 12px;
+              line-height: 1.2;
+              span{
+                color: #fff;
+                background-color: var(--font-color)!important;
+                border-radius: 4px;
+                padding: 5px 8px;
+                margin-left: 10px;
+                font-size: 10px;
+                line-height: 1.5;
+              }
+            }
+
+            .signature-date-time {
+              font-size: 12px;
+              line-height: 1;
+            }
+          }
+          .cbxpetition-sign-delete-btn{
+            margin-left: auto;
+          }
+        }
+
+        .signature-message-wrap {
+          margin: 10px 0;
+          clear: both;
+        }
+
+        .signature-message {
+          margin-bottom: 10px;
+          font-size: 14px;
           line-height: 1.2;
+
+          p {
+            &:last-child {
+              margin-bottom: 0 !important;
+            }
+          }
+
+          & + a[data-readmore-toggle] {
+            box-shadow: none;
+            text-align: center;
+            font-size: 12px;
+            line-height: 1.5;
+            text-decoration: none;
+            font-weight: normal;
+            display: block !important;
+            width: fit-content !important;
+            margin: 0 auto !important;
+          }
         }
-
-        .signature-date-time {
-          font-size: 10px;
-          line-height: 1;
-        }
-      }
-    }
-
-    .signature-message-wrap {
-      margin: 10px 0;
-      clear: both;
-    }
-
-    .signature-message {
-      margin-bottom: 10px;
-      font-size: 14px;
-      line-height: 1.2;
-
-      p {
-        &:last-child {
-          margin-bottom: 0 !important;
-        }
-      }
-
-      & + a[data-readmore-toggle] {
-        box-shadow: none;
-        text-align: center;
-        font-size: 12px;
-        line-height: 1.5;
-        text-decoration: none;
-        font-weight: normal;
-        display: block !important;
-        width: fit-content !important;
-        margin: 0 auto !important;
       }
     }
   }
@@ -591,13 +624,69 @@ h2.cbxpetition_section_heading {
   }
 }
 
+.cbxpetition_stat_wrapper_2 {
+  margin-bottom: 20px;
+  background: none;
+  padding: 0;
+  border-radius: 0;
+
+  .cbxpetition_stat_count {
+    margin-bottom: 5px;
+    display: flex;
+    flex-wrap: wrap;
+
+    .cbxpetition_stat_count_target,
+    .cbxpetition-progress-ratio {
+      flex: 0 0 50%;
+      max-width: 50%;
+      text-align: left;
+    }
+
+    .cbxpetition_stat_count_target{
+      color: #7b84ab;
+      i{
+        color: $darkgrey_color;
+        font-weight: bold;
+        font-style: normal;
+        &:last-child{
+          font-weight: normal;
+        }
+      }
+
+    }
+
+    .cbxpetition-progress-ratio {
+      text-align: right;
+      color: #c87f0a;
+      &.cbxpetition-progress-ratio-green{
+        color: #1d9a6c;
+      }
+    }
+
+    .cbxpetition_stat_count_target{
+
+    }
+  }
+
+  .cbxpetition-progress-wrapper{
+    .cbxpetition-progress{
+      background-color: #e5e6f2;
+      width: 100%;
+      .cbxpetition-progress-value{
+        &.cbxpetition-progress-value-green{
+          background-color: #1d9a6c;
+        }
+      }
+    }
+  }
+}
+
 .cbxpetition-progress-wrapper {
   clear: both;
   display: flex;
   align-items: center;
 
   .cbxpetition-progress {
-    //float: left;
     margin-right: auto;
     display: inline-block;
     margin-top: 4px;
@@ -616,7 +705,6 @@ h2.cbxpetition_section_heading {
   }
 
   .cbxpetition-progress-ratio {
-    //float: right;
     margin-left: auto;
     display: inline-block;
     color: $app_primary_color;
@@ -631,7 +719,7 @@ h2.cbxpetition_section_heading {
 
 .cbxpetition-alert {
   position: relative;
-  padding: 5px 10px;
+  padding: 15px 10px;
   margin-bottom: 5px;
   border: 1px solid transparent;
   border-radius: .25rem;
@@ -765,6 +853,12 @@ h2.cbxpetition_section_heading {
       margin: 0 auto;
     }
   }
+
+  .button{
+    &.button-cancel{
+      color: $app_darkgrey_color;
+    }
+  }
 }
 
 .petition_login_regi_box {
@@ -878,9 +972,65 @@ h2.cbxpetition_section_heading {
   .cbxpetition_loop_item{
     .cbxpetition_loop_item_inside{
       height: 100%;
-      padding: 10px;
+      //padding: 10px;
       background-color: #f0f5ff;
       border-radius: 10px;
+      border: 1px solid #e5e6f2;
+      box-shadow: 0 1px 2px rgba(21, 27, 51, 0.04), 0 8px 24px -12px rgba(21, 27, 51, 0.12);
+      transition: transform .18s ease, box-shadow .18s ease;
+
+      .cbxpetition_loop_item_header{
+        position: relative;
+        height: 150px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: #c9e3d4;
+        background-image: linear-gradient(135deg, #8FC9A7, #4E9F73);
+        min-height: 150px;
+        border-radius: 10px 10px 0 0;
+        padding: 10px;
+        .cbxpetition_archive_loop_item_category{
+
+        }
+      }
+      .cbxpetition_loop_item_content{
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        .cbxpetition_loop_item_heading{
+          h2{
+            font-size: 16px;
+            line-height: 1.2;
+            font-weight: bold;
+            color: $darkgrey_color;
+            margin-bottom: 10px;
+            a{
+              color: inherit;
+            }
+          }
+        }
+
+      }
+      .loop_item_content_sign_wrap{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .loop_item_content_sign_left{
+          margin-right: auto;
+        }
+        .loop_item_content_sign_ref{
+          margin-left: auto;
+          &.loop_item_content_sign_expired{
+
+          }
+        }
+      }
+
+      &:hover{
+        transform: translateY(-3px);
+        box-shadow: 0 4px 10px rgba(21, 27, 51, 0.06), 0 20px 40px -16px rgba(21, 27, 51, 0.18);
+      }
     }
   }
 }

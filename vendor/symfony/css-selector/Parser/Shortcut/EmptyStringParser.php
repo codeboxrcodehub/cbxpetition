@@ -29,7 +29,7 @@ use CbxPetitionScoped\Symfony\Component\CssSelector\Parser\ParserInterface;
  */
 class EmptyStringParser implements ParserInterface
 {
-    public function parse(string $source) : array
+    public function parse(string $source): array
     {
         // Matches an empty string
         if ('' == $source) {

@@ -107,7 +107,7 @@ class Rule implements Commentable, CSSElement, Positionable
      */
     private static function listDelimiterForRule($sRule)
     {
-        if (\preg_match('/^font($|-)/', $sRule)) {
+        if (preg_match('/^font($|-)/', $sRule)) {
             return [',', '/', ' '];
         }
         switch ($sRule) {
@@ -161,12 +161,12 @@ class Rule implements Commentable, CSSElement, Positionable
     public function setValues(array $aSpaceSeparatedValues)
     {
         $oSpaceSeparatedList = null;
-        if (\count($aSpaceSeparatedValues) > 1) {
+        if (count($aSpaceSeparatedValues) > 1) {
             $oSpaceSeparatedList = new RuleValueList(' ', $this->iLineNo);
         }
         foreach ($aSpaceSeparatedValues as $aCommaSeparatedValues) {
             $oCommaSeparatedList = null;
-            if (\count($aCommaSeparatedValues) > 1) {
+            if (count($aCommaSeparatedValues) > 1) {
                 $oCommaSeparatedList = new RuleValueList(',', $this->iLineNo);
             }
             foreach ($aCommaSeparatedValues as $mValue) {
@@ -211,11 +211,11 @@ class Rule implements Commentable, CSSElement, Positionable
                 $aResult[] = [$mValue];
                 continue;
             }
-            if ($this->mValue->getListSeparator() === ' ' || \count($aResult) === 0) {
+            if ($this->mValue->getListSeparator() === ' ' || count($aResult) === 0) {
                 $aResult[] = [];
             }
             foreach ($mValue->getListComponents() as $mValue) {
-                $aResult[\count($aResult) - 1][] = $mValue;
+                $aResult[count($aResult) - 1][] = $mValue;
             }
         }
         return $aResult;
@@ -231,7 +231,7 @@ class Rule implements Commentable, CSSElement, Positionable
      */
     public function addValue($mValue, $sType = ' ')
     {
-        if (!\is_array($mValue)) {
+        if (!is_array($mValue)) {
             $mValue = [$mValue];
         }
         if (!$this->mValue instanceof RuleValueList || $this->mValue->getListSeparator() !== $sType) {
@@ -316,7 +316,7 @@ class Rule implements Commentable, CSSElement, Positionable
             $sResult .= $this->mValue;
         }
         if (!empty($this->aIeHack)) {
-            $sResult .= ' \\' . \implode('\\', $this->aIeHack);
+            $sResult .= ' \\' . implode('\\', $this->aIeHack);
         }
         if ($this->bIsImportant) {
             $sResult .= ' !important';
@@ -331,7 +331,7 @@ class Rule implements Commentable, CSSElement, Positionable
      */
     public function addComments(array $aComments)
     {
-        $this->aComments = \array_merge($this->aComments, $aComments);
+        $this->aComments = array_merge($this->aComments, $aComments);
     }
     /**
      * @return array<array-key, Comment>

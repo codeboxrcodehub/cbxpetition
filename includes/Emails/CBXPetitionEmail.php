@@ -3,10 +3,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use Pelago\Emogrifier\CssInliner;
-use Pelago\Emogrifier\HtmlProcessor\CssToAttributeConverter;
-use Pelago\Emogrifier\HtmlProcessor\HtmlPruner;
-
+use CbxPetitionScoped\Pelago\Emogrifier\CssInliner;
+use CbxPetitionScoped\Pelago\Emogrifier\HtmlProcessor\CssToAttributeConverter;
+use CbxPetitionScoped\Pelago\Emogrifier\HtmlProcessor\HtmlPruner;
 
 
 if ( class_exists( 'CBXPetitionEmail', false ) ) {
@@ -229,9 +228,9 @@ class CBXPetitionEmail {
 		// Find/replace.
 		$this->placeholders = array_merge(
 			array(
-				'{site_title}'   => $this->get_blogname(),
-				'{site_url}'     => wp_parse_url( home_url(), PHP_URL_HOST ),
-				'{site_link}'     => '<a href="'.wp_parse_url( home_url(), PHP_URL_HOST ).'">'.$this->get_blogname().'</a>',
+				'{site_title}' => $this->get_blogname(),
+				'{site_url}'   => wp_parse_url( home_url(), PHP_URL_HOST ),
+				'{site_link}'  => '<a href="' . wp_parse_url( home_url(), PHP_URL_HOST ) . '">' . $this->get_blogname() . '</a>',
 			),
 			$this->placeholders
 		);
@@ -363,10 +362,9 @@ class CBXPetitionEmail {
 		}
 
 
-		if($this->get_replyto()){
+		if ( $this->get_replyto() ) {
 			$header .= 'Reply-to: ' . $this->get_replyto() . " \r\n";
-		}
-		else if( $this->get_from_email() && $this->get_from_name() ) {
+		} else if ( $this->get_from_email() && $this->get_from_name() ) {
 			$header .= 'Reply-to: ' . $this->get_from_name() . ' <' . $this->get_from_email() . ">\r\n";
 		}
 
@@ -398,7 +396,7 @@ class CBXPetitionEmail {
 
 		return implode( ', ', $bcc );
 	}//end method get_bcc
-	
+
 	/**
 	 * Get valid replyto
 	 *
@@ -406,7 +404,8 @@ class CBXPetitionEmail {
 	 */
 	public function get_replyto() {
 		$reply_to = apply_filters( 'cbxpetition_email_replyto_' . $this->id, $this->get_option( 'replyto', '' ), $this->object, $this );
-		return trim($reply_to);
+
+		return trim( $reply_to );
 	}//end method get_replyto
 
 	/**
@@ -435,11 +434,11 @@ class CBXPetitionEmail {
 	/**
 	 * Send an email.
 	 *
-	 * @param  string  $to  Email to.
-	 * @param  string  $subject  Email subject.
-	 * @param  string  $message  Email message.
-	 * @param  string  $headers  Email headers.
-	 * @param  array  $attachments  Email attachments.
+	 * @param string $to Email to.
+	 * @param string $subject Email subject.
+	 * @param string $message Email message.
+	 * @param string $headers Email headers.
+	 * @param array $attachments Email attachments.
 	 *
 	 * @return bool success
 	 */
@@ -471,9 +470,9 @@ class CBXPetitionEmail {
 		/**
 		 * Action hook fired when an email is sent.
 		 *
-		 * @param  bool  $return  Whether the email was sent successfully.
-		 * @param  int  $id  Email ID.
-		 * @param  CBXPetitionEmail  $this  CBXPetitionEmail instance.
+		 * @param bool $return Whether the email was sent successfully.
+		 * @param int $id Email ID.
+		 * @param CBXPetitionEmail $this CBXPetitionEmail instance.
 		 *
 		 * @since 5.6.0
 		 */
@@ -602,11 +601,11 @@ class CBXPetitionEmail {
 				'placeholder' => esc_html__( 'Email', 'cbxpetition' ),
 				'default'     => ''
 			],
-			'replyto'                => [
+			'replyto'            => [
 				'title'       => esc_html__( 'Reply To', 'cbxpetition' ),
 				'type'        => 'text',
 				'desc_tip'    => true,
-				'description' => wp_kses(__( 'Email reply to. If empty then will be used from <strong>From Email</strong>.', 'cbxpetition' ), cbxpetitionHelper::allowedHtmlTags()),
+				'description' => wp_kses( __( 'Email reply to. If empty then will be used from <strong>From Email</strong>.', 'cbxpetition' ), cbxpetitionHelper::allowedHtmlTags() ),
 				'placeholder' => esc_html__( 'Reply to email', 'cbxpetition' ),
 				'default'     => ''
 			],
@@ -637,7 +636,7 @@ class CBXPetitionEmail {
 	/**
 	 * Set default required properties for each field.
 	 *
-	 * @param  array  $field  Setting field array.
+	 * @param array $field Setting field array.
 	 *
 	 * @return array
 	 */
@@ -734,7 +733,7 @@ class CBXPetitionEmail {
 	/**
 	 * Get email content type.
 	 *
-	 * @param  string  $default_content_type  Default wp_mail() content type.
+	 * @param string $default_content_type Default wp_mail() content type.
 	 *
 	 * @return string
 	 */
@@ -757,7 +756,7 @@ class CBXPetitionEmail {
 	/**
 	 * Format email string.
 	 *
-	 * @param  mixed  $string  Text to replace placeholders in.
+	 * @param mixed $string Text to replace placeholders in.
 	 *
 	 * @return string
 	 */
@@ -818,35 +817,35 @@ class CBXPetitionEmail {
 	 *
 	 * We only inline CSS for html emails, and to do so we use Emogrifier library (if supported).
 	 *
-	 * @param  string|null  $content  Content that will receive inline styles.
+	 * @param string|null $content Content that will receive inline styles.
 	 *
 	 * @return string
 	 * @version 4.0.0
 	 */
 	public function style_inline( $content ) {
 		if ( in_array( $this->get_content_type(), [ 'text/html', 'multipart/alternative' ], true ) ) {
-
 			$css = $this->get_must_use_css_styles();
 			$css .= "\n";
 
 			ob_start();
-			echo cbxpetition_get_template_html( 'emails/email-styles.php' );  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			$tpl_settings = get_option( 'cbxpetition_email_tpl', [] );
+			$sel_template = $tpl_settings['selected_template'] ?? 'tpl-general';
+			echo cbxpetition_get_template_html( 'email_templates/' . esc_attr( $sel_template ) . '/email-styles.php' );  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
 			$css .= ob_get_clean();
 
 			/**
 			 * Provides an opportunity to filter the CSS styles included in e-mails.
 			 *
-			 * @param  string  $css  CSS code.
-			 * @param  \CBXPetitionEmail  $email  E-mail instance.
+			 * @param string $css CSS code.
+			 * @param \CBXPetitionEmail $email E-mail instance.
 			 *
 			 * @since 2.3.0
 			 *
 			 */
 			$css = apply_filters( 'cbxpetition_email_styles', $css, $this );
 
-			$css_inliner_class = CssInliner::class;
-
-			if ( $this->supports_emogrifier() && class_exists( $css_inliner_class ) ) {
+			if ( $this->supports_emogrifier() ) {
 				try {
 					$css_inliner = CssInliner::fromHtml( $content )->inlineCss( $css );
 
@@ -859,11 +858,16 @@ class CBXPetitionEmail {
 					                                  ->convertCssToVisualAttributes()
 					                                  ->render();
 				} catch ( Exception $e ) {
-					//$logger = wc_get_logger();
-					//$logger->error( $e->getMessage(), array( 'source' => 'emogrifier' ) );
+					//
 				}
 			} else {
-				$content = '<style>' . $css . '</style>' . $content;
+				//$content = '<style>' . $css . '</style>' . $content;
+				$content = preg_replace(
+					'/(<head[^>]*>)/i',
+					'$1<style>' . $css . '</style>',
+					$content,
+					1
+				);
 			}
 		}
 
@@ -882,9 +886,9 @@ class CBXPetitionEmail {
 		/**
 		 * Provides an opportunity to inspect and modify additional content for the email.
 		 *
-		 * @param  string  $additional_content  Additional content to be added to the email.
-		 * @param  object|bool  $object  The object (ie, product or order) this email relates to, if any.
-		 * @param  CBXPetitionEmail  $email  CBXPetitionEmail instance managing the email.
+		 * @param string $additional_content Additional content to be added to the email.
+		 * @param object|bool $object The object (ie, product or order) this email relates to, if any.
+		 * @param CBXPetitionEmail $email CBXPetitionEmail instance managing the email.
 		 *
 		 * @since 3.7.0
 		 *
@@ -895,7 +899,7 @@ class CBXPetitionEmail {
 	/**
 	 * Handle multipart mail.
 	 *
-	 * @param  PHPMailer  $mailer  PHPMailer object.
+	 * @param PHPMailer $mailer PHPMailer object.
 	 *
 	 * @return PHPMailer
 	 */

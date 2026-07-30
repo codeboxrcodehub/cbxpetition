@@ -25,19 +25,20 @@ class PolygonShape extends AbstractShape
     /**
      * Draw polygon on given image
      *
-     * @param  Image   $image
-     * @param  int     $x
-     * @param  int     $y
+     * @param Image $image
+     * @param int $x
+     * @param int $y
+     *
      * @return boolean
      */
     public function applyToImage(Image $image, $x = 0, $y = 0)
     {
         $background = new Color($this->background);
-        \imagefilledpolygon($image->getCore(), $this->points, \intval(\count($this->points) / 2), $background->getInt());
+        imagefilledpolygon($image->getCore(), $this->points, intval(count($this->points) / 2), $background->getInt());
         if ($this->hasBorder()) {
             $border_color = new Color($this->border_color);
-            \imagesetthickness($image->getCore(), $this->border_width);
-            \imagepolygon($image->getCore(), $this->points, \intval(\count($this->points) / 2), $border_color->getInt());
+            imagesetthickness($image->getCore(), $this->border_width);
+            imagepolygon($image->getCore(), $this->points, intval(count($this->points) / 2), $border_color->getInt());
         }
         return \true;
     }

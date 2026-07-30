@@ -20,25 +20,27 @@ abstract class AbstractDriver
     /**
      * Creates new image instance
      *
-     * @param  int     $width
-     * @param  int     $height
-     * @param  string  $background
+     * @param int $width
+     * @param int $height
+     * @param string $background
+     *
      * @return \Intervention\Image\Image
      */
-    public abstract function newImage($width, $height, $background);
+    abstract public function newImage($width, $height, $background);
     /**
      * Reads given string into color object
      *
-     * @param  string $value
+     * @param string $value
+     *
      * @return AbstractColor
      */
-    public abstract function parseColor($value);
+    abstract public function parseColor($value);
     /**
      * Checks if core module installation is available
      *
      * @return boolean
      */
-    protected abstract function coreAvailable();
+    abstract protected function coreAvailable();
     /**
      * Returns clone of given core
      *
@@ -51,7 +53,8 @@ abstract class AbstractDriver
     /**
      * Initiates new image from given input
      *
-     * @param  mixed $data
+     * @param mixed $data
+     *
      * @return \Intervention\Image\Image
      */
     public function init($data)
@@ -61,9 +64,10 @@ abstract class AbstractDriver
     /**
      * Encodes given image
      *
-     * @param  Image   $image
-     * @param  string  $format
-     * @param  int     $quality
+     * @param Image $image
+     * @param string $format
+     * @param int $quality
+     *
      * @return \Intervention\Image\Image
      */
     public function encode($image, $format, $quality)
@@ -73,9 +77,10 @@ abstract class AbstractDriver
     /**
      * Executes named command on given image
      *
-     * @param  Image  $image
-     * @param  string $name
-     * @param  array $arguments
+     * @param Image $image
+     * @param string $name
+     * @param array $arguments
+     *
      * @return \Intervention\Image\Commands\AbstractCommand
      */
     public function executeCommand($image, $name, $arguments)
@@ -88,22 +93,23 @@ abstract class AbstractDriver
     /**
      * Returns classname of given command name
      *
-     * @param  string $name
+     * @param string $name
+     *
      * @return string
      */
     private function getCommandClassName($name)
     {
-        if (\extension_loaded('mbstring')) {
-            $name = \mb_strtoupper(\mb_substr($name, 0, 1)) . \mb_substr($name, 1);
+        if (extension_loaded('mbstring')) {
+            $name = mb_strtoupper(mb_substr($name, 0, 1)) . mb_substr($name, 1);
         } else {
-            $name = \strtoupper(\substr($name, 0, 1)) . \substr($name, 1);
+            $name = strtoupper(substr($name, 0, 1)) . substr($name, 1);
         }
         $drivername = $this->getDriverName();
-        $classnameLocal = \sprintf('\\Intervention\\Image\\%s\\Commands\\%sCommand', $drivername, \ucfirst($name));
-        $classnameGlobal = \sprintf('\\Intervention\\Image\\Commands\\%sCommand', \ucfirst($name));
-        if (\class_exists($classnameLocal)) {
+        $classnameLocal = sprintf('\Intervention\Image\%s\Commands\%sCommand', $drivername, ucfirst($name));
+        $classnameGlobal = sprintf('\Intervention\Image\Commands\%sCommand', ucfirst($name));
+        if (class_exists($classnameLocal)) {
             return $classnameLocal;
-        } elseif (\class_exists($classnameGlobal)) {
+        } elseif (class_exists($classnameGlobal)) {
             return $classnameGlobal;
         }
         throw new NotSupportedException("Command ({$name}) is not available for driver ({$drivername}).");
@@ -117,6 +123,6 @@ abstract class AbstractDriver
     {
         $reflect = new \ReflectionClass($this);
         $namespace = $reflect->getNamespaceName();
-        return \substr(\strrchr($namespace, "\\"), 1);
+        return substr(strrchr($namespace, "\\"), 1);
     }
 }

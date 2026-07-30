@@ -27,7 +27,7 @@ final class Preg
     /**
      * Sets whether exceptions should be thrown if an error occurs.
      */
-    public function throwExceptions(bool $throw) : self
+    public function throwExceptions(bool $throw): self
     {
         $this->throwExceptions = $throw;
         return $this;
@@ -41,7 +41,7 @@ final class Preg
      *
      * @throws \RuntimeException
      */
-    public function replace($pattern, $replacement, string $subject, int $limit = -1, ?int &$count = null) : string
+    public function replace($pattern, $replacement, string $subject, int $limit = -1, ?int &$count = null): string
     {
         $result = \preg_replace($pattern, $replacement, $subject, $limit, $count);
         if ($result === null) {
@@ -62,7 +62,7 @@ final class Preg
      *
      * @throws \RuntimeException
      */
-    public function replaceCallback($pattern, callable $callback, string $subject, int $limit = -1, ?int &$count = null) : string
+    public function replaceCallback($pattern, callable $callback, string $subject, int $limit = -1, ?int &$count = null): string
     {
         $result = \preg_replace_callback($pattern, $callback, $subject, $limit, $count);
         if ($result === null) {
@@ -83,7 +83,7 @@ final class Preg
      *
      * @throws \RuntimeException
      */
-    public function split(string $pattern, string $subject, int $limit = -1, int $flags = 0) : array
+    public function split(string $pattern, string $subject, int $limit = -1, int $flags = 0): array
     {
         if (($flags & \PREG_SPLIT_OFFSET_CAPTURE) !== 0) {
             throw new \RuntimeException('PREG_SPLIT_OFFSET_CAPTURE is not supported by Preg::split', 1726506348);
@@ -108,7 +108,7 @@ final class Preg
      *
      * @throws \RuntimeException
      */
-    public function match(string $pattern, string $subject, ?array &$matches = null) : int
+    public function match(string $pattern, string $subject, ?array &$matches = null): int
     {
         $result = \preg_match($pattern, $subject, $matches);
         if ($result === \false) {
@@ -136,7 +136,7 @@ final class Preg
      *
      * @throws \RuntimeException
      */
-    public function matchAll(string $pattern, string $subject, ?array &$matches = null) : int
+    public function matchAll(string $pattern, string $subject, ?array &$matches = null): int
     {
         $result = \preg_match_all($pattern, $subject, $matches);
         if ($result === \false) {
@@ -154,10 +154,10 @@ final class Preg
      *
      * @throws \RuntimeException
      */
-    private function logOrThrowPregLastError() : void
+    private function logOrThrowPregLastError(): void
     {
         $pcreConstants = \get_defined_constants(\true)['pcre'];
-        $pcreErrorConstantNames = \array_flip(\array_filter($pcreConstants, static function (string $key) : bool {
+        $pcreErrorConstantNames = \array_flip(\array_filter($pcreConstants, static function (string $key): bool {
             return \substr($key, -6) === '_ERROR';
         }, \ARRAY_FILTER_USE_KEY));
         $pregLastError = \preg_last_error();

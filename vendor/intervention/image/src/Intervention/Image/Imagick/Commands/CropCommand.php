@@ -11,7 +11,8 @@ class CropCommand extends AbstractCommand
     /**
      * Crop an image instance
      *
-     * @param  \Intervention\Image\Image $image
+     * @param \Intervention\Image\Image $image
+     *
      * @return boolean
      */
     public function execute($image)
@@ -20,13 +21,13 @@ class CropCommand extends AbstractCommand
         $height = $this->argument(1)->type('digit')->required()->value();
         $x = $this->argument(2)->type('digit')->value();
         $y = $this->argument(3)->type('digit')->value();
-        if (\is_null($width) || \is_null($height)) {
+        if (is_null($width) || is_null($height)) {
             throw new InvalidArgumentException("Width and height of cutout needs to be defined.");
         }
         $cropped = new Size($width, $height);
         $position = new Point($x, $y);
         // align boxes
-        if (\is_null($x) && \is_null($y)) {
+        if (is_null($x) && is_null($y)) {
             $position = $image->getSize()->align('center')->relativePosition($cropped->align('center'));
         }
         // crop image core

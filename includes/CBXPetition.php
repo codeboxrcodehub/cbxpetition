@@ -33,7 +33,7 @@ final class CBXPetition {
 	 * @since 1.0.0
 	 */
 	private $short_code;
-	
+
 	/**
 	 * The single instance of the class.
 	 *
@@ -98,6 +98,7 @@ final class CBXPetition {
 	 *
 	 * @param string $key Property name.
 	 * @param mixed $value Property value.
+	 *
 	 * @since 2.0.0
 	 */
 	public function __set( string $key, $value ) {
@@ -209,13 +210,14 @@ final class CBXPetition {
 		add_action( 'wp_ajax_cbxpetition_sign_edit', [ $admin, 'petition_sign_edit' ] );
 		add_action( 'wp_ajax_cbxpetition_sign_delete', [ $admin, 'petition_sign_delete' ] );
 
-		add_action( 'delete_user', [ $admin, 'on_user_delete_sign_delete' ] );
+		//add_action( 'delete_user', [ $admin, 'on_user_delete_sign_delete' ] );
+		add_action( 'deleted_user', [ $admin, 'on_user_delete_sign_delete' ] );
 		//end signature hooks
 
 		//plugin upgrade and notice
 		add_action( 'plugins_loaded', [ $admin, 'plugin_upgrader_process_complete' ] );
 		add_action( 'admin_notices', [ $admin, 'plugin_activate_upgrade_notices' ] );
-		add_filter( 'plugin_action_links_' . CBXPETITION_BASE_NAME, [	$admin, 'plugin_action_links'] );
+		add_filter( 'plugin_action_links_' . CBXPETITION_BASE_NAME, [ $admin, 'plugin_action_links' ] );
 		add_filter( 'plugin_row_meta', [ $admin, 'custom_plugin_row_meta' ], 10, 4 );
 		add_action( 'activated_plugin', [ $admin, 'check_pro_addon' ] );
 		add_action( 'init', [ $admin, 'check_pro_addon' ] );
@@ -229,7 +231,7 @@ final class CBXPetition {
 		add_action( 'admin_init', [ $admin, 'save_email_setting' ] );
 
 		//default category
-		add_action('admin_init', [$admin, 'create_default_category']);
+		add_action( 'admin_init', [ $admin, 'create_default_category' ] );
 	}//end method admin_hooks
 
 	/**
@@ -266,8 +268,12 @@ final class CBXPetition {
 		add_action( 'template_include', [ $public, 'include_custom_templates' ] );
 
 		add_action( 'cbxpetition_single_content_after_title', [ $public, 'category_display_after_title' ] );
-		add_action( 'cbxpetition_archive_loop_item_content_inside_start', [ $public, 'category_display_after_title' ] );
+		add_action( 'cbxpetition_archive_loop_item_header_start', [ $public, 'category_display_header' ] );
+
 		add_action( 'cbxpetition_single_content_after_details', [ $public, 'tag_display_after_title' ] );
+		add_action( 'cbxpetition_archive_loop_item_content_inside', [ $public, 'loop_item_content_inside_stat' ] );
+		add_action( 'cbxpetition_archive_loop_item_content_inside', [ $public, 'loop_item_content_inside_sign_now' ] );
+		add_action( 'cbxpetition_archive_loop_item_heading_start', [ $public, 'loop_item_title' ] );
 	}//end method public_hooks
 
 	/**
@@ -289,7 +295,7 @@ final class CBXPetition {
 	public function php_version_notice() {
 		echo '<div class="error"><p>';
 		/* Translators:  PHP Version */
-		echo sprintf(esc_html__( 'CBX Petition requires at least PHP %s. Please upgrade PHP to run CBX Petition.', 'cbxpetition' ), esc_attr(CBXPETITION_PHP_MIN_VERSION));
+		echo sprintf( esc_html__( 'CBX Petition requires at least PHP %s. Please upgrade PHP to run CBX Petition.', 'cbxpetition' ), esc_attr( CBXPETITION_PHP_MIN_VERSION ) );
 		echo '</p></div>';
 	}//end method php_version_notice
 }//end class CBXPetition

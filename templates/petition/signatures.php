@@ -25,11 +25,13 @@ if ( is_array( $petition_signs ) && sizeof( $petition_signs ) > 0 ) {
 	do_action( 'cbxpetition_signature_before', $petition_id );
 
 	//echo '<div class="cbx-chota" id="cbxpetition_signature_wrapper_'.absint($petition_id).'">';
-	echo '<div id="cbxpetition_signature_wrapper_'.absint($petition_id).'">';
+	echo '<div id="cbxpetition_signature_wrapper_' . absint( $petition_id ) . '">';
 	echo '<div class="cbxpetition_signature_wrapper">';
-	echo '<h2 class="cbxpetition_section_heading cbxpetition_section_heading_signatures">' . esc_html__( 'Reasons for signing', 'cbxpetition' ) . '</h2>';
+	echo '<h2 class="cbxpetition_section_heading cbxpetition_section_heading_signatures">';
+	echo esc_html__( 'Reasons for signing', 'cbxpetition' );
 	/* translators: %d: petition count  */
-	echo '<p class="cbxpetition_signature_listing_total">' . sprintf( esc_html__( 'Total Signatures: %d', 'cbxpetition' ), absint( $petition_count ) ) . '</p>';
+	echo '<span class="cbxpetition_signature_listing_total">' . sprintf( esc_html__( 'Total Signatures: %d', 'cbxpetition' ), absint( $petition_count ) ) . '</span>';
+	echo '</h2>';
 
 	do_action( 'cbxpetition_signature_items_before', $petition_id );
 	echo '<div class="cbxpetition_signature_items">';

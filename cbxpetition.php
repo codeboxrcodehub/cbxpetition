@@ -16,7 +16,7 @@
  * Plugin Name:       CBX Petition
  * Plugin URI:        https://codeboxr.com/product/cbx-petition-for-wordpress/
  * Description:       A plugin to create, manage petition and collect signatures for petition
- * Version:           2.0.14
+ * Version:           2.0.15
  * Author:            Codeboxr
  * Author URI:        https://codeboxr.com
  * License:           GPL-2.0+
@@ -33,15 +33,16 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 defined( 'CBXPETITION_PLUGIN_NAME' ) or define( 'CBXPETITION_PLUGIN_NAME', 'cbxpetition' );
-defined( 'CBXPETITION_PLUGIN_VERSION' ) or define( 'CBXPETITION_PLUGIN_VERSION', '2.0.14' );
+defined( 'CBXPETITION_PLUGIN_VERSION' ) or define( 'CBXPETITION_PLUGIN_VERSION', '2.0.15' );
 defined( 'CBXPETITION_BASE_NAME' ) or define( 'CBXPETITION_BASE_NAME', plugin_basename( __FILE__ ) );
 defined( 'CBXPETITION_ROOT_PATH' ) or define( 'CBXPETITION_ROOT_PATH', plugin_dir_path( __FILE__ ) );
 defined( 'CBXPETITION_ROOT_URL' ) or define( 'CBXPETITION_ROOT_URL', plugin_dir_url( __FILE__ ) );
 
-defined( 'CBXPETITION_WP_MIN_VERSION' ) or define( 'CBXPETITION_WP_MIN_VERSION', '5.3' );
+defined( 'CBXPETITION_WP_MIN_VERSION' ) or define( 'CBXPETITION_WP_MIN_VERSION', '5.9' );
 defined( 'CBXPETITION_PHP_MIN_VERSION' ) or define( 'CBXPETITION_PHP_MIN_VERSION', '7.4' );
 
-defined( 'CBXPETITION_PRO_VERSION' ) or define( 'CBXPETITION_PRO_VERSION', '2.0.9' );
+defined( 'CBXPETITION_DEV_MODE' ) or define( 'CBXPETITION_DEV_MODE', false );
+defined( 'CBXPETITION_PRO_VERSION' ) or define( 'CBXPETITION_PRO_VERSION', '2.0.10' );
 
 // Include the main class
 if ( ! class_exists( 'CBXPetition', false ) ) {
@@ -56,7 +57,9 @@ if ( ! class_exists( 'CBXPetition', false ) ) {
  * @return bool
  */
 function cbxpetition_compatible_wp_version( $version = '' ) {
-	if($version == '') $version = CBXPETITION_WP_MIN_VERSION;
+	if ( $version == '' ) {
+		$version = CBXPETITION_WP_MIN_VERSION;
+	}
 
 	if ( version_compare( $GLOBALS['wp_version'], $version, '<' ) ) {
 		return false;
@@ -75,7 +78,9 @@ function cbxpetition_compatible_wp_version( $version = '' ) {
  * @return bool
  */
 function cbxpetition_compatible_php_version( $version = '' ) {
-	if($version == '') $version = CBXPETITION_PHP_MIN_VERSION;
+	if ( $version == '' ) {
+		$version = CBXPETITION_PHP_MIN_VERSION;
+	}
 
 	if ( version_compare( PHP_VERSION, $version, '<' ) ) {
 		return false;
@@ -104,7 +109,7 @@ function cbxpetition_activate() {
 		deactivate_plugins( plugin_basename( __FILE__ ) );
 
 		/* translators: WordPress version */
-		wp_die( sprintf( esc_html__( 'CBX Petition plugin requires WordPress %s or higher!', 'cbxpetition' ), esc_attr($wp_version) ) ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		wp_die( sprintf( esc_html__( 'CBX Petition plugin requires WordPress %s or higher!', 'cbxpetition' ), esc_attr( $wp_version ) ) ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	if ( ! cbxpetition_compatible_php_version() ) {
@@ -113,10 +118,10 @@ function cbxpetition_activate() {
 		deactivate_plugins( plugin_basename( __FILE__ ) );
 
 		/* translators: PHP version */
-		wp_die( sprintf( esc_html__( 'CBX Petition plugin requires PHP %s or higher!', 'cbxpetition' ), esc_attr($php_version) ) ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		wp_die( sprintf( esc_html__( 'CBX Petition plugin requires PHP %s or higher!', 'cbxpetition' ), esc_attr( $php_version ) ) ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
-	if($activate_ok){
+	if ( $activate_ok ) {
 		cbxpetition_core();
 		PetitionHelper::role_cap_assignment();
 		PetitionHelper::create_tables();
@@ -130,7 +135,7 @@ function cbxpetition_activate() {
 
 		//deactivate pro addon if version than 2.0.0
 		cbxpetition_check_and_deactivate_plugin( 'cbxpetitionproaddon/cbxpetitionproaddon.php', '2.0.0', 'cbxpetition_proaddon_deactivated' );
-		
+
 	}//end $activate_ok
 }//end method cbxpetition_activate
 

@@ -9,7 +9,8 @@ class TrimCommand extends AbstractCommand
     /**
      * Trims away parts of an image
      *
-     * @param  \Intervention\Image\Image $image
+     * @param \Intervention\Image\Image $image
+     *
      * @return boolean
      */
     public function execute($image)
@@ -22,17 +23,17 @@ class TrimCommand extends AbstractCommand
         $height = $image->getHeight();
         $checkTransparency = \false;
         // define borders to trim away
-        if (\is_null($away)) {
+        if (is_null($away)) {
             $away = ['top', 'right', 'bottom', 'left'];
-        } elseif (\is_string($away)) {
+        } elseif (is_string($away)) {
             $away = [$away];
         }
         // lower border names
         foreach ($away as $key => $value) {
-            $away[$key] = \strtolower($value);
+            $away[$key] = strtolower($value);
         }
         // define base color position
-        switch (\strtolower($base)) {
+        switch (strtolower($base)) {
             case 'transparent':
             case 'trans':
                 $checkTransparency = \true;
@@ -70,28 +71,28 @@ class TrimCommand extends AbstractCommand
         // $trimed->setImagePage(0, 0, 0, 0);
         list($crop_width, $crop_height) = [$trimed->width, $trimed->height];
         // adjust settings if right should not be trimed
-        if (!\in_array('right', $away)) {
+        if (!in_array('right', $away)) {
             $crop_width = $crop_width + ($width - ($width - $crop_x));
         }
         // adjust settings if bottom should not be trimed
-        if (!\in_array('bottom', $away)) {
+        if (!in_array('bottom', $away)) {
             $crop_height = $crop_height + ($height - ($height - $crop_y));
         }
         // adjust settings if left should not be trimed
-        if (!\in_array('left', $away)) {
+        if (!in_array('left', $away)) {
             $crop_width = $crop_width + $crop_x;
             $crop_x = 0;
         }
         // adjust settings if top should not be trimed
-        if (!\in_array('top', $away)) {
+        if (!in_array('top', $away)) {
             $crop_height = $crop_height + $crop_y;
             $crop_y = 0;
         }
         // add feather
-        $crop_width = \min($width, $crop_width + $feather * 2);
-        $crop_height = \min($height, $crop_height + $feather * 2);
-        $crop_x = \max(0, $crop_x - $feather);
-        $crop_y = \max(0, $crop_y - $feather);
+        $crop_width = min($width, $crop_width + $feather * 2);
+        $crop_height = min($height, $crop_height + $feather * 2);
+        $crop_x = max(0, $crop_x - $feather);
+        $crop_y = max(0, $crop_y - $feather);
         // finally crop based on page
         $image->getCore()->cropImage($crop_width, $crop_height, $crop_x, $crop_y);
         $image->getCore()->setImagePage(0, 0, 0, 0);

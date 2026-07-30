@@ -24,7 +24,7 @@ final class CssVariableEvaluator extends AbstractHtmlProcessor
      *
      * @throws \UnexpectedValueException
      */
-    public function evaluateVariables() : self
+    public function evaluateVariables(): self
     {
         return $this->evaluateVariablesInElementAndDescendants($this->getHtmlElement(), []);
     }
@@ -33,9 +33,9 @@ final class CssVariableEvaluator extends AbstractHtmlProcessor
      *
      * @return array<non-empty-string, string>
      */
-    private function getVariableDefinitionsFromDeclarations(array $declarations) : array
+    private function getVariableDefinitionsFromDeclarations(array $declarations): array
     {
-        return \array_filter($declarations, static function (string $key) : bool {
+        return \array_filter($declarations, static function (string $key): bool {
             return \substr($key, 0, 2) === '--';
         }, \ARRAY_FILTER_USE_KEY);
     }
@@ -44,7 +44,7 @@ final class CssVariableEvaluator extends AbstractHtmlProcessor
      *
      * @param array<int, string> $matches
      */
-    private function getPropertyValueReplacement(array $matches) : string
+    private function getPropertyValueReplacement(array $matches): string
     {
         $variableName = $matches[1];
         if (isset($this->currentVariableDefinitions[$variableName])) {
@@ -64,20 +64,20 @@ final class CssVariableEvaluator extends AbstractHtmlProcessor
     /**
      * Regular expression based on {@see https://stackoverflow.com/a/54143883/2511031 a StackOverflow answer}.
      */
-    private function replaceVariablesInPropertyValue(string $propertyValue) : string
+    private function replaceVariablesInPropertyValue(string $propertyValue): string
     {
         return (new Preg())->replaceCallback('/
-                var\\(
-                    \\s*+
+                var\(
+                    \s*+
                     # capture variable name including `--` prefix
                     (
-                        --[^\\s\\),]++
+                        --[^\s\),]++
                     )
-                    \\s*+
+                    \s*+
                     # capture optional fallback value
                     (?:
                         # capture separator to confirm there is a fallback value
-                        (,)\\s*
+                        (,)\s*
                         # begin capture with named group that can be used recursively
                         (?<recursable>
                             # begin named group to match sequence without parentheses, except in strings
@@ -85,7 +85,7 @@ final class CssVariableEvaluator extends AbstractHtmlProcessor
                                 # repeated zero or more times:
                                 (?:
                                     # sequence without parentheses or quotes
-                                    [^\\(\\)\'"]++
+                                    [^\(\)\'"]++
                                     |
                                     # string in double quotes
                                     "(?>[^"\\\\]++|\\\\.)*"
@@ -97,16 +97,16 @@ final class CssVariableEvaluator extends AbstractHtmlProcessor
                             # repeated zero or more times:
                             (?:
                                 # sequence in parentheses
-                                \\(
+                                \(
                                     # using the named recursable pattern
                                     (?&recursable)
-                                \\)
+                                \)
                                 # sequence without parentheses, except in strings
                                 (?&noparentheses)
                             )*+
                         )
                     )?+
-                \\)
+                \)
             /x', \Closure::fromCallable([$this, 'getPropertyValueReplacement']), $propertyValue);
     }
     /**
@@ -114,10 +114,10 @@ final class CssVariableEvaluator extends AbstractHtmlProcessor
      *
      * @return ?array<non-empty-string, string> `null` is returned if no substitutions were made.
      */
-    private function replaceVariablesInDeclarations(array $declarations) : ?array
+    private function replaceVariablesInDeclarations(array $declarations): ?array
     {
         $substitutionsMade = \false;
-        $result = \array_map(function (string $propertyValue) use(&$substitutionsMade) : string {
+        $result = \array_map(function (string $propertyValue) use (&$substitutionsMade): string {
             $newPropertyValue = $this->replaceVariablesInPropertyValue($propertyValue);
             if ($newPropertyValue !== $propertyValue) {
                 $substitutionsMade = \true;
@@ -129,9 +129,9 @@ final class CssVariableEvaluator extends AbstractHtmlProcessor
     /**
      * @param array<non-empty-string, string> $declarations
      */
-    private function getDeclarationsAsString(array $declarations) : string
+    private function getDeclarationsAsString(array $declarations): string
     {
-        $declarationStrings = \array_map(static function (string $key, string $value) : string {
+        $declarationStrings = \array_map(static function (string $key, string $value): string {
             return $key . ': ' . $value;
         }, \array_keys($declarations), \array_values($declarations));
         return \implode('; ', $declarationStrings) . ';';
@@ -141,11 +141,11 @@ final class CssVariableEvaluator extends AbstractHtmlProcessor
      *
      * @return $this
      */
-    private function evaluateVariablesInElementAndDescendants(\DOMElement $element, array $ancestorVariableDefinitions) : self
+    private function evaluateVariablesInElementAndDescendants(\DOMElement $element, array $ancestorVariableDefinitions): self
     {
         $style = $element->getAttribute('style');
         // Avoid parsing declarations if none use or define a variable
-        if ((new Preg())->match('/(?<![\\w\\-])--[\\w\\-]/', $style) !== 0) {
+        if ((new Preg())->match('/(?<![\w\-])--[\w\-]/', $style) !== 0) {
             $declarations = (new DeclarationBlockParser())->parse($style);
             $variableDefinitions = $this->currentVariableDefinitions = $this->getVariableDefinitionsFromDeclarations($declarations) + $ancestorVariableDefinitions;
             $newDeclarations = $this->replaceVariablesInDeclarations($declarations);
